@@ -1,0 +1,50 @@
+name: Task
+description: General task, chore, or maintenance work
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for tasks, chores, refactors, and maintenance work that are not features or bugs.
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What needs to be done and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: Break the task into discrete steps.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - agents
+        - commands
+        - scripts
+        - skills
+        - hooks
+        - docs
+        - ci
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+    validations:
+      required: false

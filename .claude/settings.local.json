@@ -6,7 +6,8 @@
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f['name']\\) for f in data]\")",
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f['name'], f['type']\\) for f in data]\")",
       "Bash(gh repo *)",
-      "WebFetch(domain:docs.claude.com)"
+      "WebFetch(domain:docs.claude.com)",
+      "Skill(git-workflow)"
     ]
   }
 }
