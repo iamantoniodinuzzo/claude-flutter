@@ -112,6 +112,25 @@ Levels: `t()` trace · `d()` debug · `i()` info · `w()` warning · `e()` error
 - `pumpAndSettle()` forbidden when an infinite animation is in the tree
 - Keys as `static const` on the widget class; top-level for private widget classes
 
+## Git workflow
+
+- `git start feature <number>_<name>` → creates `feature/<number>_<name>` from develop (single arg, all snake_case)
+- `git publish` → pushes current branch to origin
+- `git c` → interactive Conventional Commits script
+- `git finish` → merges branch back
+- GitHub does NOT auto-close issues on PR merge — always run `gh issue close <n>` manually after merging
+- `gh pr merge` fails if uncommitted changes exist — `git stash` first, `git stash pop` after
+
+## Tracking gotcha
+
+Files can exist on disk but be untracked by git. Before closing an issue about file existence,
+verify with `git ls-files <path>` — not just filesystem check.
+
+## Python3 in bash scripts (Windows/Git Bash)
+
+Git Bash POSIX paths (`/c/Users/...`) are not understood by Python on Windows.
+In scripts: `cd "$REPO_ROOT"` first, then use relative paths. Pass file paths via `sys.argv`, not string interpolation.
+
 ## Conventional Commits scopes for this toolkit
 
-When committing to this repo: `agents`, `commands`, `scripts`, `skills`, or the specific skill/command name.
+When committing to this repo: `agents`, `commands`, `scripts`, `skills`, `hooks`, `gemini`, or the specific skill/command name.
