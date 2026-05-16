@@ -8,7 +8,10 @@
     {
       "name": "flutter-toolkit",
       "description": "Agentic skills and experts for Flutter development (Riverpod, TDD, UI, GoRouter, Melos)",
-      "source": ".",
+      "source": {
+        "source": "github",
+        "repo": "iamantoniodinuzzo/claude-flutter"
+      },
       "version": "1.0.1",
       "author": {
         "name": "Antonio Di Nuzzo",
