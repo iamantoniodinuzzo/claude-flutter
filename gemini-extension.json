@@ -1,0 +1,12 @@
+{
+  "name": "claude-flutter",
+  "version": "1.0.0",
+  "description": "Flutter Agentic Skills Framework",
+  "author": "Antonio Di Nuzzo",
+  "github": "https://github.com/tonyd/claude-flutter",
+  "entrypoints": {
+    "agents": "agents/",
+    "skills": "skills/",
+    "commands": "commands/"
+  }
+}
