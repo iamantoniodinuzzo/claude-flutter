@@ -6,7 +6,7 @@
 [![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-compatible-blue)](https://github.com/google/gemini-cli)
 [![OpenCode](https://img.shields.io/badge/OpenCode-compatible-teal)](https://opencode.ai)
 
-Skills, agents, and commands that turn any AI (Claude, Gemini, Cursor) into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3, TDD, and Clean Architecture.
+Skills, agents, and commands that turn any AI (Claude, Gemini, Cursor) into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture.
 
 ---
 
@@ -50,6 +50,7 @@ See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
 
 | Skill | Invoke | Description |
 |---|---|---|
+| `bootstrap-feature` | `/bootstrap-feature` or say "we're starting a new feature" | Full new-feature bootstrap: issue, branch, clean-arch scaffold, context seed |
 | `build-filter` | `/build-filter <path>` | Targeted `dart build_runner` — no full rebuild |
 | `flutter-analyze-targeted` | `/flutter-analyze-targeted <path>` | Fast `dart analyze` scoped to a feature path |
 | `unit-test-claude` | ask "write tests for X" | Unit tests with mocktail + GWT + Riverpod 3.x |
@@ -67,7 +68,6 @@ See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
 | Command | When to use |
 |---|---|
 | `/seed-context-claude` | Start of any Flutter session — loads core rules |
-| `/seed-new-feature-claude` | New feature end-to-end (domain/data/application/presentation) |
 | `/seed-ui-context-claude` | UI / widget work only |
 | `/seed-fix-refactor-claude` | Bug fix, refactor, or performance optimization |
 | `/git-commit-staged-claude` | Generate Conventional Commit message for staged changes |
@@ -94,10 +94,8 @@ This toolkit is a companion to your Flutter project's `ai_toolkit/` — install 
 
 ## Core methodology
 
-1. **Socratic Brainstorming** — agent asks design questions before writing any code
-2. **Atomic Planning** — every feature broken into 2-5 minute tasks
-3. **TDD-First** — failing test before production code (Red → Green → Refactor)
-4. **Riverpod Excellence** — no logic in widgets, maximum testability
+1. **Socratic Brainstorming** — design questions before any code (via `bootstrap-feature`)
+2. **Riverpod Excellence** — no logic in widgets, maximum testability
 
 ---
 
