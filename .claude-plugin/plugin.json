@@ -1,17 +1,13 @@
 {
-  "name": "flutter-superpowers",
+  "name": "flutter-toolkit",
   "version": "1.0.0",
-  "description": "Comprehensive suite of Flutter development skills and agents.",
-  "author": "Antonio Di Nuzzo",
-  "capabilities": [
-    "agents",
-    "skills",
-    "commands",
-    "hooks"
-  ],
-  "entrypoints": {
-    "agents": "agents/",
-    "skills": "skills/",
-    "commands": "commands/"
-  }
+  "description": "Comprehensive suite of Flutter/Dart skills, agents and commands (Riverpod v3, GoRouter, Melos, clean architecture).",
+  "author": {
+    "name": "Antonio Di Nuzzo",
+    "email": "iamantoniodinuzzo@gmail.com"
+  },
+  "homepage": "https://github.com/iamantoniodinuzzo/claude-flutter",
+  "repository": "https://github.com/iamantoniodinuzzo/claude-flutter",
+  "license": "MIT",
+  "keywords": ["flutter", "dart", "riverpod", "tdd", "gorouter", "melos"]
 }
