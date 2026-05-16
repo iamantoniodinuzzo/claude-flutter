@@ -8,7 +8,8 @@
       "Bash(gh repo *)",
       "WebFetch(domain:docs.claude.com)",
       "Skill(git-workflow)",
-      "Skill(skill-creator:skill-creator)"
+      "Skill(skill-creator:skill-creator)",
+      "Skill(github-issue-create)"
     ]
   }
 }
