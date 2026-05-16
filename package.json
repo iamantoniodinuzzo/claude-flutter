@@ -1,6 +1,6 @@
 {
   "name": "flutter-claude-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Skills, agents, and commands for Flutter/Dart development with Claude Code and Gemini CLI",
   "keywords": [
     "flutter",
