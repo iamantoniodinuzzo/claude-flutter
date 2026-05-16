@@ -1,6 +1,7 @@
 ---
 name: generate-widget-tests
 description: Generate widget tests using the Robot Testing pattern for Flutter screens and widgets. Produces tests that identify widgets exclusively by Key (never by text), support i18n, use Robot classes to separate finders/actions/assertions, and follow GWT structure. Use proactively whenever the user asks to write, generate, add, create, or fix widget tests, screen tests, UI tests, robot tests, or integration-style widget tests for any widget, screen, or dialog in this Flutter project — even if they just say "write tests for X" or "add widget coverage to Y".
+user-invocable: true
 ---
 
 # Generate Widget Tests — Robot Testing Pattern

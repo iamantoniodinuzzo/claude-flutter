@@ -1,6 +1,7 @@
 ---
 name: flutter-go-router
 description: Use when implementing, reviewing, or debugging navigation in Flutter apps that use go_router — routes, guards, shell navigation, type-safe routes, deep linking, nested navigators, or bottom nav persistence.
+user-invocable: true
 ---
 
 # Flutter GoRouter Navigation

@@ -1,7 +1,7 @@
 ---
 name: maestro-screenshot-flow
-description: This skill should be used when the user asks to "create a maestro flow", "write a maestro test", "generate screenshots with maestro", "automate screenshots", or mentions "maestro" in the context of mobile UI testing or screenshot generation for Flutter apps.
-version: 1.2.0
+description: Use when creating Maestro flows for automated screenshots or UI testing on Flutter Android apps. Triggers on: "create a maestro flow", "write a maestro test", "generate screenshots with maestro", "automate screenshots".
+user-invocable: true
 ---
 
 # Maestro Screenshot Flow
