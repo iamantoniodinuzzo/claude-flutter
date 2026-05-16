@@ -1,0 +1,19 @@
+{
+  "name": "flutter-claude-toolkit",
+  "version": "1.0.0",
+  "description": "Skills, agents, and commands for Flutter/Dart development with Claude Code and Gemini CLI",
+  "keywords": [
+    "flutter",
+    "dart",
+    "riverpod",
+    "gorouter",
+    "melos",
+    "claude-code",
+    "gemini-cli",
+    "ai-toolkit",
+    "clean-architecture"
+  ],
+  "author": "iamantoniodinuzzo",
+  "license": "MIT",
+  "homepage": "https://github.com/iamantoniodinuzzo/claude-flutter"
+}

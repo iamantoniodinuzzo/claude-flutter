@@ -1,0 +1,14 @@
+{
+  "name": "claude-flutter",
+  "owner": {
+    "name": "Antonio Di Nuzzo",
+    "email": "iamantoniodinuzzo@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "superpowers",
+      "description": "Agentic skills and experts for Flutter development (Riverpod, TDD, UI)",
+      "source": "."
+    }
+  ]
+}

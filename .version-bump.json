@@ -1,0 +1,9 @@
+{
+  "sourceOfTruth": "package.json",
+  "versionKey": "version",
+  "files": [
+    "package.json",
+    ".claude-plugin/plugin.json",
+    "gemini-extension.json"
+  ]
+}

@@ -1,6 +1,7 @@
 ---
 name: flutter-melos-workspace
 description: Apply Melos to Flutter/Dart monorepo projects for workspace orchestration, shared scripts, dependency management, versioning, and CI automation. Use when setting up Melos from scratch, adding/removing packages, defining custom scripts, configuring filters, managing versioning/changelogs, or troubleshooting workspace-level build/test/analyze workflows.
+user-invocable: true
 ---
 
 # Flutter Melos Workspace

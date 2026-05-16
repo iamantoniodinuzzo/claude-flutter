@@ -1,0 +1,12 @@
+{
+  "name": "flutter-superpowers",
+  "displayName": "Flutter Superpowers",
+  "version": "1.0.0",
+  "description": "Native AI skills and rules for Flutter & Riverpod",
+  "author": "Antonio Di Nuzzo",
+  "entryPoints": {
+    "skills": "skills/",
+    "agents": "agents/",
+    "commands": "commands/"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "flutter-superpowers",
+  "version": "1.0.0",
+  "description": "Comprehensive suite of Flutter development skills and agents.",
+  "author": "Antonio Di Nuzzo",
+  "capabilities": [
+    "agents",
+    "skills",
+    "commands",
+    "hooks"
+  ],
+  "entrypoints": {
+    "agents": "agents/",
+    "skills": "skills/",
+    "commands": "commands/"
+  }
+}
