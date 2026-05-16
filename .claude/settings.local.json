@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api *)",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f['name']\\) for f in data]\")",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(f['name'], f['type']\\) for f in data]\")",
+      "Bash(gh repo *)"
+    ]
+  }
+}

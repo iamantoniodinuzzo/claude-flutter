@@ -1,6 +1,7 @@
 ---
 name: unit-test-claude
 description: Generate, update, or repair unit tests for a Flutter feature path or single Dart class. Knows what to test (domain models, services, notifiers, providers, exceptions) and what to skip (widgets, generated code, Firebase repos). Uses mocktail, GWT pattern, Riverpod 3.x ProviderContainer, and an incremental run-fix cycle targeting ≥80% coverage. Use proactively when the user asks to write, generate, add, fix, or improve unit tests for any feature, class, service, notifier, or provider — even if they just say "write tests for X" or "add test coverage to Y".
+user-invocable: true
 ---
 
 ## Pattern References
