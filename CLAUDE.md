@@ -22,7 +22,6 @@ Commands reference **source-of-truth files** in the target Flutter project's `ai
 | Command | When to use |
 |---|---|
 | `seed-context-claude` | Start of any session — loads core breaking/pattern docs |
-| `seed-new-feature-claude` | End-to-end feature (domain/data/application/presentation) |
 | `seed-ui-context-claude` | UI-only / layout / widget work |
 | `seed-fix-refactor-claude` | Bug fixes, refactors, performance |
 | `git-commit-staged-claude` | Generate Conventional Commits message for staged changes |
@@ -32,6 +31,7 @@ Commands reference **source-of-truth files** in the target Flutter project's `ai
 
 | Skill | Trigger |
 |---|---|
+| `bootstrap-feature` | "Starting a new feature" — Socratic intake, clean-arch scaffold, architecture contract, context seed (breaking + patterns + logging). Git/issue steps stay manual. |
 | `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — runs `dart run build_runner build --build-filter` on the affected path only |
 | `flutter-analyze-targeted` | Fast `dart analyze` scoped to a feature path (not full project) |
 | `unit-test-claude` | Generate/update/repair unit tests (mocktail, GWT, Riverpod ProviderContainer) |
