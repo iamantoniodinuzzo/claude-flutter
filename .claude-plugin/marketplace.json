@@ -9,7 +9,7 @@
       "name": "flutter-toolkit",
       "description": "Agentic skills and experts for Flutter development (Riverpod, TDD, UI, GoRouter, Melos)",
       "source": ".",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Antonio Di Nuzzo",
         "email": "iamantoniodinuzzo@gmail.com"
