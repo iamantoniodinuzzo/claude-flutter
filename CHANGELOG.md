@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-05-19
+
+### Added
+
+- `skills/audit-presentation-layer` — rules-based static audit skill for Flutter presentation layers; scans widgets and widget tests against 14 bundled rules across 5 families (Riverpod v3 widget patterns, Robot Testing, GoRouter conventions, layout antipatterns, side-effect handling); emits violations table with file:line references and optional targeted fix mode; rule docs copied from `iamantoniodinuzzo/flutter_ai_toolkit@bac1f74` (#18)
+
 ## [1.0.2] - 2026-05-16
 
 ### Fixed
