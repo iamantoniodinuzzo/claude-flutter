@@ -40,6 +40,7 @@ Commands reference **source-of-truth files** in the target Flutter project's `ai
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
 | `maestro-screenshot-flow` | Maestro YAML flows for automated screenshots on Android |
+| `audit-presentation-layer` | "audit presentation layer" / "audit this widget" / "check UI guidelines" — rules-based static audit (Riverpod, Robot Testing, GoRouter, layout) |
 
 ## Scripts (hooks)
 
@@ -134,3 +135,28 @@ In scripts: `cd "$REPO_ROOT"` first, then use relative paths. Pass file paths vi
 ## Conventional Commits scopes for this toolkit
 
 When committing to this repo: `agents`, `commands`, `scripts`, `skills`, `hooks`, `gemini`, or the specific skill/command name.
+
+## Fetching upstream rule docs (flutter_ai_toolkit)
+
+To copy rule docs from `iamantoniodinuzzo/flutter_ai_toolkit` into a skill's `rules/` folder:
+```bash
+# Get HEAD SHA for attribution comment
+gh api repos/iamantoniodinuzzo/flutter_ai_toolkit/git/refs/heads/main --jq '.object.sha'
+# Fetch file content (decoded)
+gh api repos/iamantoniodinuzzo/flutter_ai_toolkit/contents/<path> --jq '.content' | base64 -d
+```
+Add `<!-- source: iamantoniodinuzzo/flutter_ai_toolkit @ <sha> -->` at top of each copied file.
+
+## Adding a new skill
+
+Skills are auto-discovered by directory presence under `skills/` — no `marketplace.json` change needed.
+When adding a new skill, update BOTH:
+- `README.md` → skills table
+- `CLAUDE.md` → Key skills table
+
+Version bump (`scripts/bump-version.sh --minor` for new skill, `--patch` for fix) runs **post-merge**, not in the PR.
+
+## Skill variants: dispatcher vs self-contained
+
+- **Dispatcher skills** (e.g. `build-optimized-widget`): load rules from target project's `ai_toolkit/` at runtime. Use when rules evolve with the Flutter project.
+- **Self-contained skills** (e.g. `audit-presentation-layer`): bundle `rules/` locally. Use when rules are stable or copied from upstream. State this explicitly in SKILL.md to avoid confusion with the dispatcher pattern.
