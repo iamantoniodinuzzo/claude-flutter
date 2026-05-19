@@ -9,7 +9,8 @@
       "WebFetch(domain:docs.claude.com)",
       "Skill(git-workflow)",
       "Skill(skill-creator:skill-creator)",
-      "Skill(github-issue-create)"
+      "Skill(github-issue-create)",
+      "Bash(gh issue *)"
     ]
   }
 }

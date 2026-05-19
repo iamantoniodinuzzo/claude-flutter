@@ -60,6 +60,7 @@ See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
 | `flutter-melos-workspace` | ask about Melos | Monorepo orchestration |
 | `maestro-screenshot-flow` | ask "create maestro flow" | Maestro YAML for Android screenshots |
 | `second-opinion` | ask for second opinion | Independent Flutter/Riverpod architecture review |
+| `audit-presentation-layer` | say "audit presentation layer" / "audit this widget" / "check UI guidelines" | Rules-based static audit of presentation layer — Riverpod, Robot Testing, GoRouter, layout antipatterns |
 
 ---
 
