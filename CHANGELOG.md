@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-05-24
+
+### Added
+
+- `ai_docs/ARCHITECTURE.md` — repo structure, Mermaid flowchart (modules + interaction with target project's `ai_toolkit/`), skill dispatcher-vs-self-contained patterns
+- `ai_docs/FLUTTER_RULES.md` — Riverpod v3 rules, GoRouter web rules, logging format, testing conventions, codegen/analyze scoping
+- `ai_docs/GIT_WORKFLOW.md` — git aliases (start/publish/c/finish), PR/issue workflow, gotchas
+- `ai_docs/CONTRIBUTING.md` — adding new skills, version bump procedure, Conventional Commits scopes, upstream rule docs, Windows/Python gotcha
+
+### Changed
+
+- `CLAUDE.md` — slimmed to a 10-line pointer file; all content extracted to `ai_docs/` (loaded on demand, not injected every session)
+- `README.md` — Claude-only; dropped Gemini CLI / OpenCode badges and install sections; updated skill/command names
+- `package.json` — dropped `gemini-cli` keyword; Claude-only description
+- `scripts/bump-version.sh` — no longer updates `gemini-extension.json`
+- `.version-bump.json` — removed `gemini-extension.json` from tracked files
+- `skills/second-opinion/SKILL.md` — added prerequisite note: this skill intentionally retains a Gemini CLI runtime dependency
+- `skills/bootstrap-feature/references/patterns/repository-pattern.md` — replaced "Cursor AI" with "AI assistants"
+
+### Removed
+
+- Gemini CLI support: `GEMINI.md`, `gemini-extension.json`, `references/gemini-tools.md` in `build-filter`, `generate-widget-tests`, `unit-test`
+- Cursor support: `.cursor-plugin/`
+- OpenCode / generic agent support: `AGENTS.md`
+
+### Breaking Changes
+
+Commands renamed (drop `-claude` suffix):
+- `seed-context-claude` → `seed-context`
+- `seed-ui-context-claude` → `seed-ui-context`
+- `seed-fix-refactor-claude` → `seed-fix-refactor`
+- `git-commit-staged-claude` → `git-commit-staged`
+- `update-logs-claude` → `update-logs`
+
+Skill renamed:
+- `unit-test-claude` → `unit-test`
+
 ## [1.1.0] - 2026-05-19
 
 ### Added
