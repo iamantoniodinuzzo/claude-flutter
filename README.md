@@ -1,18 +1,14 @@
 # Flutter Superpowers
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
-[![Gemini CLI](https://img.shields.io/badge/Gemini%20CLI-compatible-blue)](https://github.com/google/gemini-cli)
-[![OpenCode](https://img.shields.io/badge/OpenCode-compatible-teal)](https://opencode.ai)
 
-Skills, agents, and commands that turn any AI (Claude, Gemini, Cursor) into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture.
+Skills, agents, and commands that turn Claude Code into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture.
 
 ---
 
 ## Installation
-
-### Claude Code
 
 ```bash
 claude plugin marketplace add iamantoniodinuzzo/claude-flutter
@@ -24,43 +20,23 @@ Or add to `.claude/settings.json`:
 { "plugins": ["https://github.com/iamantoniodinuzzo/claude-flutter"] }
 ```
 
-### Gemini CLI
-
-```bash
-gemini extensions install https://github.com/iamantoniodinuzzo/claude-flutter
-```
-
-Context is loaded from [`GEMINI.md`](GEMINI.md) via `gemini-extension.json`.
-
-### OpenCode
-
-Add to your project config:
-
-```json
-{
-  "plugins": ["flutter-claude-toolkit@git+https://github.com/iamantoniodinuzzo/claude-flutter.git"]
-}
-```
-
-See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
-
 ---
 
 ## Skills
 
 | Skill | Invoke | Description |
 |---|---|---|
-| `bootstrap-feature` | `/bootstrap-feature` or say "we're starting a new feature" | Full new-feature bootstrap: issue, branch, clean-arch scaffold, context seed |
+| `bootstrap-feature` | `/bootstrap-feature` or say "we're starting a new feature" | Full new-feature bootstrap: Socratic intake, clean-arch scaffold, context seed |
 | `build-filter` | `/build-filter <path>` | Targeted `dart build_runner` — no full rebuild |
 | `flutter-analyze-targeted` | `/flutter-analyze-targeted <path>` | Fast `dart analyze` scoped to a feature path |
-| `unit-test-claude` | ask "write tests for X" | Unit tests with mocktail + GWT + Riverpod 3.x |
+| `unit-test` | ask "write tests for X" | Unit tests with mocktail + GWT + Riverpod 3.x |
 | `generate-widget-tests` | ask "write widget tests for X" | Widget tests via Robot Testing pattern |
 | `build-optimized-widget` | `/build-optimized-widget <desc>` | Widget with `.select()`, Consumer, side-effect patterns |
 | `flutter-go-router` | ask about navigation | GoRouter routes, guards, shell nav, deep linking |
 | `flutter-melos-workspace` | ask about Melos | Monorepo orchestration |
 | `maestro-screenshot-flow` | ask "create maestro flow" | Maestro YAML for Android screenshots |
-| `second-opinion` | ask for second opinion | Independent Flutter/Riverpod architecture review |
-| `audit-presentation-layer` | say "audit presentation layer" / "audit this widget" / "check UI guidelines" | Rules-based static audit of presentation layer — Riverpod, Robot Testing, GoRouter, layout antipatterns |
+| `audit-presentation-layer` | say "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout |
+| `second-opinion` | ask for second opinion | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
 
 ---
 
@@ -68,11 +44,11 @@ See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
 
 | Command | When to use |
 |---|---|
-| `/seed-context-claude` | Start of any Flutter session — loads core rules |
-| `/seed-ui-context-claude` | UI / widget work only |
-| `/seed-fix-refactor-claude` | Bug fix, refactor, or performance optimization |
-| `/git-commit-staged-claude` | Generate Conventional Commit message for staged changes |
-| `/update-logs-claude <feature>` | Update a feature's logging to project standards |
+| `/seed-context` | Start of any Flutter session — loads core rules |
+| `/seed-ui-context` | UI / widget work only |
+| `/seed-fix-refactor` | Bug fix, refactor, or performance optimization |
+| `/git-commit-staged` | Generate Conventional Commit message for staged changes |
+| `/update-logs <feature>` | Update a feature's logging to project standards |
 
 ---
 
@@ -89,7 +65,7 @@ See [`AGENTS.md`](AGENTS.md) for tool-agnostic instructions.
 
 Seed commands (`/seed-*`) load documentation from an `ai_toolkit/` directory in your **Flutter project root** (not this repo). That directory must exist and contain your project's architecture and pattern docs.
 
-This toolkit is a companion to your Flutter project's `ai_toolkit/` — install the plugin in the IDE/CLI, then run `/seed-context-claude` at the start of each session.
+This toolkit is a companion to your Flutter project's `ai_toolkit/` — install the plugin, then run `/seed-context` at the start of each session.
 
 ---
 
@@ -103,12 +79,12 @@ This toolkit is a companion to your Flutter project's `ai_toolkit/` — install 
 ## Release
 
 ```bash
-./scripts/bump-version.sh --patch   # 1.0.0 → 1.0.1
-./scripts/bump-version.sh --minor   # 1.0.0 → 1.1.0
+./scripts/bump-version.sh --patch   # 2.0.0 → 2.0.1
+./scripts/bump-version.sh --minor   # 2.0.0 → 2.1.0
 git tag v<version>
 ```
 
-See [`CLAUDE.md`](CLAUDE.md) for full technical reference.
+See [ai_docs/ARCHITECTURE.md](ai_docs/ARCHITECTURE.md) for full technical reference.
 
 ---
 

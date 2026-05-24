@@ -87,11 +87,11 @@ For complex scenarios, read the relevant pattern file before writing any code:
 
 | Pattern | File |
 |---|---|
-| StreamProvider overrides (`AsyncData` vs `Stream.value`) | `.claude/skills/unit-test-claude/patterns/stream-provider-overrides.md` |
-| Notifier whose `build()` watches a StreamProvider | `.claude/skills/unit-test-claude/patterns/notifier-with-stream-deps.md` |
-| Computed provider that returns `AsyncValue<T>` synchronously | `.claude/skills/unit-test-claude/patterns/computed-async-value-providers.md` |
-| Fixture helper functions and `makeContainer` factory | `.claude/skills/unit-test-claude/patterns/fixture-helpers.md` |
-| StreamProvider **family** error / loading state in widget tests | `.claude/skills/unit-test-claude/patterns/stream-provider-overrides.md` |
+| StreamProvider overrides (`AsyncData` vs `Stream.value`) | `.claude/skills/unit-test/patterns/stream-provider-overrides.md` |
+| Notifier whose `build()` watches a StreamProvider | `.claude/skills/unit-test/patterns/notifier-with-stream-deps.md` |
+| Computed provider that returns `AsyncValue<T>` synchronously | `.claude/skills/unit-test/patterns/computed-async-value-providers.md` |
+| Fixture helper functions and `makeContainer` factory | `.claude/skills/unit-test/patterns/fixture-helpers.md` |
+| StreamProvider **family** error / loading state in widget tests | `.claude/skills/unit-test/patterns/stream-provider-overrides.md` |
 
 ---
 
