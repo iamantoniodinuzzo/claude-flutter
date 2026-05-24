@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: ./scripts/bump-version.sh --patch | --minor | --major
-# Updates version in package.json, .claude-plugin/plugin.json, gemini-extension.json
+# Updates version in package.json, .claude-plugin/plugin.json
 
 set -euo pipefail
 
@@ -43,5 +43,4 @@ PYEOF
 echo "Bumping $CURRENT → $NEW_VERSION ($BUMP_TYPE)"
 update_version "package.json"
 update_version ".claude-plugin/plugin.json"
-update_version "gemini-extension.json"
 echo "Done. Tag with: git tag v$NEW_VERSION"

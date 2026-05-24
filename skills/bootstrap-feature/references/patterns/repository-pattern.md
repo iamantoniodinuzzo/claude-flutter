@@ -1,6 +1,6 @@
 # Repository Creation Guidelines
 
-This document outlines the standard process and best practices for creating repositories within this project, ensuring consistency, testability, and maintainability. It's designed to guide both developers and Cursor AI.
+This document outlines the standard process and best practices for creating repositories within this project, ensuring consistency, testability, and maintainability. It's designed to guide both developers and AI assistants.
 
 ## Repository Structure
 

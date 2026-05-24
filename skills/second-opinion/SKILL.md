@@ -26,6 +26,12 @@ When invoked:
    - Where they agree/differ
    - Recommended approach with rationale
 
+## Prerequisites
+
+**Requires Gemini CLI installed locally.** This skill intentionally retains a Gemini CLI runtime dependency — it is the only Gemini reference remaining in this repo after the 2.0.0 Claude-only refactor.
+
+Install: https://github.com/google/gemini-cli
+
 ## CLI Commands Used by Subagents
 
 ```bash
