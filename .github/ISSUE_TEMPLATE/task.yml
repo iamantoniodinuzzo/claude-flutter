@@ -1,6 +1,7 @@
 name: Task
 description: General task, chore, or maintenance work
 labels: ["task"]
+assignees: ["iamantoniodinuzzo"]
 body:
   - type: markdown
     attributes:
