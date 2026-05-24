@@ -1,7 +1,7 @@
 {
   "name": "flutter-claude-toolkit",
-  "version": "1.1.0",
-  "description": "Skills, agents, and commands for Flutter/Dart development with Claude Code and Gemini CLI",
+  "version": "2.0.0",
+  "description": "Skills, agents, and commands for Flutter/Dart development with Claude Code",
   "keywords": [
     "flutter",
     "dart",
@@ -9,7 +9,6 @@
     "gorouter",
     "melos",
     "claude-code",
-    "gemini-cli",
     "ai-toolkit",
     "clean-architecture"
   ],

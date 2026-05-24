@@ -7,9 +7,9 @@ Flutter Claude Toolkit loaded.
 
 Quick-start (pick the right skill/command for the task):
   New feature end-to-end  → skill: bootstrap-feature
-  UI / widget work only   → /seed-ui-context-claude
-  Bug fix / refactor      → /seed-fix-refactor-claude
-  Write unit tests        → skill: unit-test-claude
+  UI / widget work only   → /seed-ui-context
+  Bug fix / refactor      → /seed-fix-refactor
+  Write unit tests        → skill: unit-test
   Write widget tests      → skill: generate-widget-tests
   Codegen (@riverpod)     → /build-filter <feature-path>
   Fast lint check         → /flutter-analyze-targeted <feature-path>

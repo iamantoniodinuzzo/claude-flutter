@@ -150,6 +150,6 @@ Next manual steps (not handled by this skill):
   - git start feature <n>_<name>             (creates feature/<n>_<name> from develop)
   - Implement layers: domain → data → application → presentation
   - /build-filter <path>                     (after adding @riverpod / @JsonSerializable)
-  - /unit-test-claude                        (domain + application layer tests)
+  - /unit-test                               (domain + application layer tests)
   - gh issue close <N>                       (GitHub does NOT auto-close on PR merge)
 ```
