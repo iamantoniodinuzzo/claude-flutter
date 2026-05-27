@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-05-27
+
+### Removed
+
+- `commands/` directory and all 6 command files (`git-commit-staged.md`, `git-flow-feature-finish.md`, `seed-context.md`, `seed-fix-refactor.md`, `seed-ui-context.md`, `update-logs.md`) — functionality superseded by the skill system (#22)
+- `hooks/` directory (`hooks.json`, `session-start.sh`) — SessionStart hook no longer needed; session behaviours handled by the skill/config system (#23)
+- `scripts/` directory (`bump-version.sh`, `context-monitor.py`, `dart-format-hook.sh`, `protect-sensitive-files.sh`, `validate-bash.sh`) — leftovers from pre-2.0.0 multi-tool support, no longer relevant (#24)
+- `.version-bump.json` — no longer needed without `bump-version.sh` (#24)
+
+### Breaking Changes
+
+- Consumers referencing `flutter-toolkit:<command>` slash commands must switch to the equivalent skills (see README Skills table).
+- Version bump is now a manual procedure documented in `ai_docs/CONTRIBUTING.md`; the `./scripts/bump-version.sh` script is gone.
+
 ## [2.0.0] - 2026-05-24
 
 ### Added

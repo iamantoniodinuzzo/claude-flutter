@@ -1,9 +1,0 @@
-{
-  "sourceOfTruth": "package.json",
-  "versionKey": "version",
-  "files": [
-    "package.json",
-    ".claude-plugin/plugin.json",
-    ".claude-plugin/marketplace.json"
-  ]
-}
