@@ -12,7 +12,7 @@
         "source": "url",
         "url": "https://github.com/iamantoniodinuzzo/claude-flutter.git"
       },
-      "version": "1.0.1",
+      "version": "3.0.0",
       "author": {
         "name": "Antonio Di Nuzzo",
         "email": "iamantoniodinuzzo@gmail.com"
