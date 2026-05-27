@@ -8,7 +8,7 @@ When adding a new skill, update BOTH:
 - `README.md` → skills table
 - `ai_docs/ARCHITECTURE.md` → Key skills table
 
-Version bump (`scripts/bump-version.sh --minor` for new skill, `--patch` for fix) runs **post-merge**, not in the PR.
+Version bump runs **post-merge**, not in the PR. See the Version bump section below for the manual procedure.
 
 ## Fetching upstream rule docs (flutter_ai_toolkit)
 
@@ -25,20 +25,27 @@ Add `<!-- source: iamantoniodinuzzo/flutter_ai_toolkit @ <sha> -->` at top of ea
 
 ## Version bump
 
-```bash
-./scripts/bump-version.sh --patch   # x.x.N — fixes
-./scripts/bump-version.sh --minor   # x.N.0 — new skills/commands
-./scripts/bump-version.sh --major   # N.0.0 — breaking changes
-git tag v<version>
-git push origin v<version>
-```
+Manual procedure (replaces the removed `scripts/bump-version.sh`):
 
-Updates `package.json` and `.claude-plugin/plugin.json`.
-
-## Python3 in bash scripts (Windows / Git Bash)
-
-Git Bash POSIX paths (`/c/Users/...`) are not understood by Python on Windows.
-In scripts: `cd "$REPO_ROOT"` first, then use relative paths. Pass file paths via `sys.argv`, not string interpolation.
+1. Edit `package.json` — update the `"version"` field:
+   ```bash
+   # patch: x.x.N — fixes
+   # minor: x.N.0 — new skills
+   # major: N.0.0 — breaking changes
+   npm version patch --no-git-tag-version   # or minor / major
+   ```
+2. Copy the new version into `.claude-plugin/plugin.json` (sed or manual edit):
+   ```bash
+   NEW_VER=$(node -p "require('./package.json').version")
+   sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" .claude-plugin/plugin.json
+   ```
+3. Commit, tag, push:
+   ```bash
+   git add package.json .claude-plugin/plugin.json
+   git commit -m "chore(release): bump version to $NEW_VER"
+   git tag "v$NEW_VER"
+   git push origin "v$NEW_VER"
+   ```
 
 ## Tracking gotcha
 

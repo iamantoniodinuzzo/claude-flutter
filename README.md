@@ -40,32 +40,12 @@ Or add to `.claude/settings.json`:
 
 ---
 
-## Commands
-
-| Command | When to use |
-|---|---|
-| `/seed-context` | Start of any Flutter session — loads core rules |
-| `/seed-ui-context` | UI / widget work only |
-| `/seed-fix-refactor` | Bug fix, refactor, or performance optimization |
-| `/git-commit-staged` | Generate Conventional Commit message for staged changes |
-| `/update-logs <feature>` | Update a feature's logging to project standards |
-
----
-
 ## Agents
 
 | Agent | Purpose |
 |---|---|
 | `riverpod-reviewer` | Reviews Riverpod v3 provider code after changes — checks `ref.watch`/`ref.read` placement, `.select()` usage, v3 naming |
 | `prompt-engineer` | Designs, tests, and optimizes LLM prompts for production |
-
----
-
-## Prerequisites
-
-Seed commands (`/seed-*`) load documentation from an `ai_toolkit/` directory in your **Flutter project root** (not this repo). That directory must exist and contain your project's architecture and pattern docs.
-
-This toolkit is a companion to your Flutter project's `ai_toolkit/` — install the plugin, then run `/seed-context` at the start of each session.
 
 ---
 
@@ -79,9 +59,10 @@ This toolkit is a companion to your Flutter project's `ai_toolkit/` — install 
 ## Release
 
 ```bash
-./scripts/bump-version.sh --patch   # 2.0.0 → 2.0.1
-./scripts/bump-version.sh --minor   # 2.0.0 → 2.1.0
+# Bump version manually in package.json and .claude-plugin/plugin.json
+# then:
 git tag v<version>
+git push origin v<version>
 ```
 
 See [ai_docs/ARCHITECTURE.md](ai_docs/ARCHITECTURE.md) for full technical reference.
