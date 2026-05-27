@@ -1,6 +1,6 @@
 # Flutter Superpowers
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 
