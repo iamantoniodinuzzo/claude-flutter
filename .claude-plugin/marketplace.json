@@ -7,18 +7,18 @@
   "plugins": [
     {
       "name": "flutter-toolkit",
-      "description": "Agentic skills and experts for Flutter development (Riverpod, TDD, UI, GoRouter, Melos)",
+      "description": "Comprehensive suite of Flutter/Dart skills, agents and commands (Riverpod v3, GoRouter, Melos, clean architecture).",
       "source": {
-        "source": "url",
-        "url": "https://github.com/iamantoniodinuzzo/claude-flutter.git"
+        "source": "github",
+        "repo": "iamantoniodinuzzo/claude-flutter",
+        "ref": "v3.0.1"
       },
-      "version": "3.0.0",
       "author": {
         "name": "Antonio Di Nuzzo",
         "email": "iamantoniodinuzzo@gmail.com"
       },
       "category": "development",
-      "tags": ["flutter", "dart", "riverpod", "tdd"]
+      "tags": ["flutter", "dart", "riverpod", "tdd", "gorouter", "melos", "clean-architecture", "widget-testing", "codegen", "agents", "static-analysis"]
     }
   ]
 }

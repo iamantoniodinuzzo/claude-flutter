@@ -2,22 +2,25 @@
 
 ## Aliases
 
-- `git start feature <number>_<name>` → creates `feature/<number>_<name>` from develop (single arg, all snake_case)
-- `git publish` → pushes current branch to origin
-- `git c` → interactive Conventional Commits script
-- `git finish` → merges branch back to its base (develop for features, master+develop for releases)
-- `git sync` → checkout develop + pull latest
+- `git init-flow` → Initialize git flow on a repo starting from `main` (creates `develop` and pushes to origin).
+- `git start <type> <name>` → Create a new branch `<type>/<name>`.
+  - Branches from `main` if type is `hotfix` or `support`.
+  - Branches from `develop` for all other types (e.g., `feature`, `bugfix`, `release`).
+- `git publish` → Push current branch to origin.
+- `git c` → Interactive Conventional Commits script.
+- `git finish [--y]` → Merge branch and close with auto-generated message (use `--y` to skip interactive prompts).
+- `git st-flow` → Show all active flow branches (e.g., feature, bugfix, release, hotfix, support).
+- `git sync` → Checkout `develop` and pull latest from origin.
 
 ## Lifecycle
 
-```
-git start feature <n>_<name>   # branch from develop
+```bash
+git start feature <n>_<name>    # branch from develop
 # work on code
 git add <files>
 git c                           # Conventional Commit (auto-appends #<n> ref)
 git publish                     # push branch to origin
-gh pr create ...                # open PR
-# PR reviewed and merged
+# branch merged
 git sync                        # back to develop, pull
 gh issue close <n>              # GitHub does NOT auto-close on merge
 ```
