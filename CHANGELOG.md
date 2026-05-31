@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2026-05-31
+
+### Fixed
+
+- `.claude-plugin/marketplace.json`: source type corrected from `url` to `github` with `repo` + `ref` fields; removed duplicate `version` field (plugin.json is authoritative per spec); aligned description with plugin.json; expanded tags to cover all 11 skills and 2 agents
+- `.claude-plugin/plugin.json`: expanded `keywords` to match marketplace tags
+- `ai_docs/GIT_WORKFLOW.md`: document all git aliases (`init-flow`, `st-flow`, `finish --y`)
+- `CLAUDE.md`: remove redundant `# CLAUDE.md` heading
+
 ## [3.0.0] - 2026-05-27
 
 ### Removed
