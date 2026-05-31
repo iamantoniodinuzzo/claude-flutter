@@ -1,5 +1,3 @@
-# CLAUDE.md
-
 Claude Code toolkit for Flutter/Dart (Riverpod v3, GoRouter, clean architecture, Melos).
 Toolkit repo — paths inside commands/skills are relative to the **target Flutter project root**, not this repo.
 
