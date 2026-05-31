@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$CLAUDE_TOOL_INPUT\" | grep -q \"\\.claude-plugin\"; then echo \"🔍 Validating marketplace...\"; claude plugin validate . 2>&1 | grep -E \"(Error|Warning|error|warning|✓)\" || echo \"✓ marketplace.json valid\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
