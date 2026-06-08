@@ -35,6 +35,23 @@ claude plugin install flutter-toolkit@claude-flutter
 }
 ```
 
+### Troubleshooting
+
+**Plugin stuck on old version / install fails with SSH error**
+
+Claude Code clones plugins via SSH by default. If SSH keys are not configured, installation fails silently or the cached version never updates. Fix:
+
+```bash
+# Force HTTPS for GitHub (run once, global)
+git config --global url."https://github.com/".insteadOf "git@github.com:"
+
+# Refresh marketplace index, then update
+claude plugin marketplace update claude-flutter
+claude plugin update flutter-toolkit@claude-flutter
+```
+
+Restart Claude Code after updating.
+
 ---
 
 ## Skills
