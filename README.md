@@ -69,7 +69,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `flutter-go-router` | "how do I navigate to X" | GoRouter routes, guards, shell nav, deep linking |
 | `flutter-melos-workspace` | "set up Melos" | Monorepo orchestration |
 | `maestro-screenshot-flow` | "create maestro flow" | Maestro YAML for Android screenshots |
-| `audit-presentation-layer` | "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout |
+| `audit-presentation-layer` | "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout, responsive layout, web affordances — platform-aware (auto-detect / `--platform`) |
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture (decorator or standalone), web BetterFeedback, release upload checklist |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
 
