@@ -22,7 +22,7 @@ flowchart LR
     subgraph Repo["claude-flutter toolkit"]
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
-        skills["skills/\nbootstrap-feature · unit-test · build-filter\nflutter-analyze-targeted · build-optimized-widget\nflutter-go-router · flutter-melos-workspace\ngenerate-widget-tests · maestro-screenshot-flow\naudit-presentation-layer · second-opinion"]
+        skills["skills/\nbootstrap-feature · unit-test · build-filter\nflutter-analyze-targeted · build-optimized-widget\nflutter-go-router · flutter-melos-workspace\ngenerate-widget-tests · maestro-screenshot-flow\naudit-presentation-layer · sentry-init · second-opinion"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -51,6 +51,7 @@ flowchart LR
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
 | `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, web affordances) — platform-aware (auto-detect / `--platform`) |
+| `sentry-init` | Bootstrap `sentry_flutter`: installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture, web BetterFeedback, release-upload checklist |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 
 ## Agents
