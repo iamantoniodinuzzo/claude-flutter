@@ -284,6 +284,32 @@ GoRouter handles the URL → route matching automatically.
 | Riverpod provider for tab state when URL can hold it | use `GoRouterState.of(context).uri.queryParameters` instead |
 | Calling `context.go()` inside `ref.listen` directly | wrap in `addPostFrameCallback` + `context.mounted` guard |
 
+## Adding a SentryNavigatorObserver
+
+When the project uses the `sentry-init` skill, add `SentryNavigatorObserver` to the `GoRouter` constructor — **not** to `MaterialApp.router` (which has no `navigatorObservers` argument):
+
+```dart
+final goRouter = GoRouter(
+  initialLocation: '/',
+  observers: [SentryNavigatorObserver()],  // ← correct placement
+  routes: [...],
+);
+```
+
+For Riverpod-wrapped router:
+
+```dart
+@riverpod
+GoRouter router(Ref ref) {
+  return GoRouter(
+    observers: [SentryNavigatorObserver()],
+    routes: [...],
+  );
+}
+```
+
+Observer is only useful with **named routes** (add `name:` to each `GoRoute`). See `skills/sentry-init` for full Sentry integration instructions.
+
 ## Quick Decision Tree
 
 ```

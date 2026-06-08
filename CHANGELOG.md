@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-06-08
+
+### Added
+
+- `skills/sentry-init` — Sentry SDK bootstrap skill for Flutter+Riverpod+GoRouter: installs `sentry_flutter`, patches `main.dart`, wires GoRouter `SentryNavigatorObserver`, Riverpod error capture (decorator or standalone), web BetterFeedback, release-upload checklist; 5 reference docs bundled (#28)
+- `.claude/agents/skill-reviewer` — internal subagent that reviews new/changed skills
+- Marketplace-validation hook in `.claude/settings.json` (repo dev tooling)
+- `skills/audit-presentation-layer/rules/patterns/responsive-layout.md` and `web-interaction-affordances.md` — new rule docs (#25)
+
+### Changed
+
+- `skills/audit-presentation-layer` — now platform-aware (auto-detect / `--platform` Android/iOS/web); CATALOG + SKILL updated, 2 new rule families (#25)
+- `skills/flutter-go-router/SKILL.md` — added "Adding a SentryNavigatorObserver" section (observer goes on `GoRouter`, not `MaterialApp.router`)
+- `README.md` — added troubleshooting section for plugin install issues; sentry-init table row; title/install fixes
+- `ai_docs/ARCHITECTURE.md` — Key skills table + Mermaid node now include `sentry-init`; audit-presentation-layer description updated
+- `ai_docs/GIT_WORKFLOW.md` — release/hotfix lifecycle + `git finish` flag docs
+- `.gitignore` — track `.claude/agents/` and `.claude/settings.json`
+
 ## [3.0.1] - 2026-05-31
 
 ### Fixed
