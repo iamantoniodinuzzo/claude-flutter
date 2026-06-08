@@ -11,7 +11,7 @@
       "source": {
         "source": "github",
         "repo": "iamantoniodinuzzo/claude-flutter",
-        "ref": "v3.0.1"
+        "ref": "v3.1.0"
       },
       "author": {
         "name": "Antonio Di Nuzzo",
