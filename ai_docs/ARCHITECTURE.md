@@ -50,7 +50,7 @@ flowchart LR
 | `build-optimized-widget` | Create a new Flutter widget with Riverpod `.select()`, Consumer, side-effect patterns |
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
-| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout) |
+| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, web affordances) — platform-aware (auto-detect / `--platform`) |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 
 ## Agents
