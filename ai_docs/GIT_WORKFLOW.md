@@ -28,17 +28,17 @@ gh issue close <n>              # GitHub does NOT auto-close on merge
 ## Release lifecycle
 
 ```bash
-npm version patch --no-git-tag-version   # or minor / major
-NEW_VER=$(node -p "require('./package.json').version")
-sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" .claude-plugin/plugin.json
+bash scripts/bump-version.sh patch   # or minor / major / X.Y.Z
+# syncs package.json, plugin.json, marketplace.json source.ref, README badge
 
 git start release v<version>    # branch from develop
 # edit CHANGELOG.md: add ## [<version>] section WITHOUT a date (git finish adds it)
-git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json CHANGELOG.md
+git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md
 git c                           # "chore(release): bump version to <version>"
 git finish -y
 # git finish -y on release: merges master+develop, creates tag v<version>,
 # pushes origin master develop + --tags, deletes branch
+# → GitHub Actions release.yml triggers and creates the GitHub Release automatically
 ```
 
 Tag naming: always use `v` prefix (e.g., `v3.0.1`). See CONTRIBUTING.md.

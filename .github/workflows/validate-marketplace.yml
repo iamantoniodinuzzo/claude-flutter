@@ -1,0 +1,94 @@
+name: Validate marketplace
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  validate:
+    name: Version parity + marketplace schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check version parity across all four locations
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          PKG_VER="$(node -p "require('./package.json').version")"
+          PLUGIN_VER="$(grep '"version"' .claude-plugin/plugin.json | head -1 \
+            | sed 's/.*"version": "\([^"]*\)".*/\1/')"
+          MKT_REF="$(grep '"ref"' .claude-plugin/marketplace.json | head -1 \
+            | sed 's/.*"ref": "v\([^"]*\)".*/\1/')"
+          README_VER="$(grep -oE 'version-[0-9]+\.[0-9]+\.[0-9]+-blue' README.md \
+            | head -1 | sed 's/version-//;s/-blue//')"
+
+          echo "package.json  : $PKG_VER"
+          echo "plugin.json   : $PLUGIN_VER"
+          echo "marketplace ref: v$MKT_REF"
+          echo "README badge  : $README_VER"
+
+          FAIL=0
+          for LABEL_VAL in "plugin.json:$PLUGIN_VER" "marketplace.json ref:$MKT_REF" "README badge:$README_VER"; do
+            LABEL="${LABEL_VAL%%:*}"
+            VAL="${LABEL_VAL#*:}"
+            if [ "$VAL" != "$PKG_VER" ]; then
+              echo "::error::$LABEL ($VAL) does not match package.json ($PKG_VER). Run: bash scripts/bump-version.sh <level>"
+              FAIL=1
+            fi
+          done
+
+          if [ "$FAIL" -eq 1 ]; then
+            echo ""
+            echo "Fix with: bash scripts/bump-version.sh patch  # or minor / major"
+            exit 1
+          fi
+
+          echo "✓ All version locations agree: $PKG_VER"
+
+      - name: Validate marketplace JSON structure
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Validate that both JSON files parse and have required fields
+          node -e "
+            const plugin = require('./.claude-plugin/plugin.json');
+            const market = require('./.claude-plugin/marketplace.json');
+
+            const required_plugin = ['name','version','description','author','repository','license'];
+            const missing_plugin = required_plugin.filter(k => !plugin[k]);
+            if (missing_plugin.length) {
+              console.error('plugin.json missing fields: ' + missing_plugin.join(', '));
+              process.exit(1);
+            }
+
+            if (!market.plugins || !Array.isArray(market.plugins) || market.plugins.length === 0) {
+              console.error('marketplace.json: plugins array missing or empty');
+              process.exit(1);
+            }
+
+            const p = market.plugins[0];
+            const required_market = ['name','description','source','category'];
+            const missing_market = required_market.filter(k => !p[k]);
+            if (missing_market.length) {
+              console.error('marketplace.json plugins[0] missing fields: ' + missing_market.join(', '));
+              process.exit(1);
+            }
+
+            if (!p.source.ref || !p.source.ref.startsWith('v')) {
+              console.error('marketplace.json plugins[0].source.ref must start with v (got: ' + p.source.ref + ')');
+              process.exit(1);
+            }
+
+            console.log('✓ plugin.json    valid');
+            console.log('✓ marketplace.json valid');
+          "
