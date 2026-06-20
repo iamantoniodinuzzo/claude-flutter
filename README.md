@@ -52,6 +52,23 @@ claude plugin update flutter-toolkit@claude-flutter
 
 Restart Claude Code after updating.
 
+**How auto-update works**
+
+This marketplace uses pinned-tag version resolution. When a new release is published:
+
+1. A git tag (`vX.Y.Z`) is pushed to GitHub.
+2. `marketplace.json` `source.ref` is updated to point to that tag.
+3. `plugin.json` `version` field changes to `X.Y.Z`.
+
+Claude Code detects the update **only when the resolved version string changes at the pinned ref** (both the tag and the ref must be in sync). If `source.ref` is stale, `marketplace update` is a no-op. The `scripts/bump-version.sh` script keeps all four locations in sync atomically.
+
+To get the latest version:
+
+```bash
+claude plugin marketplace update claude-flutter
+claude plugin update flutter-toolkit@claude-flutter
+```
+
 ---
 
 ## Skills
@@ -96,11 +113,11 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 See [ai_docs/CONTRIBUTING.md](ai_docs/CONTRIBUTING.md) for the full version bump procedure.
 
 ```bash
-npm version patch --no-git-tag-version   # or minor / major
-# copy new version into .claude-plugin/plugin.json
+bash scripts/bump-version.sh patch   # or minor / major — syncs all 4 locations
 git start release v<version>
-git add package.json .claude-plugin/plugin.json CHANGELOG.md
-git c
+# edit CHANGELOG.md — add ## [<version>] section WITHOUT a date
+git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md
+git c   # chore(release): bump version to <version>
 git finish -y   # merges master+develop, tags v<version>, pushes, deletes branch
 ```
 

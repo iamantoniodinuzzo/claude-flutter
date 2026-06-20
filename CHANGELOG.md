@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `scripts/bump-version.sh` — one-command version sync across all four locations (`package.json`, `plugin.json`, `marketplace.json` `source.ref`, README badge); fixes auto-update for marketplace consumers by ensuring `source.ref` is always bumped with the version
+- `.github/workflows/validate-marketplace.yml` — CI workflow: asserts version parity across all four locations on every PR and push to `master`/`develop`; validates `plugin.json` and `marketplace.json` JSON structure
+- `.github/workflows/release.yml` — CI workflow: creates a GitHub Release with the matching CHANGELOG section body on every `v*` tag push
+
+### Changed
+
+- `ai_docs/CONTRIBUTING.md` — version bump procedure now references `scripts/bump-version.sh`; documents why `marketplace.json` `source.ref` must be bumped for auto-update to work
+- `ai_docs/GIT_WORKFLOW.md` — release lifecycle updated to use `scripts/bump-version.sh` and notes GitHub Actions creates the Release automatically
+- `README.md` — release block updated; version badge fixed (`3.0.1` → `3.1.0`); added "How auto-update works" subsection
+- `skills/build-filter/skill.md` → `SKILL.md` — renamed to match uppercase convention used by all other skills
+
 ## [3.1.0] - 2026-06-08
 
 ### Added

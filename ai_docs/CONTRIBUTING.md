@@ -25,27 +25,25 @@ Add `<!-- source: iamantoniodinuzzo/flutter_ai_toolkit @ <sha> -->` at top of ea
 
 ## Version bump
 
-Manual procedure (replaces the removed `scripts/bump-version.sh`):
+Use `scripts/bump-version.sh` — it syncs all four locations atomically:
+- `package.json` `version` (authoritative)
+- `.claude-plugin/plugin.json` `version`
+- `.claude-plugin/marketplace.json` `source.ref` (vX.Y.Z) ← **critical for auto-update**
+- `README.md` version badge
 
-1. Edit `package.json` — update the `"version"` field:
-   ```bash
-   # patch: x.x.N — fixes
-   # minor: x.N.0 — new skills
-   # major: N.0.0 — breaking changes
-   npm version patch --no-git-tag-version   # or minor / major
-   ```
-2. Copy the new version into `.claude-plugin/plugin.json` (sed or manual edit):
-   ```bash
-   NEW_VER=$(node -p "require('./package.json').version")
-   sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" .claude-plugin/plugin.json
-   ```
-3. Commit, tag, push:
-   ```bash
-   git add package.json .claude-plugin/plugin.json
-   git commit -m "chore(release): bump version to $NEW_VER"
-   git tag "v$NEW_VER"
-   git push origin "v$NEW_VER"
-   ```
+```bash
+# patch: x.x.N — fixes
+# minor: x.N.0 — new skills
+# major: N.0.0 — breaking changes
+bash scripts/bump-version.sh patch   # or minor / major / explicit X.Y.Z
+```
+
+The script prints the exact follow-up `git start release` / `git c` / `git finish -y` commands.
+It does NOT commit or tag — that is owned by git-flow `git finish`.
+
+> **Why `marketplace.json` `source.ref` matters:** Claude Code resolves the version string at the
+> pinned ref to detect updates. If `source.ref` stays on the old tag, `marketplace update` is a
+> no-op for all consumers. The script always bumps this field so auto-update works correctly.
 
 ## Tracking gotcha
 
