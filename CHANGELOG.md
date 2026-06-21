@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- `skills/build-optimized-widget` — skill removed: depended on `ai_toolkit/commands/` and `ai_toolkit/patterns/` from the external `iamantoniodinuzzo/flutter_ai_toolkit` repo, which are not present in-tree; use-case covered by the "write naive widget → `/audit-presentation-layer`" loop. (#32)
+
 ### Changed
 
+- `skills/bootstrap-feature` → `skills/scaffold-feature` — rename to better reflect actual responsibility (directory scaffold + Socratic intake + architecture contract); updated frontmatter `name`, all internal `references/` paths, README skill table row and Core methodology blurb, ARCHITECTURE.md Key skills table, Mermaid diagram node. Also removed the defunct "Dispatcher skills" section and orphaned `ai_toolkit` Mermaid node from ARCHITECTURE.md. (#32)
 - `skills/maestro-screenshot-flow` — rebuilt around id-only selector doctrine (`Semantics(identifier:)` → `tapOn: id:`); `text:` selectors removed; `point:` demoted to documented last resort. Skill now edits target app source to add missing `Semantics(identifier:)` / `explicitChildNodes: true` wrappers.
   - SKILL.md rewritten as lean dispatcher; content split into `reference/` (selectors, commands, suite-config, troubleshooting, examples)
   - New `reference/selectors.md` — selector ladder, AccessibilityBridge mechanics, authoring workflow / decision tree, merged-semantics fixes, naming convention
