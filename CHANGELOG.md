@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `skills/maestro-screenshot-flow` — rebuilt around id-only selector doctrine (`Semantics(identifier:)` → `tapOn: id:`); `text:` selectors removed; `point:` demoted to documented last resort. Skill now edits target app source to add missing `Semantics(identifier:)` / `explicitChildNodes: true` wrappers.
+  - SKILL.md rewritten as lean dispatcher; content split into `reference/` (selectors, commands, suite-config, troubleshooting, examples)
+  - New `reference/selectors.md` — selector ladder, AccessibilityBridge mechanics, authoring workflow / decision tree, merged-semantics fixes, naming convention
+  - New `reference/commands.md` — full Maestro command surface (gestures, assertions, input, control flow, lifecycle), all examples id-based
+  - New `reference/suite-config.md` — `.maestro/` structure, `config.yaml`, master flow, `runFlow` variants, Firebase emulator reminder
+  - New `reference/troubleshooting.md` — port 7001 fix, `clearState`, debug screenshot timing, `maestro hierarchy` usage
+  - New `reference/examples.md` — complete login + registration flows with matching Flutter source Semantics edits; nav-rail merged-semantics pattern
+  - New `scripts/maestro-audit-ids.sh` — finds interactive widgets missing `Semantics(identifier:)` in a feature path; prints appId, connected devices, emulator reminder
+  - New `scripts/maestro-hierarchy.sh` — wraps `maestro hierarchy` with optional substring filter
+  - New `scripts/fix-port-7001.ps1` — kills port-7001 owner, clears ADB forwards, restarts ADB server (Windows PowerShell)
+- `README.md` — maestro-screenshot-flow row updated to mention id-based selectors
+- `ai_docs/ARCHITECTURE.md` — added `maestro-screenshot-flow` row to Key skills table (was missing)
+
 ## [3.2.0] - 2026-06-20
 
 ### Added
