@@ -77,12 +77,11 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 
 | Skill | Invoke | Description |
 |---|---|---|
-| `bootstrap-feature` | `/flutter-toolkit:bootstrap-feature` or "we're starting a new feature" | Full new-feature bootstrap: Socratic intake, clean-arch scaffold, context seed |
+| `scaffold-feature` | `/flutter-toolkit:scaffold-feature` or "we're starting a new feature" | Scaffold a new feature: Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
 | `build-filter` | `/flutter-toolkit:build-filter <path>` | Targeted `dart build_runner` — no full rebuild |
 | `flutter-analyze-targeted` | `/flutter-toolkit:flutter-analyze-targeted <path>` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | "write tests for X" | Unit tests with mocktail + GWT + Riverpod v3 |
 | `generate-widget-tests` | "write widget tests for X" | Widget tests via Robot Testing pattern |
-| `build-optimized-widget` | `/flutter-toolkit:build-optimized-widget <desc>` | Widget with `.select()`, Consumer, side-effect patterns |
 | `flutter-go-router` | "how do I navigate to X" | GoRouter routes, guards, shell nav, deep linking |
 | `flutter-melos-workspace` | "set up Melos" | Monorepo orchestration |
 | `maestro-screenshot-flow` | "create maestro flow" | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers |
@@ -103,7 +102,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 
 ## Core methodology
 
-1. **Socratic Brainstorming** — design questions before any code (via `bootstrap-feature`)
+1. **Socratic Brainstorming** — design questions before any code (via `scaffold-feature`)
 2. **Riverpod Excellence** — no logic in widgets, maximum testability
 
 ---

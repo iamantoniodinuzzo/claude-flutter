@@ -22,19 +22,15 @@ flowchart LR
     subgraph Repo["claude-flutter toolkit"]
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
-        skills["skills/\nbootstrap-feature · unit-test · build-filter\nflutter-analyze-targeted · build-optimized-widget\nflutter-go-router · flutter-melos-workspace\ngenerate-widget-tests · maestro-screenshot-flow\naudit-presentation-layer · sentry-init · second-opinion"]
+        skills["skills/\nscaffold-feature · unit-test · build-filter\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\nsentry-init · second-opinion"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
     cc[Claude Code]
-    target["Target Flutter project\n(apps/<app>)"]
-    ai_toolkit["ai_toolkit/\n(in target project)\nbreaking/ · patterns/ · logging.md"]
 
     cc -->|installs| plugin
     cc -->|invokes| skills
     cc -->|spawns| agents
-    skills -.->|load docs from| ai_toolkit
-    target --> ai_toolkit
     cc -.->|reads on demand| aidocs
 ```
 
@@ -42,12 +38,11 @@ flowchart LR
 
 | Skill | Trigger |
 |---|---|
-| `bootstrap-feature` | "Starting a new feature" — Socratic intake, clean-arch scaffold, architecture contract, context seed |
+| `scaffold-feature` | "Starting a new feature" — Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
 | `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — targeted codegen only |
 | `flutter-analyze-targeted` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | Generate/update/repair unit tests (mocktail, GWT, Riverpod ProviderContainer) |
 | `generate-widget-tests` | Generate widget tests using Robot Testing pattern |
-| `build-optimized-widget` | Create a new Flutter widget with Riverpod `.select()`, Consumer, side-effect patterns |
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
 | `maestro-screenshot-flow` | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers; helper scripts for tree inspection and ADB reset |
@@ -62,7 +57,6 @@ flowchart LR
 | `riverpod-reviewer` | Reviews Riverpod v3 provider code — `ref.watch`/`ref.read` placement, `.select()` usage, v3 naming, `AsyncValue` handling |
 | `prompt-engineer` | Designs, tests, and optimizes LLM prompts for production systems |
 
-## Skill variants: dispatcher vs self-contained
+## Skill design: self-contained
 
-- **Dispatcher skills** (e.g. `build-optimized-widget`): load rules from the target project's `ai_toolkit/` at runtime. Use when rules evolve with the Flutter project.
-- **Self-contained skills** (e.g. `audit-presentation-layer`): bundle `rules/` locally. Use when rules are stable or copied from upstream. State this explicitly in SKILL.md to avoid confusion with the dispatcher pattern.
+All skills bundle their reference docs locally (e.g. `rules/`, `references/` subdirectories). No skill loads docs from the target project's `ai_toolkit/` at runtime — that dispatcher pattern has been retired. State in SKILL.md which reference subtree the skill uses.
