@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.1] - 2026-07-02
+
+### Added
+
+- `skills/audit-domain-layer`, `skills/audit-data-layer`, `skills/audit-application-layer` — per-layer audit skills, 4 rules each (#31, closes #33, #34, #35, #36)
+- `skills/audit-feature` — orchestrator: 4 parallel Explore subagents, aggregated report, graceful degradation, presentation-only shortcut for sub-features (#31)
+- `skills/build-filter` — watch mode, Melos `melos.yaml` auto-detect for working directory, `--define` builder-option overrides, `--workspace` support for shared `.dart_tool/` caching (#26)
+
+### Fixed
+
+- `skills/build-filter` — the `Conflicting outputs` manual recovery recipe now anchors `.g.dart` delete scope to the original argument's type (file vs directory), not to whether the derived output currently exists; a brand-new `.dart` file target is a no-op, never a directory-wide `find -delete` that would wipe sibling `.g.dart` files. (#38)
+
 ### Removed
 
 - `skills/build-optimized-widget` — skill removed: depended on `ai_toolkit/commands/` and `ai_toolkit/patterns/` from the external `iamantoniodinuzzo/flutter_ai_toolkit` repo, which are not present in-tree; use-case covered by the "write naive widget → `/audit-presentation-layer`" loop. (#32)
