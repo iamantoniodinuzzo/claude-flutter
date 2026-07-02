@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.2] - 2026-07-02
+
+### Added
+
+- `README.md`, `ai_docs/ARCHITECTURE.md`, `ai_docs/CONTRIBUTING.md` — document `npx skills add/update` as an alternate, multi-agent install path (Cursor, Codex, Windsurf, etc.) alongside the Claude Code plugin marketplace; note that `skills/<name>/SKILL.md` already satisfies skills.sh's discovery contract.
+
+### Fixed
+
+- `skills/audit-presentation-layer`, `skills/maestro-screenshot-flow`, `skills/second-opinion` — quoted the `description` frontmatter field; an unquoted `": "` mid-string is invalid YAML plain-scalar syntax and was silently dropping these 3 skills from `npx skills add` discovery (verified via `npx skills add --list`).
+
 ## [3.2.1] - 2026-07-02
 
 ### Added
