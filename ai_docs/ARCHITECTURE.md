@@ -65,6 +65,8 @@ flowchart LR
 
 All skills bundle their reference docs locally (e.g. `rules/`, `references/` subdirectories). No skill loads docs from the target project's `ai_toolkit/` at runtime — that dispatcher pattern has been retired. State in SKILL.md which reference subtree the skill uses.
 
+This flat `skills/<name>/SKILL.md` layout doubles as the discovery contract for [skills.sh](https://www.skills.sh)'s `npx skills add` — no format changes needed to support both the Claude Code plugin marketplace and npx-based multi-agent distribution.
+
 ## Orchestrator skills
 
 `audit-feature` is an **orchestrator**: it has no `rules/` of its own. Instead, it reads the

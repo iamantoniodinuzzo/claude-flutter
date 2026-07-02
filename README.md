@@ -1,6 +1,6 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.2.1-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.2.2-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 
@@ -34,6 +34,17 @@ claude plugin install flutter-toolkit@claude-flutter
   }
 }
 ```
+
+### Alternative: via `npx` (multi-agent)
+
+`skills/` already matches the [skills.sh](https://www.skills.sh) flat catalog layout (`skills/<name>/SKILL.md`), so it installs with no extra setup for any of the 70+ agents it supports (Cursor, Codex, Windsurf, Cline, etc.), not just Claude Code:
+
+```bash
+npx skills add iamantoniodinuzzo/claude-flutter
+npx skills update claude-flutter
+```
+
+> This path always tracks `master` HEAD — bleeding edge, no version pinning. For stable, tagged releases in Claude Code, use the plugin marketplace above instead.
 
 ### Troubleshooting
 

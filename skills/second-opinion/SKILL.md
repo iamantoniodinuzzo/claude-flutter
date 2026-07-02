@@ -1,6 +1,6 @@
 ---
 name: second-opinion
-description: Use when you want an independent review of an architecture decision, implementation choice, or technical approach before committing. Triggers on: "second opinion", "review this approach", "is this the right pattern", "validate my design", "Flutter/Riverpod architecture review".
+description: 'Use when you want an independent review of an architecture decision, implementation choice, or technical approach before committing. Triggers on: "second opinion", "review this approach", "is this the right pattern", "validate my design", "Flutter/Riverpod architecture review".'
 user-invocable: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: maestro-screenshot-flow
-description: Use when creating Maestro flows for automated screenshots or UI testing on Flutter Android apps. Triggers on: "create a maestro flow", "write a maestro test", "generate screenshots with maestro", "automate screenshots".
+description: 'Use when creating Maestro flows for automated screenshots or UI testing on Flutter Android apps. Triggers on: "create a maestro flow", "write a maestro test", "generate screenshots with maestro", "automate screenshots".'
 user-invocable: true
 ---
 
