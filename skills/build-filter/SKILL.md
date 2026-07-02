@@ -38,14 +38,17 @@ Auto-detect from the path argument:
    > `bar.dart` produces 0 outputs because no output is named `bar.dart`; passing
    > `bar.g.dart` correctly targets the generated file.
 
-4. Delete only the stale `.g.dart` files for the target(s) to pre-empt conflicts:
-   - For a `.g.dart` file target: delete that specific file if it exists
+4. Delete only the stale `.g.dart` file(s) for the target(s) to pre-empt conflicts. The delete mode is decided by **the original argument's type from step 1** — never by whether the derived `.g.dart` currently exists:
+
+   - **Original argument was a `.dart`/`.g.dart` file** (including a brand-new file with no `.g.dart` yet): delete only that one derived file.
 
      ```bash
      rm -f <relative-path>.g.dart
      ```
 
-   - For a directory target: delete all `.g.dart` files inside it
+     A missing file here is an expected no-op. **Never** fall back to a directory-wide delete just because the derived `.g.dart` doesn't exist yet.
+
+   - **Original argument was a directory (or explicit glob)**: delete all `.g.dart` files inside it.
 
      ```bash
      find <relative-path> -name "*.g.dart" -delete
