@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.1]
+
+### Fixed
+
+- `skills/build-filter` — step 4's delete branch is now anchored to the original argument's type (file vs directory), not to whether the derived `.g.dart` currently exists; targeting a brand-new `.dart` file no longer falls back to a directory-wide `find -delete` that wiped every sibling `.g.dart`. (#38)
+
 ### Removed
 
 - `skills/build-optimized-widget` — skill removed: depended on `ai_toolkit/commands/` and `ai_toolkit/patterns/` from the external `iamantoniodinuzzo/flutter_ai_toolkit` repo, which are not present in-tree; use-case covered by the "write naive widget → `/audit-presentation-layer`" loop. (#32)
