@@ -1,5 +1,5 @@
 ---
-name: bootstrap-feature
+name: scaffold-feature
 description: Scaffold a new Flutter feature respecting clean architecture (feature-first), repository pattern with dependency inversion, Riverpod v3 DI, go_router navigation, structured logging, and explicit exception handling. Use when the user says they are starting a new feature, scaffolding feature folders, or kicking off feature implementation. Does NOT handle git, issues, or branches — those stay manual.
 user-invocable: true
 ---
@@ -64,31 +64,31 @@ Read the following files **in parallel** from inside this skill's own `reference
 ### Mandatory (always load)
 
 **Breaking changes — language and async safety**
-- `skills/bootstrap-feature/references/breaking/dart-language.md`
-- `skills/bootstrap-feature/references/breaking/dart-async-errors.md`
-- `skills/bootstrap-feature/references/breaking/riverpod-core.md`
-- `skills/bootstrap-feature/references/breaking/riverpod-async-mutations.md`
-- `skills/bootstrap-feature/references/breaking/riverpod-flutter.md`
+- `skills/scaffold-feature/references/breaking/dart-language.md`
+- `skills/scaffold-feature/references/breaking/dart-async-errors.md`
+- `skills/scaffold-feature/references/breaking/riverpod-core.md`
+- `skills/scaffold-feature/references/breaking/riverpod-async-mutations.md`
+- `skills/scaffold-feature/references/breaking/riverpod-flutter.md`
 
 **Architecture patterns**
-- `skills/bootstrap-feature/references/patterns/feature-creation.md`
-- `skills/bootstrap-feature/references/patterns/repository-pattern.md`
-- `skills/bootstrap-feature/references/patterns/exception-handling.md`
-- `skills/bootstrap-feature/references/patterns/go-router-navigation-conventions.md`
-- `skills/bootstrap-feature/references/patterns/async-notifier-command-api.md`
-- `skills/bootstrap-feature/references/patterns/riverpod-rebuild-optimization.md`
-- `skills/bootstrap-feature/references/patterns/no-ui-strings-outside-ui.md`
-- `skills/bootstrap-feature/references/patterns/widget-classes-no-build-helpers.md`
-- `skills/bootstrap-feature/references/patterns/flutter-side-effects.md`
+- `skills/scaffold-feature/references/patterns/feature-creation.md`
+- `skills/scaffold-feature/references/patterns/repository-pattern.md`
+- `skills/scaffold-feature/references/patterns/exception-handling.md`
+- `skills/scaffold-feature/references/patterns/go-router-navigation-conventions.md`
+- `skills/scaffold-feature/references/patterns/async-notifier-command-api.md`
+- `skills/scaffold-feature/references/patterns/riverpod-rebuild-optimization.md`
+- `skills/scaffold-feature/references/patterns/no-ui-strings-outside-ui.md`
+- `skills/scaffold-feature/references/patterns/widget-classes-no-build-helpers.md`
+- `skills/scaffold-feature/references/patterns/flutter-side-effects.md`
 
 **Logging standard**
-- `skills/bootstrap-feature/references/logging.md`
+- `skills/scaffold-feature/references/logging.md`
 
 ### Conditional (load only when Phase 1 answer matches)
 
 | Condition | File |
 |---|---|
-| Primary state shape is real-time stream | `skills/bootstrap-feature/references/breaking/riverpod-streams-lifecycle.md` |
+| Primary state shape is real-time stream | `skills/scaffold-feature/references/breaking/riverpod-streams-lifecycle.md` |
 
 Internalize rules silently — do not echo back unless the user explicitly asks.
 

@@ -5,6 +5,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [3.2.1] - 2026-07-02
+
+### Added
+
+- `skills/audit-domain-layer`, `skills/audit-data-layer`, `skills/audit-application-layer` — per-layer audit skills, 4 rules each (#31, closes #33, #34, #35, #36)
+- `skills/audit-feature` — orchestrator: 4 parallel Explore subagents, aggregated report, graceful degradation, presentation-only shortcut for sub-features (#31)
+- `skills/build-filter` — watch mode, Melos `melos.yaml` auto-detect for working directory, `--define` builder-option overrides, `--workspace` support for shared `.dart_tool/` caching (#26)
+
+### Fixed
+
+- `skills/build-filter` — the `Conflicting outputs` manual recovery recipe now anchors `.g.dart` delete scope to the original argument's type (file vs directory), not to whether the derived output currently exists; a brand-new `.dart` file target is a no-op, never a directory-wide `find -delete` that would wipe sibling `.g.dart` files. (#38)
+
+### Removed
+
+- `skills/build-optimized-widget` — skill removed: depended on `ai_toolkit/commands/` and `ai_toolkit/patterns/` from the external `iamantoniodinuzzo/flutter_ai_toolkit` repo, which are not present in-tree; use-case covered by the "write naive widget → `/audit-presentation-layer`" loop. (#32)
+
+### Changed
+
+- `skills/bootstrap-feature` → `skills/scaffold-feature` — rename to better reflect actual responsibility (directory scaffold + Socratic intake + architecture contract); updated frontmatter `name`, all internal `references/` paths, README skill table row and Core methodology blurb, ARCHITECTURE.md Key skills table, Mermaid diagram node. Also removed the defunct "Dispatcher skills" section and orphaned `ai_toolkit` Mermaid node from ARCHITECTURE.md. (#32)
+- `skills/maestro-screenshot-flow` — rebuilt around id-only selector doctrine (`Semantics(identifier:)` → `tapOn: id:`); `text:` selectors removed; `point:` demoted to documented last resort. Skill now edits target app source to add missing `Semantics(identifier:)` / `explicitChildNodes: true` wrappers.
+  - SKILL.md rewritten as lean dispatcher; content split into `reference/` (selectors, commands, suite-config, troubleshooting, examples)
+  - New `reference/selectors.md` — selector ladder, AccessibilityBridge mechanics, authoring workflow / decision tree, merged-semantics fixes, naming convention
+  - New `reference/commands.md` — full Maestro command surface (gestures, assertions, input, control flow, lifecycle), all examples id-based
+  - New `reference/suite-config.md` — `.maestro/` structure, `config.yaml`, master flow, `runFlow` variants, Firebase emulator reminder
+  - New `reference/troubleshooting.md` — port 7001 fix, `clearState`, debug screenshot timing, `maestro hierarchy` usage
+  - New `reference/examples.md` — complete login + registration flows with matching Flutter source Semantics edits; nav-rail merged-semantics pattern
+  - New `scripts/maestro-audit-ids.sh` — finds interactive widgets missing `Semantics(identifier:)` in a feature path; prints appId, connected devices, emulator reminder
+  - New `scripts/maestro-hierarchy.sh` — wraps `maestro hierarchy` with optional substring filter
+  - New `scripts/fix-port-7001.ps1` — kills port-7001 owner, clears ADB forwards, restarts ADB server (Windows PowerShell)
+- `README.md` — maestro-screenshot-flow row updated to mention id-based selectors
+- `ai_docs/ARCHITECTURE.md` — added `maestro-screenshot-flow` row to Key skills table (was missing)
+
 ## [3.2.0] - 2026-06-20
 
 ### Added

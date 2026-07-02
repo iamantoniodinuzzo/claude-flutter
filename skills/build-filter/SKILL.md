@@ -134,13 +134,13 @@ Since build_runner 2.15.0, "selective file writing only when content changes" an
 
 **`Conflicting outputs` error after interrupted build:**
 
-Manually delete only the affected `.g.dart` files and retry:
+Manually delete only the `.g.dart` file(s) for the target you were building, then retry. The delete scope must match **the original argument's type**, never a broader directory-wide sweep just because a derived `.g.dart` happens to be missing:
 
 ```bash
-# Single file
+# Single file target (including a brand-new file with no .g.dart yet — this is a no-op, not an error)
 rm -f lib/src/features/foo/bar.g.dart
 
-# Directory
+# Directory target (only when the original argument was a directory/glob)
 find lib/src/features/foo -name "*.g.dart" -delete
 ```
 

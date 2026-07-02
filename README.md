@@ -1,6 +1,6 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.2.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.2.1-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 
@@ -77,16 +77,19 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 
 | Skill | Invoke | Description |
 |---|---|---|
-| `bootstrap-feature` | `/flutter-toolkit:bootstrap-feature` or "we're starting a new feature" | Full new-feature bootstrap: Socratic intake, clean-arch scaffold, context seed |
+| `scaffold-feature` | `/flutter-toolkit:scaffold-feature` or "we're starting a new feature" | Scaffold a new feature: Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
 | `build-filter` | `/flutter-toolkit:build-filter <path>` | Targeted `dart build_runner` — no full rebuild |
 | `flutter-analyze-targeted` | `/flutter-toolkit:flutter-analyze-targeted <path>` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | "write tests for X" | Unit tests with mocktail + GWT + Riverpod v3 |
 | `generate-widget-tests` | "write widget tests for X" | Widget tests via Robot Testing pattern |
-| `build-optimized-widget` | `/flutter-toolkit:build-optimized-widget <desc>` | Widget with `.select()`, Consumer, side-effect patterns |
 | `flutter-go-router` | "how do I navigate to X" | GoRouter routes, guards, shell nav, deep linking |
 | `flutter-melos-workspace` | "set up Melos" | Monorepo orchestration |
-| `maestro-screenshot-flow` | "create maestro flow" | Maestro YAML for Android screenshots |
+| `maestro-screenshot-flow` | "create maestro flow" | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers |
 | `audit-presentation-layer` | "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout, responsive layout, web affordances — platform-aware (auto-detect / `--platform`) |
+| `audit-domain-layer` | "audit domain layer" | Rules-based static audit: infra imports in domain, untyped exceptions, entity serialization, hardcoded UI strings |
+| `audit-data-layer` | "audit data layer" | Rules-based static audit: leaky abstractions (raw framework types), missing exception conversion, model mapper gaps, untyped datasource exceptions |
+| `audit-application-layer` | "audit application layer" | Rules-based static audit: Flutter framework imports, redundant manual try/catch in notifiers, mutation return types, unconstrained state types |
+| `audit-feature` | "audit this feature" or "full feature audit" | Orchestrates all four per-layer audits in parallel; aggregates into one report; falls back to presentation-only for sub-features |
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture (decorator or standalone), web BetterFeedback, release upload checklist |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
 
@@ -103,7 +106,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 
 ## Core methodology
 
-1. **Socratic Brainstorming** — design questions before any code (via `bootstrap-feature`)
+1. **Socratic Brainstorming** — design questions before any code (via `scaffold-feature`)
 2. **Riverpod Excellence** — no logic in widgets, maximum testability
 
 ---
