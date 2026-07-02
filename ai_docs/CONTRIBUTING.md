@@ -2,7 +2,7 @@
 
 ## Adding a new skill
 
-Skills are auto-discovered by directory presence under `skills/` — no `marketplace.json` change needed.
+Skills are auto-discovered by directory presence under `skills/` — no `marketplace.json` change needed. New skills automatically become available through both the Claude Code plugin marketplace and `npx skills add` — no extra manifest edit required for either.
 
 When adding a new skill, update BOTH:
 - `README.md` → skills table
