@@ -1,16 +1,16 @@
 # Graph Report - claude-flutter  (2026-07-07)
 
 ## Corpus Check
-- 103 files · ~79,576 words
+- 105 files · ~81,434 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1418 nodes · 1388 edges · 129 communities (115 shown, 14 thin omitted)
+- 1439 nodes · 1407 edges · 131 communities (117 shown, 14 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cee544ea`
+- Built from commit: `51567a58`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -143,6 +143,8 @@
 - [[_COMMUNITY_Community 125|Community 125]]
 - [[_COMMUNITY_Community 126|Community 126]]
 - [[_COMMUNITY_Community 127|Community 127]]
+- [[_COMMUNITY_Community 129|Community 129]]
+- [[_COMMUNITY_Community 130|Community 130]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
@@ -185,7 +187,7 @@
 - **Riverpod Provider Override Strategies in Unit Tests** — unit_test_stream_override_strategy_a, unit_test_stream_override_strategy_b, unit_test_override_with_value_sync, unit_test_notifier_strategy_a, unit_test_notifier_strategy_b [INFERRED 0.85]
 - **Sentry Error Capture Pipeline (Decorator + Observer + Global Hooks)** — sentry_init_sentry_logger_service, sentry_init_async_error_logger, sentry_init_branch_a_decorator, sentry_init_branch_b_observer [INFERRED 0.85]
 
-## Communities (129 total, 14 thin omitted)
+## Communities (131 total, 14 thin omitted)
 
 ### Community 0 - "Unit Test Patterns"
 Cohesion: 0.25
@@ -308,8 +310,8 @@ Cohesion: 0.13
 Nodes (14): Audit Domain Layer — Rule Catalog, Dependency isolation rules, DOMAIN-COHESION-01, DOMAIN-COUPLE-01, DOMAIN-COUPLE-02, DOMAIN-DEP-01, DOMAIN-ENT-01, DOMAIN-FAIL-01 (+6 more)
 
 ### Community 39 - "Community 39"
-Cohesion: 0.13
-Nodes (14): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Pattern References, Phase 0 — Testability Check, Phase 10 — Final Summary, Phase 1 — Gap Detection (+6 more)
+Cohesion: 0.12
+Nodes (15): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Pattern References, Phase 0 — Testability Check, Phase 10 — Final Summary, Phase 1 — Gap Detection (+7 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.14
@@ -643,8 +645,16 @@ Nodes (3): Entity / value object, Exception hierarchy, Phase 6 — Domain Model 
 Cohesion: 0.67
 Nodes (3): Phase 4 — Mocktail Strategy, Pre-stub non-nullable returns — REQUIRED, `verify()` + `verifyInOrder()` — do not mix
 
+### Community 129 - "Community 129"
+Cohesion: 0.18
+Nodes (10): Async / concurrency behavior, Collection inputs, DateTime inputs, How many catalog tests per method?, JSON / `fromJson` inputs, Numeric inputs, Pattern: Adversarial Edge-Case Catalog, Purpose (+2 more)
+
+### Community 130 - "Community 130"
+Cohesion: 0.22
+Nodes (8): 1. Anti-tautology rule, 2. Mental mutation check, 3. Both sides of every branch, 4. Over-testing anti-patterns — delete on sight, 5. One behavior per test, Gate procedure, Pattern: Test Quality Gate (mutation mindset), Purpose
+
 ## Knowledge Gaps
-- **949 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+944 more)
+- **966 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+961 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **14 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -652,13 +662,13 @@ Nodes (3): Phase 4 — Mocktail Strategy, Pre-stub non-nullable returns — REQU
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Create and distribute a plugin marketplace` connect `Community 57` to `Community 72`, `Community 111`, `Community 86`, `Community 120`, `Community 63`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 121`, `Community 51`, `Community 57`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
+- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 121`, `Community 51`, `Community 57`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **Why does `Claude Code Plugin Marketplace` connect `Community 57` to `Community 56`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _981 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _998 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Feature Bootstrapping Workflow` be split into smaller, more focused modules?**
   _Cohesion score 0.04830917874396135 - nodes in this community are weakly interconnected._
 - **Should `Sentry Integration & Error Monitoring` be split into smaller, more focused modules?**
