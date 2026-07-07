@@ -1,6 +1,6 @@
 ---
 name: audit-data-layer
-description: Audit a Flutter data-layer file or folder against the project's documented repository pattern and exception handling rules — leaky abstractions (raw framework types in public API), missing exception conversion, model mapper gaps, and untyped exceptions in datasources. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit data layer", "review repository", "check data layer", "find data violations", "audit this repository", or asks to verify a data file against project architecture rules before code review.
+description: Audit a Flutter data-layer file or folder against the project's documented repository pattern, exception handling, and cohesion/coupling rules — leaky abstractions (raw framework types in public API), missing exception conversion, model mapper gaps, untyped exceptions in datasources, upward imports (application/presentation), cross-feature data coupling, god repositories, and mixed remote+local datasources. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit data layer", "review repository", "check data layer", "find data violations", "audit this repository", or asks to verify a data file against project architecture rules before code review.
 user-invocable: true
 ---
 
@@ -78,9 +78,9 @@ For each file:
 
 1. Read the full file contents.
 2. Apply heuristics from `rules/CATALOG.md` by classification:
-   - `repository` files → apply: DATA-REPO-01, DATA-LEAK-01, DATA-MOD-01 (if the repo wraps a datasource that exposes raw types)
-   - `datasource` files → apply: DATA-LEAK-01, DATA-EX-01
-   - `model` files → apply: DATA-MOD-01
+   - `repository` files → apply: DATA-REPO-01, DATA-LEAK-01, DATA-MOD-01 (if the repo wraps a datasource that exposes raw types), DATA-COUPLE-01, DATA-COUPLE-02, DATA-COHESION-01
+   - `datasource` files → apply: DATA-LEAK-01, DATA-EX-01, DATA-COUPLE-01, DATA-COUPLE-02, DATA-COHESION-01, DATA-COHESION-02
+   - `model` files → apply: DATA-MOD-01, DATA-COUPLE-01, DATA-COUPLE-02
    - `data-file` → apply all rules
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
 
@@ -100,6 +100,15 @@ Heuristic application notes:
   Flag the class declaration line if no such mapper is found.
 - **DATA-EX-01**: in datasource files (or any file under `data/`), flag `throw Exception(`,
   `throw StateError(`, `throw Error(` — generic throws that should be typed exceptions.
+- **DATA-COUPLE-01**: in files under `data/`, flag `import` lines whose path contains
+  `/application/` or `/presentation/` (relative or package imports).
+- **DATA-COUPLE-02**: in `features/<name>/data/` files, flag imports matching
+  `features/<other>/data/` where `<other>` ≠ own feature.
+- **DATA-COHESION-01**: count public (non-`_`) method declarations per repository/datasource
+  class; flag the class line when > 10, or when method names reference ≥ 3 distinct entity nouns.
+- **DATA-COHESION-02**: flag datasource classes whose file imports at least one remote-infra
+  package ({`dio`, `http`, `cloud_firestore`, `firebase_storage`}) AND at least one local-storage
+  package ({`hive`, `hive_flutter`, `sqflite`, `shared_preferences`, `drift`, `isar`}).
 
 ---
 
@@ -140,7 +149,8 @@ After the report, ask:
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
 Auto-fix safe: (none)
-Requires judgment: DATA-REPO-01, DATA-LEAK-01, DATA-MOD-01, DATA-EX-01
+Requires judgment: DATA-REPO-01, DATA-LEAK-01, DATA-MOD-01, DATA-EX-01,
+                   DATA-COUPLE-01, DATA-COUPLE-02, DATA-COHESION-01, DATA-COHESION-02
 ```
 
 On response:

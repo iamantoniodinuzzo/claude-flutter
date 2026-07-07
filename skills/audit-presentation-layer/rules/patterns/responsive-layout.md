@@ -156,3 +156,96 @@ extension BreakpointX on BoxConstraints {
   bool get isDesktop => maxWidth >= 1200;
 }
 ```
+
+---
+
+### 5. Named breakpoints as a layout Strategy (RESPONSIVE-02)
+
+Magic numbers scattered through widget code (`width > 600`, `< 840`, `>= 1240`)
+drift out of sync: one screen switches at 600, another at 640, and the app has
+no coherent size-class story.
+
+Treat layout selection as a **Strategy pattern** (Head First Design Patterns,
+ch. 1): encapsulate the varying part — *which layout for which constraint
+class* — behind named breakpoints defined once.
+
+```dart
+// ❌ BAD — magic numbers, duplicated and divergent across screens
+if (constraints.maxWidth > 600) { ... }
+if (MediaQuery.sizeOf(context).width < 840) { ... }
+
+// ✅ GOOD — single source of truth, self-documenting call sites
+abstract final class AppBreakpoints {
+  static const double compact = 600;   // Material 3 compact/medium boundary
+  static const double expanded = 840;  // Material 3 medium/expanded boundary
+}
+
+LayoutBuilder(
+  builder: (context, constraints) => switch (constraints.maxWidth) {
+    < AppBreakpoints.compact => const _CompactLayout(),
+    < AppBreakpoints.expanded => const _MediumLayout(),
+    _ => const _ExpandedLayout(),
+  },
+)
+```
+
+Each `_XxxLayout` widget is a concrete strategy; the `switch` is the context
+that picks one. Adding a size class touches one file.
+
+---
+
+### 6. `Row` with fixed-width children and no flex (RESPONSIVE-03)
+
+A `Row` whose children have hard-coded widths overflows the moment the
+available width shrinks below their sum (small phones, split-screen, resized
+desktop windows) — the yellow-black overflow stripes.
+
+```dart
+// ❌ BAD — 200 + 200 + spacing > many phone widths
+Row(children: [
+  SizedBox(width: 200, child: _NameField()),
+  SizedBox(width: 200, child: _DateField()),
+])
+
+// ✅ GOOD — children share whatever width exists
+Row(children: [
+  Expanded(child: _NameField()),
+  const SizedBox(width: 16),
+  Expanded(child: _DateField()),
+])
+
+// ✅ GOOD — or let items wrap to the next line
+Wrap(spacing: 16, children: [ _NameField(), _DateField() ])
+```
+
+At least one child of every `Row` containing sized boxes should be
+`Flexible`/`Expanded`, or the `Row` should become a `Wrap`.
+
+---
+
+### 7. Fixed `crossAxisCount` grids (RESPONSIVE-04)
+
+`SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2)` renders two
+columns on a phone *and* on a 32-inch monitor — giant cards on desktop, or
+unreadably narrow ones if the count was tuned for desktop.
+
+```dart
+// ❌ BAD — column count frozen at design time
+GridView.builder(
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+  ...
+)
+
+// ✅ GOOD — column count derived from available width
+GridView.builder(
+  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 240, // each tile at most 240 wide; count adapts
+    mainAxisSpacing: 8,
+    crossAxisSpacing: 8,
+  ),
+  ...
+)
+```
+
+`MaxCrossAxisExtent` expresses the *intent* ("tiles about this wide") and lets
+the framework compute the count for any screen.

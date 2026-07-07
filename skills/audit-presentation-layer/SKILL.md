@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout, and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -123,7 +123,7 @@ For each file:
 1. Read the full file contents.
 2. Apply every heuristic in `rules/CATALOG.md` relevant to the file type **and**
    not gated out by the platform target (see Phase 0 Step 3):
-   - `widget` files → apply: RIV-WIDGET-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-01, WEB-01
+   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, WEB-01
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
@@ -134,6 +134,15 @@ Heuristic application notes:
 - **RIV-WIDGET-02**: flag `ref.watch(someProvider)` result where the return value is immediately accessed with `.fieldName` (within 3 lines) and no `.select(` appears on the watch call.
 - **RIV-WIDGET-03**: flag `Consumer(` blocks where the `builder:` body exceeds 50 lines.
 - **RIV-WIDGET-04**: flag `ref.read(` lines inside a `build(BuildContext` method span.
+- **REBUILD-01**: inside `build` spans, flag all-literal constructor calls (`SizedBox(`, `EdgeInsets.*(`, `Icon(Icons.`, literal-only `Text(`, `Divider(`) not preceded by `const` and not covered by an enclosing `const` (check ~3 lines above).
+- **REBUILD-02**: flag `MediaQuery.of(context).<prop>` single-property accesses (`size`, `padding`, `viewInsets`, `platformBrightness`, `textScaler`); fix is the scoped `MediaQuery.<prop>Of(context)` accessor.
+- **REBUILD-03**: flag `AnimatedBuilder(`/`ListenableBuilder(`/`ValueListenableBuilder(` spans with no `child:` argument and a `builder:` body > ~10 lines.
+- **REBUILD-04**: in files with `setState(`, measure the enclosing class's `build(` span; flag each `setState(` call when that span > 50 lines.
+- **EXTRACT-01**: flag `build(` method declarations whose span (signature to matching brace) exceeds 80 lines.
+- **EXTRACT-02**: flag top-level `Widget name(` declarations (column 0) and `static Widget name(` anywhere in widget files.
+- **COHESION-01**: for widget classes with one non-Key constructor field of a non-primitive project type, count distinct `<field>.<member>` accesses in the class body; flag the field when ≤ 2 distinct members are read.
+- **COUPLING-01**: in `presentation/` files, flag `import` lines whose path contains `/data/`.
+- **COUPLING-02**: in `features/<name>/presentation/` files, flag imports matching `features/<other>/presentation/` where `<other>` ≠ own feature.
 - **ROBOT-01**: flag any `find.text(` in `*_test.dart` files.
 - **ROBOT-02**: flag any `find.byTooltip(` in `*_test.dart` files.
 - **ROBOT-03**: flag all `pumpAndSettle(` lines in test files that also contain `CircularProgressIndicator` or `LinearProgressIndicator`.
@@ -146,6 +155,9 @@ Heuristic application notes:
 - **SIDE-FX-01**: flag `showDialog(`, `Navigator.push(`, `ScaffoldMessenger.of(context).show`, `addPostFrameCallback(` inside `build(BuildContext` method spans.
 - **UI-STR-01**: flag long string literals (> ~20 chars, > 3 words) in files outside `presentation/`.
 - **RESPONSIVE-01**: flag `MediaQuery.of(context).size` or `MediaQuery.sizeOf(context)` used in an `if`/ternary branch for layout decisions; also flag `width:` / `height:` values ≥ 100 on `Container(`/`SizedBox(` constructor spans (proxy for hard-coded structural sizing, not small decorative values).
+- **RESPONSIVE-02**: flag width-like expressions (`constraints.maxWidth`, `size.width`, `width`) compared against 3–4 digit numeric literals in `if`/ternary/`switch` conditions; skip when the value comes from a named constant (e.g. `AppBreakpoints.compact`).
+- **RESPONSIVE-03**: within `Row(` spans, flag the `Row(` line when ≥ 2 children carry `width: <num>` and no `Flexible(`/`Expanded(` appears in the span.
+- **RESPONSIVE-04**: flag literal `crossAxisCount: <num>` in `SliverGridDelegateWithFixedCrossAxisCount(` and `GridView.count(` spans, unless computed from constraints/width.
 - **WEB-01** _(web target only)_: flag `GestureDetector(` or `InkWell(` blocks containing `onTap:` where no `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (~20 lines above). Skip occurrences inside Flutter's built-in button/tile classes.
 
 ---
@@ -189,10 +201,13 @@ After the report, ask:
 
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
-Auto-fix safe: RIV-WIDGET-02, ROBOT-05
-Requires judgment: RIV-WIDGET-01, RIV-WIDGET-04, ROBOT-01, ROBOT-02, ROBOT-03,
-                   ROBOT-04, ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02,
-                   SIDE-FX-01, UI-STR-01, RESPONSIVE-01, WEB-01
+Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05
+Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
+                   REBUILD-04, EXTRACT-01, EXTRACT-02, COHESION-01, COUPLING-01,
+                   COUPLING-02, ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-04,
+                   ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
+                   UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
+                   RESPONSIVE-04, WEB-01
 ```
 
 On response:

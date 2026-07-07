@@ -1,6 +1,6 @@
 ---
 name: audit-application-layer
-description: Audit a Flutter application-layer file or folder against the project's documented Riverpod v3 notifier rules and async-mutation patterns — Flutter framework imports in application code, redundant manual try/catch in notifiers, mutation methods returning values instead of Future<void>, and unconstrained provider state types. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit application layer", "audit notifier", "review application layer", "check notifier rules", "find application violations", "audit this notifier", or asks to verify application-layer code against project architecture rules before code review.
+description: Audit a Flutter application-layer file or folder against the project's documented Riverpod v3 notifier rules, async-mutation patterns, and cohesion/coupling rules — Flutter framework imports in application code, datasource bypass (skipping the repository facade), presentation imports, hard-wired repository construction instead of provider injection, god notifiers, redundant manual try/catch in notifiers, mutation methods returning values instead of Future<void>, and unconstrained provider state types. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit application layer", "audit notifier", "review application layer", "check notifier rules", "find application violations", "audit this notifier", or asks to verify application-layer code against project architecture rules before code review.
 user-invocable: true
 ---
 
@@ -104,6 +104,17 @@ Heuristic application notes:
   parameters. Specifically look for `AsyncValue<dynamic>`, `AsyncValue<Map>`,
   `StateProvider<dynamic>`, `StateProvider<Map>`, or class-level `state = ` assignments
   where the assigned value is typed `dynamic`.
+- **APP-COUPLE-01**: in files under `application/`, flag `import` lines whose path contains
+  `datasource`/`data_source`, and usages of types ending in `Datasource`/`DataSource`
+  (constructor calls, `ref.read(xxxDatasourceProvider)`, type annotations).
+- **APP-COUPLE-02**: in files under `application/`, flag `import` lines whose path contains
+  `/presentation/`.
+- **APP-COUPLE-03**: in notifier classes, flag assignments matching
+  `=\s*\w*(Repository(Impl)?|Data[Ss]ource)\(` — manual construction of repository/datasource
+  implementations instead of provider resolution. Skip test files.
+- **APP-COHESION-01**: count public (non-`_`, non-`build`) method declarations per notifier
+  class; flag the class line when > 7. Also flag application files > 300 lines as a
+  secondary signal.
 
 ---
 
@@ -141,7 +152,8 @@ After the report, ask:
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
 Auto-fix safe: (none)
-Requires judgment: APP-DEP-01, APP-NOTIF-02, APP-NOTIF-01, APP-STATE-01
+Requires judgment: APP-DEP-01, APP-NOTIF-02, APP-NOTIF-01, APP-STATE-01,
+                   APP-COUPLE-01, APP-COUPLE-02, APP-COUPLE-03, APP-COHESION-01
 ```
 
 On response:

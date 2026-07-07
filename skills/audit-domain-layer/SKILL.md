@@ -1,6 +1,6 @@
 ---
 name: audit-domain-layer
-description: Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra imports), typed exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit domain layer", "audit this entity", "review domain", "check domain rules", "find domain violations", or asks to verify a domain file against project architecture rules before code review.
+description: Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra or Flutter imports), outward layer imports (data/application/presentation), cross-feature domain coupling, god entities, typed exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit domain layer", "audit this entity", "review domain", "check domain rules", "find domain violations", or asks to verify a domain file against project architecture rules before code review.
 user-invocable: true
 ---
 
@@ -85,9 +85,16 @@ For each `domain-file`:
 Heuristic application notes:
 
 - **DOMAIN-DEP-01**: flag any `import 'package:cloud_firestore/...`, `import 'package:http/...`,
-  `import 'package:dio/...`, `import 'package:firebase_core/...`, or any other infra/data-layer
-  package in a file under `domain/`. Domain files may import `package:riverpod_annotation` and
-  core Dart/Flutter-dart (non-widget) packages without triggering this rule.
+  `import 'package:dio/...`, `import 'package:firebase_core/...`, any `import 'package:flutter/...`
+  (material, widgets, cupertino, foundation), or any other infra/data-layer package in a file
+  under `domain/`. Domain files may import `package:riverpod_annotation` and Dart core
+  (`dart:...`) without triggering this rule.
+- **DOMAIN-COUPLE-01**: in files under `domain/`, flag `import` lines whose path contains
+  `/data/`, `/application/`, or `/presentation/` (relative or package imports).
+- **DOMAIN-COUPLE-02**: in `features/<name>/domain/` files, flag imports matching
+  `features/<other>/domain/` where `<other>` ≠ own feature.
+- **DOMAIN-COHESION-01**: count `final <Type> <name>;` instance fields per domain class; flag
+  the class line when > 15. Also flag domain files > 400 lines as a secondary signal.
 - **DOMAIN-FAIL-01**: flag `throw Exception(`, `throw StateError(`, or any `throw` whose
   expression does not start with a class name that plausibly extends `AppException` or a named
   feature-level abstract exception. Also flag `throw ArgumentError(` and similar stdlib errors
@@ -134,7 +141,8 @@ After the report, ask:
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
 Auto-fix safe: (none)
-Requires judgment: DOMAIN-DEP-01, DOMAIN-FAIL-01, DOMAIN-ENT-01, DOMAIN-STR-01
+Requires judgment: DOMAIN-DEP-01, DOMAIN-COUPLE-01, DOMAIN-COUPLE-02,
+                   DOMAIN-COHESION-01, DOMAIN-FAIL-01, DOMAIN-ENT-01, DOMAIN-STR-01
 ```
 
 On response:
