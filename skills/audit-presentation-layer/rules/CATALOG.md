@@ -45,6 +45,95 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 
 ---
 
+## Rebuild isolation rules
+
+### REBUILD-01
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/rebuild-isolation.md`
+- **What**: Constructor call inside a `build` method whose arguments are all literals or `const` expressions, but is not marked `const` — the subtree is re-instantiated and re-diffed on every parent rebuild instead of being compile-time canonicalized and skipped
+- **Heuristic**: inside `build(` method spans, flag `SizedBox(`, `EdgeInsets.all(`/`EdgeInsets.symmetric(`/`EdgeInsets.only(`, `Icon(Icons.`, `Text('...')` (literal-only args), `Divider(`, `Padding(padding: EdgeInsets` calls not preceded by `const ` on the same line or covered by an enclosing `const` (check ~3 lines above for an enclosing `const` constructor call)
+- **Fix**: add `const` to the constructor call (or hoist `const` to the outermost const-able ancestor)
+- **autofix_safe**: true (mechanical when all args are literal; equivalent to `prefer_const_constructors`)
+
+### REBUILD-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/rebuild-isolation.md`
+- **What**: `MediaQuery.of(context)` used to read a single property — subscribes the widget to every `MediaQueryData` change (keyboard insets, text scale, brightness), causing unrelated rebuilds; scoped aspect accessors exist since Flutter 3.10
+- **Heuristic**: flag `MediaQuery.of(context).size`, `MediaQuery.of(context).padding`, `MediaQuery.of(context).viewInsets`, `MediaQuery.of(context).platformBrightness`, `MediaQuery.of(context).textScaler` — any `MediaQuery.of(context).<prop>` single-property access
+- **Fix**: replace with the scoped accessor: `MediaQuery.sizeOf(context)`, `MediaQuery.paddingOf(context)`, `MediaQuery.viewInsetsOf(context)`, `MediaQuery.platformBrightnessOf(context)`, `MediaQuery.textScalerOf(context)`
+- **autofix_safe**: true (one-to-one mechanical substitution)
+
+### REBUILD-03
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/rebuild-isolation.md`
+- **What**: `AnimatedBuilder(`, `ListenableBuilder(`, or `ValueListenableBuilder(` with a `builder:` body longer than ~10 lines and no `child:` parameter — the whole subtree is rebuilt on every notification (every frame for animations) instead of the static part being built once and threaded through `child`
+- **Heuristic**: find `AnimatedBuilder(`/`ListenableBuilder(`/`ValueListenableBuilder(` constructor spans; flag when the span contains no `child:` argument and the `builder:` closure body exceeds ~10 lines
+- **Fix**: move the static subtree into the `child:` parameter and receive it in the builder signature (`builder: (context, child) => Transform.rotate(..., child: child)`); or extract the static part into a `const` widget class
+- **autofix_safe**: false (requires separating dynamic wrapper from static subtree)
+
+### REBUILD-04
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/rebuild-isolation.md`
+- **What**: `setState(` called in a `State` class whose `build` method exceeds ~50 lines — every `setState` invalidates the entire large build, rebuilding the whole screen for a local change
+- **Heuristic**: in files containing `setState(`, measure the enclosing class's `build(` method span; flag each `setState(` call site when that span > 50 lines
+- **Fix**: extract the mutable region into a small leaf `StatefulWidget`, or wrap only the reactive part in `ValueNotifier` + `ValueListenableBuilder` (with `child:`), or promote the state to a Riverpod provider
+- **autofix_safe**: false (structural extraction required)
+
+---
+
+## Widget extraction & cohesion/coupling rules
+
+### EXTRACT-01
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/widget-extraction-cohesion.md`
+- **What**: `build` method longer than ~80 lines — composes several independently-changing sections in one place (low cohesion; violates Single Responsibility); also blocks `const` subtree caching and isolated rebuilds
+- **Heuristic**: measure each `build(` method span (from signature to matching closing brace); flag the `build(` line when the span > 80 lines
+- **Fix**: extract each logical section (header, list, action bar, …) into a private widget class with a `const` constructor; the screen `build` should read as a table of contents
+- **autofix_safe**: false (extraction requires identifying captured variables per section)
+
+### EXTRACT-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/widget-extraction-cohesion.md`
+- **What**: Top-level or `static` function returning `Widget` — same problem as private build-helper methods (LAYOUT-02) but outside a class body: no element identity, no `const`, rebuilt inline with every caller, invisible in the widget inspector
+- **Heuristic**: regex `^Widget\s+\w+\s*\(` at top level (column 0) and `static\s+Widget\s+\w+\s*\(` anywhere in widget files
+- **Fix**: convert to a `StatelessWidget` (or `ConsumerWidget`) class with the function parameters as constructor fields
+- **autofix_safe**: false (call sites must be rewritten to constructor invocations)
+
+### COHESION-01
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/widget-extraction-cohesion.md`
+- **What**: Widget constructor receives a whole entity/state object but its `build` reads ≤ 2 of its fields — Principle of Least Knowledge violation; couples the widget to the entity's full shape, blocks `const` construction, widens rebuild scope, and complicates tests
+- **Heuristic**: for each widget class with a single non-Key constructor field of a non-primitive project type (`final Booking booking;`), count distinct `<field>.<member>` accesses in the class body; flag the field declaration when ≤ 2 distinct members are read
+- **Fix**: replace the object parameter with the specific fields the widget renders (e.g. `required this.pilotName, required this.slotLabel`); keep the object parameter only when the widget genuinely renders most of it (detail cards, 5+ fields)
+- **autofix_safe**: false (constructor and all call sites change)
+
+### COUPLING-01
+- **Severity**: error
+- **Platforms**: all
+- **Source**: `rules/patterns/widget-extraction-cohesion.md`
+- **What**: Presentation file imports a `data/` path (repository implementation, datasource, or data model) — violates the clean-architecture dependency rule; UI must consume state via application-layer providers and domain types
+- **Heuristic**: in files under `presentation/`, flag `import` lines whose path contains `/data/` (relative like `../../data/...` or package imports containing `/data/`)
+- **Fix**: route the call through an application-layer provider/notifier; if none exists, create it — do not import `data/` from a widget
+- **autofix_safe**: false (may require creating the missing application-layer abstraction)
+
+### COUPLING-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/widget-extraction-cohesion.md`
+- **What**: Cross-feature presentation import (`features/<other>/presentation/`) — lateral coupling; the other feature can no longer change or be removed independently
+- **Heuristic**: in files under `features/<name>/presentation/`, flag `import` lines matching `features/<other-name>/presentation/` where `<other-name>` differs from the file's own feature directory
+- **Fix**: prefer navigation via the router (`context.goNamed`) to embed another feature's screen; promote genuinely shared widgets to the common UI package (e.g. `lib/src/common_widgets/`); or duplicate deliberately if the widgets are diverging
+- **autofix_safe**: false (architectural decision per import)
+
+---
+
 ## Robot Testing pattern rules
 
 ### ROBOT-01
@@ -174,6 +263,33 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 - **Heuristic**: (a) regex `MediaQuery\.of\(context\)\.size|MediaQuery\.sizeOf\(context\)` in a widget file — flag any occurrence used in an `if`/ternary branch for layout decisions; (b) regex `width:\s*\d{3,}|height:\s*\d{3,}` in `Container(`/`SizedBox(` constructor spans (values ≥ 100 as proxy for layout sizing)
 - **Fix**: (a) wrap the branching subtree in `LayoutBuilder` and switch on `constraints.maxWidth`; (b) replace with `FractionallySizedBox`, `Flexible`/`Expanded`, or `ConstrainedBox(constraints: BoxConstraints(maxWidth: N))`
 - **autofix_safe**: false (requires reading widget tree semantics and sizing intent)
+
+### RESPONSIVE-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/responsive-layout.md` §5
+- **What**: Magic-number width breakpoint in a layout conditional (`width > 600`, `maxWidth < 840`, …) — breakpoints scattered as literals drift out of sync across screens; layout selection should be a Strategy keyed on named breakpoint constants
+- **Heuristic**: flag comparisons of a width-like expression (`constraints.maxWidth`, `size.width`, `width`) against a 3–4 digit numeric literal inside `if`/ternary/`switch` conditions, unless the literal is referenced via an identifier (e.g. `AppBreakpoints.compact`)
+- **Fix**: define breakpoint constants once (e.g. `abstract final class AppBreakpoints { static const double compact = 600; static const double expanded = 840; }`) and switch on them inside `LayoutBuilder`; each size-class layout becomes its own widget (concrete strategy)
+- **autofix_safe**: false (constants class location and naming are project-specific)
+
+### RESPONSIVE-03
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/responsive-layout.md` §6
+- **What**: `Row(` containing ≥ 2 children with hard-coded `width:` and no `Flexible`/`Expanded` sibling — overflows (yellow-black stripes) when available width shrinks below the fixed sum (small phones, split-screen, resized windows)
+- **Heuristic**: within a `Row(` constructor span, count children with `width:\s*\d+` (`SizedBox`/`Container`); flag the `Row(` line when ≥ 2 such children exist and the span contains no `Flexible(`/`Expanded(`
+- **Fix**: wrap children in `Expanded`/`Flexible` so they share available width, or convert the `Row` to `Wrap` to let items flow to the next line
+- **autofix_safe**: false (intent — share vs wrap — must be chosen)
+
+### RESPONSIVE-04
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/responsive-layout.md` §7
+- **What**: Grid with a literal `crossAxisCount:` (`SliverGridDelegateWithFixedCrossAxisCount` or `GridView.count`) — column count frozen at design time renders the same 2 columns on a phone and a 32-inch monitor
+- **Heuristic**: flag `crossAxisCount:\s*\d+` literal arguments in `SliverGridDelegateWithFixedCrossAxisCount(` and `GridView.count(` spans, unless the value is computed from constraints/width
+- **Fix**: switch to `SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: <tileWidth>)` so the framework derives the count from available width; or compute the count from `LayoutBuilder` constraints
+- **autofix_safe**: false (tile max-extent value must be chosen by design)
 
 ---
 

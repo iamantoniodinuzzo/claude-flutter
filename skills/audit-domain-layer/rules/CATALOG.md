@@ -10,17 +10,66 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 ### DOMAIN-DEP-01
 - **Severity**: error
 - **Source**: `rules/patterns/repository-pattern.md`
-- **What**: Domain file imports an infrastructure or data-layer package (`cloud_firestore`,
-  `http`, `dio`, `firebase_core`, `firebase_auth`, `hive`, `sqflite`, `drift`, or similar).
-  The domain layer must be framework-free; it may only import Dart core, `riverpod_annotation`,
+- **What**: Domain file imports an infrastructure, data-layer, or Flutter framework package
+  (`cloud_firestore`, `http`, `dio`, `firebase_core`, `hive`, `sqflite`, `drift`,
+  `flutter/material`, or similar). The domain layer must be framework-free — it must compile
+  without the Flutter SDK; it may only import Dart core, `riverpod_annotation`,
   and other domain packages.
 - **Heuristic**: in any `.dart` file under `domain/`, find `import 'package:<pkg>/` where
   `<pkg>` is one of: `cloud_firestore`, `firebase_core`, `firebase_auth`, `firebase_storage`,
   `http`, `dio`, `retrofit`, `hive`, `hive_flutter`, `sqflite`, `drift`, `isar`,
-  `shared_preferences`. Flag the import line.
+  `shared_preferences`, `flutter` (any `package:flutter/...` import — `material`, `widgets`,
+  `cupertino`, `foundation` included). Flag the import line.
 - **Fix**: remove the infra import; depend only on domain interfaces/entities. Move the logic
-  that requires the infra package to the data layer.
+  that requires the infra package to the data layer (Flutter types belong in presentation).
 - **autofix_safe**: false (requires moving or restructuring logic)
+
+### DOMAIN-COUPLE-01
+- **Severity**: error
+- **Source**: `rules/patterns/domain-cohesion-coupling.md`
+- **What**: Domain file imports a project-internal `data/`, `application/`, or `presentation/`
+  path — outward dependency from the innermost ring; inverts the clean-architecture dependency
+  rule (everything depends on domain, domain depends on nothing outward). DOMAIN-DEP-01 covers
+  external packages; this rule covers project-internal imports.
+- **Heuristic**: in files under `domain/`, flag `import` lines whose path contains `/data/`,
+  `/application/`, or `/presentation/` (relative like `../data/...` or package imports).
+- **Fix**: invert the dependency — mapping belongs on the data-layer model
+  (`toEntity()`/`Model.fromEntity()`, not `entity.toModel()`); values from services are passed
+  as parameters; domain declares interfaces that outer layers implement; display formatting
+  moves to presentation.
+- **autofix_safe**: false (requires inverting the dependency)
+
+### DOMAIN-COUPLE-02
+- **Severity**: info
+- **Source**: `rules/patterns/domain-cohesion-coupling.md`
+- **What**: Cross-feature domain import (`features/<other>/domain/`). Sometimes legitimate
+  (entities genuinely reference each other), but each one is a coupling seam: a type used by
+  3+ features is shared-kernel material and belongs in a core/shared domain module.
+- **Heuristic**: in files under `features/<name>/domain/`, flag `import` lines matching
+  `features/<other-name>/domain/` where `<other-name>` differs from the file's own feature.
+- **Fix**: if the imported type is used by 3+ features, move it to the core/shared domain
+  module (e.g. `lib/src/core/domain/`); if the import pulls another feature's exceptions or
+  repository interface, consider whether the calling logic belongs in that feature instead.
+- **autofix_safe**: false (team decision per seam)
+
+---
+
+## Entity cohesion rules
+
+### DOMAIN-COHESION-01
+- **Severity**: warning
+- **Source**: `rules/patterns/domain-cohesion-coupling.md`
+- **What**: God entity — an entity/value-object class with more than ~15 instance fields, or a
+  domain file exceeding ~400 lines. The class has absorbed several concepts that change for
+  different reasons (identity, config, stats, preferences), bloating equality/`copyWith` and
+  making presentation-side `.select()` watches coarse.
+- **Heuristic**: in domain classes, count `final <Type> <name>;` instance field declarations;
+  flag the class declaration line when > 15. Also flag files > 400 lines (on the line-1 class
+  declaration) as a secondary signal.
+- **Fix**: group fields that change together into value objects (e.g. `PilotLicense`,
+  `PilotPreferences`, `FlightStats`) and compose them into a small aggregate root; each value
+  object gets its own equality and validation.
+- **autofix_safe**: false (field grouping is a domain-modeling decision)
 
 ---
 

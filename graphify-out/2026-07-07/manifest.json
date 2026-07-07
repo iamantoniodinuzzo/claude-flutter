@@ -1,0 +1,382 @@
+{
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude-plugin\\marketplace.json": {
+    "mtime": 1780944274.327532,
+    "ast_hash": "084a2efad50262ef96fbe073a62696bd",
+    "semantic_hash": "084a2efad50262ef96fbe073a62696bd"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude-plugin\\plugin.json": {
+    "mtime": 1780944274.3295462,
+    "ast_hash": "4317b4e9059e776275901ad912a598e3",
+    "semantic_hash": "4317b4e9059e776275901ad912a598e3"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude\\settings.json": {
+    "mtime": 1780944188.3024342,
+    "ast_hash": "8940bf44670f87e73c4a15284539960f",
+    "semantic_hash": "8940bf44670f87e73c4a15284539960f"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.gemini\\settings.json": {
+    "mtime": 1781939882.32228,
+    "ast_hash": "ddc6069a85a1acc06096e06bcd8087ac",
+    "semantic_hash": "ddc6069a85a1acc06096e06bcd8087ac"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\package.json": {
+    "mtime": 1780944274.3335743,
+    "ast_hash": "68d6976cf1e90181216865c2e440e27f",
+    "semantic_hash": "68d6976cf1e90181216865c2e440e27f"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude\\agents\\skill-reviewer.md": {
+    "mtime": 1780944188.3014336,
+    "ast_hash": "fd66a95c0289aa6f79788a2b732fdddb",
+    "semantic_hash": "fd66a95c0289aa6f79788a2b732fdddb"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\bug.yml": {
+    "mtime": 1779907749.3290708,
+    "ast_hash": "8816184133f9a418a550f30a171deaf5",
+    "semantic_hash": "8816184133f9a418a550f30a171deaf5"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\config.yml": {
+    "mtime": 1779907749.3308156,
+    "ast_hash": "380907e20f1ec544c96a562a2ac57ec8",
+    "semantic_hash": "380907e20f1ec544c96a562a2ac57ec8"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\feature.yml": {
+    "mtime": 1779907749.3308156,
+    "ast_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e",
+    "semantic_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\task.yml": {
+    "mtime": 1779907749.332826,
+    "ast_hash": "112acd2f3356ee327778bff4111573a4",
+    "semantic_hash": "112acd2f3356ee327778bff4111573a4"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\CHANGELOG.md": {
+    "mtime": 1780944274.3295462,
+    "ast_hash": "3699f75c924350374522198707b087aa",
+    "semantic_hash": "3699f75c924350374522198707b087aa"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\CLAUDE.md": {
+    "mtime": 1780212265.0412912,
+    "ast_hash": "a75de191a486a0becd99ab5258c0a84a",
+    "semantic_hash": "a75de191a486a0becd99ab5258c0a84a"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\GEMINI.md": {
+    "mtime": 1781939882.3188567,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\README.md": {
+    "mtime": 1780944211.3483427,
+    "ast_hash": "5ba998f35400d21752e3135ffd0acfca",
+    "semantic_hash": "5ba998f35400d21752e3135ffd0acfca"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\agents\\prompt-engineer.md": {
+    "mtime": 1778308979.1549873,
+    "ast_hash": "ef778600c9b1ff543fc3a52276cca408",
+    "semantic_hash": "ef778600c9b1ff543fc3a52276cca408"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\agents\\riverpod-reviewer.md": {
+    "mtime": 1778308979.1549873,
+    "ast_hash": "3ec1db80588ecd29108c6f52ccd589bd",
+    "semantic_hash": "3ec1db80588ecd29108c6f52ccd589bd"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\ARCHITECTURE.md": {
+    "mtime": 1780944274.3315568,
+    "ast_hash": "36eb7b6312a57e7b72d1396ca912db04",
+    "semantic_hash": "36eb7b6312a57e7b72d1396ca912db04"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\CONTRIBUTING.md": {
+    "mtime": 1779907749.3393786,
+    "ast_hash": "9e0e1b19240a93e1ef53beccfebe74eb",
+    "semantic_hash": "9e0e1b19240a93e1ef53beccfebe74eb"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\FLUTTER_RULES.md": {
+    "mtime": 1779608699.3775575,
+    "ast_hash": "f693eb37a1d9905867b7a0fbb882034e",
+    "semantic_hash": "f693eb37a1d9905867b7a0fbb882034e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\GIT_WORKFLOW.md": {
+    "mtime": 1780944188.3166287,
+    "ast_hash": "19da5af937f3145fa1d70403362813fa",
+    "semantic_hash": "19da5af937f3145fa1d70403362813fa"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\HOW_TO_CREATE_MARKETPLACE.md": {
+    "mtime": 1780212265.0449972,
+    "ast_hash": "ff9eab1a30b2de7769cdcab6e5792be3",
+    "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\SKILL.md": {
+    "mtime": 1780944188.3216197,
+    "ast_hash": "08b53406c5bef361827ce3693c9e6bcc",
+    "semantic_hash": "08b53406c5bef361827ce3693c9e6bcc"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\CATALOG.md": {
+    "mtime": 1780944188.3242426,
+    "ast_hash": "6f9b9d685a78aaf5976803433c2d6616",
+    "semantic_hash": "6f9b9d685a78aaf5976803433c2d6616"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\flutter-accessibility-testing.md": {
+    "mtime": 1779217335.0119793,
+    "ast_hash": "1a4c94295a21b0d14469e9d87d9e306b",
+    "semantic_hash": "1a4c94295a21b0d14469e9d87d9e306b"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\flutter-widgets-perf.md": {
+    "mtime": 1779217335.0119793,
+    "ast_hash": "33acb6dcc87807559fe3b5a64ab1eabe",
+    "semantic_hash": "33acb6dcc87807559fe3b5a64ab1eabe"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\riverpod-flutter.md": {
+    "mtime": 1779217335.0150392,
+    "ast_hash": "bda6228a6abf7264aca5f1217eb966e0",
+    "semantic_hash": "bda6228a6abf7264aca5f1217eb966e0"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\flutter-side-effects.md": {
+    "mtime": 1779217335.0170438,
+    "ast_hash": "4fc399102fbe518b4b6202869b808536",
+    "semantic_hash": "4fc399102fbe518b4b6202869b808536"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\go-router-navigation-conventions.md": {
+    "mtime": 1779217335.019049,
+    "ast_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194",
+    "semantic_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\no-ui-strings-outside-ui.md": {
+    "mtime": 1779217335.019049,
+    "ast_hash": "592871c8dd4f9d938d6f6c64d0e87e41",
+    "semantic_hash": "592871c8dd4f9d938d6f6c64d0e87e41"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\replace-container-nested-widgets.md": {
+    "mtime": 1779217335.0210555,
+    "ast_hash": "a67f9afd65bfa3045d2c266c73e4dbff",
+    "semantic_hash": "a67f9afd65bfa3045d2c266c73e4dbff"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\responsive-layout.md": {
+    "mtime": 1780944188.32524,
+    "ast_hash": "829f9ad9f81ad9e98b3cdaa239e9bfae",
+    "semantic_hash": "829f9ad9f81ad9e98b3cdaa239e9bfae"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\riverpod-rebuild-optimization.md": {
+    "mtime": 1779217335.0230691,
+    "ast_hash": "c8a1de98d33264b41a925e54ea2df384",
+    "semantic_hash": "c8a1de98d33264b41a925e54ea2df384"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\robot-testing.md": {
+    "mtime": 1779217335.0230691,
+    "ast_hash": "46555332f07d1fb2ecd05d317bb44f55",
+    "semantic_hash": "46555332f07d1fb2ecd05d317bb44f55"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\web-interaction-affordances.md": {
+    "mtime": 1780944188.327235,
+    "ast_hash": "816e10d2285ea641cc5ffab8c822804d",
+    "semantic_hash": "816e10d2285ea641cc5ffab8c822804d"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\widget-classes-no-build-helpers.md": {
+    "mtime": 1779217335.0250745,
+    "ast_hash": "6598ae73ff196817dc046b1f648b6ad2",
+    "semantic_hash": "6598ae73ff196817dc046b1f648b6ad2"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\SKILL.md": {
+    "mtime": 1779608699.3900504,
+    "ast_hash": "72baba8e10a0e4a06632ad3c3ee41837",
+    "semantic_hash": "72baba8e10a0e4a06632ad3c3ee41837"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\dart-async-errors.md": {
+    "mtime": 1778917108.2194693,
+    "ast_hash": "e9f98e9c8ece459eb1218b95500dd01f",
+    "semantic_hash": "e9f98e9c8ece459eb1218b95500dd01f"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\dart-language.md": {
+    "mtime": 1778917108.2214634,
+    "ast_hash": "6b675eb94f531edddef9cce4629ed1fd",
+    "semantic_hash": "6b675eb94f531edddef9cce4629ed1fd"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-async-mutations.md": {
+    "mtime": 1778917108.2244618,
+    "ast_hash": "a968e23d90e08a69c7678bf03a74932b",
+    "semantic_hash": "a968e23d90e08a69c7678bf03a74932b"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-core.md": {
+    "mtime": 1778917108.2254632,
+    "ast_hash": "566e2893579c05142884e9153a7c13dd",
+    "semantic_hash": "566e2893579c05142884e9153a7c13dd"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-flutter.md": {
+    "mtime": 1778917108.2264562,
+    "ast_hash": "9103e3e59ef8db59dcbbbccf5a21d529",
+    "semantic_hash": "9103e3e59ef8db59dcbbbccf5a21d529"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-streams-lifecycle.md": {
+    "mtime": 1778917108.2274542,
+    "ast_hash": "142ebebcc8bd9da85b98212aa1c0f5d5",
+    "semantic_hash": "142ebebcc8bd9da85b98212aa1c0f5d5"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\logging.md": {
+    "mtime": 1778917108.228451,
+    "ast_hash": "5cc31523c2c24a11233ffd0cda1ac0af",
+    "semantic_hash": "5cc31523c2c24a11233ffd0cda1ac0af"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\async-notifier-command-api.md": {
+    "mtime": 1778917108.230523,
+    "ast_hash": "a2716ce8e392b937a9bdedad9d541f2c",
+    "semantic_hash": "a2716ce8e392b937a9bdedad9d541f2c"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\exception-handling.md": {
+    "mtime": 1778917108.2314441,
+    "ast_hash": "3c5303d1c7ec65970bca51f46a2fa36a",
+    "semantic_hash": "3c5303d1c7ec65970bca51f46a2fa36a"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\feature-creation.md": {
+    "mtime": 1778917108.2334373,
+    "ast_hash": "eac3871617da462c90fb78da14f0032c",
+    "semantic_hash": "eac3871617da462c90fb78da14f0032c"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\flutter-side-effects.md": {
+    "mtime": 1778917108.2384255,
+    "ast_hash": "eae8fbcf3d17869dd6c31b738d328130",
+    "semantic_hash": "eae8fbcf3d17869dd6c31b738d328130"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\go-router-navigation-conventions.md": {
+    "mtime": 1778917108.2394226,
+    "ast_hash": "993debc9e9ec09e4b20d52c345e4d85b",
+    "semantic_hash": "993debc9e9ec09e4b20d52c345e4d85b"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\no-ui-strings-outside-ui.md": {
+    "mtime": 1778917108.2409344,
+    "ast_hash": "713a074088ee86f1f9e10dfc8467b3f6",
+    "semantic_hash": "713a074088ee86f1f9e10dfc8467b3f6"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\repository-pattern.md": {
+    "mtime": 1779608699.3920445,
+    "ast_hash": "b3d3c731ab4e8feabb3adf65c042f2cb",
+    "semantic_hash": "b3d3c731ab4e8feabb3adf65c042f2cb"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\riverpod-rebuild-optimization.md": {
+    "mtime": 1778917108.243925,
+    "ast_hash": "cc1056c5d72a2230f5000967d40cd0a2",
+    "semantic_hash": "cc1056c5d72a2230f5000967d40cd0a2"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\widget-classes-no-build-helpers.md": {
+    "mtime": 1778917108.2449224,
+    "ast_hash": "ce8d4e33d36f37643974cbdfda602ff6",
+    "semantic_hash": "ce8d4e33d36f37643974cbdfda602ff6"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\build-filter\\skill.md": {
+    "mtime": 1780944274.0339913,
+    "ast_hash": "a11a1cd684ca4ec7ccfa87769c227b58",
+    "semantic_hash": "a11a1cd684ca4ec7ccfa87769c227b58"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\build-optimized-widget\\SKILL.md": {
+    "mtime": 1778308979.2064686,
+    "ast_hash": "24fddb7af52bae0339f06d54d8abc866",
+    "semantic_hash": "24fddb7af52bae0339f06d54d8abc866"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-analyze-targeted\\SKILL.md": {
+    "mtime": 1779909114.180425,
+    "ast_hash": "054f2083297078be31c3d73aa7f460de",
+    "semantic_hash": "054f2083297078be31c3d73aa7f460de"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-go-router\\SKILL.md": {
+    "mtime": 1780944188.3292296,
+    "ast_hash": "93df599a5e85f2edf053474a87b5fce7",
+    "semantic_hash": "93df599a5e85f2edf053474a87b5fce7"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-melos-workspace\\SKILL.md": {
+    "mtime": 1778917108.2509062,
+    "ast_hash": "f40b2cccee92bdf3bc6708cd5f62848e",
+    "semantic_hash": "f40b2cccee92bdf3bc6708cd5f62848e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-melos-workspace\\references\\melos-best-practices.md": {
+    "mtime": 1778308979.2184384,
+    "ast_hash": "f2a8cfdf80f2c19f20c41740c39e5e02",
+    "semantic_hash": "f2a8cfdf80f2c19f20c41740c39e5e02"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\generate-widget-tests\\SKILL.md": {
+    "mtime": 1779608699.3940396,
+    "ast_hash": "1d509d5a2a19831418ffddf97b9ee276",
+    "semantic_hash": "1d509d5a2a19831418ffddf97b9ee276"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\maestro-screenshot-flow\\SKILL.md": {
+    "mtime": 1778917108.265867,
+    "ast_hash": "3aa4f23902babed803c1634b037159e3",
+    "semantic_hash": "3aa4f23902babed803c1634b037159e3"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\second-opinion\\SKILL.md": {
+    "mtime": 1779608699.3960364,
+    "ast_hash": "2d7fdd1d0d375c296fea9e9b664a3238",
+    "semantic_hash": "2d7fdd1d0d375c296fea9e9b664a3238"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\SKILL.md": {
+    "mtime": 1780944188.3332207,
+    "ast_hash": "000cccc20e3502b7d5d035f26a552acf",
+    "semantic_hash": "000cccc20e3502b7d5d035f26a552acf"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\gorouter-and-dio-wiring.md": {
+    "mtime": 1780944188.3478422,
+    "ast_hash": "3f4ff8b978152d35a0634934ea65184a",
+    "semantic_hash": "3f4ff8b978152d35a0634934ea65184a"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\initialization-flow.md": {
+    "mtime": 1780944188.3564334,
+    "ast_hash": "d9821f5bcd6724eec42041e36dff8680",
+    "semantic_hash": "d9821f5bcd6724eec42041e36dff8680"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\logger-decorator-pattern.md": {
+    "mtime": 1780944188.3625858,
+    "ast_hash": "327546189329346cda0f58e181616f57",
+    "semantic_hash": "327546189329346cda0f58e181616f57"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\release-uploads.md": {
+    "mtime": 1780944188.3635838,
+    "ast_hash": "a29de44c9be1b86ec6d892b3769ece38",
+    "semantic_hash": "a29de44c9be1b86ec6d892b3769ece38"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\web-feedback-canvaskit.md": {
+    "mtime": 1780944188.3645809,
+    "ast_hash": "607d987e26ccef81d6b2a8669866db5b",
+    "semantic_hash": "607d987e26ccef81d6b2a8669866db5b"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\SKILL.md": {
+    "mtime": 1779608699.398028,
+    "ast_hash": "ed4f29d48ac1ed9bb702e3bb69ee46f8",
+    "semantic_hash": "ed4f29d48ac1ed9bb702e3bb69ee46f8"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\computed-async-value-providers.md": {
+    "mtime": 1779608699.401021,
+    "ast_hash": "8eb5aafad1500689d980290b7fed568a",
+    "semantic_hash": "8eb5aafad1500689d980290b7fed568a"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\fixture-helpers.md": {
+    "mtime": 1779608699.4020178,
+    "ast_hash": "03dcca09553494b53f78b849dcf0adad",
+    "semantic_hash": "03dcca09553494b53f78b849dcf0adad"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\future-provider-error-paths.md": {
+    "mtime": 1779608699.4030166,
+    "ast_hash": "44c6a463b8690f6a9db7b3b8fad099ff",
+    "semantic_hash": "44c6a463b8690f6a9db7b3b8fad099ff"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\notifier-with-internal-ref-listen.md": {
+    "mtime": 1779608699.4040127,
+    "ast_hash": "5443ec7770c25a96a7f0759dd5db0f9e",
+    "semantic_hash": "5443ec7770c25a96a7f0759dd5db0f9e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\notifier-with-stream-deps.md": {
+    "mtime": 1779608699.4050095,
+    "ast_hash": "1a2d8809f66b8503cbf4d38329b3207a",
+    "semantic_hash": "1a2d8809f66b8503cbf4d38329b3207a"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\prestub-nonnullable-returns.md": {
+    "mtime": 1779608699.4060073,
+    "ast_hash": "472e907614bc8ac0064ccaeb34d0f06e",
+    "semantic_hash": "472e907614bc8ac0064ccaeb34d0f06e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\stream-provider-overrides.md": {
+    "mtime": 1779608699.4070053,
+    "ast_hash": "6a2375408725ad8c5c5b2b144aabdc8e",
+    "semantic_hash": "6a2375408725ad8c5c5b2b144aabdc8e"
+  },
+  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\verify-verifyinorder-antipattern.md": {
+    "mtime": 1779608699.4080007,
+    "ast_hash": "17e664a894c28b28a111304e37c823ce",
+    "semantic_hash": "17e664a894c28b28a111304e37c823ce"
+  }
+}
