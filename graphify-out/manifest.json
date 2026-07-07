@@ -1,382 +1,562 @@
 {
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude-plugin\\marketplace.json": {
-    "mtime": 1780944274.327532,
-    "ast_hash": "084a2efad50262ef96fbe073a62696bd",
-    "semantic_hash": "084a2efad50262ef96fbe073a62696bd"
+  ".claude-plugin/marketplace.json": {
+    "mtime": 1783003859.6579106,
+    "ast_hash": "04c7a28a5d3fc544e3143e653bff1b47",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude-plugin\\plugin.json": {
-    "mtime": 1780944274.3295462,
-    "ast_hash": "4317b4e9059e776275901ad912a598e3",
-    "semantic_hash": "4317b4e9059e776275901ad912a598e3"
+  ".claude-plugin/plugin.json": {
+    "mtime": 1783003859.6579106,
+    "ast_hash": "6781f4802658ede5592f3371d382e78e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude\\settings.json": {
-    "mtime": 1780944188.3024342,
-    "ast_hash": "8940bf44670f87e73c4a15284539960f",
-    "semantic_hash": "8940bf44670f87e73c4a15284539960f"
+  ".claude/settings.json": {
+    "mtime": 1783001785.1456864,
+    "ast_hash": "1d4c42393a147e295245841890699fbb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.gemini\\settings.json": {
-    "mtime": 1781939882.32228,
+  ".gemini/settings.json": {
+    "mtime": 1781982812.9405954,
     "ast_hash": "ddc6069a85a1acc06096e06bcd8087ac",
     "semantic_hash": "ddc6069a85a1acc06096e06bcd8087ac"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\package.json": {
-    "mtime": 1780944274.3335743,
-    "ast_hash": "68d6976cf1e90181216865c2e440e27f",
-    "semantic_hash": "68d6976cf1e90181216865c2e440e27f"
+  "package.json": {
+    "mtime": 1783003859.6619308,
+    "ast_hash": "f7f113309abca1bbf605fc7e7dba6893",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.claude\\agents\\skill-reviewer.md": {
+  ".claude/agents/skill-reviewer.md": {
     "mtime": 1780944188.3014336,
     "ast_hash": "fd66a95c0289aa6f79788a2b732fdddb",
     "semantic_hash": "fd66a95c0289aa6f79788a2b732fdddb"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\bug.yml": {
+  ".github/ISSUE_TEMPLATE/bug.yml": {
     "mtime": 1779907749.3290708,
     "ast_hash": "8816184133f9a418a550f30a171deaf5",
     "semantic_hash": "8816184133f9a418a550f30a171deaf5"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\config.yml": {
+  ".github/ISSUE_TEMPLATE/config.yml": {
     "mtime": 1779907749.3308156,
     "ast_hash": "380907e20f1ec544c96a562a2ac57ec8",
     "semantic_hash": "380907e20f1ec544c96a562a2ac57ec8"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\feature.yml": {
+  ".github/ISSUE_TEMPLATE/feature.yml": {
     "mtime": 1779907749.3308156,
     "ast_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e",
     "semantic_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\.github\\ISSUE_TEMPLATE\\task.yml": {
+  ".github/ISSUE_TEMPLATE/task.yml": {
     "mtime": 1779907749.332826,
     "ast_hash": "112acd2f3356ee327778bff4111573a4",
     "semantic_hash": "112acd2f3356ee327778bff4111573a4"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\CHANGELOG.md": {
-    "mtime": 1780944274.3295462,
-    "ast_hash": "3699f75c924350374522198707b087aa",
-    "semantic_hash": "3699f75c924350374522198707b087aa"
+  "CHANGELOG.md": {
+    "mtime": 1783003859.6599205,
+    "ast_hash": "54b4fb11491c21c1c200ee9ba6425bbd",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\CLAUDE.md": {
-    "mtime": 1780212265.0412912,
-    "ast_hash": "a75de191a486a0becd99ab5258c0a84a",
-    "semantic_hash": "a75de191a486a0becd99ab5258c0a84a"
+  "CLAUDE.md": {
+    "mtime": 1783001785.148725,
+    "ast_hash": "f6c89f2e2e3c707f7c881de71927ef60",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\GEMINI.md": {
-    "mtime": 1781939882.3188567,
+  "GEMINI.md": {
+    "mtime": 1781982812.9415898,
     "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\README.md": {
-    "mtime": 1780944211.3483427,
-    "ast_hash": "5ba998f35400d21752e3135ffd0acfca",
-    "semantic_hash": "5ba998f35400d21752e3135ffd0acfca"
+  "README.md": {
+    "mtime": 1783003859.6619308,
+    "ast_hash": "41bedcba87160ffe88586a22ebcfa8d6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\agents\\prompt-engineer.md": {
+  "agents/prompt-engineer.md": {
     "mtime": 1778308979.1549873,
     "ast_hash": "ef778600c9b1ff543fc3a52276cca408",
     "semantic_hash": "ef778600c9b1ff543fc3a52276cca408"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\agents\\riverpod-reviewer.md": {
+  "agents/riverpod-reviewer.md": {
     "mtime": 1778308979.1549873,
     "ast_hash": "3ec1db80588ecd29108c6f52ccd589bd",
     "semantic_hash": "3ec1db80588ecd29108c6f52ccd589bd"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\ARCHITECTURE.md": {
-    "mtime": 1780944274.3315568,
-    "ast_hash": "36eb7b6312a57e7b72d1396ca912db04",
-    "semantic_hash": "36eb7b6312a57e7b72d1396ca912db04"
+  "ai_docs/ARCHITECTURE.md": {
+    "mtime": 1783003858.5853558,
+    "ast_hash": "c94ed83faa291605ba596c02d8a38eaa",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\CONTRIBUTING.md": {
-    "mtime": 1779907749.3393786,
-    "ast_hash": "9e0e1b19240a93e1ef53beccfebe74eb",
-    "semantic_hash": "9e0e1b19240a93e1ef53beccfebe74eb"
+  "ai_docs/CONTRIBUTING.md": {
+    "mtime": 1783003858.5853558,
+    "ast_hash": "39b83f2d4b7d58cf6a8d12ea399bcb76",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\FLUTTER_RULES.md": {
+  "ai_docs/FLUTTER_RULES.md": {
     "mtime": 1779608699.3775575,
     "ast_hash": "f693eb37a1d9905867b7a0fbb882034e",
     "semantic_hash": "f693eb37a1d9905867b7a0fbb882034e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\GIT_WORKFLOW.md": {
-    "mtime": 1780944188.3166287,
-    "ast_hash": "19da5af937f3145fa1d70403362813fa",
-    "semantic_hash": "19da5af937f3145fa1d70403362813fa"
+  "ai_docs/GIT_WORKFLOW.md": {
+    "mtime": 1781982812.8616476,
+    "ast_hash": "cc824b9beb525c00fd277264d0399272",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\ai_docs\\HOW_TO_CREATE_MARKETPLACE.md": {
+  "ai_docs/HOW_TO_CREATE_MARKETPLACE.md": {
     "mtime": 1780212265.0449972,
     "ast_hash": "ff9eab1a30b2de7769cdcab6e5792be3",
     "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\SKILL.md": {
-    "mtime": 1780944188.3216197,
-    "ast_hash": "08b53406c5bef361827ce3693c9e6bcc",
-    "semantic_hash": "08b53406c5bef361827ce3693c9e6bcc"
+  "skills/audit-presentation-layer/SKILL.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "a95ac558f1483fa6bc517172432b5e0b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\CATALOG.md": {
-    "mtime": 1780944188.3242426,
-    "ast_hash": "6f9b9d685a78aaf5976803433c2d6616",
-    "semantic_hash": "6f9b9d685a78aaf5976803433c2d6616"
+  "skills/audit-presentation-layer/rules/CATALOG.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "8b21549321528706302da2f4d5aeb138",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\flutter-accessibility-testing.md": {
+  "skills/audit-presentation-layer/rules/breaking/flutter-accessibility-testing.md": {
     "mtime": 1779217335.0119793,
     "ast_hash": "1a4c94295a21b0d14469e9d87d9e306b",
     "semantic_hash": "1a4c94295a21b0d14469e9d87d9e306b"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\flutter-widgets-perf.md": {
+  "skills/audit-presentation-layer/rules/breaking/flutter-widgets-perf.md": {
     "mtime": 1779217335.0119793,
     "ast_hash": "33acb6dcc87807559fe3b5a64ab1eabe",
     "semantic_hash": "33acb6dcc87807559fe3b5a64ab1eabe"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\breaking\\riverpod-flutter.md": {
+  "skills/audit-presentation-layer/rules/breaking/riverpod-flutter.md": {
     "mtime": 1779217335.0150392,
     "ast_hash": "bda6228a6abf7264aca5f1217eb966e0",
     "semantic_hash": "bda6228a6abf7264aca5f1217eb966e0"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\flutter-side-effects.md": {
+  "skills/audit-presentation-layer/rules/patterns/flutter-side-effects.md": {
     "mtime": 1779217335.0170438,
     "ast_hash": "4fc399102fbe518b4b6202869b808536",
     "semantic_hash": "4fc399102fbe518b4b6202869b808536"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\go-router-navigation-conventions.md": {
+  "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md": {
     "mtime": 1779217335.019049,
     "ast_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194",
     "semantic_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\no-ui-strings-outside-ui.md": {
+  "skills/audit-presentation-layer/rules/patterns/no-ui-strings-outside-ui.md": {
     "mtime": 1779217335.019049,
     "ast_hash": "592871c8dd4f9d938d6f6c64d0e87e41",
     "semantic_hash": "592871c8dd4f9d938d6f6c64d0e87e41"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\replace-container-nested-widgets.md": {
+  "skills/audit-presentation-layer/rules/patterns/replace-container-nested-widgets.md": {
     "mtime": 1779217335.0210555,
     "ast_hash": "a67f9afd65bfa3045d2c266c73e4dbff",
     "semantic_hash": "a67f9afd65bfa3045d2c266c73e4dbff"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\responsive-layout.md": {
-    "mtime": 1780944188.32524,
-    "ast_hash": "829f9ad9f81ad9e98b3cdaa239e9bfae",
-    "semantic_hash": "829f9ad9f81ad9e98b3cdaa239e9bfae"
+  "skills/audit-presentation-layer/rules/patterns/responsive-layout.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "6981b613291a00d2f45be8d1167331e6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\riverpod-rebuild-optimization.md": {
+  "skills/audit-presentation-layer/rules/patterns/riverpod-rebuild-optimization.md": {
     "mtime": 1779217335.0230691,
     "ast_hash": "c8a1de98d33264b41a925e54ea2df384",
     "semantic_hash": "c8a1de98d33264b41a925e54ea2df384"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\robot-testing.md": {
+  "skills/audit-presentation-layer/rules/patterns/robot-testing.md": {
     "mtime": 1779217335.0230691,
     "ast_hash": "46555332f07d1fb2ecd05d317bb44f55",
     "semantic_hash": "46555332f07d1fb2ecd05d317bb44f55"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\web-interaction-affordances.md": {
+  "skills/audit-presentation-layer/rules/patterns/web-interaction-affordances.md": {
     "mtime": 1780944188.327235,
     "ast_hash": "816e10d2285ea641cc5ffab8c822804d",
     "semantic_hash": "816e10d2285ea641cc5ffab8c822804d"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\audit-presentation-layer\\rules\\patterns\\widget-classes-no-build-helpers.md": {
+  "skills/audit-presentation-layer/rules/patterns/widget-classes-no-build-helpers.md": {
     "mtime": 1779217335.0250745,
     "ast_hash": "6598ae73ff196817dc046b1f648b6ad2",
     "semantic_hash": "6598ae73ff196817dc046b1f648b6ad2"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\SKILL.md": {
-    "mtime": 1779608699.3900504,
-    "ast_hash": "72baba8e10a0e4a06632ad3c3ee41837",
-    "semantic_hash": "72baba8e10a0e4a06632ad3c3ee41837"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\dart-async-errors.md": {
-    "mtime": 1778917108.2194693,
-    "ast_hash": "e9f98e9c8ece459eb1218b95500dd01f",
-    "semantic_hash": "e9f98e9c8ece459eb1218b95500dd01f"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\dart-language.md": {
-    "mtime": 1778917108.2214634,
-    "ast_hash": "6b675eb94f531edddef9cce4629ed1fd",
-    "semantic_hash": "6b675eb94f531edddef9cce4629ed1fd"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-async-mutations.md": {
-    "mtime": 1778917108.2244618,
-    "ast_hash": "a968e23d90e08a69c7678bf03a74932b",
-    "semantic_hash": "a968e23d90e08a69c7678bf03a74932b"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-core.md": {
-    "mtime": 1778917108.2254632,
-    "ast_hash": "566e2893579c05142884e9153a7c13dd",
-    "semantic_hash": "566e2893579c05142884e9153a7c13dd"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-flutter.md": {
-    "mtime": 1778917108.2264562,
-    "ast_hash": "9103e3e59ef8db59dcbbbccf5a21d529",
-    "semantic_hash": "9103e3e59ef8db59dcbbbccf5a21d529"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\breaking\\riverpod-streams-lifecycle.md": {
-    "mtime": 1778917108.2274542,
-    "ast_hash": "142ebebcc8bd9da85b98212aa1c0f5d5",
-    "semantic_hash": "142ebebcc8bd9da85b98212aa1c0f5d5"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\logging.md": {
-    "mtime": 1778917108.228451,
-    "ast_hash": "5cc31523c2c24a11233ffd0cda1ac0af",
-    "semantic_hash": "5cc31523c2c24a11233ffd0cda1ac0af"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\async-notifier-command-api.md": {
-    "mtime": 1778917108.230523,
-    "ast_hash": "a2716ce8e392b937a9bdedad9d541f2c",
-    "semantic_hash": "a2716ce8e392b937a9bdedad9d541f2c"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\exception-handling.md": {
-    "mtime": 1778917108.2314441,
-    "ast_hash": "3c5303d1c7ec65970bca51f46a2fa36a",
-    "semantic_hash": "3c5303d1c7ec65970bca51f46a2fa36a"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\feature-creation.md": {
-    "mtime": 1778917108.2334373,
-    "ast_hash": "eac3871617da462c90fb78da14f0032c",
-    "semantic_hash": "eac3871617da462c90fb78da14f0032c"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\flutter-side-effects.md": {
-    "mtime": 1778917108.2384255,
-    "ast_hash": "eae8fbcf3d17869dd6c31b738d328130",
-    "semantic_hash": "eae8fbcf3d17869dd6c31b738d328130"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\go-router-navigation-conventions.md": {
-    "mtime": 1778917108.2394226,
-    "ast_hash": "993debc9e9ec09e4b20d52c345e4d85b",
-    "semantic_hash": "993debc9e9ec09e4b20d52c345e4d85b"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\no-ui-strings-outside-ui.md": {
-    "mtime": 1778917108.2409344,
-    "ast_hash": "713a074088ee86f1f9e10dfc8467b3f6",
-    "semantic_hash": "713a074088ee86f1f9e10dfc8467b3f6"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\repository-pattern.md": {
-    "mtime": 1779608699.3920445,
-    "ast_hash": "b3d3c731ab4e8feabb3adf65c042f2cb",
-    "semantic_hash": "b3d3c731ab4e8feabb3adf65c042f2cb"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\riverpod-rebuild-optimization.md": {
-    "mtime": 1778917108.243925,
-    "ast_hash": "cc1056c5d72a2230f5000967d40cd0a2",
-    "semantic_hash": "cc1056c5d72a2230f5000967d40cd0a2"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\bootstrap-feature\\references\\patterns\\widget-classes-no-build-helpers.md": {
-    "mtime": 1778917108.2449224,
-    "ast_hash": "ce8d4e33d36f37643974cbdfda602ff6",
-    "semantic_hash": "ce8d4e33d36f37643974cbdfda602ff6"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\build-filter\\skill.md": {
+  "skills/build-filter/skill.md": {
     "mtime": 1780944274.0339913,
     "ast_hash": "a11a1cd684ca4ec7ccfa87769c227b58",
     "semantic_hash": "a11a1cd684ca4ec7ccfa87769c227b58"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\build-optimized-widget\\SKILL.md": {
-    "mtime": 1778308979.2064686,
-    "ast_hash": "24fddb7af52bae0339f06d54d8abc866",
-    "semantic_hash": "24fddb7af52bae0339f06d54d8abc866"
-  },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-analyze-targeted\\SKILL.md": {
+  "skills/flutter-analyze-targeted/SKILL.md": {
     "mtime": 1779909114.180425,
     "ast_hash": "054f2083297078be31c3d73aa7f460de",
     "semantic_hash": "054f2083297078be31c3d73aa7f460de"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-go-router\\SKILL.md": {
+  "skills/flutter-go-router/SKILL.md": {
     "mtime": 1780944188.3292296,
     "ast_hash": "93df599a5e85f2edf053474a87b5fce7",
     "semantic_hash": "93df599a5e85f2edf053474a87b5fce7"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-melos-workspace\\SKILL.md": {
+  "skills/flutter-melos-workspace/SKILL.md": {
     "mtime": 1778917108.2509062,
     "ast_hash": "f40b2cccee92bdf3bc6708cd5f62848e",
     "semantic_hash": "f40b2cccee92bdf3bc6708cd5f62848e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\flutter-melos-workspace\\references\\melos-best-practices.md": {
+  "skills/flutter-melos-workspace/references/melos-best-practices.md": {
     "mtime": 1778308979.2184384,
     "ast_hash": "f2a8cfdf80f2c19f20c41740c39e5e02",
     "semantic_hash": "f2a8cfdf80f2c19f20c41740c39e5e02"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\generate-widget-tests\\SKILL.md": {
+  "skills/generate-widget-tests/SKILL.md": {
     "mtime": 1779608699.3940396,
     "ast_hash": "1d509d5a2a19831418ffddf97b9ee276",
     "semantic_hash": "1d509d5a2a19831418ffddf97b9ee276"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\maestro-screenshot-flow\\SKILL.md": {
-    "mtime": 1778917108.265867,
-    "ast_hash": "3aa4f23902babed803c1634b037159e3",
-    "semantic_hash": "3aa4f23902babed803c1634b037159e3"
+  "skills/maestro-screenshot-flow/SKILL.md": {
+    "mtime": 1783003858.5902176,
+    "ast_hash": "e097520682979d24cd169dd01e64903f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\second-opinion\\SKILL.md": {
-    "mtime": 1779608699.3960364,
-    "ast_hash": "2d7fdd1d0d375c296fea9e9b664a3238",
-    "semantic_hash": "2d7fdd1d0d375c296fea9e9b664a3238"
+  "skills/second-opinion/SKILL.md": {
+    "mtime": 1783003858.5922132,
+    "ast_hash": "3959170092d615f468519944b3b9447e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\SKILL.md": {
+  "skills/sentry-init/SKILL.md": {
     "mtime": 1780944188.3332207,
     "ast_hash": "000cccc20e3502b7d5d035f26a552acf",
     "semantic_hash": "000cccc20e3502b7d5d035f26a552acf"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\gorouter-and-dio-wiring.md": {
+  "skills/sentry-init/references/gorouter-and-dio-wiring.md": {
     "mtime": 1780944188.3478422,
     "ast_hash": "3f4ff8b978152d35a0634934ea65184a",
     "semantic_hash": "3f4ff8b978152d35a0634934ea65184a"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\initialization-flow.md": {
+  "skills/sentry-init/references/initialization-flow.md": {
     "mtime": 1780944188.3564334,
     "ast_hash": "d9821f5bcd6724eec42041e36dff8680",
     "semantic_hash": "d9821f5bcd6724eec42041e36dff8680"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\logger-decorator-pattern.md": {
+  "skills/sentry-init/references/logger-decorator-pattern.md": {
     "mtime": 1780944188.3625858,
     "ast_hash": "327546189329346cda0f58e181616f57",
     "semantic_hash": "327546189329346cda0f58e181616f57"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\release-uploads.md": {
+  "skills/sentry-init/references/release-uploads.md": {
     "mtime": 1780944188.3635838,
     "ast_hash": "a29de44c9be1b86ec6d892b3769ece38",
     "semantic_hash": "a29de44c9be1b86ec6d892b3769ece38"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\sentry-init\\references\\web-feedback-canvaskit.md": {
+  "skills/sentry-init/references/web-feedback-canvaskit.md": {
     "mtime": 1780944188.3645809,
     "ast_hash": "607d987e26ccef81d6b2a8669866db5b",
     "semantic_hash": "607d987e26ccef81d6b2a8669866db5b"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\SKILL.md": {
-    "mtime": 1779608699.398028,
-    "ast_hash": "ed4f29d48ac1ed9bb702e3bb69ee46f8",
-    "semantic_hash": "ed4f29d48ac1ed9bb702e3bb69ee46f8"
+  "skills/unit-test/SKILL.md": {
+    "mtime": 1783404144.9448802,
+    "ast_hash": "22e5e9218495ce3576b1bf1ae04d5b00",
+    "semantic_hash": ""
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\computed-async-value-providers.md": {
+  "skills/unit-test/patterns/computed-async-value-providers.md": {
     "mtime": 1779608699.401021,
     "ast_hash": "8eb5aafad1500689d980290b7fed568a",
     "semantic_hash": "8eb5aafad1500689d980290b7fed568a"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\fixture-helpers.md": {
+  "skills/unit-test/patterns/fixture-helpers.md": {
     "mtime": 1779608699.4020178,
     "ast_hash": "03dcca09553494b53f78b849dcf0adad",
     "semantic_hash": "03dcca09553494b53f78b849dcf0adad"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\future-provider-error-paths.md": {
+  "skills/unit-test/patterns/future-provider-error-paths.md": {
     "mtime": 1779608699.4030166,
     "ast_hash": "44c6a463b8690f6a9db7b3b8fad099ff",
     "semantic_hash": "44c6a463b8690f6a9db7b3b8fad099ff"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\notifier-with-internal-ref-listen.md": {
+  "skills/unit-test/patterns/notifier-with-internal-ref-listen.md": {
     "mtime": 1779608699.4040127,
     "ast_hash": "5443ec7770c25a96a7f0759dd5db0f9e",
     "semantic_hash": "5443ec7770c25a96a7f0759dd5db0f9e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\notifier-with-stream-deps.md": {
+  "skills/unit-test/patterns/notifier-with-stream-deps.md": {
     "mtime": 1779608699.4050095,
     "ast_hash": "1a2d8809f66b8503cbf4d38329b3207a",
     "semantic_hash": "1a2d8809f66b8503cbf4d38329b3207a"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\prestub-nonnullable-returns.md": {
+  "skills/unit-test/patterns/prestub-nonnullable-returns.md": {
     "mtime": 1779608699.4060073,
     "ast_hash": "472e907614bc8ac0064ccaeb34d0f06e",
     "semantic_hash": "472e907614bc8ac0064ccaeb34d0f06e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\stream-provider-overrides.md": {
+  "skills/unit-test/patterns/stream-provider-overrides.md": {
     "mtime": 1779608699.4070053,
     "ast_hash": "6a2375408725ad8c5c5b2b144aabdc8e",
     "semantic_hash": "6a2375408725ad8c5c5b2b144aabdc8e"
   },
-  "C:\\Users\\Tonyd\\Desktop\\Progetti\\claude-flutter\\skills\\unit-test\\patterns\\verify-verifyinorder-antipattern.md": {
+  "skills/unit-test/patterns/verify-verifyinorder-antipattern.md": {
     "mtime": 1779608699.4080007,
     "ast_hash": "17e664a894c28b28a111304e37c823ce",
     "semantic_hash": "17e664a894c28b28a111304e37c823ce"
+  },
+  "scripts/bump-version.sh": {
+    "mtime": 1781982812.863653,
+    "ast_hash": "c156f263086bdfd2b143dfdba9d91484",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/fix-port-7001.ps1": {
+    "mtime": 1783001785.2443333,
+    "ast_hash": "23ae75d875167eb793900de0d6045d4a",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/maestro-audit-ids.sh": {
+    "mtime": 1783001785.2453296,
+    "ast_hash": "2818531037960c9643130160f7d47546",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh": {
+    "mtime": 1783001785.2478168,
+    "ast_hash": "303a382c6be21b7b459dcfed07e444ac",
+    "semantic_hash": ""
+  },
+  ".github/workflows/release.yml": {
+    "mtime": 1781982812.8576362,
+    "ast_hash": "edc21254f84b0ab82a7306ad598948c9",
+    "semantic_hash": ""
+  },
+  ".github/workflows/validate-marketplace.yml": {
+    "mtime": 1781982812.8576362,
+    "ast_hash": "f5e3011ca744b35edef41e0922a8870e",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/SKILL.md": {
+    "mtime": 1783403388.2180872,
+    "ast_hash": "2c4f8b10bd0f6d58f57ec97d2c2573ac",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/CATALOG.md": {
+    "mtime": 1783403388.2180872,
+    "ast_hash": "74da9697ee0cedeb58047c0e58b96b5a",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/dart-async-errors.md": {
+    "mtime": 1783001785.1873548,
+    "ast_hash": "96f8be40d25b4fa50d99a322bcd29681",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/riverpod-async-mutations.md": {
+    "mtime": 1783001785.1873548,
+    "ast_hash": "2beda4607bc4fca25e414d29f2164f0b",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/riverpod-core.md": {
+    "mtime": 1783001785.189367,
+    "ast_hash": "4c19d13a0b1149c5834fbc19034652d3",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/application-cohesion-coupling.md": {
+    "mtime": 1783403388.2180872,
+    "ast_hash": "bc2c13bd9f3b2152dd4d3fc9a09a95d0",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/async-notifier-command-api.md": {
+    "mtime": 1783001785.1913786,
+    "ast_hash": "0fe111c74634e3e9c4e9b6b7fa6b1d07",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/feature-creation.md": {
+    "mtime": 1783001785.1933918,
+    "ast_hash": "453a66889333e888b249e402726ef546",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/SKILL.md": {
+    "mtime": 1783403388.2180872,
+    "ast_hash": "64a15442b2f67f1723c9bd9395c4a6eb",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/CATALOG.md": {
+    "mtime": 1783403388.2180872,
+    "ast_hash": "f3a99905c91c0917f0ad9f145e663832",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/data-cohesion-coupling.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "5392f5e06cd95afe303fbc228267f32a",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/exception-handling.md": {
+    "mtime": 1783001785.1997602,
+    "ast_hash": "57dea5716d26ec2fd39b93cfc1aa367d",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2017536,
+    "ast_hash": "208897f837f1b779f760cde2333a937e",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/SKILL.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "20d6d22fc1d8d48cc4cdae209c4d957d",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/CATALOG.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "1c83f34975607fff01f8b611e249ef13",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/domain-cohesion-coupling.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "e03f3dec8c5babd4faac1c5d3d18c657",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/exception-handling.md": {
+    "mtime": 1783001785.2077384,
+    "ast_hash": "57dea5716d26ec2fd39b93cfc1aa367d",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/feature-creation.md": {
+    "mtime": 1783001785.2087355,
+    "ast_hash": "453a66889333e888b249e402726ef546",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/no-ui-strings-outside-ui.md": {
+    "mtime": 1783001785.209733,
+    "ast_hash": "7830d2f2426236c2d3f7ab8043afcfeb",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2117283,
+    "ast_hash": "208897f837f1b779f760cde2333a937e",
+    "semantic_hash": ""
+  },
+  "skills/audit-feature/SKILL.md": {
+    "mtime": 1783001785.213371,
+    "ast_hash": "5292713962f199743952e0fda47d2b9f",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/rebuild-isolation.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "fda4253bd5809df73a144e0b960598e6",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/widget-extraction-cohesion.md": {
+    "mtime": 1783403388.2263632,
+    "ast_hash": "b16d20737aa0918c867e100608ca0adb",
+    "semantic_hash": ""
+  },
+  "skills/build-filter/SKILL.md": {
+    "mtime": 1783002303.7883115,
+    "ast_hash": "0943b7cf61aa29e916352fd4fecfe4c8",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/commands.md": {
+    "mtime": 1783001785.2353568,
+    "ast_hash": "4dddd2afd477f8ce094f0f30411c0e9d",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/examples.md": {
+    "mtime": 1783001785.2373512,
+    "ast_hash": "58114ef2b00f5ae1bb6a112b88ca142b",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/selectors.md": {
+    "mtime": 1783001785.2383482,
+    "ast_hash": "3b3703c51ab5891fc2f5b41d9f6d2396",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/suite-config.md": {
+    "mtime": 1783001785.2413409,
+    "ast_hash": "eafeecbe720ad2d53a8cae3a1ead0c74",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/troubleshooting.md": {
+    "mtime": 1783001785.2423382,
+    "ast_hash": "54d359e16df13a66eed69c2e2a1f853b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/SKILL.md": {
+    "mtime": 1783001785.2498105,
+    "ast_hash": "bdb2759b79f169f35ce3540f6a4b416b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/dart-async-errors.md": {
+    "mtime": 1783001785.2518048,
+    "ast_hash": "e9f98e9c8ece459eb1218b95500dd01f",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/dart-language.md": {
+    "mtime": 1783001785.252802,
+    "ast_hash": "6b675eb94f531edddef9cce4629ed1fd",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-async-mutations.md": {
+    "mtime": 1783001785.2537997,
+    "ast_hash": "a968e23d90e08a69c7678bf03a74932b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-core.md": {
+    "mtime": 1783001785.2547967,
+    "ast_hash": "566e2893579c05142884e9153a7c13dd",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-flutter.md": {
+    "mtime": 1783001785.2547967,
+    "ast_hash": "9103e3e59ef8db59dcbbbccf5a21d529",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-streams-lifecycle.md": {
+    "mtime": 1783001785.2558029,
+    "ast_hash": "142ebebcc8bd9da85b98212aa1c0f5d5",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/logging.md": {
+    "mtime": 1783001785.2567914,
+    "ast_hash": "5cc31523c2c24a11233ffd0cda1ac0af",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/async-notifier-command-api.md": {
+    "mtime": 1783001785.258786,
+    "ast_hash": "a2716ce8e392b937a9bdedad9d541f2c",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/exception-handling.md": {
+    "mtime": 1783001785.2597845,
+    "ast_hash": "3c5303d1c7ec65970bca51f46a2fa36a",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/feature-creation.md": {
+    "mtime": 1783001785.2632842,
+    "ast_hash": "eac3871617da462c90fb78da14f0032c",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/flutter-side-effects.md": {
+    "mtime": 1783001785.2632842,
+    "ast_hash": "eae8fbcf3d17869dd6c31b738d328130",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/go-router-navigation-conventions.md": {
+    "mtime": 1783001785.2652926,
+    "ast_hash": "993debc9e9ec09e4b20d52c345e4d85b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/no-ui-strings-outside-ui.md": {
+    "mtime": 1783001785.2652926,
+    "ast_hash": "713a074088ee86f1f9e10dfc8467b3f6",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2673025,
+    "ast_hash": "b3d3c731ab4e8feabb3adf65c042f2cb",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/riverpod-rebuild-optimization.md": {
+    "mtime": 1783001785.2673025,
+    "ast_hash": "cc1056c5d72a2230f5000967d40cd0a2",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/widget-classes-no-build-helpers.md": {
+    "mtime": 1783001785.2693124,
+    "ast_hash": "ce8d4e33d36f37643974cbdfda602ff6",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/patterns/edge-case-catalog.md": {
+    "mtime": 1783404078.0459516,
+    "ast_hash": "7def3440cde7d2123eb89975cd559ff8",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/patterns/test-quality-gate.md": {
+    "mtime": 1783404098.4929736,
+    "ast_hash": "a9cf0d9e81862cb464c701eed818cbd0",
+    "semantic_hash": ""
   }
 }

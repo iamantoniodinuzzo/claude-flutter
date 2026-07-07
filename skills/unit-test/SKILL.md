@@ -1,6 +1,6 @@
 ---
 name: unit-test
-description: Generate, update, or repair unit tests for a Flutter feature path or single Dart class. Knows what to test (domain models, services, notifiers, providers, exceptions) and what to skip (widgets, generated code, Firebase repos). Uses mocktail, GWT pattern, Riverpod 3.x ProviderContainer, and an incremental run-fix cycle targeting ≥80% coverage. Use proactively when the user asks to write, generate, add, fix, or improve unit tests for any feature, class, service, notifier, or provider — even if they just say "write tests for X" or "add test coverage to Y".
+description: Generate, update, or repair unit tests for a Flutter feature path or single Dart class. Knows what to test (domain models, services, notifiers, providers, exceptions) and what to skip (widgets, generated code, Firebase repos). Stresses code with adversarial edge cases instead of merely satisfying it — expected values come from the contract, never from running the code; red tests that expose real bugs are reported, never weakened. Uses mocktail, GWT pattern, Riverpod 3.x ProviderContainer, and an incremental run-fix cycle targeting ≥80% coverage. Use proactively when the user asks to write, generate, add, fix, or improve unit tests for any feature, class, service, notifier, or provider — even if they just say "write tests for X" or "add test coverage to Y".
 user-invocable: true
 ---
 
@@ -18,6 +18,8 @@ For complex Riverpod scenarios, read the relevant pattern file **before** writin
 | Pre-stub non-nullable returns (`Stream<T>`, `Future<String>`) | `patterns/prestub-nonnullable-returns.md` |
 | `verify()` + `verifyInOrder()` clash in mocktail 1.0.x | `patterns/verify-verifyinorder-antipattern.md` |
 | Notifier with internal `ref.listen` in action method | `patterns/notifier-with-internal-ref-listen.md` |
+| Adversarial edge-case catalog per input type | `patterns/edge-case-catalog.md` — read **before Phase 7**, always |
+| Test quality gate (anti-tautology, mutation mindset) | `patterns/test-quality-gate.md` — read **before Phase 9.5**, always |
 
 ---
 
@@ -73,7 +75,7 @@ Prioritise in this order:
 4. Riverpod Notifiers / AsyncNotifiers / Controllers
 5. Repository implementations only if a `FakeFirestore` in-memory fake is feasible
 
-**Skip with stated reason**: Firebase repos requiring real network, widgets, pure DTOs with zero logic.
+**Skip with stated reason**: Firebase repos requiring real network, widgets, pure DTOs with zero logic, trivial getters/setters with no logic, classes whose only behavior is delegating a call to an injected dependency (a test there verifies the mock, not the subject).
 
 ---
 
@@ -352,19 +354,24 @@ Add a `group('FooException', ...)` for every `*_exception.dart`. Per each concre
 
 ---
 
-## Phase 7 — Coverage Strategy (target ≥ 80%)
+## Phase 7 — Coverage & Adversarial Strategy (target ≥ 80%)
+
+> Read `patterns/edge-case-catalog.md` **before** this phase, always.
 
 | Scenario | Priority |
 |---|---|
 | Happy path with valid input | Must |
-| Boundary / edge values (empty list, zero, null nullable) | Must |
-| Each distinct branch / conditional | Must |
+| Adversarial inputs from the catalog, for every input type present in the signature | Must |
+| Each distinct branch / conditional — **both** true and false sides | Must |
+| Boundary equality case for every `<` / `<=` / `isBefore` comparison | Must |
 | Each exception the method can throw | Must |
 | Unauthenticated / unauthorized access (if applicable) | Must |
 | Idempotency — calling twice gives correct result | Should |
+| Concurrent call while first is in-flight (see catalog) | Should |
 | Family state isolation | Should |
 
 Rules:
+- **Expected values come from the contract** (doc comments, names, domain rules, call sites) — never from running the code and copying its output. If the expectation cannot be deduced without executing the code, flag the behavior as under-specified in Phase 10 instead of blessing the current output.
 - `DateTime.utc(year, month, day)` — never `DateTime.now()`.
 - `expectLater(() => sut.method(), throwsA(isA<FooException>()))` for async throws.
 - `expect(sut.method, throwsA(...))` for sync throws with no args (tear-off, preferred); `expect(() => sut.method(arg), throwsA(...))` with args.
@@ -382,8 +389,12 @@ For each class:
    ```bash
    flutter test test/src/features/<path>/<file>_test.dart
    ```
-3. **Fix** — repair wrong expectations or discovered bugs.
-4. Repeat until green, then move to the next class.
+3. **Triage red** — a failing test is a signal, not an error to silence. In order:
+   1. Determine the **intended** behavior from spec, doc comments, names, domain rules, and call sites — not from the implementation.
+   2. Test wrong (bad expectation, broken mock setup, missing pre-stub) → fix the test.
+   3. Code wrong → do **not** touch production code and do **not** weaken the assert to make it pass. Keep the test red, annotate it with `// BUG: <expected behavior> — <what the code does instead>`, and report it in Phase 10.
+   4. Genuinely ambiguous which is right → report as under-specified in Phase 10; leave the contract-derived assertion in place.
+4. Repeat until green (except intentional `// BUG:` reds), then move to the next class.
 
 Full feature run when all individual files pass:
 
@@ -403,10 +414,27 @@ Fix **errors** only (`error` severity). Ignore warnings and info — filter outp
 
 ---
 
+## Phase 9.5 — Quality Gate
+
+> Read `patterns/test-quality-gate.md` **before** this phase, always.
+
+Run the gate checklist on every test file written or modified this session:
+
+1. **Anti-tautology** — every expected value traceable to the contract, not to observed output.
+2. **Mutation check** — for each test, name a plausible bug that would fail it; strengthen or delete tests that survive every mutation (`isNotNull`-only, type-check-only, verify-only asserts).
+3. **Both branch sides** covered for every conditional touched.
+4. **Anti-patterns deleted** — mock-testing, over-verification, implementation-detail asserts, placeholder tests.
+5. Re-run affected files after any change.
+
+---
+
 ## Phase 10 — Final Summary
 
 Report:
 - Tests created / updated and total passing / failing.
+- **Bugs found in production code** — intentional red tests marked `// BUG:`, with expected vs actual behavior.
+- **Under-specified behaviors** — cases where the contract does not determine the expected value.
+- Quality gate outcome — tests strengthened or deleted, with reason.
 - What was intentionally skipped and why.
 - Static analysis errors (errors only).
 - Mocks reused from `mocks.dart` vs newly declared.

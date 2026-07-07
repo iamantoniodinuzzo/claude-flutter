@@ -91,6 +91,70 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 
 ---
 
+## Cohesion & coupling rules
+
+### APP-COUPLE-01
+- **Severity**: error
+- **Source**: `rules/patterns/application-cohesion-coupling.md`
+- **What**: Application file imports or calls a datasource directly, bypassing the repository
+  facade — skips typed exception conversion, model→entity mapping, and caching policy
+  (Dependency Inversion violation: high-level policy depending on low-level detail).
+- **Heuristic**: in files under `application/`, flag `import` lines whose path contains
+  `datasource` or `data_source`, and usages of types whose name ends in `Datasource` /
+  `DataSource` (constructor calls, provider reads like `ref.read(xxxDatasourceProvider)`,
+  field/variable type annotations).
+- **Fix**: depend on the repository interface declared in `domain/`, resolved via its provider
+  (`ref.read(fooRepositoryProvider)`); if the repository lacks the needed method, add it there —
+  the mapping and exception conversion belong behind the facade.
+- **autofix_safe**: false (may require extending the repository interface)
+
+### APP-COUPLE-02
+- **Severity**: error
+- **Source**: `rules/patterns/application-cohesion-coupling.md`
+- **What**: Application file imports a `presentation/` path — upward dependency. The
+  application layer signals via state; presentation observes (`ref.listen` for one-shot
+  effects like snackbars/navigation). Complements APP-DEP-01 (which bans Flutter framework
+  imports but not project-internal presentation imports).
+- **Heuristic**: in files under `application/`, flag `import` lines whose path contains
+  `/presentation/` (relative or package imports).
+- **Fix**: remove the import; surface the outcome through state (e.g.
+  `state = AsyncError(TypedException(), st)`) and let a widget `ref.listen` and react.
+- **autofix_safe**: false (requires re-routing the effect through state)
+
+### APP-COUPLE-03
+- **Severity**: warning
+- **Source**: `rules/patterns/application-cohesion-coupling.md`
+- **What**: Repository or datasource implementation constructed manually inside a notifier
+  (`= FooRepositoryImpl(...)`, `= FirestoreBookingRepository(...)`) instead of resolved via
+  the provider graph — the dependency cannot be overridden in tests (`overrideWith`), swapped
+  per environment, or observed.
+- **Heuristic**: in notifier classes, flag constructor invocations of types whose name ends in
+  `RepositoryImpl`, `Repository` (concrete, e.g. prefixed `Firestore`/`Http`/`Dio`/`Fake`
+  outside test files), `Datasource`, or `DataSource` assigned to fields/variables — i.e.
+  `=\s*\w*(Repository(Impl)?|Data[Ss]ource)\(`.
+- **Fix**: resolve through the graph: `ref.read(fooRepositoryProvider)` /
+  `ref.watch(fooRepositoryProvider)`; register the implementation in its own `@riverpod`
+  provider so tests can `overrideWithValue(FakeFooRepository())`.
+- **autofix_safe**: false (provider may need to be created)
+
+### APP-COHESION-01
+- **Severity**: warning
+- **Source**: `rules/patterns/application-cohesion-coupling.md`
+- **What**: God notifier — more than ~7 public mutation methods, or an application file
+  exceeding ~300 lines. The notifier orchestrates several use cases at once (Command pattern:
+  one invoker should own one cohesive command family); its state becomes a grab-bag and every
+  change touches the same file. Oversized notifiers also widen provider watches, enlarging
+  presentation rebuilds.
+- **Heuristic**: in notifier classes, count public (non-`_`, non-`build`) method declarations;
+  flag the class declaration line when > 7. Also flag application files > 300 lines as a
+  secondary signal.
+- **Fix**: split along use-case boundaries into separate notifiers (e.g. commands vs filters
+  vs export), each with its own narrow state type; method count is the smoke, the use-case
+  boundary is the fire.
+- **autofix_safe**: false (state type and provider graph redesign)
+
+---
+
 ## Adding new rules
 
 1. Add a rule block here following the schema above.

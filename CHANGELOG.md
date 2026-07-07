@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-07-07
+
+### Added
+
+- `skills/audit-presentation-layer` — 12 new rules: REBUILD-01..04 (const subtrees, scoped `MediaQuery` accessors, builder child caching, `setState` blast radius), EXTRACT-01/02 (oversized build methods, function widgets), COHESION-01 (Law of Demeter params), COUPLING-01/02 (data-layer and cross-feature imports), RESPONSIVE-02..04 (named breakpoints, flex rows, adaptive grids)
+- `skills/audit-data-layer` — DATA-COUPLE-01/02 (upward and cross-feature imports), DATA-COHESION-01/02 (god repositories, mixed remote+local datasources)
+- `skills/audit-domain-layer` — DOMAIN-COUPLE-01/02, DOMAIN-COHESION-01 (god entities); DOMAIN-DEP-01 now also bans `package:flutter` imports
+- `skills/audit-application-layer` — APP-COUPLE-01..03 (datasource bypass, presentation imports, hard-wired repository construction), APP-COHESION-01 (god notifiers)
+- New pattern docs grounding rules in HFDP (Observer, Strategy, Facade, Adapter, Command, SRP, Least Knowledge) and DDIA (storage encapsulation, source-of-truth vs derived data)
+
 ## [3.2.2] - 2026-07-02
 
 ### Added

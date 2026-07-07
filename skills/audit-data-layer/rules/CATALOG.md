@@ -93,6 +93,68 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 
 ---
 
+## Cohesion & coupling rules
+
+### DATA-COUPLE-01
+- **Severity**: error
+- **Source**: `rules/patterns/data-cohesion-coupling.md`
+- **What**: Data-layer file imports an `application/` or `presentation/` path — upward
+  dependency that inverts the clean-architecture dependency rule
+  (`presentation → application → domain ← data`), creating cycles and making the data
+  layer untestable in isolation.
+- **Heuristic**: in files under `data/`, flag `import` lines whose path contains
+  `/application/` or `/presentation/` (relative or package imports).
+- **Fix**: depend only on `domain/` types. If the repository needs a caller-held value,
+  take it as a method parameter; if it wants to influence UI state, return/throw domain
+  types and let the application layer map them.
+- **autofix_safe**: false (requires re-routing the dependency)
+
+### DATA-COUPLE-02
+- **Severity**: warning
+- **Source**: `rules/patterns/data-cohesion-coupling.md`
+- **What**: Cross-feature data import (`features/<other>/data/`) — couples two features'
+  infrastructures; the other feature cannot change its persistence independently.
+- **Heuristic**: in files under `features/<name>/data/`, flag `import` lines matching
+  `features/<other-name>/data/` where `<other-name>` differs from the file's own feature.
+- **Fix**: inject the other feature's repository *interface* (defined in its `domain/`)
+  via the provider graph, or promote genuinely shared infra (API client, DB handle) to a
+  core/shared module (Facade over shared infrastructure).
+- **autofix_safe**: false (architectural decision per import)
+
+### DATA-COHESION-01
+- **Severity**: warning
+- **Source**: `rules/patterns/data-cohesion-coupling.md`
+- **What**: God repository/datasource — more than ~10 public methods, or method names
+  referencing ≥ 3 distinct entity nouns. Single Responsibility violation: every consumer
+  depends on the full surface; one storage abstraction should serve one aggregate /
+  access pattern.
+- **Heuristic**: in repository/datasource classes, count public (non-`_`) method
+  declarations; flag the class declaration line when > 10. Additionally, extract the
+  entity noun from each method name (e.g. `fetchBookings` → `Booking`) and flag when
+  ≥ 3 distinct nouns appear.
+- **Fix**: split into one repository per aggregate (the entity cluster that changes
+  together) — e.g. `BookingRepository`, `UserPrefsRepository`, `FleetRepository` — and
+  update the provider graph accordingly.
+- **autofix_safe**: false (class split with call-site and provider updates)
+
+### DATA-COHESION-02
+- **Severity**: warning
+- **Source**: `rules/patterns/data-cohesion-coupling.md`
+- **What**: One datasource class importing both remote infra (`dio`, `http`,
+  `cloud_firestore`) and local storage (`hive`, `sqflite`, `shared_preferences`, `drift`,
+  `isar`) — mixes the system of record with derived/cached data; the caching policy gets
+  smeared across fetch methods instead of living in the repository (DDIA: source of truth
+  vs derived data).
+- **Heuristic**: in datasource files, flag the class declaration when the file's imports
+  include at least one of {`dio`, `http`, `cloud_firestore`, `firebase_storage`} AND at
+  least one of {`hive`, `hive_flutter`, `sqflite`, `shared_preferences`, `drift`, `isar`}.
+- **Fix**: split into `<X>RemoteDatasource` (source of truth) and `<X>LocalDatasource`
+  (cache); move the reconciliation policy (read-through, write-through, TTL, offline
+  fallback) into the repository implementation, which acts as the facade.
+- **autofix_safe**: false (class split and policy relocation)
+
+---
+
 ## Adding new rules
 
 1. Add a rule block here following the schema above.
