@@ -103,6 +103,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `audit-feature` | "audit this feature" or "full feature audit" | Orchestrates all four per-layer audits in parallel; aggregates into one report; falls back to presentation-only for sub-features |
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture (decorator or standalone), web BetterFeedback, release upload checklist |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
+| `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: 5 hard questions (least confident, user's blind spot, 3-month failure risk, unstated assumptions, session friction), then persist learnings to memory + propose fixes — generic, not Flutter-specific |
 
 ---
 
