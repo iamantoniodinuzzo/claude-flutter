@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-07-16
+
+### Added
+
+- `skills/retro` — generic end-of-task self-audit skill (5 hard questions: least confident, user's blind spot, 3-month failure risk, unstated assumptions, session friction), then persists learnings to auto-memory and proposes fixes. Ported from the author's personal global skills so it's available wherever `flutter-toolkit` is installed; deliberate exception to the plugin's Flutter/Dart scope (ref #39)
+
 ## [3.3.0] - 2026-07-07
 
 ### Added
