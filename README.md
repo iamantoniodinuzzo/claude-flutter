@@ -1,6 +1,6 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.4.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.5.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 
@@ -89,7 +89,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | Skill | Invoke | Description |
 |---|---|---|
 | `scaffold-feature` | `/flutter-toolkit:scaffold-feature` or "we're starting a new feature" | Scaffold a new feature: Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
-| `build-filter` | `/flutter-toolkit:build-filter <path>` | Targeted `dart build_runner` — no full rebuild |
+| `build-filter` | `/flutter-toolkit:build-filter <path>` | Targeted `dart build_runner`, guarded against out-of-scope deletions (escalates to full rebuild when needed) |
 | `flutter-analyze-targeted` | `/flutter-toolkit:flutter-analyze-targeted <path>` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | "write tests for X" | Unit tests with mocktail + GWT + Riverpod v3 |
 | `generate-widget-tests` | "write widget tests for X" | Widget tests via Robot Testing pattern |
@@ -103,7 +103,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `audit-feature` | "audit this feature" or "full feature audit" | Orchestrates all four per-layer audits in parallel; aggregates into one report; falls back to presentation-only for sub-features |
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture (decorator or standalone), web BetterFeedback, release upload checklist |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
-| `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: 5 hard questions (least confident, user's blind spot, 3-month failure risk, unstated assumptions, session friction), then persist learnings to memory + propose fixes — generic, not Flutter-specific |
+| `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: extracts verifiable evidence (tool errors, repeated commands) from the session transcript, answers 5 hard questions backed by it, auto-persists learnings to memory with dedup, flags unintegrated git work, proposes fixes — generic, not Flutter-specific |
 
 ---
 
