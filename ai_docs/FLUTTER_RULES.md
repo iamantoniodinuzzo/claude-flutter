@@ -14,7 +14,11 @@ The `riverpod-reviewer` agent enforces these — apply when editing any provider
 
 ## Codegen: `build-filter` vs full rebuild
 
-Never run `dart run build_runner build --delete-conflicting-outputs` on the whole project. Use `/build-filter <path>` instead: it deletes stale `.g.dart` for the target path, then runs `--build-filter` without touching the rest.
+Never combine `dart run build_runner build --delete-conflicting-outputs` with `--build-filter` — the flag deletes all cached `.g.dart` project-wide before building, and only the filtered subset gets regenerated. (The flag alone, on a full unfiltered build, is fine.)
+
+Prefer `/build-filter <path>` for targeted rebuilds: it normalizes the path to `--build-filter` output form and runs the build through a guard script that snapshots `.g.dart` state before/after and escalates to a full build if too many files have changed since the last build. It does **not** pre-delete anything for the target path.
+
+**Known caveat (#41):** even without `--delete-conflicting-outputs`, `--build-filter` alone can silently delete unrelated `.g.dart` files project-wide when the cached asset graph is far out of date (e.g. after many accumulated edits), without logging it. See `skills/build-filter/SKILL.md` for the guard and the escalation heuristic.
 
 ## `dart analyze` scoping
 

@@ -39,7 +39,7 @@ flowchart LR
 | Skill | Trigger |
 |---|---|
 | `scaffold-feature` | "Starting a new feature" — Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
-| `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — targeted codegen only |
+| `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — targeted codegen, guarded against out-of-scope deletions, escalates to full rebuild when the working tree has drifted too far |
 | `flutter-analyze-targeted` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | Generate/update/repair unit tests (mocktail, GWT, Riverpod ProviderContainer) |
 | `generate-widget-tests` | Generate widget tests using Robot Testing pattern |
