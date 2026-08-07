@@ -53,7 +53,7 @@ flowchart LR
 | `audit-feature` | Orchestrator: runs all four per-layer audits in parallel via Explore subagents; aggregates into one report; presentation-only shortcut for sub-features |
 | `sentry-init` | Bootstrap `sentry_flutter`: installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture, web BetterFeedback, release-upload checklist |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
-| `retro` | End-of-task self-audit: 5 hard questions, then persist learnings to auto-memory + propose fixes (generic, not Flutter-specific) |
+| `retro` | End-of-task self-audit: reads session transcript for verifiable friction evidence (`scripts/session-evidence.{sh,ps1}`), answers 5 hard questions backed by it, auto-persists learnings to auto-memory with dedup, flags unintegrated git work, proposes fixes (generic, not Flutter-specific) |
 
 ## Agents
 
