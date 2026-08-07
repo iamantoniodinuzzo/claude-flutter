@@ -55,15 +55,29 @@ Run `dart run build_runner` using the best combination of flags for the user's w
 
    > **Why output form:** `--build-filter` matches **output** file paths, not source paths. Passing `bar.dart` produces 0 outputs; `bar.g.dart` targets the generated file correctly.
 
-4. Run the filtered build from the package working directory — **without** `--delete-conflicting-outputs`:
+4. Run the filtered build from the package working directory through the guard script — **without** `--delete-conflicting-outputs`:
 
    ```bash
-   dart run build_runner build \
+   bash <toolkit-root>/skills/build-filter/scripts/guarded-build.sh \
+     --cwd "<package-working-dir>" \
      --build-filter="<normalized-path>" \
      [--build-filter="<other-path>" ...]
    ```
 
-5. Confirm which `.g.dart` files were regenerated (list them).
+   On Windows/PowerShell, use the companion script instead:
+
+   ```powershell
+   & <toolkit-root>/skills/build-filter/scripts/guarded-build.ps1 `
+     -Cwd "<package-working-dir>" `
+     -BuildFilter "<normalized-path>" [-BuildFilter "<other-path>" ...]
+   ```
+
+   The script does three things a bare `dart run build_runner build --build-filter=...` does not (see [Known failure mode](#known-failure-mode-1-345-deleted-gdart-files) below):
+   - **Pre-flight escalation**: if more than 10 `.dart` files are modified/untracked in the working tree, it skips the filter and runs a full unfiltered build instead — the cached asset graph is likely stale enough that a filtered build is unsafe.
+   - **Before/after `.g.dart` snapshot diff**: any `.g.dart` deleted outside the filtered scope is reported loudly with a restore command. It never auto-restores.
+   - Still never passes `--delete-conflicting-outputs`.
+
+5. Confirm which `.g.dart` files were regenerated (list them), and check the script's exit code — non-zero means it detected out-of-scope deletions.
 6. If `--build-filter` produces no output, fall back to a full build scoped to the package (still without `--delete-conflicting-outputs`):
 
    ```bash
@@ -84,6 +98,7 @@ dart run build_runner watch \
 - Automatically regenerates on every source file save.
 - Stop with: `dart run build_runner stop` (build_runner ≥ 2.14.0).
 - **Do not use in CI** — the process never exits.
+- **Not covered by the guard script** — `watch` runs the same filtered codegen and carries the same [known failure mode](#known-failure-mode-1-345-deleted-gdart-files) as `build`, but a long-running process has no natural "before/after" to diff. After any extended `watch` session (many files touched across the run), run an unfiltered `dart run build_runner build` as a safety net before trusting the generated output.
 
 ## Advanced flags
 
@@ -115,9 +130,17 @@ Stable since build_runner 2.14.0. Only relevant when building across multiple pa
 
 `--delete-conflicting-outputs` deletes **all** cached `.g.dart` files project-wide before building. Combined with `--build-filter`, only the filtered subset gets regenerated — every other `.g.dart` goes missing, forcing a full rebuild anyway.
 
-Since build_runner 2.15.0, "selective file writing only when content changes" and deferred deletion mean conflicts are rare without any manual intervention.
+**Never combine `--delete-conflicting-outputs` with `--build-filter`.** (The flag itself is fine — even routine — for a full, unfiltered `build_runner build`; it's the combination with `--build-filter` that's unsafe.)
 
-**Do not use `--delete-conflicting-outputs` with `--build-filter`.**
+## Known failure mode: 345 deleted `.g.dart` files (#41)
+
+Filtered builds are **not** guaranteed safe even without `--delete-conflicting-outputs`. Observed in production (build_runner 4.0.2, Dart 3.10.1): after ~30 source files were edited across a session (no `@riverpod`/`@JsonSerializable` *signature* changes, only bodies/annotations), a `--build-filter` build scoped to 3 files completed and logged only `"wrote 6 outputs"` — no warnings, no mention of deletions. `git status` looked clean immediately after. Minutes later, `git status` showed **345 unrelated `.g.dart` files deleted** project-wide, scattered across unrelated features.
+
+Working theory (unconfirmed against build_runner internals): with many source files changed since the last full build, the cached asset graph considers many outputs "stale" relative to their inputs. Because `--build-filter` scopes the *rebuild* to a few files, build_runner may delete the stale-but-out-of-scope outputs without regenerating them, deferring regeneration to a future non-filtered run — without surfacing this anywhere in its logs.
+
+**This means an agent following a bare `--build-filter` command has no visible signal that anything went wrong.** That's why step 4 above routes through `guarded-build.sh` / `.ps1` instead of a bare `dart run build_runner build --build-filter=...`: the script snapshots `.g.dart` state before and after, escalates to a full build when the working tree has accumulated too many edits, and reports (never auto-fixes) any out-of-scope deletion.
+
+If `.g.dart` files are gitignored in the target project, a silent deletion is **unrecoverable** — the guard script's `find`-based snapshot still detects and reports it, but there is no `git checkout --` to fall back on. Recommend committing generated files, or budgeting for a full rebuild after any batch of wide-reaching edits.
 
 ## Note on `--release`
 
@@ -129,6 +152,7 @@ Since build_runner 2.15.0, "selective file writing only when content changes" an
 - Glob patterns supported: `lib/src/features/foo/**`
 - If the user doesn't provide a path, ask which feature/file they just edited
 - For Melos scripts targeting packages with `build_runner`, use `packageFilters.dependsOn: build_runner` to avoid running codegen on unrelated packages
+- `scripts/guarded-build.sh` and `scripts/guarded-build.ps1` must stay functionally identical — when editing one, mirror the change in the other
 
 ## Troubleshooting
 

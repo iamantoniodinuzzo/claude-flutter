@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `skills/build-filter`: documented a silent mass-deletion failure mode where `--build-filter` (without `--delete-conflicting-outputs`) removed hundreds of unrelated `.g.dart` files without logging it, after many unrelated source edits had accumulated since the last full build (#41). Added `scripts/guarded-build.{sh,ps1}`, run in place of a bare `dart run build_runner build --build-filter=...`: snapshots `.g.dart` state before/after and reports (never auto-restores) any out-of-scope deletion, and pre-flight-escalates to a full unfiltered build when more than 10 `.dart` files have changed since the last build. Narrowed `ai_docs/FLUTTER_RULES.md`'s blanket "never run `--delete-conflicting-outputs`" to "never combine it with `--build-filter`" — it resolved a standing contradiction with `skills/flutter-melos-workspace` and `skills/sentry-init`, which both correctly use the flag on full builds.
+
 ## [3.4.0] - 2026-07-16
 
 ### Added
