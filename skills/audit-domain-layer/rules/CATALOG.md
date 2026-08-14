@@ -89,6 +89,21 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
   Place the exception class in `domain/exceptions/<feature>_exceptions.dart`.
 - **autofix_safe**: false (exception class must be designed per project naming convention)
 
+### DOMAIN-FAIL-02
+- **Severity**: warning
+- **Source**: `rules/patterns/sealed-exceptions.md`
+- **What**: Feature-level abstract exception base is declared `abstract class` instead of
+  `sealed class`. Without `sealed`, callers cannot `switch` exhaustively over the exception type,
+  so adding a new concrete error state later compiles silently unhandled anywhere it isn't caught.
+- **Heuristic**: in files under `domain/`, find `abstract class <X> extends AppException` or
+  `abstract class <X>Exception extends <Y>` where the declaration does not contain the `sealed`
+  modifier. Flag the class declaration line. Do not flag concrete leaf classes (`class`/
+  `final class` extending the abstract base).
+- **Fix**: change `abstract class` to `sealed class`. All concrete subclasses must then live in
+  the same library (same file, or split via `part`/`part of`) — this is a Dart 3 requirement of
+  `sealed`, not a style choice.
+- **autofix_safe**: false (sealing may require moving subclasses into the same file)
+
 ---
 
 ## Entity purity rules
@@ -120,10 +135,15 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 - **Source**: `rules/patterns/no-ui-strings-outside-ui.md`
 - **What**: Hardcoded user-facing string literal (≥ 20 chars, > 3 words) in a domain file —
   strings intended for display should live in the presentation layer or be expressed as
-  typed exception messages via `.hardcoded`.
+  typed exception messages via `.hardcoded`. A `.hardcoded`-suffixed literal, or a `message:`/
+  `code:` argument inside an exception's `super(...)` call, is domain data (see
+  `patterns/exception-handling.md` §4), not UI copy — presentation maps display text from the
+  exception *type*, not from this string. These are exempt from this rule.
 - **Heuristic**: in `.dart` files under `domain/`, find string literals matching
-  `'[A-Za-z ]{20,}'` or `"[A-Za-z ]{20,}"` that are not in `//` comments and are not
-  assigned to identifiers named `url`, `path`, `key`, `tag`, `code`, `name`, `id`.
+  `'[A-Za-z ]{20,}'` or `"[A-Za-z ]{20,}"` that are not in `//` comments, are not assigned to
+  identifiers named `url`, `path`, `key`, `tag`, `code`, `name`, `id`, are not immediately
+  followed by `.hardcoded`, and are not the value of a `message:` or `code:` named argument
+  inside a `super(...)` call within a class extending `AppException` (directly or transitively).
 - **Fix**: replace the raw string with a typed exception `message` field (using `.hardcoded`
   extension) or move user-visible copy to a presentation-layer `AppLocalizations` key.
 - **autofix_safe**: false (typed enum / l10n design is project-specific)

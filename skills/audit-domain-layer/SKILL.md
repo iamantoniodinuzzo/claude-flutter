@@ -1,6 +1,6 @@
 ---
 name: audit-domain-layer
-description: Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra or Flutter imports), outward layer imports (data/application/presentation), cross-feature domain coupling, god entities, typed exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit domain layer", "audit this entity", "review domain", "check domain rules", "find domain violations", or asks to verify a domain file against project architecture rules before code review.
+description: Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra or Flutter imports), outward layer imports (data/application/presentation), cross-feature domain coupling, god entities, typed and sealed/exhaustive exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit domain layer", "audit this entity", "review domain", "check domain rules", "find domain violations", or asks to verify a domain file against project architecture rules before code review.
 user-invocable: true
 ---
 
@@ -99,13 +99,18 @@ Heuristic application notes:
   expression does not start with a class name that plausibly extends `AppException` or a named
   feature-level abstract exception. Also flag `throw ArgumentError(` and similar stdlib errors
   when inside domain logic (not in factory constructors performing validation).
+- **DOMAIN-FAIL-02**: flag `abstract class <X> extends AppException` or
+  `abstract class <X>Exception extends <Y>` in `domain/` when the declaration lacks the `sealed`
+  modifier. Do not flag concrete leaf classes extending that base.
 - **DOMAIN-ENT-01**: flag method or factory declarations matching `fromJson(`, `toJson(`,
   `fromMap(`, `toMap(`, or a parameter of type `Map<String, dynamic>` in entity/value-object
   classes directly in `domain/`. Do NOT flag model classes under `domain/` if the file name
   ends in `_model.dart` (data-layer model accidentally placed; flag separately as an info note).
 - **DOMAIN-STR-01**: flag string literals matching `'[A-Za-z ]{20,}'` (≥ 20 chars, proxy for
   multi-word human-readable copy) that are not in comments and not assigned to `const` technical
-  identifiers (e.g. `url`, `path`, `key`, `tag`, `code`).
+  identifiers (e.g. `url`, `path`, `key`, `tag`, `code`). Exempt literals suffixed `.hardcoded`
+  and literals passed as `message:`/`code:` named arguments inside a `super(...)` call within an
+  exception class — those are domain data (typed exception messages), not UI copy.
 
 ---
 
@@ -142,7 +147,8 @@ After the report, ask:
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
 Auto-fix safe: (none)
 Requires judgment: DOMAIN-DEP-01, DOMAIN-COUPLE-01, DOMAIN-COUPLE-02,
-                   DOMAIN-COHESION-01, DOMAIN-FAIL-01, DOMAIN-ENT-01, DOMAIN-STR-01
+                   DOMAIN-COHESION-01, DOMAIN-FAIL-01, DOMAIN-FAIL-02,
+                   DOMAIN-ENT-01, DOMAIN-STR-01
 ```
 
 On response:
