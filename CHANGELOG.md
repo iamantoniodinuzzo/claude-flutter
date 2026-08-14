@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.1] - 2026-08-14
+
+### Added
+
+- `skills/audit-domain-layer` — `DOMAIN-FAIL-02`: feature exception base must be `sealed`, not
+  plain `abstract`, so presentation gets a compiler-checked exhaustive `switch` over every domain
+  error state. New local pattern doc `rules/patterns/sealed-exceptions.md` explains why `sealed`
+  (Dart 3) supersedes the Freezed-based approach from the source tip, and why per-feature unions
+  beat one global exception union (ref #43).
+
+### Fixed
+
+- `skills/audit-domain-layer` — `DOMAIN-STR-01` false-flagged every correctly-written typed
+  exception message; it now exempts `.hardcoded`-suffixed literals and `message:`/`code:` args
+  inside an exception's `super(...)` call, matching the pattern the skill's own docs prescribe
+  (ref #43).
+
 ## [3.5.0] - 2026-08-07
 
 ### Changed
