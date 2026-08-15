@@ -1,0 +1,21 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Architecture audits",
+      "description": "Static clean-architecture audits per layer (domain, data, application, presentation)",
+      "skills": ["audit-domain-layer", "audit-data-layer", "audit-application-layer", "audit-presentation-layer", "audit-feature"]
+    },
+    {
+      "title": "Testing",
+      "description": "Unit, widget, and Maestro screenshot test generation",
+      "skills": ["unit-test", "generate-widget-tests", "maestro-screenshot-flow"]
+    },
+    {
+      "title": "Scaffolding & tooling",
+      "description": "Feature scaffolding, codegen, navigation, monorepo, observability",
+      "skills": ["scaffold-feature", "build-filter", "flutter-analyze-targeted", "flutter-go-router", "flutter-melos-workspace", "sentry-init"]
+    }
+  ],
+  "notGrouped": "bottom"
+}

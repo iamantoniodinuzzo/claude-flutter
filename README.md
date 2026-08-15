@@ -1,23 +1,35 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.5.1-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.6.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
+[![skills.sh](https://img.shields.io/badge/skills.sh-npx%20skills%20add-black)](https://www.skills.sh)
 
-Skills, agents, and commands that turn Claude Code into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture.
+Skills, agents, and commands that turn any coding agent into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture. Built for Claude Code; installable on 70+ agents (Cursor, Codex, Windsurf, Cline, etc.) via [skills.sh](https://www.skills.sh).
 
 ---
 
 ## Installation
 
-### Via CLI (recommended)
+### Any agent, via `npx` (broadest reach)
+
+`skills/` matches the [skills.sh](https://www.skills.sh) flat catalog layout (`skills/<name>/SKILL.md`) — no extra setup needed:
+
+```bash
+npx skills add iamantoniodinuzzo/claude-flutter
+npx skills update claude-flutter
+```
+
+> Tracks `master` HEAD — bleeding edge, no version pinning.
+
+### Claude Code, via plugin marketplace (stable, pinned)
 
 ```bash
 claude plugin marketplace add iamantoniodinuzzo/claude-flutter
 claude plugin install flutter-toolkit@claude-flutter
 ```
 
-### Via `.claude/settings.json` (team/project scope)
+Or via `.claude/settings.json` (team/project scope):
 
 ```json
 {
@@ -35,50 +47,9 @@ claude plugin install flutter-toolkit@claude-flutter
 }
 ```
 
-### Alternative: via `npx` (multi-agent)
+> Pins tagged releases — use this in Claude Code for reproducible versions instead of tracking `master` HEAD.
 
-`skills/` already matches the [skills.sh](https://www.skills.sh) flat catalog layout (`skills/<name>/SKILL.md`), so it installs with no extra setup for any of the 70+ agents it supports (Cursor, Codex, Windsurf, Cline, etc.), not just Claude Code:
-
-```bash
-npx skills add iamantoniodinuzzo/claude-flutter
-npx skills update claude-flutter
-```
-
-> This path always tracks `master` HEAD — bleeding edge, no version pinning. For stable, tagged releases in Claude Code, use the plugin marketplace above instead.
-
-### Troubleshooting
-
-**Plugin stuck on old version / install fails with SSH error**
-
-Claude Code clones plugins via SSH by default. If SSH keys are not configured, installation fails silently or the cached version never updates. Fix:
-
-```bash
-# Force HTTPS for GitHub (run once, global)
-git config --global url."https://github.com/".insteadOf "git@github.com:"
-
-# Refresh marketplace index, then update
-claude plugin marketplace update claude-flutter
-claude plugin update flutter-toolkit@claude-flutter
-```
-
-Restart Claude Code after updating.
-
-**How auto-update works**
-
-This marketplace uses pinned-tag version resolution. When a new release is published:
-
-1. A git tag (`vX.Y.Z`) is pushed to GitHub.
-2. `marketplace.json` `source.ref` is updated to point to that tag.
-3. `plugin.json` `version` field changes to `X.Y.Z`.
-
-Claude Code detects the update **only when the resolved version string changes at the pinned ref** (both the tag and the ref must be in sync). If `source.ref` is stale, `marketplace update` is a no-op. The `scripts/bump-version.sh` script keeps all four locations in sync atomically.
-
-To get the latest version:
-
-```bash
-claude plugin marketplace update claude-flutter
-claude plugin update flutter-toolkit@claude-flutter
-```
+Install issues (stuck versions, SSH errors, how auto-update resolves)? See [ai_docs/TROUBLESHOOTING.md](ai_docs/TROUBLESHOOTING.md).
 
 ---
 
