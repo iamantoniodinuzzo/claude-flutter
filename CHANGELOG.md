@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0]
+
+### Added
+
+- `skills.sh.json` — discoverability manifest for `npx skills add`, grouping skills into
+  Architecture audits, Testing, and Scaffolding & tooling categories.
+- `ai_docs/TROUBLESHOOTING.md` — new troubleshooting doc.
+
+### Fixed
+
+- `package.json` `name` — corrected from `flutter-claude-toolkit` to `flutter-toolkit`, matching
+  the plugin id used everywhere else (marketplace, skills.sh) so multi-agent discovery resolves
+  the package correctly.
+
+### Changed
+
+- `README.md` — trimmed for clarity as part of the skills.sh/multi-agent discoverability pass.
+
 ## [3.5.1] - 2026-08-14
 
 ### Added
