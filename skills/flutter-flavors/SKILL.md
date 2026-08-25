@@ -9,7 +9,10 @@ user-invocable: true
 Adds `dev`/`stg`/`prod` (or custom) flavors to a Flutter project, or audits and repairs an existing
 flavor setup that is partial or broken. Never runs `dart run flutter_flavorizr` bare — the bare
 command overwrites `lib/main.dart` and silently destroys all app-initialization logic. Every native
-change goes through targeted processors or hand-written patches, never a full regenerate.
+change goes through targeted processors or hand-written patches, never a full regenerate. Every
+flavorizr invocation also always carries `-f`/`--force` — without it the tool's confirm prompt
+crashes outright in a non-interactive shell (see `references/flavorizr-processors.md`); piping
+input does not help, only `-f` does.
 
 ## Rule and reference sources
 
@@ -135,8 +138,8 @@ and `references/manual-ios.md` for branch B.
 4. Run processors **targeted**, never bare — see `references/flavorizr-processors.md` for the
    full rationale and the trap (bare run overwrites `lib/main.dart`):
    ```bash
-   dart run flutter_flavorizr -p android:buildGradle,android:flavorizrGradle,android:androidManifest,android:icons
-   dart run flutter_flavorizr -p assets:download,assets:extract,ios:podfile,ios:xcconfig,ios:buildTargets,ios:schema,ios:plist,ios:dummyAssets,ios:icons,assets:clean
+   dart run flutter_flavorizr -f -p android:buildGradle,android:flavorizrGradle,android:androidManifest,android:icons
+   dart run flutter_flavorizr -f -p assets:download,assets:extract,ios:podfile,ios:xcconfig,ios:buildTargets,ios:schema,ios:plist,ios:dummyAssets,ios:icons,assets:clean
    ```
    (Skip the second command entirely if the iOS prerequisite check failed.)
 5. `AndroidManifest.xml` comes out with attributes inlined on one line — reformat it (XML Tools
@@ -234,7 +237,7 @@ Read `references/ide-config.md`.
 
 ### VSCode
 
-1. `dart run flutter_flavorizr -p ide:config` to regenerate `.vscode/launch.json`.
+1. `dart run flutter_flavorizr -f -p ide:config` to regenerate `.vscode/launch.json`.
 2. The output is minified JSON — reformat it:
    ```bash
    jq '.' .vscode/launch.json > .vscode/formatted_launch.json && mv .vscode/formatted_launch.json .vscode/launch.json
@@ -246,7 +249,7 @@ Read `references/ide-config.md`.
 
 ### Android Studio
 
-1. Set `ide: "idea"` in the `flavorizr:` pubspec block, then `dart run flutter_flavorizr -p
+1. Set `ide: "idea"` in the `flavorizr:` pubspec block, then `dart run flutter_flavorizr -f -p
    ide:config` — this only produces **Debug** configurations.
 2. Profile and Release configurations, and the web-aware `additionalArgs`, must be written by hand
    per `references/ide-config.md` — there is no processor for these. Generate all of them, do not

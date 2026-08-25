@@ -5,7 +5,7 @@
 ### Generating via flavorizr
 
 ```bash
-dart run flutter_flavorizr -p ide:config
+dart run flutter_flavorizr -f -p ide:config
 ```
 
 Reads the `flavorizr:` pubspec block and produces one configuration per flavor × build-mode (3
@@ -75,7 +75,7 @@ targeting both IDEs needs to run `ide:config` twice, once per setting, keeping b
 then:
 
 ```bash
-dart run flutter_flavorizr -p ide:config
+dart run flutter_flavorizr -f -p ide:config
 ```
 
 Produces one file per flavor, e.g. `.idea/runConfigurations/main_dev_dart.xml`:

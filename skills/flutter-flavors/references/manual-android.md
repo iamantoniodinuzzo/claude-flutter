@@ -83,7 +83,7 @@ flavor-specific resources go later (custom icons if not using flavorizr's icon p
 
 Manually generating resized icon sets for every Android density bucket
 (`mipmap-mdpi` through `mipmap-xxxhdpi`) is not worth doing by hand. If icons are in scope, either:
-- run just the flavorizr `android:icons` processor (`dart run flutter_flavorizr -p
+- run just the flavorizr `android:icons` processor (`dart run flutter_flavorizr -f -p
   android:icons`) against the manually-written `flavorizr:` pubspec block, or
 - use [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons), which has its
   own [flavor support](https://pub.dev/packages/flutter_launcher_icons#flavor-support).

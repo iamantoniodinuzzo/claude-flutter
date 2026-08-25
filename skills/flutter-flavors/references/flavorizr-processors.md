@@ -31,6 +31,33 @@ gate — a clean working tree — was honored first).
 Always pass `-p <processor_1>,<processor_2>,...` and only include the processors actually needed.
 Order matters — some processors depend on files created by earlier ones in the same list.
 
+## Always pass `-f` too — the confirm prompt crashes outright without a terminal
+
+Every flavorizr invocation asks `Do you want to proceed? (Y/n)` before running, reading from
+stdin via a package (`mason_logger`) that first checks whether **stdout** is attached to a real
+terminal. In any non-interactive shell — an agent's Bash tool, CI, a piped/redirected
+invocation — that check fails immediately and the process crashes with an unhandled exception
+(`Bad state: No terminal attached to stdout`) **before reading any input**, so piping `y` into
+stdin does not help:
+
+```
+Do you want to proceed? (Y/n) Unhandled exception:
+Bad state: No terminal attached to stdout.
+Ensure a terminal is attached via "stdout.hasTerminal" before requesting input.
+```
+
+The fix is the undocumented `-f` / `--force` flag (confirmed against `flutter_flavorizr` source,
+`lib/src/processors/processor.dart`), which skips the confirm entirely:
+
+```bash
+dart run flutter_flavorizr -f -p <processor_1>,<processor_2>,...
+```
+
+**Always include `-f` on every flavorizr invocation in this skill** — every command shown below
+already does. Omitting it is the single most common way this skill would appear to "hang" or
+fail with a cryptic Dart stack trace when driven by an agent rather than typed by hand in a real
+terminal.
+
 ## Installing
 
 ```bash
@@ -94,7 +121,7 @@ use these as the app's permanent identity.
 ## Android processors
 
 ```bash
-dart run flutter_flavorizr -p android:buildGradle,android:flavorizrGradle,android:androidManifest,android:icons
+dart run flutter_flavorizr -f -p android:buildGradle,android:flavorizrGradle,android:androidManifest,android:icons
 ```
 
 | Processor | What it touches |
@@ -134,7 +161,7 @@ Run after: `flutter run --flavor dev`. Verify the app name shown on the device m
 If any is missing, skip this section entirely and fall back to `references/manual-ios.md`.
 
 ```bash
-dart run flutter_flavorizr -p assets:download,assets:extract,ios:podfile,ios:xcconfig,ios:buildTargets,ios:schema,ios:plist,ios:dummyAssets,ios:icons,assets:clean
+dart run flutter_flavorizr -f -p assets:download,assets:extract,ios:podfile,ios:xcconfig,ios:buildTargets,ios:schema,ios:plist,ios:dummyAssets,ios:icons,assets:clean
 ```
 
 | Processor | What it touches |
