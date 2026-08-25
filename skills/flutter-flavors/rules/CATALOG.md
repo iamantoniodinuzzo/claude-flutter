@@ -89,12 +89,12 @@ guess there is expensive to undo.
 - **Severity**: warning
 - **Source**: `references/manual-android.md`
 - **What**: `AndroidManifest.xml`'s `<application android:label="...">` is a hardcoded string
-  instead of `${appName}`, so all flavors show the same app name/icon regardless of
-  `manifestPlaceholders`.
+  instead of `@string/app_name`, so all flavors show the same app name regardless of the
+  per-flavor `resValue` declared in `productFlavors`.
 - **Heuristic**: in `android/app/src/main/AndroidManifest.xml`, flag `android:label="<literal
-  text>"` (not `${appName}` or `@string/...` resolved per flavor).
-- **Fix**: replace with `android:label="${appName}"` and ensure each flavor block in
-  `build.gradle.kts` sets `manifestPlaceholders["appName"] = "..."`.
+  text>"` (not `@string/app_name`).
+- **Fix**: replace with `android:label="@string/app_name"` and ensure each flavor block in
+  `productFlavors` sets `resValue(type = "string", name = "app_name", value = "...")`.
 - **autofix_safe**: true (single attribute swap, reversible)
 
 ### FLAVOR-AND-04
@@ -140,14 +140,18 @@ guess there is expensive to undo.
 
 ### FLAVOR-IOS-03
 - **Severity**: warning
-- **Source**: `references/manual-ios.md`
-- **What**: `ios/Runner/Info.plist`'s `CFBundleName` (or `CFBundleDisplayName`) is a hardcoded
-  string instead of the `$(APP_NAME)` build variable, so all flavors show the same app name on the
-  iOS home screen.
+- **Source**: `references/manual-ios.md`, `references/flavorizr-processors.md`
+- **What**: `ios/Runner/Info.plist`'s `CFBundleName`/`CFBundleDisplayName` is a hardcoded string
+  instead of a build variable, so all flavors show the same app name on the iOS home screen. The
+  expected variable name depends on which path built this project: `$(APP_DISPLAY_NAME)` for the
+  manual path, `$(BUNDLE_NAME)`/`$(BUNDLE_DISPLAY_NAME)` for the flavorizr path — check which
+  convention the project's `.xcconfig`/build settings already establish before flagging.
 - **Heuristic**: flag `<key>CFBundleName</key>` (or `CFBundleDisplayName`) followed by a literal
-  `<string>` value that isn't `$(APP_NAME)`.
-- **Fix**: replace the literal with `$(APP_NAME)` and ensure each flavor's `.xcconfig` defines
-  `APP_NAME = ...`.
+  `<string>` value that isn't one of the two recognized variable forms above.
+- **Fix**: replace the literal with the project's existing convention (`$(APP_DISPLAY_NAME)` or
+  `$(BUNDLE_NAME)`/`$(BUNDLE_DISPLAY_NAME)`) and ensure the matching build setting/xcconfig entry
+  is defined per flavor. Never introduce the second convention into a project already using the
+  other one.
 - **autofix_safe**: true (single plist value swap)
 
 ### FLAVOR-IOS-04

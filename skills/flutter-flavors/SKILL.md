@@ -148,11 +148,15 @@ and `references/manual-ios.md` for branch B.
 ### Branch B — Manual
 
 Follow `references/manual-android.md` and `references/manual-ios.md` step by step:
-- Android: `flavorDimensions`, `productFlavors` block with `manifestPlaceholders` in
-  `android/app/build.gradle.kts`; `android:label="${appName}"` in `AndroidManifest.xml`; per-flavor
-  source sets under `android/app/src/<flavor>/`.
-- iOS: per-flavor `.xcconfig` (Debug/Profile/Release × per flavor), `.xcscheme` (shared), and
-  `Info.plist` using `$(APP_NAME)` — all via direct file edits, no `pbxproj` tooling.
+- Android: `flavorDimensions` + `productFlavors` (each with a per-flavor `resValue(type =
+  "string", name = "app_name", value = "...")`) in `android/app/flavors.gradle.kts`, included from
+  `android/app/build.gradle.kts`; `android:label="@string/app_name"` in `AndroidManifest.xml`
+  (one attribute, resolves the per-flavor resource); per-flavor source sets under
+  `android/app/src/<flavor>/`.
+- iOS: 9 duplicated build configurations and 3 shared schemes created in Xcode (cannot be scripted
+  — present as a checklist), per-flavor bundle id suffixes, and `Info.plist` using
+  `$(APP_DISPLAY_NAME)` (the manual-path variable name — differs from the flavorizr path's
+  `BUNDLE_NAME`/`BUNDLE_DISPLAY_NAME`; never mix the two conventions in one project).
 
 ---
 
