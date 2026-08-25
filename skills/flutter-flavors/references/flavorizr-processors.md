@@ -131,7 +131,10 @@ dart run flutter_flavorizr -f -p android:buildGradle,android:flavorizrGradle,and
 | `android:androidManifest` | `android/app/src/main/AndroidManifest.xml` — sets `android:label="@string/app_name"` so the manifest resolves the per-flavor `app_name` resource. **Output is minified** (all attributes inlined on one line) — reformat with the XML Tools VSCode extension (`"xmlTools.splitAttributesOnFormat": true` in settings, then `SHIFT+OPTION+F`) so the diff is reviewable |
 | `android:icons` | Resizes and copies flavor icons into `android/app/src/<flavor>/res/mipmap-*/` — only runs anything if `icon`/`adaptiveIcon` paths are set in the `flavorizr:` block |
 
-Sample `flavorizr.gradle.kts` output:
+Sample `flavorizr.gradle.kts` output (illustrative, not a version contract — flavorizr's exact
+output shape has already drifted once between the KB's source version and `2.5.0`, which adds the
+`buildFeatures.resValues = true` line below; diff whatever a run actually produces against the
+project, not against this sample):
 
 ```kotlin
 import com.android.build.gradle.AppExtension
@@ -149,6 +152,8 @@ android.apply {
         }
         // ...stg, prod
     }
+
+    buildFeatures.resValues = true
 }
 ```
 
