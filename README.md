@@ -73,6 +73,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `audit-application-layer` | "audit application layer" | Rules-based static audit: Flutter framework imports, redundant manual try/catch in notifiers, mutation return types, unconstrained state types |
 | `audit-feature` | "audit this feature" or "full feature audit" | Orchestrates all four per-layer audits in parallel; aggregates into one report; falls back to presentation-only for sub-features |
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture (decorator or standalone), web BetterFeedback, release upload checklist |
+| `flutter-flavors` | `/flutter-toolkit:flutter-flavors` or "add flavors to this app" | Init dev/stg/prod flavors (flutter_flavorizr or manual) across Android/iOS/Web + IDE config, or audit and fix an existing broken/partial setup; optional multi-project Firebase |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
 | `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: extracts verifiable evidence (tool errors, repeated commands) from the session transcript, answers 5 hard questions backed by it, auto-persists learnings to memory with dedup, flags unintegrated git work, proposes fixes — generic, not Flutter-specific |
 

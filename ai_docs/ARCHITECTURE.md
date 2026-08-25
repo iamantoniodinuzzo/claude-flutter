@@ -22,7 +22,7 @@ flowchart LR
     subgraph Repo["claude-flutter toolkit"]
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
-        skills["skills/\nscaffold-feature · unit-test · build-filter\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · second-opinion · retro"]
+        skills["skills/\nscaffold-feature · unit-test · build-filter\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion · retro"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -52,6 +52,7 @@ flowchart LR
 | `audit-application-layer` | Rules-based static audit: Flutter imports in application code, redundant try/catch in notifiers, mutation return types, unconstrained state types |
 | `audit-feature` | Orchestrator: runs all four per-layer audits in parallel via Explore subagents; aggregates into one report; presentation-only shortcut for sub-features |
 | `sentry-init` | Bootstrap `sentry_flutter`: installs deps, patches `main.dart`, wires GoRouter observer, Riverpod capture, web BetterFeedback, release-upload checklist |
+| `flutter-flavors` | Init dev/stg/prod flavors (flutter_flavorizr targeted processors, or manual fallback) across Android/iOS/Web + VSCode/Android Studio IDE config; detects an existing partial/broken setup and switches to an AUDIT+FIX branch against a bundled rule catalog; optional multi-project Firebase |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 | `retro` | End-of-task self-audit: reads session transcript for verifiable friction evidence (`scripts/session-evidence.{sh,ps1}`), answers 5 hard questions backed by it, auto-persists learnings to auto-memory with dedup, flags unintegrated git work, proposes fixes (generic, not Flutter-specific) |
 
