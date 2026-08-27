@@ -1,4 +1,4 @@
-# GoRouter Observer, Dio Breadcrumbs, and Event Filtering
+# GoRouter Observer and Dio Breadcrumbs
 
 > Adapted from `Engage-srl/pollicino_viewer` — `apps/tomcat_portal/ai_docs/sentry/sentry_additional_options.md`.
 > Project-specific paths replaced with generic equivalents.
@@ -84,42 +84,6 @@ Reference: [sentry-dart issue #3247](https://github.com/getsentry/sentry-dart/is
 
 ---
 
-## Event Filtering with beforeSend
-
-Use `beforeSend` to reduce noise and control billing quota:
-
-```dart
-options.beforeSend = (SentryEvent event, Hint hint) async {
-  // Drop all events from debug builds
-  if (!kReleaseMode) return null;
-
-  // Drop connection errors (DioException with no response = offline, not actionable)
-  final exception = event.throwable;
-  if (exception is DioException && exception.response == null) return null;
-
-  return event;
-};
-```
-
-`beforeSend` fires for both uncaught exceptions and explicit `Sentry.captureException` calls. Returning `null` drops the event entirely.
-
-Remove the `DioException` filter if the project does not use Dio.
-
----
-
-## Stack Trace Clarity: In-App Frames
-
-Grey out third-party frames in Sentry's stack trace view:
-
-```dart
-options.considerInAppFramesByDefault = false;
-options.addInAppInclude('your_package_name');  // from pubspec.yaml name:
-```
-
-This marks only your app's own frames as "in-app" — third-party packages are collapsed in the Sentry dashboard, making errors much easier to read.
-
----
-
 ## Sentry Breadcrumbs (automatic)
 
 Sentry automatically collects breadcrumbs for:
@@ -139,9 +103,8 @@ For a comprehensive tour of all available `SentryFlutterOptions`, see the offici
 
 ---
 
-## GDPR / PII Defaults
+## Event Filtering, Sampling, and PII
 
-- Leave `attachScreenshot: false` and `attachViewHierarchy: false` by default — screenshots and view hierarchies may capture PII.
-- Do not set `sendDefaultPii: true` unless explicitly reviewed for compliance.
-- Use [Sentry Advanced Data Scrubbing](https://docs.sentry.io/security-legal-pii/scrubbing/advanced-datascrubbing/) for server-side PII redaction.
-- Wire `Sentry.configureScope` with user ID only after explicit user consent or opt-in.
+`beforeSend`/`beforeSendFeedback` policy, sampling defaults, in-app frame clarity, and
+screenshot/view-hierarchy PII defaults all live in
+`references/event-filtering-and-sampling.md` — not repeated here.

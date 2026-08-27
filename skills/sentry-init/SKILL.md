@@ -1,6 +1,6 @@
 ---
 name: sentry-init
-description: Bootstrap sentry_flutter in a Flutter+Riverpod+GoRouter project — installs deps, wires SentryFlutter.init (Approach 3), GoRouter observer, Riverpod error capture (LoggerService decorator if present, else standalone ProviderObserver), web BetterFeedback gated by CanvasKit renderer, and emits release upload checklist (source maps + dSYM).
+description: Bootstrap sentry_flutter in a Flutter+Riverpod+GoRouter project — installs deps, wires SentryFlutter.init (Approach 3), GoRouter observer, Riverpod error capture (LoggerService decorator if present, else a scaffolded ErrorLogger sink), web BetterFeedback gated by CanvasKit renderer, beforeSend/sampling policy, and a release upload checklist (source maps + dSYM). Use when the user says "add Sentry to this app", "set up error monitoring", "bootstrap sentry-init", "integrate crash reporting", or asks to wire up Sentry for a Flutter/Riverpod/GoRouter project.
 user-invocable: true
 ---
 
@@ -11,7 +11,8 @@ Bootstraps the Sentry Flutter SDK in an existing Flutter project that uses River
 Before coding anything, load the bundled references in parallel:
 
 - `skills/sentry-init/references/initialization-flow.md`
-- `skills/sentry-init/references/logger-decorator-pattern.md`
+- `skills/sentry-init/references/error-capture-architecture.md`
+- `skills/sentry-init/references/event-filtering-and-sampling.md`
 - `skills/sentry-init/references/gorouter-and-dio-wiring.md`
 - `skills/sentry-init/references/web-feedback-canvaskit.md`
 - `skills/sentry-init/references/release-uploads.md`
@@ -23,6 +24,9 @@ Also fetch the latest `sentry_flutter` SDK docs via context7 (`getsentry/sentry-
 ## Phase 0 — Intake & prerequisite gate
 
 **Goal**: gather all project shape facts before touching any file. Never assume — detect.
+
+**Prerequisite**: a Sentry account and project must already exist (sentry.io → Create Project → platform
+Flutter). This skill wires the SDK into the app; it does not create or configure anything on Sentry's side.
 
 ### 0.1 Melos workspace detection
 
@@ -44,13 +48,24 @@ In the target `pubspec.yaml`, grep for `go_router`.
 
 - **Found**: proceed.
 
-### 0.3 LoggerService detection (soft)
+### 0.3 Error sink detection (soft)
 
 Grep project `lib/` for:
 - `class LoggerService` or `abstract.*LoggerService`
 - `loggerServiceProvider`
 
-Record result as `HAS_LOGGER_SERVICE=true/false`. This drives the Phase 4 branch.
+Record result as `HAS_LOGGER_SERVICE=true/false` and derive the sink identity Phase 4 wires everything
+through — `LoggerService` decorator and a scaffolded `ErrorLogger` are both **sinks** (something a caller
+hands an error to); `ProviderObserver` is a **channel** (where errors arrive from), not a competing sink:
+
+| `HAS_LOGGER_SERVICE` | `SINK_PROVIDER` | `SINK_CAPTURE` call shape |
+|-----------------------|------------------|-----------------------------|
+| `true` | `loggerServiceProvider` | `sink.e(msg, error, stackTrace)` — takes a message |
+| `false` | `errorLoggerProvider` | `sink.logException(error, stackTrace)` — no message |
+
+The two shapes are not interchangeable — Branch A's `.e(...)` always takes a leading message string,
+Branch B's `.logException(...)` never does. Use the row matching the detected branch verbatim; don't
+average the two signatures.
 
 ### 0.4 Optional dependency detection
 
@@ -70,20 +85,35 @@ Ask the user how the DSN is provided. Present this priority order as default:
 2. `--dart-define=SENTRY_DSN=...` in `.vscode/launch.json` or `Makefile`
 3. `.env` file read at runtime
 
+`dart_defines.json` is the default because it's validated prior art (see this repo's
+`docs/adr/0001-sentry-init-dsn-source-convention.md`), not a guess — a single shared file
+beats one `.env` per flavor for a toolkit that has no other skill scaffolding `.env` files. If the target
+project already uses `.env`-per-flavor, detect and adapt to it instead of migrating it.
+
 Confirm the exact key name (default `SENTRY_DSN`). In Phase 2, the skill always emits an **empty-string gate** so local dev without the define simply skips Sentry init.
 
 Determine how the value is accessed in Dart (e.g. `const String.fromEnvironment('SENTRY_DSN')` or via an `AppEnv`/`Env` class). Record as `DSN_DART_EXPR`.
 
 ### 0.6 Flavor detection
 
-Grep for `lib/main_*.dart` or a `Flavor` / `AppFlavor` enum. List discovered flavors. Map to sample rates:
+Grep for `lib/main_*.dart` or a `Flavor` / `AppFlavor` enum. List discovered flavors.
 
-| Flavor | tracesSampleRate | profilesSampleRate |
-|--------|-------------------|--------------------|
-| prod / release | 0.2 | 0.2 |
-| dev / debug / staging | 1.0 | 1.0 |
+**Performance monitoring is opt-in, default off.** `sentry-init` bootstraps *error* monitoring;
+`tracesSampleRate`/`profilesSampleRate` open two additional Sentry quota buckets (spans, profiling) the
+course itself doesn't enable by default (see
+[references/event-filtering-and-sampling.md](references/event-filtering-and-sampling.md)). Ask the user
+whether to enable it. If yes, map flavors to this table — `profilesSampleRate` is *relative* to
+`tracesSampleRate`, not independent, so the values below are chosen for the stated effective rate, not
+copied 1:1:
 
-Ask the user to confirm or adjust.
+| Flavor | tracesSampleRate | profilesSampleRate (relative) | effective profiling |
+|--------|-------------------|-------------------------------|----------------------|
+| prod / release | 0.2 | 1.0 | 0.2 |
+| dev / debug / staging | 1.0 | 1.0 | 1.0 |
+
+Ask the user to confirm or adjust. If declined, record `PERF_MONITORING=false` and omit both options
+entirely in Phase 2 — leaving them unset consumes zero span/profile quota (both default to `null` in the
+SDK).
 
 ### 0.7 Package name
 
@@ -100,6 +130,7 @@ Before proceeding, print a one-line summary of what was detected:
 ✓ Dio: <found|not found>
 ✓ DSN key: <SENTRY_DSN> via <dart_defines.json|launch.json|.env>
 ✓ Flavors: <list>
+✓ Performance monitoring: <on|off>
 ✓ Package name: <name>
 ```
 
@@ -145,6 +176,8 @@ Find all flavor entrypoints: `lib/main.dart`, `lib/main_dev.dart`, `lib/main_pro
 ### 2.2 Required initialization order
 
 ```dart
+const kDebugReporting = bool.fromEnvironment('SENTRY_DEBUG_REPORTING');
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -156,19 +189,20 @@ Future<void> main() async {
   if (dsn.isNotEmpty) {
     await SentryFlutter.init((options) {
       options.dsn = dsn;
-      options.environment = '<flavor-name>';      // e.g. 'prod' or getFlavor().name
-      options.tracesSampleRate = <0.2 or 1.0>;   // from Phase 0.6 map
-      options.profilesSampleRate = <0.2 or 1.0>; // same value
+      options.environment = FLAVOR_DART_EXPR;     // e.g. flavor.name or getFlavor().name — never a string literal
+      // Only emit the next two lines if PERF_MONITORING=true (Phase 0.6):
+      options.tracesSampleRate = <0.2 or 1.0>;    // from Phase 0.6 map
+      options.profilesSampleRate = <1.0>;         // relative to tracesSampleRate — see references/event-filtering-and-sampling.md
       options.attachScreenshot = false;           // PII — leave off by default
       options.sendDefaultPii = false;
       options.considerInAppFramesByDefault = false;
       options.addInAppInclude(APP_PACKAGE_NAME);
       options.beforeSend = (event, hint) async {
-        if (!kReleaseMode) return null;           // suppress debug noise
-        final ex = event.throwable;
-        if (ex is DioException && ex.response == null) return null; // no connection, skip
+        if (kDebugMode && !kDebugReporting) return null; // suppress debug noise, unless the smoke-test flag is set
         return event;
       };
+      // Deliberate, user-initiated — never subject to the debug-noise gate.
+      options.beforeSendFeedback = (event, hint) => event;
     });
   }
 
@@ -187,7 +221,9 @@ Future<void> main() async {
 
 **Critical ordering rule**: Sentry must init _before_ first provider read. Do not reorder `SentryFlutter.init` below `ProviderContainer` creation. See `references/initialization-flow.md`.
 
-Remove the `beforeSend` Dio filter if `HAS_DIO=false`.
+`beforeSend` carries no `DioException` filter — the expected-offline-error filter lives at the call site
+(Phase 4.3), not here. See `references/event-filtering-and-sampling.md` for why, and `SENTRY_DEBUG_REPORTING`
+for how to run the Phase 7 smoke test without touching this file.
 
 ### 2.3 Idempotency
 
@@ -278,13 +314,19 @@ options.tracePropagationTargets.clear(); // prevent CORS failures from sentry-tr
 
 ## Phase 4 — Riverpod error capture
 
-Run **Branch A** if `HAS_LOGGER_SERVICE=true`, else **Branch B**.
+See `references/error-capture-architecture.md` for the full channel/sink rationale and the swallow-vs-
+propagate rule. Three parts, in order: 4.1 wires the sink (Branch A or B, from Phase 0.3's
+`SINK_PROVIDER`/`SINK_CAPTURE`), 4.2 wires the shared `AsyncErrorLogger` observer, 4.3 covers manual
+call-site capture.
 
 ---
 
-### Branch A — LoggerService decorator (preferred)
+### 4.1 — Sink
 
-See `references/logger-decorator-pattern.md` for full rationale and architecture diagram.
+Run **Branch A** if `HAS_LOGGER_SERVICE=true`, else **Branch B**. Both are first-class — Branch B is not a
+fallback pending a future `LoggerService`.
+
+### Branch A — LoggerService decorator
 
 #### A.1 Generate decorator
 
@@ -360,85 +402,120 @@ LoggerService loggerService(Ref ref) {
 }
 ```
 
-#### A.3 ProviderObserver check
+Adjust the provider name/import to `SINK_PROVIDER` from Phase 0.3.
+
+---
+
+### Branch B — Scaffolded ErrorLogger
+
+Course shape (Andrea Bizzotto, *Flutter in Production*): an injectable sink, explicit at call sites, never
+auto-capturing — this is what makes it overridable in tests and lets expected errors be filtered before
+they reach Sentry (Phase 4.3).
+
+#### B.1 Generate ErrorLogger
+
+Create `lib/src/core/monitoring/error_logger.dart` (adapt path to project conventions):
+
+```dart
+import 'dart:developer';
+
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+part 'error_logger.g.dart';
+
+class ErrorLogger {
+  const ErrorLogger();
+
+  FutureOr<void> logException(Object exception, StackTrace? stackTrace) async {
+    await Sentry.captureException(exception, stackTrace: stackTrace).ignore();
+    log(exception.toString(), name: 'Exception', error: exception, stackTrace: stackTrace);
+  }
+}
+
+@Riverpod(keepAlive: true)
+ErrorLogger errorLogger(Ref ref) => const ErrorLogger();
+```
+
+Run codegen after generating: `dart run build_runner build --delete-conflicting-outputs`.
+
+#### B.2 Register the provider
+
+`errorLoggerProvider` is `SINK_PROVIDER` for the rest of Phase 4 — no separate registration step; it's a
+plain Riverpod provider, resolved via `ref.read`/`context.container.read` like any other.
+
+---
+
+### 4.2 — AsyncErrorLogger (shared, both branches)
 
 Grep for `ProviderObserver` in the project.
 
-- **AsyncErrorLogger (or equivalent) already exists** → no action needed. Sentry capture flows automatically via the decorator when the existing observer calls `loggerService.e(...)`.
-- **No ProviderObserver found** → also emit a minimal observer and register it:
+- **`AsyncErrorLogger` (or equivalent) already exists** → no action needed. Sentry capture flows
+  automatically via `SINK_CAPTURE` when the existing observer fires.
+- **No `ProviderObserver` found** → emit this one and register it. Riverpod v3 shape — do not use
+  `didUpdateProvider`/`AsyncError` pattern-matching, it's v2 and misses synchronous provider failures:
 
 ```dart
 class AsyncErrorLogger extends ProviderObserver {
-  const AsyncErrorLogger(this._logger);
-  final LoggerService _logger;
+  const AsyncErrorLogger();
 
   @override
-  void didUpdateProvider(ProviderBase provider, Object? previousValue,
-      Object? newValue, ProviderContainer container) {
-    if (newValue case AsyncError(:final error, :final stackTrace)) {
-      _logger.e('Provider ${provider.name ?? provider.runtimeType} error', error, stackTrace);
-    }
+  void providerDidFail(
+    ProviderObserverContext context,
+    Object error,
+    StackTrace stackTrace,
+  ) {
+    if (error is ProviderException) return;               // avoid double-report per dependent provider
+    if (context.provider == SINK_PROVIDER) return;         // avoid recursing through the sink's own failure
+
+    final sink = context.container.read(SINK_PROVIDER);
+    // SINK_CAPTURE — Branch A: sink.e('Provider ${context.provider.name ?? context.provider.runtimeType} error', error, stackTrace);
+    // SINK_CAPTURE — Branch B: sink.logException(error, stackTrace);
   }
 }
 ```
 
-Register in `ProviderContainer` / `ProviderScope`:
+Resolve the sink via `context.container.read(SINK_PROVIDER)`, never a hand-constructed instance —
+otherwise `overrideWithValue(FakeSink())` in tests silently stops working. Register in `ProviderContainer`
+/ `ProviderScope`:
 
 ```dart
 ProviderScope(
-  observers: [AsyncErrorLogger(LoggerServiceImpl())],
+  observers: [const AsyncErrorLogger()],
   child: ...,
 )
 ```
 
 ---
 
-### Branch B — No LoggerService (standalone observer)
+### 4.3 — Call-site capture
 
-#### B.1 Generate ProviderObserver
+**Swallow-vs-propagate rule**: a `catch` that rethrows, or lets provider state become `AsyncError`, must
+**not** also call `SINK_PROVIDER` — `AsyncErrorLogger` (4.2) already will, and doing both double-reports. A
+`catch` that swallows (returns/falls back without rethrowing) never reaches the observer, so it's the
+*only* place a manual `SINK_PROVIDER` call belongs.
 
-Create `lib/src/core/monitoring/sentry_provider_observer.dart`:
+This is also where an expected-error filter belongs — e.g. the course's case study, an offline
+`DioException` with data to fall back on:
 
 ```dart
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
-// When LoggerService is added later, replace this with the SentryLoggerService decorator pattern.
-class SentryProviderObserver extends ProviderObserver {
-  const SentryProviderObserver();
-
-  @override
-  void didUpdateProvider(ProviderBase provider, Object? previousValue,
-      Object? newValue, ProviderContainer container) {
-    if (newValue case AsyncError(:final error, :final stackTrace)) {
-      Sentry.captureException(error, stackTrace: stackTrace).ignore();
-    }
+catch (e, st) {
+  final hasCachedData = /* app-state check, e.g. local DB non-empty */;
+  if (e is DioException && e.response == null && hasCachedData) {
+    return cached;                                // expected offline, fallback available: do not report
   }
+  // SINK_CAPTURE — Branch A: ref.read(SINK_PROVIDER).e('...', e, st);
+  // SINK_CAPTURE — Branch B: ref.read(SINK_PROVIDER).logException(e, st);
+  if (!hasCachedData) rethrow;                    // propagate — the observer must not also log this
 }
 ```
 
-#### B.2 Register observer
-
-```dart
-ProviderScope(
-  observers: [const SentryProviderObserver()],
-  child: MyApp(),
-)
-```
-
-Or in `ProviderContainer`:
-
-```dart
-final container = ProviderContainer(
-  observers: [const SentryProviderObserver()],
-);
-```
-
----
+Do not filter this in `beforeSend` — see `references/event-filtering-and-sampling.md` for why.
 
 ### Global hooks (emit for both branches — idempotent)
 
-Only add if not already present (checked in Phase 2.4). If Branch A is used and the project already has global hooks routed to `loggerService`, skip this — the decorator handles it.
+Only add if not already present (checked in Phase 2.4). If Branch A is used and the project already has
+global hooks routed to `loggerService`, skip this — the decorator handles it.
 
 ---
 
@@ -652,7 +729,11 @@ Items that cannot be automated:
 - [ ] Generate `SENTRY_AUTH_TOKEN` in Sentry dashboard and add to CI secrets
 - [ ] Add `SENTRY_DSN` prod value to CI secrets / `dart_defines.json.example`
 - [ ] Run `dart run build_runner build` to generate `sentry_feedback_service.g.dart`
-- [ ] Smoke-test: throw a deliberate exception and verify it appears in the Sentry dashboard
+- [ ] Smoke-test: `flutter run --flavor dev --dart-define=SENTRY_DEBUG_REPORTING=true`, throw a deliberate
+      exception, verify it appears in the Sentry dashboard tagged with the `dev` environment
+- [ ] Get familiar with the dashboard's filter/sort/search and archive/resolve workflow before the first
+      real issue lands — see [Sentry's Issues docs](https://docs.sentry.io/product/issues/); this skill
+      doesn't automate dashboard usage
 - [ ] Optional: wire `Sentry.configureScope` with authenticated user ID once auth integration is in place
 - [ ] Optional: set `options.release` and `options.dist` from `package_info_plus` before first public release
 - [ ] Optional: enable `attachScreenshot: true` for mobile if UI-thread screenshots are acceptable (iOS caveat applies)
@@ -661,7 +742,8 @@ Items that cannot be automated:
 
 For deeper context on each decision, see:
 - `skills/sentry-init/references/initialization-flow.md` — why Approach 3 (no appRunner)
-- `skills/sentry-init/references/logger-decorator-pattern.md` — decorator architecture and severity mapping
+- `skills/sentry-init/references/error-capture-architecture.md` — channel/sink architecture, both branches, severity mapping
+- `skills/sentry-init/references/event-filtering-and-sampling.md` — beforeSend/beforeSendFeedback, sampling policy, in-app frames, PII
 - `skills/sentry-init/references/gorouter-and-dio-wiring.md` — observer placement, Dio breadcrumbs, CORS
 - `skills/sentry-init/references/web-feedback-canvaskit.md` — BetterFeedback integration and CanvasKit gate
 - `skills/sentry-init/references/release-uploads.md` — source maps vs dSYM upload commands
