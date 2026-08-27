@@ -32,10 +32,15 @@ Sentry.
    user feedback that is sent with the `feedback_sentry` plugin… you'll only be able to submit user
    feedback in release builds. On debug builds, pressing the 'Submit' button won't do anything." No
    mitigation is offered, and `beforeSendFeedback` is never mentioned in the module.
-2. **The smoke test is not the course's.** `Sentry Setup Checklist` (lesson 12) has no smoke-test step at
-   all — its five steps are: create project → add `sentry_flutter` → add breadcrumbs → configure the Dart
-   plugin → (bonus) collect user feedback. The deliberate-exception verification step is this skill's own
-   addition. The conflict is self-inflicted, not inherited, and is this skill's to resolve.
+2. **The course's own smoke test predates the filter that would break it.** `Sentry Setup Basics` (lesson
+   3) has `MainApp.build` `throw Exception('Something went wrong')` and verifies it lands in the dashboard
+   — six lessons before `beforeSend` is introduced in lesson 9, and never revisited afterward. (`Sentry
+   Setup Checklist`, lesson 12, has no smoke-test step of its own; its five steps are: create project → add
+   `sentry_flutter` → add breadcrumbs → configure the Dart plugin → (bonus) collect user feedback.) This is
+   the same unnoticed-collision pattern as the `DioException` filter in §3 below: a mechanism introduced
+   early in the course silently stops working once a later lesson's filter is layered on top, and the
+   course never goes back to check. The conflict this ticket resolves is inherited from that pattern, not
+   invented by this skill's Phase 7 checklist.
 3. **The `DioException` filter is written in two places that collide.** `Case Study: Capturing Exceptions
    Explicitly with Sentry` (lesson 6) filters at the call site on a two-part predicate — `DioException` with
    a null `response` **and** the local `Epic` table is non-empty → return silently (expected offline,
