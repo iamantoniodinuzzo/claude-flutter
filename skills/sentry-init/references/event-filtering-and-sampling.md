@@ -131,6 +131,14 @@ Setting `profilesSampleRate` to `0.2` when `tracesSampleRate` is already `0.2` y
 profiling, not 20% — a common mistake worth naming explicitly here, since the two options read as parallel
 but aren't.
 
+**Profiling is iOS/macOS-only** — Sentry's own [profiling troubleshooting docs](https://docs.sentry.io/platforms/flutter/profiling/troubleshooting/)
+state plainly: "Profiling is currently available only for iOS and macOS." `tracesSampleRate` still applies
+everywhere (performance/transaction monitoring is cross-platform); only the *profiling* half of this opt-in
+is mobile-Apple-only. Exact runtime behavior of `profilesSampleRate` on an unsupported platform (silent
+no-op vs. a logged warning) isn't documented — don't assert either way. What matters for this skill: if the
+target project is Android-only or web-only, say so when presenting this table, since the profiling row of
+it won't do anything there regardless of the exact mechanism.
+
 ---
 
 ## considerInAppFramesByDefault and addInAppInclude
