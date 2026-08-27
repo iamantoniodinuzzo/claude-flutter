@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.7.0] - 2026-08-27
 
+### Added
+
+- `skills/flutter-flavors` — initialize dev/stg/prod flavors (flutter_flavorizr with targeted
+  processors, or manual fallback) across Android (`build.gradle.kts`, `AndroidManifest`), iOS
+  (`xcconfig`, `xcscheme`, `Info.plist`), Web (`--dart-define WEB_FLAVOR` workaround), multiple entry
+  points (`main_*.dart`), and IDE config (VSCode `launch.json`, Android Studio run configurations);
+  optional multi-project Firebase (`flutterfire configure` per flavor). Detects project state first and
+  branches into an INIT flow or an AUDIT+FIX flow against a bundled rule catalog for an existing
+  partial/broken setup. Reference docs rewritten in the toolkit's own words from the same *Flutter in
+  Production* knowledge base `sentry-init` draws on (ref #46).
+
 ### Changed
 
 - `skills/sentry-init` — reconciled against Andrea Bizzotto's *Flutter in Production* error-monitoring
