@@ -111,6 +111,10 @@ copied 1:1:
 | prod / release | 0.2 | 1.0 | 0.2 |
 | dev / debug / staging | 1.0 | 1.0 | 1.0 |
 
+`profilesSampleRate` only does anything on iOS/macOS — Sentry doesn't support profiling on Android or Web
+yet. `tracesSampleRate` still applies everywhere. If the target is Android-only or web-only, mention this
+before asking — the profiling half of the table is a no-op there.
+
 Ask the user to confirm or adjust. If declined, record `PERF_MONITORING=false` and omit both options
 entirely in Phase 2 — leaving them unset consumes zero span/profile quota (both default to `null` in the
 SDK).
