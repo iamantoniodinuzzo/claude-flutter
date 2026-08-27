@@ -119,6 +119,10 @@ feedback_sentry (internally)
   └── attaches screenshot bytes as Sentry attachment
 ```
 
+Feedback submissions are not subject to the debug-mode noise gate — `options.beforeSendFeedback` is a
+deliberate passthrough (see `references/event-filtering-and-sampling.md`), so testing this flow works the
+same in a debug build as in release.
+
 ---
 
 ## Gating Trigger Buttons
