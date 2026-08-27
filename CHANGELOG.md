@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-08-27
+
+### Changed
+
+- `skills/sentry-init` — reconciled against Andrea Bizzotto's *Flutter in Production* error-monitoring
+  module. `SKILL.md` and `references/*.md` rewritten; five architecture decisions recorded as
+  `docs/adr/0001`–`0005`:
+  - DSN/environment source stays `dart_defines.json` by default, `.env`-per-flavor detected as an
+    alternative (ADR 0001); fixes the dead `options.environment` placeholder.
+  - Error-capture architecture reframed around sink (LoggerService decorator or a scaffolded
+    `ErrorLogger`) vs. channel (`ProviderObserver`) — Branch B now scaffolds `ErrorLogger` instead of a
+    Sentry-only observer; `AsyncErrorLogger` rewritten to Riverpod v3's `providerDidFail` (ADR 0002).
+  - `beforeSend` keeps a build-mode gate but fixes it: `kDebugMode` instead of `!kReleaseMode`,
+    `beforeSendFeedback` passthrough, a `SENTRY_DEBUG_REPORTING` dart-define so the skill's own smoke
+    test is runnable; the `DioException`-with-null-response filter moves from `beforeSend` to the
+    call site (ADR 0003).
+  - `sampleRate` stays unset with a documented escalation ladder instead of a standing default;
+    `tracesSampleRate`/`profilesSampleRate` become opt-in with a corrected relative-rate table (ADR 0004).
+  - `references/logger-decorator-pattern.md` renamed to `references/error-capture-architecture.md`; new
+    `references/event-filtering-and-sampling.md` added; frontmatter `description` gained a "Use when…"
+    trigger clause and fixed stale Branch B wording (ADR 0005).
+
+### Fixed
+
+- `README.md` and `ai_docs/ARCHITECTURE.md` skills-table rows for `sentry-init` — stale "decorator or
+  standalone" wording corrected to match ADR 0002's scaffolded-`ErrorLogger` shape.
+
 ## [3.6.0] - 2026-08-15
 
 ### Added
