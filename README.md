@@ -1,6 +1,6 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.7.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.8.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 [![skills.sh](https://img.shields.io/badge/skills.sh-npx%20skills%20add-black)](https://www.skills.sh)
@@ -75,7 +75,8 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `sentry-init` | `/flutter-toolkit:sentry-init` or "set up Sentry" | Bootstrap `sentry_flutter` — installs deps, patches `main.dart`, wires GoRouter observer, Riverpod error capture (LoggerService decorator or a scaffolded ErrorLogger sink), beforeSend/sampling policy, web BetterFeedback, release upload checklist |
 | `flutter-flavors` | `/flutter-toolkit:flutter-flavors` or "add flavors to this app" | Init dev/stg/prod flavors (flutter_flavorizr or manual) across Android/iOS/Web + IDE config, or audit and fix an existing broken/partial setup; optional multi-project Firebase |
 | `second-opinion` | "give me a second opinion" | Independent Flutter/Riverpod architecture review (requires Gemini CLI) |
-| `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: extracts verifiable evidence (tool errors, repeated commands) from the session transcript, answers 5 hard questions backed by it, auto-persists learnings to memory with dedup, flags unintegrated git work, proposes fixes — generic, not Flutter-specific |
+| `retro` | `/retro` or "retrospettiva" / "self-audit" | End-of-task self-audit: extracts verifiable evidence (tool errors, repeated commands) from the session transcript, answers 6 hard questions backed by it, auto-persists learnings to memory with dedup, flags unintegrated git work, proposes fixes — generic, not Flutter-specific |
+| `tune-setup` | `/tune-setup` or "ottimizza il setup" / "audit config" | On-demand config & workflow audit — CLAUDE.md, settings.json(+.local), hooks, agents/, skill-trigger-miss — cross-referenced against transcript evidence (repeated hook injections, denials); proposes concrete config fixes. Never automatic — generic, not Flutter-specific |
 
 ---
 

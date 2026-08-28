@@ -97,11 +97,14 @@ the relative-rate relationship established in Context §3:
 - `SKILL.md:77-86` (Phase 0.6), `SKILL.md:102` (Phase 0 summary line), and `SKILL.md:160-161` (emitted
   init options) all need rewriting to this shape. That rewrite is a build ticket under map #47, exactly as
   #52 and #53 deferred theirs — this ADR fixes policy and the arithmetic, not the prose.
-- **Build-ticket verification item**: confirm sentry-dart's current profiling platform support before the
-  opt-in table ships in the skill. Context7 confirmed `profilesSampleRate` on `SentryFlutterOptions` and
-  its relative-rate semantics, but could not confirm per-platform profiling availability from
-  `CONTRIBUTING.md`'s general cross-platform statement alone — if profiling support is narrower than error
-  reporting's, the opt-in path needs a platform caveat alongside the table.
+- **Verified post-ship** (retro follow-up, 2026-08-27) — the platform gap this item flagged was real: it
+  shipped without the caveat, then got fixed. Sentry's own
+  [profiling troubleshooting docs](https://docs.sentry.io/platforms/flutter/profiling/troubleshooting/)
+  state plainly "Profiling is currently available only for iOS and macOS" — `profilesSampleRate` does
+  nothing on Android or Web, while `tracesSampleRate` (transactions) stays cross-platform. Exact runtime
+  behavior on an unsupported platform (silent no-op vs. logged warning) remains undocumented and unasserted.
+  Fixed in `SKILL.md`'s Phase 0.6 table and `references/event-filtering-and-sampling.md`'s opt-in table with
+  an explicit platform note.
 - Answers ADR 0003's open volume handoff: the net increase from removing the blanket Dio filter is absorbed
   by the escalation ladder above (targeted filter → fix the issue → server-side controls), not by a
   standing `sampleRate` reduction applied pre-emptively to every project.

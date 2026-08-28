@@ -154,14 +154,15 @@ want a global backstop across every Dio call site, not shipped as the default.
 - `SKILL.md:166-171`, `SKILL.md:190`, `SKILL.md:655`, and `references/gorouter-and-dio-wiring.md:87-106` all
   need rewriting to this shape. That rewrite is a build ticket under map #47, not this ADR — this ADR fixes
   the policy, not the prose.
-- **Build-ticket verification item**: confirm which capture API `feedback_sentry` actually calls at the
-  pinned version (`flutter pub add feedback feedback_sentry` per `SKILL.md:131`). `beforeSendFeedback` only
-  fires for events where `event.type == 'feedback'`; if `showAndUploadToSentry()` still routes through a
-  differently-typed event or the deprecated `captureUserFeedback` API at the pinned version, the passthrough
-  will not intercept it and `SENTRY_DEBUG_REPORTING` becomes the operative mechanism for local feedback
-  testing instead. The decision holds either way; this is a verification note, not a blocker.
-- **Build-ticket verification item**: confirm `beforeSendFeedback` exists on `SentryOptions` at the
-  `sentry_flutter ^9.27.0` floor set by #48 (context7 sourced the field from `main`, not a tagged release).
+- **Verified post-ship** (retro follow-up, 2026-08-27): fetched `feedback_sentry`'s source directly
+  (`github.com/ueman/feedback/blob/master/feedback_sentry/lib/feedback_sentry.dart`) —
+  `showAndUploadToSentry()` calls `sendToSentry()`, which calls `hub.captureFeedback(SentryFeedback(...))`.
+  `SentryClient.captureFeedback` (`packages/dart/lib/src/sentry_client.dart`) constructs
+  `SentryEvent(type: 'feedback', ...)` — exactly the condition `_runBeforeSend` checks to route to
+  `beforeSendFeedback`. The passthrough works as documented; not the deprecated `captureUserFeedback` path.
+  Also confirmed `beforeSendFeedback` exists on `SentryOptions` at both the `sentry_flutter ^9.27.0` floor
+  and as far back as `9.20.0` (diffed both tagged `sentry_options.dart` directly) — well within #48's pinned
+  range. Both verification items closed; no change needed to the shipped `beforeSendFeedback` template.
 - **#54** (sampling/cost ticket) inherits a volume note: removing the blanket `beforeSend` Dio filter raises
   event volume for offline-heavy apps compared to the course default. This is now `sampleRate`'s problem to
   manage, not a silent global drop's — consistent with #54 already owning sampling defaults.
