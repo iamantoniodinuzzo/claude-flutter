@@ -11,7 +11,8 @@
 //
 // Default transcript selection: newest *.jsonl by mtime in
 // ~/.claude/projects/<cwd-slug>/, where <cwd-slug> is the current working directory with
-// \, / and : replaced by -. Pass --transcript to override — useful when retro runs
+// every non-alphanumeric character replaced by -, one dash per character (matches Claude
+// Code's own slugging, see slugForCwd()). Pass --transcript to override — useful when retro runs
 // against a session other than the current one, or the auto-detected file is wrong
 // because multiple sessions are open against the same project.
 //
@@ -53,22 +54,23 @@ function parseArgs(argv) {
 }
 
 function slugForCwd(cwd) {
-  // Claude Code's project-dir slugging replaces each path separator with its own dash —
-  // it does NOT collapse runs. "C:\Users\..." has two separators after the drive letter
-  // (":" then "\"), producing "C--Users-...", not "C-Users-...". A collapsing regex
-  // (`+`) silently points at a directory that doesn't exist.
-  return cwd.replace(/[\\/:]/g, '-');
+  // Matches Claude Code's own project-dir slugging exactly (extracted from the installed
+  // CLI, issue #59): every character that is not an ASCII letter or digit is replaced,
+  // one dash per character — no collapsing. "C:\Users\..." has two non-alnum characters
+  // after the drive letter (":" then "\"), producing "C--Users-...", not "C-Users-...".
+  // A collapsing regex (`+`) silently points at a directory that doesn't exist.
+  return cwd.replace(/[^a-zA-Z0-9]/g, '-');
 }
 
 function findLatestTranscript() {
   const slug = slugForCwd(process.cwd());
   const dir = path.join(os.homedir(), '.claude', 'projects', slug);
-  if (!fs.existsSync(dir)) return null;
+  if (!fs.existsSync(dir)) return { path: null, slug, dir };
   let files;
   try {
     files = fs.readdirSync(dir);
   } catch {
-    return null;
+    return { path: null, slug, dir };
   }
   const withStats = files
     .filter((f) => f.endsWith('.jsonl'))
@@ -83,7 +85,7 @@ function findLatestTranscript() {
       return { full, mtime };
     })
     .sort((a, b) => b.mtime - a.mtime);
-  return withStats.length ? withStats[0].full : null;
+  return { path: withStats.length ? withStats[0].full : null, slug, dir };
 }
 
 function firstLine(text, maxLen) {
@@ -111,10 +113,15 @@ function bump(map, key, sidechain) {
 
 function main() {
   const { transcript: explicit } = parseArgs(process.argv.slice(2));
-  const transcriptPath = explicit || findLatestTranscript();
+  const auto = explicit ? null : findLatestTranscript();
+  const transcriptPath = explicit || auto.path;
 
   if (!transcriptPath || !fs.existsSync(transcriptPath)) {
-    console.log(`no transcript found${explicit ? ` at ${explicit}` : ''}`);
+    if (explicit) {
+      console.log(`no transcript found at ${explicit}`);
+    } else {
+      console.log(`no transcript found (slug: ${auto.slug}, checked: ${auto.dir})`);
+    }
     process.exit(0);
   }
 
