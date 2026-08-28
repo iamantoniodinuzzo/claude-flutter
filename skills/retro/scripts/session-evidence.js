@@ -368,7 +368,20 @@ function main() {
     out.push(`  ${name} — first offered at event #${skillsOffered.get(name)}`);
   });
 
-  console.log(out.slice(0, OUTPUT_LINE_CAP + CONFIG_AUDIT_LINE_CAP).join('\n'));
+  // Truncation must be visible, not silent — an empty-looking tail (e.g. "0 findings")
+  // should never be confused with "cap cut the real findings off". Scoped to the
+  // --config-audit block only: the default (non-config-audit) path's OUTPUT_LINE_CAP
+  // behavior is unchanged, per ADR 0008's byte-for-byte invariant on retro's own call.
+  const totalCap = OUTPUT_LINE_CAP + CONFIG_AUDIT_LINE_CAP;
+  if (out.length > totalCap) {
+    const omitted = out.length - (totalCap - 1);
+    console.log(
+      out.slice(0, totalCap - 1).join('\n') +
+        `\n... output truncated at ${totalCap} lines (${omitted} more line(s) omitted)`
+    );
+  } else {
+    console.log(out.join('\n'));
+  }
 }
 
 main();
