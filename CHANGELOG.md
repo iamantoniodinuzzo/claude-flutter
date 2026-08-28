@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.0]
+
+### Added
+
+- `skills/tune-setup` — on-demand config & workflow audit, split from `retro` per ADR 0006:
+  `CLAUDE.md`, `.claude/settings.json` (+`.local.json`), hook definitions, `agents/`, and
+  skill-trigger-miss detection (skills offered in `skill_listing` but never invoked), each
+  finding backed by a verifiable transcript or file event. Never runs automatically — on-demand
+  only. Persistence cap of 5 proposals, independent from `retro`'s cap of 3 (ADR 0009).
+- `skills/retro` — sixth self-audit question, "What worked well" (ADR 0007): names one concrete
+  pattern from the session worth repeating, same "cite a specific artifact, no generic praise"
+  standard as the existing five questions.
+- `skills/retro/scripts/session-evidence.js` — opt-in `--config-audit` flag (ADR 0008) that
+  appends skill-invocation counts, repeated hook-injection detection (same `hookName` + content
+  >2x), `hook_cancelled` occurrences, and a three-way `toolDenialKind` breakdown, under its own
+  `CONFIG_AUDIT_LINE_CAP` separate from `retro`'s `OUTPUT_LINE_CAP`. `retro`'s own Passo 0 call
+  site never passes the flag — output without it is byte-for-byte unchanged. `tune-setup` always
+  passes it. Both dispatcher scripts (`.sh`, `.ps1`) updated to forward the new flag.
+
+### Changed
+
+- `skills/retro/SKILL.md` — persistence table generalized per ADR 0009: the `CLAUDE.md`-only row
+  becomes "config of the target project" (also covers `.claude/settings.json`, hooks, `agents/`);
+  the "skill / hook spec" row becomes "automation spec" (also covers slash commands and
+  subagents); a new row adds a cross-repo toolkit-issue destination
+  (`gh issue create --repo iamantoniodinuzzo/claude-flutter`, always proposed, repo always
+  explicit — never inferred from the target project's own `git remote`). The `automation` report
+  category is reworded to explicitly absorb the two blog-sourced positive questions ADR 0006 had
+  already decided not to duplicate as standalone questions (ref #66).
+
+### Fixed
+
+- `skills/retro/scripts/session-evidence.js` — slug computation now matches Claude Code's real
+  per-character `[^a-zA-Z0-9]` replacement instead of a collapsing regex, so the script finds the
+  actual transcript directory instead of silently reporting "no transcript found" (ref #45, #61).
+- `skills/sentry-init` — closed ADR 0003/0004 verification gaps (`beforeSendFeedback` passthrough,
+  the `SENTRY_DEBUG_REPORTING` dart-define smoke-test path) and added a profiling platform caveat
+  (ref #47).
+
+### Docs
+
+- `docs/adr/0006`-`0009` — retro v2 skill shape (split vs. grow), question set, `tune-setup`'s
+  config audit surface, and proposal routing/caps across the repo boundary, decided across map
+  #57.
+
 ## [3.7.0] - 2026-08-27
 
 ### Added
