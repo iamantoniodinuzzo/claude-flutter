@@ -22,7 +22,7 @@ flowchart LR
     subgraph Repo["claude-flutter toolkit"]
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
-        skills["skills/\nscaffold-feature · unit-test · build-filter\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup"]
+        skills["skills/\nscaffold-feature · unit-test\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup · force-update-init"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -39,7 +39,6 @@ flowchart LR
 | Skill | Trigger |
 |---|---|
 | `scaffold-feature` | "Starting a new feature" — Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
-| `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — targeted codegen, guarded against out-of-scope deletions, escalates to full rebuild when the working tree has drifted too far |
 | `flutter-analyze-targeted` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | Generate/update/repair unit tests (mocktail, GWT, Riverpod ProviderContainer) |
 | `generate-widget-tests` | Generate widget tests using Robot Testing pattern |
@@ -53,6 +52,7 @@ flowchart LR
 | `audit-feature` | Orchestrator: runs all four per-layer audits in parallel via Explore subagents; aggregates into one report; presentation-only shortcut for sub-features |
 | `sentry-init` | Bootstrap `sentry_flutter`: installs deps, patches `main.dart`, wires GoRouter observer, Riverpod error capture (LoggerService decorator or a scaffolded ErrorLogger sink), beforeSend/sampling policy, web BetterFeedback, release-upload checklist |
 | `flutter-flavors` | Init dev/stg/prod flavors (flutter_flavorizr targeted processors, or manual fallback) across Android/iOS/Web + VSCode/Android Studio IDE config; detects an existing partial/broken setup and switches to an AUDIT+FIX branch against a bundled rule catalog; optional multi-project Firebase |
+| `force-update-init` | Bootstrap `force_update_helper`: installs deps, patches `AndroidManifest.xml`, wires `ForceUpdateWidget` into `MaterialApp.builder`/GoRouter, sets up a remote `required_version` source (GitHub Gist, Firebase Remote Config, or a scaffolded Dart Shelf backend), handles non-store distribution (Firebase App Distribution, TestFlight, enterprise); or audits an existing setup against the two silent failure modes (missing `APP_STORE_ID`, missing Android `<queries>` intent) |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 | `retro` | End-of-task self-audit: reads session transcript for verifiable friction evidence (`scripts/session-evidence.{sh,ps1}`), answers 6 hard questions backed by it, auto-persists learnings to auto-memory with dedup, flags unintegrated git work, proposes fixes (generic, not Flutter-specific) |
 | `tune-setup` | On-demand config & workflow audit: `CLAUDE.md` / `.claude/settings.json`(+`.local`) / hooks / `agents/` / skill-trigger-miss, backed by `retro`'s script extended with an opt-in `--config-audit` flag; proposes config fixes, never runs automatically (generic, not Flutter-specific) |

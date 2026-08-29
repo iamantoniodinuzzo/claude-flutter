@@ -1,7 +1,24 @@
 ---
 name: build-filter
 description: Run dart build_runner optimally on a specific feature or file path. Supports targeted codegen with --build-filter, watch mode for active development, --define for per-build builder overrides, and --workspace for Melos monorepos. Use when you've modified @riverpod, @JsonSerializable, or other annotated code and need to regenerate .g.dart files efficiently.
-user-invocable: true
+user-invocable: false
+disable-model-invocation: true
+---
+
+> **Deprecated (v3.9.0).** This skill is no longer invocable — kept on disk, not deleted, because the
+> [Known failure mode](#known-failure-mode-1-345-deleted-gdart-files) below (`#41`, 345 unrelated `.g.dart`
+> files silently deleted by a filtered build) and the guard-script mitigation are still real, still worth
+> reading, and still worth reusing by hand. Everything below this notice is preserved verbatim.
+>
+> Run `--build-filter` manually instead — never combined with `--delete-conflicting-outputs` (see
+> [Why no `--delete-conflicting-outputs`](#why-no---delete-conflicting-outputs) below) — and keep the `#41`
+> caveat in mind: even alone, `--build-filter` can silently delete out-of-scope `.g.dart` files after a
+> large batch of edits. The guard scripts (`scripts/guarded-build.sh` / `.ps1`) still work standalone if you
+> want the pre-flight/snapshot-diff protection without the skill wrapper:
+> ```bash
+> bash skills/build-filter/scripts/guarded-build.sh --cwd "<package-dir>" --build-filter="<path>"
+> ```
+
 ---
 
 Run `dart run build_runner` using the best combination of flags for the user's workflow — targeted with `--build-filter`, continuous with `watch`, or full-project. Auto-detects the package working directory from `melos.yaml`.
