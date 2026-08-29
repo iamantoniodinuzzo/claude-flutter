@@ -149,7 +149,9 @@ Next manual steps (not handled by this skill):
   - gh issue create …                        (if issue not yet created)
   - git start feature <n>_<name>             (creates feature/<n>_<name> from develop)
   - Implement layers: domain → data → application → presentation
-  - /build-filter <path>                     (after adding @riverpod / @JsonSerializable)
+  - dart run build_runner build --build-filter="<path>"   (after adding @riverpod / @JsonSerializable —
+                                                             never with --delete-conflicting-outputs; see
+                                                             ai_docs/FLUTTER_RULES.md)
   - /unit-test                               (domain + application layer tests)
   - gh issue close <N>                       (GitHub does NOT auto-close on PR merge)
 ```

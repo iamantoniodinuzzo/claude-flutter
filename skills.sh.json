@@ -14,7 +14,7 @@
     {
       "title": "Scaffolding & tooling",
       "description": "Feature scaffolding, codegen, navigation, monorepo, observability",
-      "skills": ["scaffold-feature", "build-filter", "flutter-analyze-targeted", "flutter-go-router", "flutter-melos-workspace", "sentry-init", "force-update-init"]
+      "skills": ["scaffold-feature", "flutter-analyze-targeted", "flutter-go-router", "flutter-melos-workspace", "sentry-init", "force-update-init"]
     }
   ],
   "notGrouped": "bottom"

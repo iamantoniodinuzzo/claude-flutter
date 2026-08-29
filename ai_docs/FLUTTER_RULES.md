@@ -12,13 +12,17 @@ The `riverpod-reviewer` agent enforces these — apply when editing any provider
 - Any `ref.watch(provider)` that uses only one field must use `.select()`
 - All `AsyncValue` must handle data/loading/error; avoid naked `.value!`
 
-## Codegen: `build-filter` vs full rebuild
+## Codegen: `--build-filter` vs full rebuild
 
 Never combine `dart run build_runner build --delete-conflicting-outputs` with `--build-filter` — the flag deletes all cached `.g.dart` project-wide before building, and only the filtered subset gets regenerated. (The flag alone, on a full unfiltered build, is fine.)
 
-Prefer `/build-filter <path>` for targeted rebuilds: it normalizes the path to `--build-filter` output form and runs the build through a guard script that snapshots `.g.dart` state before/after and escalates to a full build if too many files have changed since the last build. It does **not** pre-delete anything for the target path.
+Prefer `--build-filter` for targeted rebuilds: normalize the path to its **output** form first (a `.dart` file → `.g.dart`; a directory → append `**`), since `--build-filter` matches output paths, not source paths:
 
-**Known caveat (#41):** even without `--delete-conflicting-outputs`, `--build-filter` alone can silently delete unrelated `.g.dart` files project-wide when the cached asset graph is far out of date (e.g. after many accumulated edits), without logging it. See `skills/build-filter/SKILL.md` for the guard and the escalation heuristic.
+```bash
+dart run build_runner build --build-filter="lib/src/features/foo/**"
+```
+
+**Known caveat (#41):** even without `--delete-conflicting-outputs`, `--build-filter` alone can silently delete unrelated `.g.dart` files project-wide when the cached asset graph is far out of date (e.g. after many accumulated edits), without logging it. `skills/build-filter/` (deprecated, kept on disk) still documents the full failure mode and a before/after-snapshot guard script (`scripts/guarded-build.{sh,ps1}`) that can be run standalone for that protection — read its SKILL.md for details, or budget for an occasional full `dart run build_runner build` as a safety net after a large batch of edits.
 
 ## `dart analyze` scoping
 

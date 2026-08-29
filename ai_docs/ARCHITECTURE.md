@@ -22,7 +22,7 @@ flowchart LR
     subgraph Repo["claude-flutter toolkit"]
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
-        skills["skills/\nscaffold-feature · unit-test · build-filter\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup · force-update-init"]
+        skills["skills/\nscaffold-feature · unit-test\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup · force-update-init"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -39,7 +39,6 @@ flowchart LR
 | Skill | Trigger |
 |---|---|
 | `scaffold-feature` | "Starting a new feature" — Socratic intake, clean-arch directory scaffold, architecture contract, context seed |
-| `build-filter` | After modifying `@riverpod`/`@JsonSerializable` — targeted codegen, guarded against out-of-scope deletions, escalates to full rebuild when the working tree has drifted too far |
 | `flutter-analyze-targeted` | Fast `dart analyze` scoped to a feature path |
 | `unit-test` | Generate/update/repair unit tests (mocktail, GWT, Riverpod ProviderContainer) |
 | `generate-widget-tests` | Generate widget tests using Robot Testing pattern |
