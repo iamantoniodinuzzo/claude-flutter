@@ -1,7 +1,7 @@
 {
   "name": "flutter-toolkit",
   "version": "3.9.0",
-  "description": "Comprehensive suite of Flutter/Dart skills, agents and commands (Riverpod v3, GoRouter, Melos, clean architecture).",
+  "description": "Comprehensive suite of Flutter/Dart skills and agents (Riverpod v3, GoRouter, Melos, clean architecture).",
   "author": {
     "name": "Antonio Di Nuzzo",
     "email": "iamantoniodinuzzo@gmail.com"

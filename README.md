@@ -5,7 +5,7 @@
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 [![skills.sh](https://img.shields.io/badge/skills.sh-npx%20skills%20add-black)](https://www.skills.sh)
 
-Skills, agents, and commands that turn any coding agent into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture. Built for Claude Code; installable on 70+ agents (Cursor, Codex, Windsurf, Cline, etc.) via [skills.sh](https://www.skills.sh).
+Skills and agents that turn any coding agent into a disciplined **Senior Flutter Engineer** — enforcing Riverpod v3 and Clean Architecture. Built for Claude Code; installable on 70+ coding agents (Cursor, Codex, Windsurf, Cline, etc.) via [skills.sh](https://www.skills.sh).
 
 ---
 
