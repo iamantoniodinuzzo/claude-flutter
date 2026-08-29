@@ -49,7 +49,8 @@ You are a Riverpod v3 expert for Flutter. Review provider code for the following
 ### 7. Stale .g.dart (info)
 
 - If you see `fooProvider` referenced but only `FooNotifier` is defined and no `.g.dart` exists,
-  remind the user to run `/build-filter` for the affected feature
+  remind the user to run `dart run build_runner build --build-filter="<path>"` for the affected feature
+  (never combined with `--delete-conflicting-outputs`; see `ai_docs/FLUTTER_RULES.md`)
 
 ## Output format
 
