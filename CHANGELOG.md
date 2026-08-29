@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.9.0]
+
+### Added
+
+- `skills/force-update-init` — bootstrap force update using
+  [force_update_helper](https://pub.dev/packages/force_update_helper): installs deps, patches
+  `AndroidManifest.xml` for `url_launcher`, wires `ForceUpdateWidget` into `MaterialApp.builder` or
+  GoRouter, sets up a remote `required_version` source with detect-and-propose selection (GitHub Gist,
+  Firebase Remote Config, or a scaffolded Dart Shelf backend), handles non-store distribution (Firebase
+  App Distribution, TestFlight, enterprise/internal) via a subclassed `ForceUpdateClient` (the package's
+  own class isn't sealed), and audits an existing setup against the two silent failure modes — a blank
+  `APP_STORE_ID` (the widget awaits `storeUrl()` before `isAppUpdateRequired()`, so a blank ID
+  short-circuits the whole check with no alert and no `onException`) and a missing Android `<queries>`
+  intent. `APP_STORE_ID` delivery follows `docs/adr/0001`'s `dart_defines.json` convention as a second
+  **consumer**, not a second owner — see `docs/adr/0010` for the full decision record (ref #67).
+
+### Deprecated
+
+- `skills/build-filter` — deactivated (`user-invocable: false`, `disable-model-invocation: true`), kept on
+  disk rather than deleted: the `#41` mass-deletion failure mode and the guard scripts
+  (`scripts/guarded-build.{sh,ps1}`) remain readable and usable standalone. Delisted from `README.md`,
+  `ai_docs/ARCHITECTURE.md`, and `skills.sh.json`; the three live callers
+  (`skills/scaffold-feature`, `agents/riverpod-reviewer`, `ai_docs/FLUTTER_RULES.md`) repointed to manual
+  `dart run build_runner build --build-filter=...`, keeping the `#41` caveat intact (ref #68).
+
+### Changed
+
+- `docs/adr/0001-sentry-init-dsn-source-convention.md` — amended: `sentry-init` remains the sole
+  *scaffolder-from-nothing* of `dart_defines.json`, not the sole reader; `force-update-init` is now a
+  second consumer following the same three-tier priority order (ref #67).
+
 ## [3.8.0] - 2026-08-28
 
 ### Added
