@@ -1,11 +1,11 @@
 # Graph Report - claude-flutter  (2026-08-31)
 
 ## Corpus Check
-- 139 files · ~118,217 words
+- 140 files · ~121,344 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1739 nodes · 1685 edges · 162 communities (146 shown, 16 thin omitted)
+- 1802 nodes · 1757 edges · 172 communities (156 shown, 16 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
@@ -43,6 +43,7 @@
 - [[_COMMUNITY_Issue Config Template|Issue Config Template]]
 - [[_COMMUNITY_Feature Issue Template|Feature Issue Template]]
 - [[_COMMUNITY_Task Issue Template|Task Issue Template]]
+- [[_COMMUNITY_Community 28|Community 28]]
 - [[_COMMUNITY_Community 29|Community 29]]
 - [[_COMMUNITY_Community 30|Community 30]]
 - [[_COMMUNITY_Community 31|Community 31]]
@@ -150,6 +151,7 @@
 - [[_COMMUNITY_Community 134|Community 134]]
 - [[_COMMUNITY_Community 135|Community 135]]
 - [[_COMMUNITY_Community 136|Community 136]]
+- [[_COMMUNITY_Community 137|Community 137]]
 - [[_COMMUNITY_Community 138|Community 138]]
 - [[_COMMUNITY_Community 139|Community 139]]
 - [[_COMMUNITY_Community 140|Community 140]]
@@ -157,13 +159,19 @@
 - [[_COMMUNITY_Community 142|Community 142]]
 - [[_COMMUNITY_Community 143|Community 143]]
 - [[_COMMUNITY_Community 144|Community 144]]
+- [[_COMMUNITY_Community 145|Community 145]]
+- [[_COMMUNITY_Community 146|Community 146]]
 - [[_COMMUNITY_Community 147|Community 147]]
 - [[_COMMUNITY_Community 148|Community 148]]
 - [[_COMMUNITY_Community 149|Community 149]]
 - [[_COMMUNITY_Community 150|Community 150]]
 - [[_COMMUNITY_Community 151|Community 151]]
 - [[_COMMUNITY_Community 152|Community 152]]
+- [[_COMMUNITY_Community 153|Community 153]]
 - [[_COMMUNITY_Community 154|Community 154]]
+- [[_COMMUNITY_Community 155|Community 155]]
+- [[_COMMUNITY_Community 156|Community 156]]
+- [[_COMMUNITY_Community 157|Community 157]]
 - [[_COMMUNITY_Community 158|Community 158]]
 - [[_COMMUNITY_Community 161|Community 161]]
 - [[_COMMUNITY_Community 162|Community 162]]
@@ -174,18 +182,20 @@
 - [[_COMMUNITY_Community 167|Community 167]]
 - [[_COMMUNITY_Community 168|Community 168]]
 - [[_COMMUNITY_Community 169|Community 169]]
+- [[_COMMUNITY_Community 170|Community 170]]
+- [[_COMMUNITY_Community 171|Community 171]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
-2. `Flutter GoRouter Navigation` - 15 edges
-3. `Flutter Flavors` - 14 edges
-4. `Pattern: verify() + verifyInOrder() Anti-pattern` - 13 edges
-5. `Create and distribute a plugin marketplace` - 12 edges
-6. `Audit Presentation Layer — Rule Catalog` - 12 edges
-7. `Flutter Melos Workspace` - 12 edges
-8. `force-update-init` - 12 edges
-9. `Phase 0 — Intake & detection` - 11 edges
-10. `Release Uploads — Source Maps & Debug Symbols` - 11 edges
+1. `Changelog` - 22 edges
+2. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
+3. `Flutter GoRouter Navigation` - 15 edges
+4. `Flutter Flavors` - 14 edges
+5. `Pattern: verify() + verifyInOrder() Anti-pattern` - 13 edges
+6. `Create and distribute a plugin marketplace` - 12 edges
+7. `Audit Presentation Layer — Rule Catalog` - 12 edges
+8. `Flutter Melos Workspace` - 12 edges
+9. `force-update-init` - 12 edges
+10. `Phase 0 — Intake & detection` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Riverpod Widget Audit Rules RIV-WIDGET-01 to 04` --semantically_similar_to--> `Riverpod v3 Provider Rules`  [INFERRED] [semantically similar]
@@ -216,7 +226,7 @@
 - **Riverpod Provider Override Strategies in Unit Tests** — unit_test_stream_override_strategy_a, unit_test_stream_override_strategy_b, unit_test_override_with_value_sync, unit_test_notifier_strategy_a, unit_test_notifier_strategy_b [INFERRED 0.85]
 - **Sentry Error Capture Pipeline (Decorator + Observer + Global Hooks)** — sentry_init_sentry_logger_service, sentry_init_async_error_logger, sentry_init_branch_a_decorator, sentry_init_branch_b_observer [INFERRED 0.85]
 
-## Communities (162 total, 16 thin omitted)
+## Communities (172 total, 16 thin omitted)
 
 ### Community 0 - "Unit Test Patterns"
 Cohesion: 0.06
@@ -293,6 +303,10 @@ Nodes (32): 1. Install Melos, 2. Configuration file, 3. Minimal configuration, 4
 ### Community 18 - "Second Opinion Skill"
 Cohesion: 0.33
 Nodes (5): Gemini Consultant Subagent, Flutter/Riverpod Architecture Checks, CLI Commands Used by Subagents, Prerequisites, Second Opinion
+
+### Community 28 - "Community 28"
+Cohesion: 0.13
+Nodes (14): [1.0.1] - 2026-05-16, [1.0.2] - 2026-05-16, [1.1.0] - 2026-05-19, [3.0.1] - 2026-05-31, [3.1.0] - 2026-06-08, [3.3.0] - 2026-07-07, Added, Added (+6 more)
 
 ### Community 29 - "Community 29"
 Cohesion: 0.17
@@ -702,6 +716,10 @@ Nodes (9): Always pass `-f` too — the confirm prompt crashes outright without 
 Cohesion: 0.22
 Nodes (8): 0005 — sentry-init content architecture: lesson-to-file mapping and the frontmatter description fix, All 15 lessons, read and mapped, Consequences, Context, Decision, Frontmatter description, Status, The new reference file
 
+### Community 137 - "Community 137"
+Cohesion: 0.18
+Nodes (11): [1.0.0] - 2026-05-16, [2.0.0] - 2026-05-24, [3.4.0] - 2026-07-16, Added, Added, Added, Breaking Changes, Changed (+3 more)
+
 ### Community 138 - "Community 138"
 Cohesion: 0.22
 Nodes (8): 1. Duplicate build configurations, 2. Create schemes, 3. Bundle identifiers, 4. App display name, Flavored icons, Manual iOS flavor setup, Rollback, Verifying
@@ -730,6 +748,14 @@ Nodes (6): 0004 — sentry-init leaves `sampleRate` unset and makes performance-
 Cohesion: 0.29
 Nodes (6): Conventions, Issue tracker: GitHub, Pull requests as a triage surface, Wayfinding operations, When a skill says "fetch the relevant ticket", When a skill says "publish to the issue tracker"
 
+### Community 145 - "Community 145"
+Cohesion: 0.40
+Nodes (5): [3.2.1] - 2026-07-02, Added, Changed, Fixed, Removed
+
+### Community 146 - "Community 146"
+Cohesion: 0.20
+Nodes (12): [3.2.2] - 2026-07-02, [3.6.0] - 2026-08-15, [3.9.0] - 2026-08-29, Added, Added, Added, Changed, Changed (+4 more)
+
 ### Community 147 - "Community 147"
 Cohesion: 0.29
 Nodes (6): 1. `flavorDimensions` + `productFlavors`, 2. `AndroidManifest.xml`, 3. Per-flavor source sets, Flavored icons, Manual Android flavor setup, Verifying
@@ -750,9 +776,25 @@ Nodes (5): Combined run command (all platforms), Flavors on Flutter web, The wor
 Cohesion: 0.50
 Nodes (3): groupings, notGrouped, $schema
 
+### Community 153 - "Community 153"
+Cohesion: 0.67
+Nodes (3): [3.0.0] - 2026-05-27, Breaking Changes, Removed
+
 ### Community 154 - "Community 154"
 Cohesion: 0.05
 Nodes (39): 0.1 Melos workspace detection, 0.2 INIT vs AUDIT classification, 0.3 Distribution channel (INIT branch), 0.4 Remote source — detect and propose, 0.5 Flavor detection, 0.6 `APP_STORE_ID` delivery — ADR 0001 convention, 0.7 `allowCancel`, 0.8 Router shape (+31 more)
+
+### Community 155 - "Community 155"
+Cohesion: 0.67
+Nodes (3): [3.2.0] - 2026-06-20, Added, Changed
+
+### Community 156 - "Community 156"
+Cohesion: 0.67
+Nodes (3): [3.5.0] - 2026-08-07, Changed, Fixed
+
+### Community 157 - "Community 157"
+Cohesion: 0.67
+Nodes (3): [3.5.1] - 2026-08-14, Added, Fixed
 
 ### Community 161 - "Community 161"
 Cohesion: 0.11
@@ -790,22 +832,30 @@ Nodes (5): 0009 — proposal routing and caps across the repo boundary, Conseque
 Cohesion: 0.33
 Nodes (5): 0010 — force-update-init: force_update_helper default, remote-source selection, non-store handling, Consequences, Context, Decision, Status
 
+### Community 170 - "Community 170"
+Cohesion: 0.50
+Nodes (4): [3.7.0] - 2026-08-27, Added, Changed, Fixed
+
+### Community 171 - "Community 171"
+Cohesion: 0.50
+Nodes (4): [3.8.0] - 2026-08-28, Added, Changed, Docs
+
 ## Knowledge Gaps
-- **1171 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1166 more)
+- **1209 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1204 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 121`, `Community 51`, `Community 57`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `sentry-init` connect `Community 108` to `Sentry Integration & Error Monitoring`, `Community 109`, `Community 80`, `Community 113`, `Community 114`, `Community 81`, `Community 116`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+- **Why does `Changelog` connect `Community 28` to `Community 153`, `Community 137`, `Community 170`, `Community 171`, `Community 145`, `Community 146`, `Community 56`, `Community 121`, `Community 155`, `Community 156`, `Community 157`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `Create and distribute a plugin marketplace` connect `Community 57` to `Community 72`, `Community 111`, `Community 86`, `Community 120`, `Community 63`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 121`, `Community 51`, `Community 57`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _1203 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1241 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Unit Test Patterns` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Feature Bootstrapping Workflow` be split into smaller, more focused modules?**

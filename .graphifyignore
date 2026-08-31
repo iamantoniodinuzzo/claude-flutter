@@ -1,0 +1,3 @@
+# Append-only release history — no architectural value, grows every release, and
+# git log/CHANGELOG.md itself is already the source of truth for what changed when.
+CHANGELOG.md
