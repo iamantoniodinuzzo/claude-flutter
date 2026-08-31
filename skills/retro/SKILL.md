@@ -26,7 +26,7 @@ skills/retro/scripts/session-evidence.sh              # bash
 skills/retro/scripts/session-evidence.ps1              # PowerShell
 ```
 
-Legge il transcript `.jsonl` della sessione corrente ed estrae, in forma aggregata: tool call falliti (per tool, con conteggio ed esempio), comandi Bash identici eseguiti più di una volta, file rieditati più di due volte. Se non trova un transcript (dir assente, sessione non tracciata) stampa una riga sola e esce con successo — **questo non è prova di una sessione pulita**: dichiara nel report che non hai potuto verificare, non presentare il silenzio come "nessun problema".
+Legge il transcript `.jsonl` della sessione corrente ed estrae, in forma aggregata: tool call falliti (per tool, con conteggio ed esempio), comandi Bash identici eseguiti più di una volta, file rieditati più di due volte. Se la directory derivata dallo slug del cwd non esiste, riprova con un match a slug canonico (case-insensitive, dash collassati) su `~/.claude/projects/` prima di arrendersi — copre drift tra algoritmi di slugging (ref #69). Se ancora non trova un transcript (nessuna directory, sessione non tracciata) stampa una riga sola e esce con successo — **questo non è prova di una sessione pulita**: dichiara nel report che non hai potuto verificare, non presentare il silenzio come "nessun problema".
 
 Esegui poi:
 

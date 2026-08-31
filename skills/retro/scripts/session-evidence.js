@@ -20,9 +20,13 @@
 // Default transcript selection: newest *.jsonl by mtime in
 // ~/.claude/projects/<cwd-slug>/, where <cwd-slug> is the current working directory with
 // every non-alphanumeric character replaced by -, one dash per character (matches Claude
-// Code's own slugging, see slugForCwd()). Pass --transcript to override — useful when retro runs
-// against a session other than the current one, or the auto-detected file is wrong
-// because multiple sessions are open against the same project.
+// Code's own slugging, see slugForCwd()). If that exact directory does not exist, fall back
+// to scanning ~/.claude/projects/ for an entry whose name canonicalizes (collapse runs of
+// non-alphanumerics to one dash, lowercase) to the same value as the derived slug — covers
+// slug-algorithm drift between toolkit and CLI versions without ever preferring a fuzzy
+// match over the exact one (see canonicalSlug()). Pass --transcript to override — useful
+// when retro runs against a session other than the current one, or the auto-detected file
+// is wrong because multiple sessions are open against the same project.
 //
 // Degrades silently: if no transcript is found or it can't be parsed, prints one line
 // and exits 0. A missing transcript is NOT evidence of a clean session — retro must say
@@ -82,15 +86,22 @@ function slugForCwd(cwd) {
   return cwd.replace(/[^a-zA-Z0-9]/g, '-');
 }
 
-function findLatestTranscript() {
-  const slug = slugForCwd(process.cwd());
-  const dir = path.join(os.homedir(), '.claude', 'projects', slug);
-  if (!fs.existsSync(dir)) return { path: null, slug, dir };
+// Lossier than slugForCwd() on purpose — this is ONLY for recovery matching, never for
+// deriving the path we look up first. Collapses runs of non-alphanumerics to a single dash
+// and lowercases, so a directory written by a different slug algorithm still matches:
+// "C-Users-x-my_app" and "C--Users-x-my-app" both canonicalize to "c-users-x-my-app".
+// slugForCwd() stays exact (one dash per character) because that is what Claude Code
+// actually writes today (ref #61).
+function canonicalSlug(s) {
+  return s.replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
+}
+
+function newestJsonlIn(dir) {
   let files;
   try {
     files = fs.readdirSync(dir);
   } catch {
-    return { path: null, slug, dir };
+    return null;
   }
   const withStats = files
     .filter((f) => f.endsWith('.jsonl'))
@@ -105,7 +116,64 @@ function findLatestTranscript() {
       return { full, mtime };
     })
     .sort((a, b) => b.mtime - a.mtime);
-  return { path: withStats.length ? withStats[0].full : null, slug, dir };
+  return withStats.length ? withStats[0].full : null;
+}
+
+function findLatestTranscript() {
+  const slug = slugForCwd(process.cwd());
+  const dir = path.join(os.homedir(), '.claude', 'projects', slug);
+  if (fs.existsSync(dir)) {
+    return { path: newestJsonlIn(dir), slug, dir, matchedDir: null };
+  }
+
+  // Exact dir missing — scan for a canonical-slug match before giving up (ref #69).
+  const projectsRoot = path.join(os.homedir(), '.claude', 'projects');
+  let entries;
+  try {
+    entries = fs.readdirSync(projectsRoot);
+  } catch {
+    return { path: null, slug, dir, matchedDir: null };
+  }
+  const target = canonicalSlug(slug);
+  const candidates = entries
+    .filter((name) => canonicalSlug(name) === target)
+    .map((name) => path.join(projectsRoot, name))
+    .filter((full) => {
+      try {
+        return fs.statSync(full).isDirectory();
+      } catch {
+        return false;
+      }
+    });
+
+  let bestPath = null;
+  let bestDir = null;
+  let bestMtime = -1;
+  for (const candidateDir of candidates) {
+    let files;
+    try {
+      files = fs.readdirSync(candidateDir);
+    } catch {
+      continue;
+    }
+    for (const f of files) {
+      if (!f.endsWith('.jsonl')) continue;
+      const full = path.join(candidateDir, f);
+      let mtime = 0;
+      try {
+        mtime = fs.statSync(full).mtimeMs;
+      } catch {
+        continue;
+      }
+      if (mtime > bestMtime) {
+        bestMtime = mtime;
+        bestPath = full;
+        bestDir = candidateDir;
+      }
+    }
+  }
+
+  return { path: bestPath, slug, dir, matchedDir: bestDir };
 }
 
 function firstLine(text, maxLen) {
@@ -165,7 +233,10 @@ function main() {
     if (explicit) {
       console.log(`no transcript found at ${explicit}`);
     } else {
-      console.log(`no transcript found (slug: ${auto.slug}, checked: ${auto.dir})`);
+      console.log(
+        `no transcript found (slug: ${auto.slug}, checked: ${auto.dir}, ` +
+          'no canonical-slug match under ~/.claude/projects)'
+      );
     }
     process.exit(0);
   }
@@ -281,6 +352,9 @@ function main() {
 
   const out = [];
   out.push(`transcript: ${transcriptPath}`);
+  if (!explicit && auto.matchedDir) {
+    out.push(`  [slug fallback: derived ${auto.dir} missing, matched ${auto.matchedDir}]`);
+  }
   out.push(`session: ${sessionId || 'unknown'}  window: ${firstTs || '?'} .. ${lastTs || '?'}  events: ${eventCount}`);
   out.push('');
 
