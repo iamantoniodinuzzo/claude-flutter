@@ -125,3 +125,19 @@ Never as primary finder for business widgets.
 - Mixing `verify()` and `verifyInOrder()` on the same mock in one test
 - `DateTime.now()` — use `DateTime.utc(year, month, day)`
 - `withOpacity()` — use `withValues(alpha: x)`
+
+---
+
+## Asserting the autofill save request
+
+`WidgetTester.testTextInput.log` already records platform calls — no custom channel handler needed. Count only the
+explicit save request; with `onDisposeAction: cancel` the group's own call on dispose is `arguments == false`.
+
+```dart
+int saveRequests(WidgetTester tester) => tester.testTextInput.log
+    .where((c) => c.method == 'TextInput.finishAutofillContext' && c.arguments == true)
+    .length;
+
+expect(saveRequests(tester), 1); // after successful sign-in
+expect(saveRequests(tester), 0); // after failed sign-in
+```

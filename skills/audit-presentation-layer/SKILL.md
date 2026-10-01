@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -123,7 +123,7 @@ For each file:
 1. Read the full file contents.
 2. Apply every heuristic in `rules/CATALOG.md` relevant to the file type **and**
    not gated out by the platform target (see Phase 0 Step 3):
-   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, ASSET-*, WEB-01
+   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, ASSET-*, AUTOFILL-*, WEB-01
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
@@ -162,6 +162,10 @@ Heuristic application notes:
 - **ASSET-02**: needs project root. Flag raster assets whose pixels exceed display logical px × 3 × 1.5, or (display size unknown) decoded `w × h × 4` > 4 MB. Report only.
 - **ASSET-03**: needs project root. Flag pubspec-declared assets with no reference; follow `flutter_gen` accessors and runtime-built paths first. Report only — never delete.
 - **ASSET-04**: flag warm-ups with no error handler at the creation expression, a cache key that cannot match the widget's (`theme`/`colorMapper`/`bundle`/`DefaultSvgTheme`), or `precacheImage` on engine-managed assets.
+- **AUTOFILL-01**: flag a password field (`obscureText: true` or `Password\w*Field`) alongside an email/username field (`TextInputType.emailAddress` or label/controller matching `email|user(name)?|login`) with no `AutofillGroup(` enclosing both in the `build` span.
+- **AUTOFILL-02**: flag password/email/name/phone fields lacking `autofillHints:`, and hint/keyboard mismatches (`AutofillHints.email` without `TextInputType.emailAddress`; `AutofillHints.password` on a new-password field in `register|sign_?up|reset|change_?password` files). Skip non-personal fields (e.g. organisation name).
+- **AUTOFILL-03**: (a) flag `AutofillGroup(` spans without `onDisposeAction: AutofillContextAction.cancel`; (b) flag the owning `State` when no `finishAutofillContext(` follows an awaited success check — skip forgot-password screens; (c) flag `.clear()`/`.text = ''` on credential controllers textually before `finishAutofillContext(` in the success branch.
+- **AUTOFILL-04**: flag classes under `common/`/`shared/`/`widgets/` whose `build` returns `TextFormField(`/`TextField(` and whose constructor has no `autofillHints` parameter.
 - **WEB-01** _(web target only)_: flag `GestureDetector(` or `InkWell(` blocks containing `onTap:` where no `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (~20 lines above). Skip occurrences inside Flutter's built-in button/tile classes.
 
 ---
@@ -205,13 +209,14 @@ After the report, ask:
 
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
-Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05
+Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05, AUTOFILL-04, AUTOFILL-03 (a only)
 Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
                    REBUILD-04, EXTRACT-01, EXTRACT-02, COHESION-01, COUPLING-01,
                    COUPLING-02, ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-04,
                    ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
                    UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
-                   RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, WEB-01
+                   RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, AUTOFILL-01, AUTOFILL-02,
+                   AUTOFILL-03 (b/c), WEB-01
 ```
 
 On response:

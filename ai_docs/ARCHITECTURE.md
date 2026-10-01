@@ -46,7 +46,7 @@ asset-preload-init"]
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
 | `maestro-screenshot-flow` | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers; helper scripts for tree inspection and ADB reset |
-| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, web affordances) — platform-aware (auto-detect / `--platform`) |
+| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, assets, credential autofill, web affordances) — platform-aware (auto-detect / `--platform`) |
 | `audit-domain-layer` | Rules-based static audit: infra imports in domain, untyped/non-sealed exceptions, entity serialization, hardcoded UI strings |
 | `audit-data-layer` | Rules-based static audit: leaky abstractions, missing exception conversion, model mapper gaps, untyped datasource exceptions |
 | `audit-application-layer` | Rules-based static audit: Flutter imports in application code, redundant try/catch in notifiers, mutation return types, unconstrained state types |

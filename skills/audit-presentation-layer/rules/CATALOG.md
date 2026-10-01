@@ -346,6 +346,46 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 
 ---
 
+## Autofill rules
+
+### AUTOFILL-01
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: A `Form`/screen with a password field (`obscureText: true`, or a `PasswordTextField`-style wrapper) next to an email/username field, with no `AutofillGroup` ancestor wrapping both — the OS cannot link them into one credential
+- **Heuristic**: in a widget file, find a password field (`obscureText:\s*true` or a class matching `Password\w*Field`) and a sibling field whose `keyboardType` is `TextInputType.emailAddress` or whose label/controller name matches `email|user(name)?|login`; flag when `AutofillGroup(` does not enclose both within the same `build` span
+- **Fix**: wrap the credential fields (not the whole screen if avoidable) in `AutofillGroup(onDisposeAction: AutofillContextAction.cancel, child: Column(...))`
+- **autofix_safe**: false (group boundaries must be chosen)
+
+### AUTOFILL-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: Credential field with no `autofillHints`, or hints that do not match the flow/keyboard — sign-in: email `[username, email]`, password `[password]`; sign-up/reset/change-password: new password `[newPassword]` (also on the confirm field), sign-up email `[newUsername, email]`; `AutofillHints.email` needs `TextInputType.emailAddress`, `AutofillHints.name` needs `TextInputType.name`; a field that must not be personal data (e.g. an organisation name being created) should have no hints
+- **Heuristic**: for each password/email/name/phone field lacking `autofillHints:`, flag. For each present hint, check the pairing above; in files whose class/route name matches `register|sign_?up|reset|change_?password`, flag `AutofillHints.password` used on a *new* password field
+- **Fix**: add the hint list; set the matching `keyboardType`
+- **autofix_safe**: false (correct hint depends on the flow)
+
+### AUTOFILL-03
+- **Severity**: error
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: (a) `AutofillGroup(` without `onDisposeAction: AutofillContextAction.cancel` — the default `commit` offers to save a wrong password after a failed login; (b) a submit handler (sign-in / register / change-password) with no `TextInput.finishAutofillContext()` on its success path; (c) `finishAutofillContext()` placed after the credential controllers are cleared
+- **Heuristic**: (a) `AutofillGroup(` span lacks `onDisposeAction:\s*AutofillContextAction\.cancel`; (b) in the `State` class that owns the group, no `finishAutofillContext(` call reachable after an awaited success result (`if (success)`, `if (ok)`, `.then`); (c) in the success branch, `.clear()` / `.text = ''` on the credential controllers appears textually before `finishAutofillContext(`. Skip (b) for forgot-password screens — the reset completes outside the app
+- **Fix**: `onDisposeAction: AutofillContextAction.cancel` on the group; `if (success) TextInput.finishAutofillContext();` right after the awaited call and before clearing the form
+- **autofix_safe**: true for (a); false for (b)/(c) (needs the success condition)
+
+### AUTOFILL-04
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: Shared text-field wrapper (`AppTextField`, `PasswordTextField`, ...) that builds a `TextFormField`/`TextField` but does not expose/forward `autofillHints` (ideally also `focusNode`, `onChanged`) — feature screens are forced back to raw `TextFormField`, fragmenting the design system
+- **Heuristic**: a class under a `common/`/`shared/`/`widgets/` folder whose `build` returns `TextFormField(`/`TextField(` and whose constructor has no `autofillHints` parameter. Also flag a password wrapper that re-implements its own border instead of composing the shared field
+- **Fix**: add `final Iterable<String>? autofillHints;` and forward it; make the password wrapper compose the shared field
+- **autofix_safe**: true (additive optional parameter)
+
+---
+
 ## Adding new rules
 
 1. Add a rule block here following the schema above.
