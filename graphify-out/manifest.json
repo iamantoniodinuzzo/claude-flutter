@@ -570,18 +570,18 @@
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.js": {
-    "mtime": 1788200444.006582,
-    "ast_hash": "b0dd6c8cafb3f047641cdc88d66b84b1",
+    "mtime": 1790880248.202424,
+    "ast_hash": "4af2709a74ad311dbe44f6ee7880b082",
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.ps1": {
-    "mtime": 1787951853.227988,
-    "ast_hash": "ea85bd63bb0964673fbcd3ebe4ae657e",
+    "mtime": 1790880261.5527976,
+    "ast_hash": "c1596b8b51b24f10881d978a9d57eaf3",
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.sh": {
-    "mtime": 1786111901.3957598,
-    "ast_hash": "74b2da95768ea78535233d90510dad4b",
+    "mtime": 1790880263.7154088,
+    "ast_hash": "cf7ad5dbbd878fea558bbd639a001017",
     "semantic_hash": ""
   },
   "ai_docs/TROUBLESHOOTING.md": {
@@ -670,8 +670,8 @@
     "semantic_hash": ""
   },
   "skills/retro/SKILL.md": {
-    "mtime": 1788200444.005072,
-    "ast_hash": "9b3f72b21e9e53cbca8b1e21e7116c39",
+    "mtime": 1790880275.769942,
+    "ast_hash": "235ffabc37fa6c5263a4959cbc2d86b4",
     "semantic_hash": ""
   },
   "skills/sentry-init/references/error-capture-architecture.md": {
@@ -772,6 +772,11 @@
   "skills/audit-presentation-layer/rules/patterns/autofill.md": {
     "mtime": 1790879810.3887427,
     "ast_hash": "4e37d60fca3e8e1d2bed153fc728a601",
+    "semantic_hash": ""
+  },
+  "tests/retro/session-evidence.test.js": {
+    "mtime": 1790880312.35804,
+    "ast_hash": "2777ef85e9b4fba21ea778340741d49a",
     "semantic_hash": ""
   }
 }
