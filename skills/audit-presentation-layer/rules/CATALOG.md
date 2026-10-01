@@ -306,6 +306,46 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 
 ---
 
+## Asset loading rules
+
+### ASSET-01
+- **Severity**: warning (SVG) / info (raster)
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-first-frame-warmup.md`
+- **What**: `SvgPicture.asset(` / `Image.asset(` / `AssetImage(` in a first-route or shell widget whose path has no warm-up in startup code — the first frame draws it one or two frames late (pop-in)
+- **Heuristic**: in widget files reachable from the first route/shell, find these constructors with a literal or constant path; grep `main.dart`/startup code for `SvgAssetLoader(`/`precacheImage(` covering the same path; flag if none. Skip assets preloaded by an engine registry (Flame `Images`, sprite registry) and `rootBundle`-only assets. Severity is warning for SVG (cache reachable before `runApp`), info for raster (needs a `BuildContext`)
+- **Fix**: SVG → `SvgAssetLoader(path).loadBytes(null)` in `main()` before `runApp`; raster → `precacheImage(AssetImage(path), context)` post-first-frame or in a splash widget; or run `/asset-preload-init`
+- **autofix_safe**: false (first-frame reachability and startup placement need judgment)
+
+### ASSET-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-size-budget.md`
+- **What**: Raster asset far larger than its display size — source pixels > display logical px × 3 (max DPR) × 1.5, or, when display size is unknown, decoded size (`w × h × 4`) > 4 MB
+- **Heuristic**: needs the project root (`pubspec.yaml`); read pixel size from the file header for raster assets declared under `flutter: assets:`; take display size from `width:`/`height:` on the consuming widget when present. In single-file mode, check only assets referenced by the file. Skip SVG
+- **Fix**: propose a resize (e.g. `magick in.png -resize 256x256 out.png`) — never run unasked; if files cannot be edited, `cacheWidth`/`cacheHeight` or `ResizeImage`
+- **autofix_safe**: false (modifies binary assets)
+
+### ASSET-03
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-unused.md`
+- **What**: Asset declared in pubspec (file or directory entry) but referenced nowhere — it still ships in every build
+- **Heuristic**: needs the project root; expand `flutter: assets:`, grep quoted file names (names may contain spaces), follow `flutter_gen` accessors and runtime-built paths (prefix + enum `.name` + extension) before flagging. `rootBundle.load` counts as a reference
+- **Fix**: report only — the user decides whether to delete the file or narrow the pubspec entry
+- **autofix_safe**: false (never delete automatically)
+
+### ASSET-04
+- **Severity**: error
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-warmup-safety.md`
+- **What**: Existing warm-up is unsafe or ineffective: (a) the warm-up `Future` has no error handler attached at creation; (b) the cache key cannot match the widget's (`theme:`/`colorMapper:`/`bundle:` on `SvgPicture.asset`, or a `DefaultSvgTheme` ancestor); (c) `precacheImage` used for an engine-managed cache
+- **Heuristic**: find `SvgAssetLoader(`/`precacheImage(` in startup code; (a) check for `.then(…, onError:` / `catchError` at the creation expression, not only at the `await`; (b) for each warmed path, inspect its `SvgPicture.asset` consumers for the args above; (c) check whether the path is consumed by a Flame `Images`/sprite registry
+- **Fix**: (a) `.then<void>((_) {}, onError: …)` at creation; (b) remove the warm-up for that asset or align the key; (c) use the engine's own preload
+- **autofix_safe**: false (startup flow and cache-key alignment need review)
+
+---
+
 ## Adding new rules
 
 1. Add a rule block here following the schema above.
