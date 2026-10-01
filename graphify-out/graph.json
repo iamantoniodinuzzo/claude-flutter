@@ -469,7 +469,7 @@
       "label": "fs",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L48",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "scripts_session_evidence_fs",
       "community": 134,
@@ -479,7 +479,7 @@
       "label": "path",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L49",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "scripts_session_evidence_path",
       "community": 134,
@@ -489,7 +489,7 @@
       "label": "os",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L50",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "scripts_session_evidence_os",
       "community": 134,
@@ -499,7 +499,7 @@
       "label": "parseArgs()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L64",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "scripts_session_evidence_parseargs",
       "community": 134,
@@ -509,7 +509,7 @@
       "label": "slugForCwd()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L80",
+      "source_location": "L105",
       "_origin": "ast",
       "id": "scripts_session_evidence_slugforcwd",
       "community": 134,
@@ -519,7 +519,7 @@
       "label": "canonicalSlug()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L95",
+      "source_location": "L120",
       "_origin": "ast",
       "id": "scripts_session_evidence_canonicalslug",
       "community": 134,
@@ -529,7 +529,7 @@
       "label": "newestJsonlIn()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L99",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "scripts_session_evidence_newestjsonlin",
       "community": 134,
@@ -539,27 +539,117 @@
       "label": "findLatestTranscript()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L122",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "scripts_session_evidence_findlatesttranscript",
       "community": 134,
       "norm_label": "findlatesttranscript()"
     },
     {
+      "label": "findBySessionId()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_findbysessionid",
+      "community": 134,
+      "norm_label": "findbysessionid()"
+    },
+    {
+      "label": "transcriptSummary()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L236",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_transcriptsummary",
+      "community": 134,
+      "norm_label": "transcriptsummary()"
+    },
+    {
+      "label": "humanAge()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L260",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_humanage",
+      "community": 134,
+      "norm_label": "humanage()"
+    },
+    {
+      "label": "listCandidates()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L270",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_listcandidates",
+      "community": 134,
+      "norm_label": "listcandidates()"
+    },
+    {
+      "label": "staleThresholdMs()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L308",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_stalethresholdms",
+      "community": 134,
+      "norm_label": "stalethresholdms()"
+    },
+    {
       "label": "firstLine()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L179",
+      "source_location": "L313",
       "_origin": "ast",
       "id": "scripts_session_evidence_firstline",
       "community": 134,
       "norm_label": "firstline()"
     },
     {
+      "label": "SHELL_TOOLS",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L318",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_shell_tools",
+      "community": 134,
+      "norm_label": "shell_tools"
+    },
+    {
+      "label": "inputExcerpt()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L322",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_inputexcerpt",
+      "community": 134,
+      "norm_label": "inputexcerpt()"
+    },
+    {
+      "label": "errorLine()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L336",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_errorline",
+      "community": 134,
+      "norm_label": "errorline()"
+    },
+    {
+      "label": "tailSegments()",
+      "file_type": "code",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L347",
+      "_origin": "ast",
+      "id": "scripts_session_evidence_tailsegments",
+      "community": 134,
+      "norm_label": "tailsegments()"
+    },
+    {
       "label": "sampleFromContent()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L184",
+      "source_location": "L352",
       "_origin": "ast",
       "id": "scripts_session_evidence_samplefromcontent",
       "community": 134,
@@ -569,7 +659,7 @@
       "label": "bump()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L194",
+      "source_location": "L362",
       "_origin": "ast",
       "id": "scripts_session_evidence_bump",
       "community": 134,
@@ -579,7 +669,7 @@
       "label": "attachmentText()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L204",
+      "source_location": "L372",
       "_origin": "ast",
       "id": "scripts_session_evidence_attachmenttext",
       "community": 134,
@@ -589,7 +679,7 @@
       "label": "parseSkillListing()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L214",
+      "source_location": "L382",
       "_origin": "ast",
       "id": "scripts_session_evidence_parseskilllisting",
       "community": 134,
@@ -599,7 +689,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "skills/retro/scripts/session-evidence.js",
-      "source_location": "L227",
+      "source_location": "L395",
       "_origin": "ast",
       "id": "scripts_session_evidence_main",
       "community": 134,
@@ -644,13 +734,133 @@
       "norm_label": "session-evidence.sh script"
     },
     {
+      "label": "session-evidence.test.js",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test",
+      "community": 122,
+      "norm_label": "session-evidence.test.js"
+    },
+    {
+      "label": "test",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_test",
+      "community": 122,
+      "norm_label": "test"
+    },
+    {
+      "label": "assert",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_assert",
+      "community": 122,
+      "norm_label": "assert"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_fs",
+      "community": 122,
+      "norm_label": "fs"
+    },
+    {
+      "label": "os",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_os",
+      "community": 122,
+      "norm_label": "os"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_path",
+      "community": 122,
+      "norm_label": "path"
+    },
+    {
+      "label": "{ spawnSync }",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_spawnsync",
+      "community": 122,
+      "norm_label": "{ spawnsync }"
+    },
+    {
+      "label": "SCRIPT",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_script",
+      "community": 122,
+      "norm_label": "script"
+    },
+    {
+      "label": "slugOf()",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_slugof",
+      "community": 122,
+      "norm_label": "slugof()"
+    },
+    {
+      "label": "makeEnv()",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_makeenv",
+      "community": 122,
+      "norm_label": "makeenv()"
+    },
+    {
+      "label": "writeTranscript()",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_writetranscript",
+      "community": 122,
+      "norm_label": "writetranscript()"
+    },
+    {
+      "label": "run()",
+      "file_type": "code",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "retro_session_evidence_test_run",
+      "community": 122,
+      "norm_label": "run()"
+    },
+    {
       "label": "skill-reviewer.md",
       "file_type": "document",
       "source_file": ".claude/agents/skill-reviewer.md",
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_skill_reviewer",
-      "community": 56,
+      "community": 178,
       "norm_label": "skill-reviewer.md"
     },
     {
@@ -830,7 +1040,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "agents_prompt_engineer_development_workflow",
-      "community": 56,
+      "community": 170,
       "norm_label": "development workflow"
     },
     {
@@ -840,7 +1050,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "agents_prompt_engineer_1_requirements_analysis",
-      "community": 56,
+      "community": 170,
       "norm_label": "1. requirements analysis"
     },
     {
@@ -850,7 +1060,7 @@
       "source_location": "L185",
       "_origin": "ast",
       "id": "agents_prompt_engineer_2_implementation_phase",
-      "community": 56,
+      "community": 170,
       "norm_label": "2. implementation phase"
     },
     {
@@ -860,7 +1070,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "agents_prompt_engineer_3_prompt_excellence",
-      "community": 56,
+      "community": 170,
       "norm_label": "3. prompt excellence"
     },
     {
@@ -870,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_riverpod_reviewer",
-      "community": 84,
+      "community": 56,
       "norm_label": "riverpod-reviewer.md"
     },
     {
@@ -960,7 +1170,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "agents_riverpod_reviewer_output_format",
-      "community": 84,
+      "community": 56,
       "norm_label": "output format"
     },
     {
@@ -970,7 +1180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_architecture",
-      "community": 51,
+      "community": 56,
       "norm_label": "architecture.md"
     },
     {
@@ -1070,7 +1280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_contributing_contributing",
-      "community": 170,
+      "community": 51,
       "norm_label": "contributing"
     },
     {
@@ -1080,7 +1290,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ai_docs_contributing_adding_a_new_skill",
-      "community": 170,
+      "community": 51,
       "norm_label": "adding a new skill"
     },
     {
@@ -1090,7 +1300,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ai_docs_contributing_fetching_upstream_rule_docs_flutter_ai_toolkit",
-      "community": 170,
+      "community": 51,
       "norm_label": "fetching upstream rule docs (flutter_ai_toolkit)"
     },
     {
@@ -1100,7 +1310,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ai_docs_contributing_version_bump",
-      "community": 170,
+      "community": 51,
       "norm_label": "version bump"
     },
     {
@@ -1110,7 +1320,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "ai_docs_contributing_tracking_gotcha",
-      "community": 170,
+      "community": 51,
       "norm_label": "tracking gotcha"
     },
     {
@@ -1120,7 +1330,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_flutter_rules",
-      "community": 51,
+      "community": 3,
       "norm_label": "flutter_rules.md"
     },
     {
@@ -11327,7 +11537,7 @@
       "label": "Le sei domande",
       "file_type": "document",
       "source_file": "skills/retro/SKILL.md",
-      "source_location": "L39",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "retro_skill_le_sei_domande",
       "community": 139,
@@ -11337,7 +11547,7 @@
       "label": "Ship handoff",
       "file_type": "document",
       "source_file": "skills/retro/SKILL.md",
-      "source_location": "L50",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "retro_skill_ship_handoff",
       "community": 139,
@@ -11347,7 +11557,7 @@
       "label": "Persistenza",
       "file_type": "document",
       "source_file": "skills/retro/SKILL.md",
-      "source_location": "L57",
+      "source_location": "L63",
       "_origin": "ast",
       "id": "retro_skill_persistenza",
       "community": 139,
@@ -11357,7 +11567,7 @@
       "label": "Report finale",
       "file_type": "document",
       "source_file": "skills/retro/SKILL.md",
-      "source_location": "L81",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "retro_skill_report_finale",
       "community": 139,
@@ -11367,7 +11577,7 @@
       "label": "Anti-patterns",
       "file_type": "document",
       "source_file": "skills/retro/SKILL.md",
-      "source_location": "L98",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "retro_skill_anti_patterns",
       "community": 139,
@@ -14900,7 +15110,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "unit_test_skill_phase_4_mocktail_strategy",
-      "community": 39,
+      "community": 179,
       "norm_label": "phase 4 \u2014 mocktail strategy"
     },
     {
@@ -14910,7 +15120,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "unit_test_skill_pre_stub_non_nullable_returns_required",
-      "community": 39,
+      "community": 179,
       "norm_label": "pre-stub non-nullable returns \u2014 required"
     },
     {
@@ -14920,7 +15130,7 @@
       "source_location": "L170",
       "_origin": "ast",
       "id": "unit_test_skill_verify_verifyinorder_do_not_mix",
-      "community": 39,
+      "community": 179,
       "norm_label": "`verify()` + `verifyinorder()` \u2014 do not mix"
     },
     {
@@ -15030,7 +15240,7 @@
       "source_location": "L330",
       "_origin": "ast",
       "id": "unit_test_skill_phase_6_domain_model_exception_checklist",
-      "community": 122,
+      "community": 39,
       "norm_label": "phase 6 \u2014 domain model & exception checklist"
     },
     {
@@ -15040,7 +15250,7 @@
       "source_location": "L332",
       "_origin": "ast",
       "id": "unit_test_skill_entity_value_object",
-      "community": 122,
+      "community": 39,
       "norm_label": "entity / value object"
     },
     {
@@ -15050,7 +15260,7 @@
       "source_location": "L343",
       "_origin": "ast",
       "id": "unit_test_skill_exception_hierarchy",
-      "community": 122,
+      "community": 39,
       "norm_label": "exception hierarchy"
     },
     {
@@ -16023,7 +16233,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 56,
       "norm_label": "audit-presentation-layer skill.md",
       "id": "audit_presentation_layer_skill_md"
     },
@@ -16049,7 +16259,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 51,
+      "community": 56,
       "norm_label": "dispatcher skill pattern",
       "id": "concept_dispatcher_skill"
     },
@@ -16062,7 +16272,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 56,
       "norm_label": "self-contained skill pattern",
       "id": "concept_self_contained_skill"
     },
@@ -16075,7 +16285,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 84,
+      "community": 3,
       "norm_label": "riverpod v3 provider rules",
       "id": "concept_riverpod_v3_rules"
     },
@@ -16114,7 +16324,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 56,
       "norm_label": "platform-aware rule gating",
       "id": "concept_platform_aware_audit"
     },
@@ -16153,7 +16363,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 178,
       "norm_label": "iamantoniodinuzzo/flutter_ai_toolkit upstream repo",
       "id": "concept_flutter_ai_toolkit_upstream"
     },
@@ -16179,7 +16389,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 178,
       "norm_label": "skill structural conformance checks",
       "id": "concept_skill_reviewer_checks"
     },
@@ -16192,7 +16402,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 84,
+      "community": 3,
       "norm_label": "riverpod widget audit rules riv-widget-01 to 04",
       "id": "concept_riv_widget_rules"
     },
@@ -19181,6 +19391,26 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L336",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_errorline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_findbysessionid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L63",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -19206,6 +19436,36 @@
       "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
       "target": "scripts_session_evidence_fs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L260",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_humanage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L322",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_inputexcerpt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L270",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_listcandidates",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19281,11 +19541,51 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L318",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_shell_tools",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L55",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
       "target": "scripts_session_evidence_slugforcwd"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L308",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_stalethresholdms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L347",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_tailsegments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L236",
+      "weight": 1.0,
+      "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
+      "target": "scripts_session_evidence_transcriptsummary",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19314,11 +19614,33 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L446",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_slugforcwd",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L137",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "scripts_session_evidence_findlatesttranscript",
       "target": "scripts_session_evidence_canonicalslug"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L278",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_listcandidates",
+      "target": "scripts_session_evidence_canonicalslug",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19347,11 +19669,88 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L410",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_findbysessionid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L431",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_transcriptsummary",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L588",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_humanage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L434",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_listcandidates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L432",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_stalethresholdms",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L176",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
       "target": "scripts_session_evidence_firstline"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L512",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_inputexcerpt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/retro/scripts/session-evidence.js",
+      "source_location": "L535",
+      "weight": 1.0,
+      "source": "scripts_session_evidence_main",
+      "target": "scripts_session_evidence_errorline",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19417,6 +19816,127 @@
       "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_sh_scripts_session_evidence",
       "target": "c_users_tonyd_desktop_progetti_claude_flutter_skills_retro_scripts_session_evidence_sh__entry"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_assert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_fs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_makeenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_os",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_script",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_slugof",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_spawnsync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test",
+      "target": "retro_session_evidence_test_writetranscript",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/retro/session-evidence.test.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "retro_session_evidence_test_makeenv",
+      "target": "retro_session_evidence_test_slugof",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -23944,9 +24464,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L349",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_audit_presentation_layer_rule_catalog",
-      "target": "rules_catalog_autofill_rules",
-      "confidence_score": 1.0
+      "target": "rules_catalog_autofill_rules"
     },
     {
       "relation": "contains",
@@ -24394,9 +24914,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L351",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_autofill_rules",
-      "target": "rules_catalog_autofill_01",
-      "confidence_score": 1.0
+      "target": "rules_catalog_autofill_01"
     },
     {
       "relation": "contains",
@@ -24404,9 +24924,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L360",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_autofill_rules",
-      "target": "rules_catalog_autofill_02",
-      "confidence_score": 1.0
+      "target": "rules_catalog_autofill_02"
     },
     {
       "relation": "contains",
@@ -24414,9 +24934,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L369",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_autofill_rules",
-      "target": "rules_catalog_autofill_03",
-      "confidence_score": 1.0
+      "target": "rules_catalog_autofill_03"
     },
     {
       "relation": "contains",
@@ -24424,9 +24944,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L378",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_autofill_rules",
-      "target": "rules_catalog_autofill_04",
-      "confidence_score": 1.0
+      "target": "rules_catalog_autofill_04"
     },
     {
       "relation": "references",
@@ -24954,9 +25474,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill",
-      "target": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_credential_form_autofill_autofill_01_04"
     },
     {
       "relation": "contains",
@@ -24964,9 +25484,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_after",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_after"
     },
     {
       "relation": "contains",
@@ -24974,9 +25494,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_before_flagged_autofill_01_02_03",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_before_flagged_autofill_01_02_03"
     },
     {
       "relation": "contains",
@@ -24984,9 +25504,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_change_password_save_request_before_clearing",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_change_password_save_request_before_clearing"
     },
     {
       "relation": "contains",
@@ -24994,9 +25514,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_fixtures",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_fixtures"
     },
     {
       "relation": "contains",
@@ -25004,9 +25524,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_hint_table",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_hint_table"
     },
     {
       "relation": "contains",
@@ -25014,9 +25534,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_pitfalls",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_pitfalls"
     },
     {
       "relation": "contains",
@@ -25024,9 +25544,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
-      "target": "patterns_autofill_why",
-      "confidence_score": 1.0
+      "target": "patterns_autofill_why"
     },
     {
       "relation": "contains",
@@ -25664,9 +26184,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/robot-testing.md",
       "source_location": "L131",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_robot_testing_robot_testing_pattern_audit_rules",
-      "target": "patterns_robot_testing_asserting_the_autofill_save_request",
-      "confidence_score": 1.0
+      "target": "patterns_robot_testing_asserting_the_autofill_save_request"
     },
     {
       "relation": "contains",
@@ -36584,5 +37104,5 @@
       "source_file": "skills/sentry-init/references/logger-decorator-pattern.md"
     }
   ],
-  "built_at_commit": "1fda3330497327c0e8afb5d22102bba9e0064a45"
+  "built_at_commit": "a69ba44a0670732b6494e4235b863c11c5288b7c"
 }

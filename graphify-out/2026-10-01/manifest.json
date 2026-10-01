@@ -65,8 +65,8 @@
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
   "README.md": {
-    "mtime": 1790879440.9207547,
-    "ast_hash": "045adf0d09b462e9e00503af4284a2dd",
+    "mtime": 1790879810.381721,
+    "ast_hash": "591a7425ef796c6f38db8549bd15f3de",
     "semantic_hash": ""
   },
   "agents/prompt-engineer.md": {
@@ -80,8 +80,8 @@
     "semantic_hash": ""
   },
   "ai_docs/ARCHITECTURE.md": {
-    "mtime": 1790879440.9292464,
-    "ast_hash": "9b664a192e6873a44c269d3395bc0a23",
+    "mtime": 1790879810.3837218,
+    "ast_hash": "41a150d13327271f6f9b7a4f529da4d5",
     "semantic_hash": ""
   },
   "ai_docs/CONTRIBUTING.md": {
@@ -105,13 +105,13 @@
     "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
   },
   "skills/audit-presentation-layer/SKILL.md": {
-    "mtime": 1790879433.035134,
-    "ast_hash": "107a1cfe7e9c0565bbfb76264e8381b6",
+    "mtime": 1790879810.3857172,
+    "ast_hash": "f0e73b057d6c98874a83f7a10d12c73b",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/CATALOG.md": {
-    "mtime": 1790879430.46514,
-    "ast_hash": "47c1853217885bc842127fbb91be877f",
+    "mtime": 1790879810.387714,
+    "ast_hash": "4bb009ed059789708a30266f2e2182a7",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/breaking/flutter-accessibility-testing.md": {
@@ -160,9 +160,9 @@
     "semantic_hash": "c8a1de98d33264b41a925e54ea2df384"
   },
   "skills/audit-presentation-layer/rules/patterns/robot-testing.md": {
-    "mtime": 1779217335.0230691,
-    "ast_hash": "46555332f07d1fb2ecd05d317bb44f55",
-    "semantic_hash": "46555332f07d1fb2ecd05d317bb44f55"
+    "mtime": 1790879810.3907816,
+    "ast_hash": "96661fd4c8d0c7ffe5065c8d5560dc5d",
+    "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/web-interaction-affordances.md": {
     "mtime": 1780944188.327235,
@@ -555,7 +555,7 @@
     "semantic_hash": ""
   },
   "skills.sh.json": {
-    "mtime": 1790879440.9292464,
+    "mtime": 1790879466.9606972,
     "ast_hash": "ca09ed0bcb6ee1392f9ba4e6a5dc1def",
     "semantic_hash": ""
   },
@@ -735,38 +735,43 @@
     "semantic_hash": ""
   },
   "skills/asset-preload-init/SKILL.md": {
-    "mtime": 1790879399.7291272,
-    "ast_hash": "4a181a3d3e8bf21a1e35b999fa9cb14c",
+    "mtime": 1790879466.9627097,
+    "ast_hash": "a422fc14134e7414974fe603b8c795e5",
     "semantic_hash": ""
   },
   "skills/asset-preload-init/references/loader-cache-matrix.md": {
-    "mtime": 1790879378.1987307,
-    "ast_hash": "bfe4775b10e7a5b0265d5aff9f516109",
+    "mtime": 1790879466.9667242,
+    "ast_hash": "71782dc8a0ec8e238b906f014f9f49b6",
     "semantic_hash": ""
   },
   "skills/asset-preload-init/references/size-and-dead-assets.md": {
-    "mtime": 1790879380.6619806,
-    "ast_hash": "727e5851e846324be13fcd2aca76f562",
+    "mtime": 1790879466.9667242,
+    "ast_hash": "8fa6bb07fff8e6fe09292e4f3e9c6e0d",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md": {
-    "mtime": 1790879414.5312936,
-    "ast_hash": "abde39f2d66fc43697bf28a38814ca1a",
+    "mtime": 1790879466.9715335,
+    "ast_hash": "d49a991f9672e45aa02f855bdd26be35",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md": {
-    "mtime": 1790879414.6350143,
-    "ast_hash": "9056df1b5e62b819e339dcd3bff5d495",
+    "mtime": 1790879466.9740522,
+    "ast_hash": "392d06a3ade619a083f4d32e800c0340",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/asset-unused.md": {
-    "mtime": 1790879414.7518322,
-    "ast_hash": "e9a0720d17d02857fc344c020f67e7e2",
+    "mtime": 1790879466.9745593,
+    "ast_hash": "ffe92533498b6dc6b7ca3fb7af81f301",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md": {
-    "mtime": 1790879414.8659563,
-    "ast_hash": "4ef4975010728f3de11ffdc35a0418f2",
+    "mtime": 1790879466.9765716,
+    "ast_hash": "911351f901fa5646f64c60f34b3a2800",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/autofill.md": {
+    "mtime": 1790879810.3887427,
+    "ast_hash": "4e37d60fca3e8e1d2bed153fc728a601",
     "semantic_hash": ""
   }
 }
