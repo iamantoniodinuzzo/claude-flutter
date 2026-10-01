@@ -66,7 +66,7 @@ Skills are namespaced under `flutter-toolkit:`. Natural language triggers also w
 | `flutter-go-router` | "how do I navigate to X" | GoRouter routes, guards, shell nav, deep linking |
 | `flutter-melos-workspace` | "set up Melos" | Monorepo orchestration |
 | `maestro-screenshot-flow` | "create maestro flow" | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers |
-| `audit-presentation-layer` | "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout, responsive layout, web affordances — platform-aware (auto-detect / `--platform`) |
+| `audit-presentation-layer` | "audit presentation layer" | Rules-based static audit: Riverpod, Robot Testing, GoRouter, layout, responsive layout, assets, credential autofill, web affordances — platform-aware (auto-detect / `--platform`) |
 | `audit-domain-layer` | "audit domain layer" | Rules-based static audit: infra imports in domain, untyped/non-sealed exceptions, entity serialization, hardcoded UI strings |
 | `audit-data-layer` | "audit data layer" | Rules-based static audit: leaky abstractions (raw framework types), missing exception conversion, model mapper gaps, untyped datasource exceptions |
 | `audit-application-layer` | "audit application layer" | Rules-based static audit: Flutter framework imports, redundant manual try/catch in notifiers, mutation return types, unconstrained state types |
