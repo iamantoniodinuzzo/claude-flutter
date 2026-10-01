@@ -65,8 +65,8 @@
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
   "README.md": {
-    "mtime": 1790879440.9207547,
-    "ast_hash": "045adf0d09b462e9e00503af4284a2dd",
+    "mtime": 1787993615.5694807,
+    "ast_hash": "5a4d9058336210a1f81b25fccc12997f",
     "semantic_hash": ""
   },
   "agents/prompt-engineer.md": {
@@ -80,8 +80,8 @@
     "semantic_hash": ""
   },
   "ai_docs/ARCHITECTURE.md": {
-    "mtime": 1790879440.9292464,
-    "ast_hash": "9b664a192e6873a44c269d3395bc0a23",
+    "mtime": 1787992118.6881213,
+    "ast_hash": "0de97197935b2dbe9cdd136f45d65e11",
     "semantic_hash": ""
   },
   "ai_docs/CONTRIBUTING.md": {
@@ -105,13 +105,13 @@
     "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
   },
   "skills/audit-presentation-layer/SKILL.md": {
-    "mtime": 1790879433.035134,
-    "ast_hash": "107a1cfe7e9c0565bbfb76264e8381b6",
+    "mtime": 1783404632.088256,
+    "ast_hash": "a95ac558f1483fa6bc517172432b5e0b",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/CATALOG.md": {
-    "mtime": 1790879430.46514,
-    "ast_hash": "47c1853217885bc842127fbb91be877f",
+    "mtime": 1783404632.088256,
+    "ast_hash": "8b21549321528706302da2f4d5aeb138",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/breaking/flutter-accessibility-testing.md": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "skills.sh.json": {
-    "mtime": 1790879440.9292464,
-    "ast_hash": "ca09ed0bcb6ee1392f9ba4e6a5dc1def",
+    "mtime": 1787992118.6955383,
+    "ast_hash": "28324419ed721b70ce76c36801e57cfc",
     "semantic_hash": ""
   },
   "skills/build-filter/scripts/guarded-build.ps1": {
@@ -732,41 +732,6 @@
   "skills/tune-setup/SKILL.md": {
     "mtime": 1787951853.2349148,
     "ast_hash": "6808f05bebb13cf0d8bb773865b41f76",
-    "semantic_hash": ""
-  },
-  "skills/asset-preload-init/SKILL.md": {
-    "mtime": 1790879399.7291272,
-    "ast_hash": "4a181a3d3e8bf21a1e35b999fa9cb14c",
-    "semantic_hash": ""
-  },
-  "skills/asset-preload-init/references/loader-cache-matrix.md": {
-    "mtime": 1790879378.1987307,
-    "ast_hash": "bfe4775b10e7a5b0265d5aff9f516109",
-    "semantic_hash": ""
-  },
-  "skills/asset-preload-init/references/size-and-dead-assets.md": {
-    "mtime": 1790879380.6619806,
-    "ast_hash": "727e5851e846324be13fcd2aca76f562",
-    "semantic_hash": ""
-  },
-  "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md": {
-    "mtime": 1790879414.5312936,
-    "ast_hash": "abde39f2d66fc43697bf28a38814ca1a",
-    "semantic_hash": ""
-  },
-  "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md": {
-    "mtime": 1790879414.6350143,
-    "ast_hash": "9056df1b5e62b819e339dcd3bff5d495",
-    "semantic_hash": ""
-  },
-  "skills/audit-presentation-layer/rules/patterns/asset-unused.md": {
-    "mtime": 1790879414.7518322,
-    "ast_hash": "e9a0720d17d02857fc344c020f67e7e2",
-    "semantic_hash": ""
-  },
-  "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md": {
-    "mtime": 1790879414.8659563,
-    "ast_hash": "4ef4975010728f3de11ffdc35a0418f2",
     "semantic_hash": ""
   }
 }

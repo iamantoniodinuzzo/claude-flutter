@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -123,7 +123,7 @@ For each file:
 1. Read the full file contents.
 2. Apply every heuristic in `rules/CATALOG.md` relevant to the file type **and**
    not gated out by the platform target (see Phase 0 Step 3):
-   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, WEB-01
+   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, ASSET-*, WEB-01
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
@@ -158,6 +158,10 @@ Heuristic application notes:
 - **RESPONSIVE-02**: flag width-like expressions (`constraints.maxWidth`, `size.width`, `width`) compared against 3–4 digit numeric literals in `if`/ternary/`switch` conditions; skip when the value comes from a named constant (e.g. `AppBreakpoints.compact`).
 - **RESPONSIVE-03**: within `Row(` spans, flag the `Row(` line when ≥ 2 children carry `width: <num>` and no `Flexible(`/`Expanded(` appears in the span.
 - **RESPONSIVE-04**: flag literal `crossAxisCount: <num>` in `SliverGridDelegateWithFixedCrossAxisCount(` and `GridView.count(` spans, unless computed from constraints/width.
+- **ASSET-01**: flag `SvgPicture.asset(`/`Image.asset(`/`AssetImage(` in first-route/shell widgets whose path has no `SvgAssetLoader(`/`precacheImage(` warm-up in startup code; skip engine-registry and `rootBundle`-only assets. Warning for SVG, info for raster.
+- **ASSET-02**: needs project root. Flag raster assets whose pixels exceed display logical px × 3 × 1.5, or (display size unknown) decoded `w × h × 4` > 4 MB. Report only.
+- **ASSET-03**: needs project root. Flag pubspec-declared assets with no reference; follow `flutter_gen` accessors and runtime-built paths first. Report only — never delete.
+- **ASSET-04**: flag warm-ups with no error handler at the creation expression, a cache key that cannot match the widget's (`theme`/`colorMapper`/`bundle`/`DefaultSvgTheme`), or `precacheImage` on engine-managed assets.
 - **WEB-01** _(web target only)_: flag `GestureDetector(` or `InkWell(` blocks containing `onTap:` where no `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (~20 lines above). Skip occurrences inside Flutter's built-in button/tile classes.
 
 ---
@@ -207,7 +211,7 @@ Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
                    COUPLING-02, ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-04,
                    ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
                    UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
-                   RESPONSIVE-04, WEB-01
+                   RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, WEB-01
 ```
 
 On response:
