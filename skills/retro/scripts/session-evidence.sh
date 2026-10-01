@@ -5,7 +5,7 @@
 # lives there and not here).
 #
 # Usage:
-#   session-evidence.sh [--transcript <path-to-jsonl>]
+#   session-evidence.sh [--transcript <path-to-jsonl>] [--session <id>] [--list]
 #
 # Companion: session-evidence.ps1 (PowerShell). Both dispatch to session-evidence.js —
 # there is no separate parsing logic to keep in sync, only argument passing.

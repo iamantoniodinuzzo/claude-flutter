@@ -7,7 +7,23 @@
 // compacted.
 //
 // Usage:
-//   node session-evidence.js [--transcript <path-to-jsonl>] [--config-audit]
+//   node session-evidence.js [--transcript <path>] [--session <id>] [--list] [--config-audit]
+//
+// Transcript selection, in order (the header's `selected by:` line says which one fired):
+//   1. --transcript <path>            explicit file.
+//   2. --session <id>                 <id>.jsonl in ANY ~/.claude/projects/* dir (cwd-independent).
+//   3. CLAUDE_CODE_SESSION_ID env     same lookup; Claude Code exports it to tool subprocesses and
+//                                     it equals the transcript filename, so this is exact, not a
+//                                     guess (ref #74).
+//   4. Heuristic (below)              newest *.jsonl for the cwd slug. Only this path can pick a
+//                                     wrong session, so only this path gets the staleness check:
+//                                     if the pick's last event is older than RETRO_STALE_HOURS
+//                                     (default 6) the output carries a WARNING plus a candidate
+//                                     list (cwd-slug dir and `<slug>-*` siblings, e.g. monorepo
+//                                     apps). If exactly one candidate is fresh it is selected.
+//                                     --list prints the candidate list unconditionally.
+// A WARNING means the evidence is UNVERIFIED — same as "no transcript found", never a clean
+// session.
 //
 // --config-audit (opt-in, ADR 0008): appends a fourth block — skill invocations,
 // hook-repetition, hook_cancelled, toolDenialKind breakdown, skill-listing-vs-invoked
@@ -63,6 +79,8 @@ const HOOK_REPEAT_THRESHOLD = 2;
 
 function parseArgs(argv) {
   let transcript = null;
+  let session = null;
+  let list = false;
   let configAudit = false;
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--transcript') {
@@ -70,11 +88,18 @@ function parseArgs(argv) {
       i++;
     } else if (argv[i].startsWith('--transcript=')) {
       transcript = argv[i].slice('--transcript='.length);
+    } else if (argv[i] === '--session') {
+      session = argv[i + 1];
+      i++;
+    } else if (argv[i].startsWith('--session=')) {
+      session = argv[i].slice('--session='.length);
+    } else if (argv[i] === '--list') {
+      list = true;
     } else if (argv[i] === '--config-audit') {
       configAudit = true;
     }
   }
-  return { transcript, configAudit };
+  return { transcript, session, list, configAudit };
 }
 
 function slugForCwd(cwd) {
@@ -176,9 +201,152 @@ function findLatestTranscript() {
   return { path: bestPath, slug, dir, matchedDir: bestDir };
 }
 
+const SESSION_ID_RE = /^[A-Za-z0-9_-]+$/;
+
+// <id>.jsonl in any project dir — cwd-independent (ref #74). The id is validated so it can
+// never be used to build a path outside ~/.claude/projects.
+function findBySessionId(id) {
+  if (!id || !SESSION_ID_RE.test(id)) return null;
+  const projectsRoot = path.join(os.homedir(), '.claude', 'projects');
+  let entries;
+  try {
+    entries = fs.readdirSync(projectsRoot);
+  } catch {
+    return null;
+  }
+  let best = null;
+  let bestMtime = -1;
+  for (const name of entries) {
+    const full = path.join(projectsRoot, name, `${id}.jsonl`);
+    try {
+      const m = fs.statSync(full).mtimeMs;
+      if (m > bestMtime) {
+        bestMtime = m;
+        best = full;
+      }
+    } catch {
+      /* not in this dir */
+    }
+  }
+  return best;
+}
+
+// Cheap per-file summary for the header and candidate list: event count and last-event
+// timestamp (falls back to mtime when the file has no timestamps).
+function transcriptSummary(file) {
+  let events = 0;
+  let lastTs = null;
+  try {
+    for (const line of fs.readFileSync(file, 'utf8').split('\n')) {
+      if (!line.trim()) continue;
+      events++;
+      const m = line.match(/"timestamp":"([^"]+)"/);
+      if (m && (!lastTs || m[1] > lastTs)) lastTs = m[1];
+    }
+  } catch {
+    /* unreadable: report zero events */
+  }
+  let lastMs = lastTs ? Date.parse(lastTs) : NaN;
+  if (Number.isNaN(lastMs)) {
+    try {
+      lastMs = fs.statSync(file).mtimeMs;
+    } catch {
+      lastMs = 0;
+    }
+  }
+  return { events, lastTs, lastMs, id: path.basename(file, '.jsonl') };
+}
+
+function humanAge(ms) {
+  const min = Math.max(0, Math.round(ms / 60000));
+  if (min < 60) return `${min}m`;
+  const h = min / 60;
+  if (h < 48) return `${h.toFixed(1)}h`;
+  return `${Math.round(h / 24)}d`;
+}
+
+// Project dirs for the cwd slug plus `<slug>-*` children (a Melos monorepo has one project
+// dir per app: <root-slug>-apps-<app>). Newest `limit` transcripts across all of them.
+function listCandidates(slug, limit) {
+  const projectsRoot = path.join(os.homedir(), '.claude', 'projects');
+  let entries;
+  try {
+    entries = fs.readdirSync(projectsRoot);
+  } catch {
+    return [];
+  }
+  const target = canonicalSlug(slug);
+  const found = [];
+  for (const name of entries) {
+    const canon = canonicalSlug(name);
+    if (canon !== target && !canon.startsWith(`${target}-`)) continue;
+    const dir = path.join(projectsRoot, name);
+    let files;
+    try {
+      files = fs.readdirSync(dir);
+    } catch {
+      continue;
+    }
+    for (const f of files) {
+      if (!f.endsWith('.jsonl')) continue;
+      const full = path.join(dir, f);
+      let mtime;
+      try {
+        mtime = fs.statSync(full).mtimeMs;
+      } catch {
+        continue;
+      }
+      found.push({ full, dirName: name, mtime });
+    }
+  }
+  return found
+    .sort((a, b) => b.mtime - a.mtime)
+    .slice(0, limit)
+    .map((c) => ({ ...c, ...transcriptSummary(c.full) }));
+}
+
+function staleThresholdMs() {
+  const h = parseFloat(process.env.RETRO_STALE_HOURS);
+  return (Number.isFinite(h) && h > 0 ? h : 6) * 3600000;
+}
+
 function firstLine(text, maxLen) {
   const line = String(text).split('\n')[0];
   return line.length > maxLen ? line.slice(0, maxLen) + '…' : line;
+}
+
+const SHELL_TOOLS = new Set(['Bash', 'PowerShell']);
+
+// What was run, short enough to cite: the command for shells, the path for file tools,
+// else truncated JSON. Newlines collapsed so one error group stays one output line.
+function inputExcerpt(input) {
+  if (!input || typeof input !== 'object') return '';
+  const s =
+    typeof input.command === 'string'
+      ? input.command
+      : typeof input.file_path === 'string'
+        ? input.file_path
+        : JSON.stringify(input);
+  const flat = s.trim().replace(/\s+/g, ' ');
+  return flat.length > 120 ? flat.slice(0, 120) + '…' : flat;
+}
+
+// First line of an error result that looks like the actual error; falls back to the first
+// non-empty line. Shell output often opens with a banner, so line 1 alone is a poor cite.
+function errorLine(text) {
+  const lines = String(text)
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
+  const hit = lines.find((l) => /error|fail|exception/i.test(l)) || lines[0] || '';
+  return hit.length > 100 ? hit.slice(0, 100) + '…' : hit;
+}
+
+// Last two path segments (either separator) — enough to cite, short enough not to truncate
+// to a useless "...\lib\src\feature…" prefix.
+function tailSegments(p) {
+  const parts = p.split(/[\\/]+/).filter(Boolean);
+  return parts.slice(-2).join('/');
 }
 
 function sampleFromContent(content) {
@@ -225,9 +393,58 @@ function parseSkillListing(content) {
 }
 
 function main() {
-  const { transcript: explicit, configAudit } = parseArgs(process.argv.slice(2));
-  const auto = explicit ? null : findLatestTranscript();
-  const transcriptPath = explicit || auto.path;
+  const { transcript: explicit, session, list, configAudit } = parseArgs(process.argv.slice(2));
+
+  // Selection (see header). `notes` are header lines for anything unusual on the way.
+  const notes = [];
+  let transcriptPath = null;
+  let selectedBy = null;
+  let auto = null;
+  let candidates = null;
+  let stale = null; // { ageMs } when the heuristic pick is older than the threshold
+
+  if (explicit) {
+    transcriptPath = explicit;
+    selectedBy = '--transcript';
+  } else if (session) {
+    transcriptPath = findBySessionId(session);
+    selectedBy = `--session ${session}`;
+    if (!transcriptPath) {
+      console.log(`no transcript found for session id ${session} under ~/.claude/projects/*`);
+      process.exit(0);
+    }
+  } else if (process.env.CLAUDE_CODE_SESSION_ID) {
+    const envId = process.env.CLAUDE_CODE_SESSION_ID;
+    transcriptPath = findBySessionId(envId);
+    if (transcriptPath) {
+      selectedBy = `session id (CLAUDE_CODE_SESSION_ID=${envId})`;
+    } else {
+      notes.push(`  [CLAUDE_CODE_SESSION_ID=${envId} has no transcript; fell back to newest-by-mtime]`);
+    }
+  }
+
+  if (!transcriptPath && !explicit) {
+    auto = findLatestTranscript();
+    transcriptPath = auto.path;
+    selectedBy = `newest by mtime in ${auto.matchedDir || auto.dir}`;
+    if (transcriptPath && fs.existsSync(transcriptPath)) {
+      const age = Date.now() - transcriptSummary(transcriptPath).lastMs;
+      if (age > staleThresholdMs()) {
+        stale = { ageMs: age };
+        candidates = listCandidates(auto.slug, 5);
+        const fresh = candidates.filter((c) => Date.now() - c.lastMs <= staleThresholdMs());
+        if (fresh.length === 1) {
+          transcriptPath = fresh[0].full;
+          selectedBy = `candidate scan (only fresh transcript among ${auto.slug}[-*])`;
+          stale = null;
+        }
+      }
+    }
+  }
+  if (list && !candidates && auto) candidates = listCandidates(auto.slug, 5);
+  if (list && !candidates) {
+    candidates = listCandidates(slugForCwd(process.cwd()), 5);
+  }
 
   if (!transcriptPath || !fs.existsSync(transcriptPath)) {
     if (explicit) {
@@ -250,7 +467,8 @@ function main() {
   }
 
   const toolNameById = new Map();
-  const errorsByTool = new Map();
+  const toolInputById = new Map(); // tool_use id -> short, citable excerpt of what was run
+  const errorsByTool = new Map(); // "tool\0excerpt" -> {count, sidechain, sample, name, excerpt}
   const bashCommandCounts = new Map();
   const editedFileCounts = new Map();
   let sessionId = null;
@@ -289,8 +507,11 @@ function main() {
       if (!block || typeof block !== 'object') continue;
 
       if (block.type === 'tool_use') {
-        if (block.id && block.name) toolNameById.set(block.id, block.name);
-        if (block.name === 'Bash' && block.input && typeof block.input.command === 'string') {
+        if (block.id && block.name) {
+          toolNameById.set(block.id, block.name);
+          toolInputById.set(block.id, inputExcerpt(block.input));
+        }
+        if (SHELL_TOOLS.has(block.name) && block.input && typeof block.input.command === 'string') {
           bump(bashCommandCounts, block.input.command.trim(), sidechain);
         }
         if (
@@ -307,8 +528,11 @@ function main() {
 
       if (block.type === 'tool_result' && block.is_error) {
         const name = toolNameById.get(block.tool_use_id) || 'unknown';
-        const rec = bump(errorsByTool, name, sidechain);
-        if (!rec.sample) rec.sample = firstLine(sampleFromContent(block.content), 100);
+        const excerpt = toolInputById.get(block.tool_use_id) || '';
+        const rec = bump(errorsByTool, `${name}\u0001${excerpt}`, sidechain);
+        rec.name = name;
+        rec.excerpt = excerpt;
+        if (!rec.sample) rec.sample = errorLine(sampleFromContent(block.content));
       }
     }
 
@@ -350,26 +574,56 @@ function main() {
     }
   }
 
-  const out = [];
-  out.push(`transcript: ${transcriptPath}`);
-  if (!explicit && auto.matchedDir) {
-    out.push(`  [slug fallback: derived ${auto.dir} missing, matched ${auto.matchedDir}]`);
+  // Header first and impossible to miss (ref #74): which file, how it was chosen, how old it
+  // is. Kept outside OUTPUT_LINE_CAP — it is bounded (<= ~12 lines) and the cap protects the
+  // evidence body, which must not be cut to make room for it.
+  const header = [];
+  header.push(`transcript: ${transcriptPath}`);
+  header.push(`  selected by: ${selectedBy}`);
+  if (auto && auto.matchedDir) {
+    header.push(`  [slug fallback: derived ${auto.dir} missing, matched ${auto.matchedDir}]`);
   }
-  out.push(`session: ${sessionId || 'unknown'}  window: ${firstTs || '?'} .. ${lastTs || '?'}  events: ${eventCount}`);
-  out.push('');
+  notes.forEach((n) => header.push(n));
+  const lastMs = lastTs ? Date.parse(lastTs) : NaN;
+  const ageText = Number.isNaN(lastMs) ? 'unknown' : `${humanAge(Date.now() - lastMs)} ago`;
+  header.push(
+    `session: ${sessionId || 'unknown'}  events: ${eventCount}  ` +
+      `window: ${firstTs || '?'} .. ${lastTs || '?'}  last event: ${ageText}`
+  );
+  if (stale) {
+    header.push(
+      `WARNING: newest transcript is ${humanAge(stale.ageMs)} old (threshold ` +
+        `${humanAge(staleThresholdMs())}), probably NOT the current session — treat the ` +
+        'evidence below as UNVERIFIED, not as a clean session. Re-run with --session <id>.'
+    );
+  }
+  if (candidates) {
+    header.push(`candidates (${candidates.length}, newest first):`);
+    candidates.forEach((c) => {
+      header.push(
+        `  ${c.id}  ${humanAge(Date.now() - c.lastMs)} ago  events: ${c.events}  dir: ${c.dirName}`
+      );
+    });
+    if (!candidates.length) header.push('  (none found for this cwd slug)');
+  }
+  header.push('');
 
+  const out = [];
   const totalErrors = [...errorsByTool.values()].reduce((s, r) => s + r.count, 0);
   out.push(`tool errors: ${totalErrors}`);
-  [...errorsByTool.entries()]
-    .sort((a, b) => b[1].count - a[1].count)
+  [...errorsByTool.values()]
+    .sort((a, b) => b.count - a.count)
     .slice(0, TOP_N)
-    .forEach(([name, rec]) => {
-      out.push(`  ${name} x${rec.count}${rec.sidechain ? ' [subagent]' : ''} — ${rec.sample}`);
+    .forEach((rec) => {
+      const ran = rec.excerpt ? ` \`${rec.excerpt}\`` : '';
+      out.push(
+        `  ${rec.name} x${rec.count}${rec.sidechain ? ' [subagent]' : ''}${ran} → ${rec.sample}`
+      );
     });
   out.push('');
 
   const repeatedCmds = [...bashCommandCounts.entries()].filter(([, r]) => r.count > 1);
-  out.push(`repeated bash commands: ${repeatedCmds.length}`);
+  out.push(`repeated shell commands: ${repeatedCmds.length}`);
   repeatedCmds
     .sort((a, b) => b[1].count - a[1].count)
     .slice(0, TOP_N)
@@ -384,11 +638,11 @@ function main() {
     .sort((a, b) => b[1].count - a[1].count)
     .slice(0, TOP_N)
     .forEach(([fp, rec]) => {
-      out.push(`  x${rec.count}${rec.sidechain ? ' [subagent]' : ''} ${firstLine(fp, 90)}`);
+      out.push(`  x${rec.count}${rec.sidechain ? ' [subagent]' : ''} ${tailSegments(fp)}`);
     });
 
   if (!configAudit) {
-    console.log(out.slice(0, OUTPUT_LINE_CAP).join('\n'));
+    console.log(header.concat(out.slice(0, OUTPUT_LINE_CAP)).join('\n'));
     return;
   }
 
@@ -450,11 +704,11 @@ function main() {
   if (out.length > totalCap) {
     const omitted = out.length - (totalCap - 1);
     console.log(
-      out.slice(0, totalCap - 1).join('\n') +
+      header.concat(out.slice(0, totalCap - 1)).join('\n') +
         `\n... output truncated at ${totalCap} lines (${omitted} more line(s) omitted)`
     );
   } else {
-    console.log(out.join('\n'));
+    console.log(header.concat(out).join('\n'));
   }
 }
 
