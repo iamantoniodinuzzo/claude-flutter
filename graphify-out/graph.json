@@ -650,7 +650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_skill_reviewer",
-      "community": 121,
+      "community": 56,
       "norm_label": "skill-reviewer.md"
     },
     {
@@ -830,7 +830,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "agents_prompt_engineer_development_workflow",
-      "community": 119,
+      "community": 56,
       "norm_label": "development workflow"
     },
     {
@@ -840,7 +840,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "agents_prompt_engineer_1_requirements_analysis",
-      "community": 119,
+      "community": 56,
       "norm_label": "1. requirements analysis"
     },
     {
@@ -850,7 +850,7 @@
       "source_location": "L185",
       "_origin": "ast",
       "id": "agents_prompt_engineer_2_implementation_phase",
-      "community": 119,
+      "community": 56,
       "norm_label": "2. implementation phase"
     },
     {
@@ -860,7 +860,7 @@
       "source_location": "L226",
       "_origin": "ast",
       "id": "agents_prompt_engineer_3_prompt_excellence",
-      "community": 119,
+      "community": 56,
       "norm_label": "3. prompt excellence"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_riverpod_reviewer",
-      "community": 56,
+      "community": 84,
       "norm_label": "riverpod-reviewer.md"
     },
     {
@@ -960,7 +960,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "agents_riverpod_reviewer_output_format",
-      "community": 56,
+      "community": 84,
       "norm_label": "output format"
     },
     {
@@ -970,7 +970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_architecture",
-      "community": 56,
+      "community": 51,
       "norm_label": "architecture.md"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_contributing_contributing",
-      "community": 51,
+      "community": 170,
       "norm_label": "contributing"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "ai_docs_contributing_adding_a_new_skill",
-      "community": 51,
+      "community": 170,
       "norm_label": "adding a new skill"
     },
     {
@@ -1090,7 +1090,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ai_docs_contributing_fetching_upstream_rule_docs_flutter_ai_toolkit",
-      "community": 51,
+      "community": 170,
       "norm_label": "fetching upstream rule docs (flutter_ai_toolkit)"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ai_docs_contributing_version_bump",
-      "community": 51,
+      "community": 170,
       "norm_label": "version bump"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "ai_docs_contributing_tracking_gotcha",
-      "community": 51,
+      "community": 170,
       "norm_label": "tracking gotcha"
     },
     {
@@ -1120,7 +1120,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_flutter_rules",
-      "community": 3,
+      "community": 51,
       "norm_label": "flutter_rules.md"
     },
     {
@@ -5267,7 +5267,7 @@
       "label": "Phase 4 \u2014 Report",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L169",
+      "source_location": "L173",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_4_report",
       "community": 32,
@@ -5277,7 +5277,7 @@
       "label": "Phase 5 \u2014 Fix prompt",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L202",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_5_fix_prompt",
       "community": 32,
@@ -5287,7 +5287,7 @@
       "label": "Usage examples",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L232",
+      "source_location": "L237",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_usage_examples",
       "community": 32,
@@ -5297,7 +5297,7 @@
       "label": "Notes",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L243",
+      "source_location": "L248",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_notes",
       "community": 32,
@@ -5330,7 +5330,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "rules_catalog_riverpod_widget_rules",
-      "community": 11,
+      "community": 175,
       "norm_label": "riverpod widget rules"
     },
     {
@@ -5340,7 +5340,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "rules_catalog_riv_widget_01",
-      "community": 11,
+      "community": 175,
       "norm_label": "riv-widget-01"
     },
     {
@@ -5350,7 +5350,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "rules_catalog_riv_widget_02",
-      "community": 11,
+      "community": 175,
       "norm_label": "riv-widget-02"
     },
     {
@@ -5360,7 +5360,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "rules_catalog_riv_widget_03",
-      "community": 11,
+      "community": 175,
       "norm_label": "riv-widget-03"
     },
     {
@@ -5370,7 +5370,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "rules_catalog_riv_widget_04",
-      "community": 11,
+      "community": 175,
       "norm_label": "riv-widget-04"
     },
     {
@@ -5380,7 +5380,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "rules_catalog_rebuild_isolation_rules",
-      "community": 11,
+      "community": 173,
       "norm_label": "rebuild isolation rules"
     },
     {
@@ -5390,7 +5390,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "rules_catalog_rebuild_01",
-      "community": 11,
+      "community": 173,
       "norm_label": "rebuild-01"
     },
     {
@@ -5400,7 +5400,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "rules_catalog_rebuild_02",
-      "community": 11,
+      "community": 173,
       "norm_label": "rebuild-02"
     },
     {
@@ -5410,7 +5410,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "rules_catalog_rebuild_03",
-      "community": 11,
+      "community": 173,
       "norm_label": "rebuild-03"
     },
     {
@@ -5420,7 +5420,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "rules_catalog_rebuild_04",
-      "community": 11,
+      "community": 173,
       "norm_label": "rebuild-04"
     },
     {
@@ -5430,7 +5430,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "rules_catalog_widget_extraction_cohesion_coupling_rules",
-      "community": 11,
+      "community": 121,
       "norm_label": "widget extraction & cohesion/coupling rules"
     },
     {
@@ -5440,7 +5440,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "rules_catalog_extract_01",
-      "community": 11,
+      "community": 121,
       "norm_label": "extract-01"
     },
     {
@@ -5450,7 +5450,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "rules_catalog_extract_02",
-      "community": 11,
+      "community": 121,
       "norm_label": "extract-02"
     },
     {
@@ -5460,7 +5460,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "rules_catalog_cohesion_01",
-      "community": 11,
+      "community": 121,
       "norm_label": "cohesion-01"
     },
     {
@@ -5470,7 +5470,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "rules_catalog_coupling_01",
-      "community": 11,
+      "community": 121,
       "norm_label": "coupling-01"
     },
     {
@@ -5480,7 +5480,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "rules_catalog_coupling_02",
-      "community": 11,
+      "community": 121,
       "norm_label": "coupling-02"
     },
     {
@@ -5490,7 +5490,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "rules_catalog_robot_testing_pattern_rules",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot testing pattern rules"
     },
     {
@@ -5500,7 +5500,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "rules_catalog_robot_01",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot-01"
     },
     {
@@ -5510,7 +5510,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "rules_catalog_robot_02",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot-02"
     },
     {
@@ -5520,7 +5520,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "rules_catalog_robot_03",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot-03"
     },
     {
@@ -5530,7 +5530,7 @@
       "source_location": "L166",
       "_origin": "ast",
       "id": "rules_catalog_robot_04",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot-04"
     },
     {
@@ -5540,7 +5540,7 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "rules_catalog_robot_05",
-      "community": 11,
+      "community": 145,
       "norm_label": "robot-05"
     },
     {
@@ -5550,7 +5550,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "rules_catalog_gorouter_rules",
-      "community": 11,
+      "community": 176,
       "norm_label": "gorouter rules"
     },
     {
@@ -5560,7 +5560,7 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "rules_catalog_router_01",
-      "community": 11,
+      "community": 176,
       "norm_label": "router-01"
     },
     {
@@ -5570,7 +5570,7 @@
       "source_location": "L197",
       "_origin": "ast",
       "id": "rules_catalog_router_02",
-      "community": 11,
+      "community": 176,
       "norm_label": "router-02"
     },
     {
@@ -5580,7 +5580,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "rules_catalog_layout_antipattern_rules",
-      "community": 11,
+      "community": 177,
       "norm_label": "layout antipattern rules"
     },
     {
@@ -5590,7 +5590,7 @@
       "source_location": "L210",
       "_origin": "ast",
       "id": "rules_catalog_layout_01",
-      "community": 11,
+      "community": 177,
       "norm_label": "layout-01"
     },
     {
@@ -5600,7 +5600,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "rules_catalog_layout_02",
-      "community": 11,
+      "community": 177,
       "norm_label": "layout-02"
     },
     {
@@ -5650,7 +5650,7 @@
       "source_location": "L256",
       "_origin": "ast",
       "id": "rules_catalog_responsive_layout_rules",
-      "community": 11,
+      "community": 174,
       "norm_label": "responsive layout rules"
     },
     {
@@ -5660,7 +5660,7 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "rules_catalog_responsive_01",
-      "community": 11,
+      "community": 174,
       "norm_label": "responsive-01"
     },
     {
@@ -5670,7 +5670,7 @@
       "source_location": "L267",
       "_origin": "ast",
       "id": "rules_catalog_responsive_02",
-      "community": 11,
+      "community": 174,
       "norm_label": "responsive-02"
     },
     {
@@ -5680,7 +5680,7 @@
       "source_location": "L276",
       "_origin": "ast",
       "id": "rules_catalog_responsive_03",
-      "community": 11,
+      "community": 174,
       "norm_label": "responsive-03"
     },
     {
@@ -5690,7 +5690,7 @@
       "source_location": "L285",
       "_origin": "ast",
       "id": "rules_catalog_responsive_04",
-      "community": 11,
+      "community": 174,
       "norm_label": "responsive-04"
     },
     {
@@ -5720,7 +5720,7 @@
       "source_location": "L309",
       "_origin": "ast",
       "id": "rules_catalog_asset_loading_rules",
-      "community": 11,
+      "community": 171,
       "norm_label": "asset loading rules"
     },
     {
@@ -5730,7 +5730,7 @@
       "source_location": "L311",
       "_origin": "ast",
       "id": "rules_catalog_asset_01",
-      "community": 11,
+      "community": 171,
       "norm_label": "asset-01"
     },
     {
@@ -5740,7 +5740,7 @@
       "source_location": "L320",
       "_origin": "ast",
       "id": "rules_catalog_asset_02",
-      "community": 11,
+      "community": 171,
       "norm_label": "asset-02"
     },
     {
@@ -5750,7 +5750,7 @@
       "source_location": "L329",
       "_origin": "ast",
       "id": "rules_catalog_asset_03",
-      "community": 11,
+      "community": 171,
       "norm_label": "asset-03"
     },
     {
@@ -5760,14 +5760,64 @@
       "source_location": "L338",
       "_origin": "ast",
       "id": "rules_catalog_asset_04",
-      "community": 11,
+      "community": 171,
       "norm_label": "asset-04"
+    },
+    {
+      "label": "Autofill rules",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L349",
+      "_origin": "ast",
+      "id": "rules_catalog_autofill_rules",
+      "community": 172,
+      "norm_label": "autofill rules"
+    },
+    {
+      "label": "AUTOFILL-01",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L351",
+      "_origin": "ast",
+      "id": "rules_catalog_autofill_01",
+      "community": 172,
+      "norm_label": "autofill-01"
+    },
+    {
+      "label": "AUTOFILL-02",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L360",
+      "_origin": "ast",
+      "id": "rules_catalog_autofill_02",
+      "community": 172,
+      "norm_label": "autofill-02"
+    },
+    {
+      "label": "AUTOFILL-03",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L369",
+      "_origin": "ast",
+      "id": "rules_catalog_autofill_03",
+      "community": 172,
+      "norm_label": "autofill-03"
+    },
+    {
+      "label": "AUTOFILL-04",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L378",
+      "_origin": "ast",
+      "id": "rules_catalog_autofill_04",
+      "community": 172,
+      "norm_label": "autofill-04"
     },
     {
       "label": "Adding new rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L349",
+      "source_location": "L389",
       "_origin": "ast",
       "id": "skills_audit_presentation_layer_rules_catalog_md_rules_catalog_adding_new_rules",
       "community": 11,
@@ -6252,6 +6302,96 @@
       "id": "patterns_asset_warmup_safety_correct_form",
       "community": 157,
       "norm_label": "correct form"
+    },
+    {
+      "label": "autofill.md",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "patterns_autofill",
+      "community": 119,
+      "norm_label": "autofill.md"
+    },
+    {
+      "label": "Credential-form autofill (AUTOFILL-01..04)",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "community": 119,
+      "norm_label": "credential-form autofill (autofill-01..04)"
+    },
+    {
+      "label": "Why",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "patterns_autofill_why",
+      "community": 119,
+      "norm_label": "why"
+    },
+    {
+      "label": "Hint table",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "patterns_autofill_hint_table",
+      "community": 119,
+      "norm_label": "hint table"
+    },
+    {
+      "label": "Before (flagged AUTOFILL-01/02/03)",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "patterns_autofill_before_flagged_autofill_01_02_03",
+      "community": 119,
+      "norm_label": "before (flagged autofill-01/02/03)"
+    },
+    {
+      "label": "After",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "patterns_autofill_after",
+      "community": 119,
+      "norm_label": "after"
+    },
+    {
+      "label": "Change-password: save request before clearing",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "patterns_autofill_change_password_save_request_before_clearing",
+      "community": 119,
+      "norm_label": "change-password: save request before clearing"
+    },
+    {
+      "label": "Pitfalls",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "patterns_autofill_pitfalls",
+      "community": 119,
+      "norm_label": "pitfalls"
+    },
+    {
+      "label": "Fixtures",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "id": "patterns_autofill_fixtures",
+      "community": 119,
+      "norm_label": "fixtures"
     },
     {
       "label": "flutter-side-effects.md",
@@ -6952,6 +7092,16 @@
       "id": "patterns_robot_testing_do_not",
       "community": 9,
       "norm_label": "do not"
+    },
+    {
+      "label": "Asserting the autofill save request",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/robot-testing.md",
+      "source_location": "L131",
+      "_origin": "ast",
+      "id": "patterns_robot_testing_asserting_the_autofill_save_request",
+      "community": 9,
+      "norm_label": "asserting the autofill save request"
     },
     {
       "label": "web-interaction-affordances.md",
@@ -15873,7 +16023,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 3,
       "norm_label": "audit-presentation-layer skill.md",
       "id": "audit_presentation_layer_skill_md"
     },
@@ -15899,7 +16049,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 51,
       "norm_label": "dispatcher skill pattern",
       "id": "concept_dispatcher_skill"
     },
@@ -15912,7 +16062,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 3,
       "norm_label": "self-contained skill pattern",
       "id": "concept_self_contained_skill"
     },
@@ -15925,7 +16075,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 84,
       "norm_label": "riverpod v3 provider rules",
       "id": "concept_riverpod_v3_rules"
     },
@@ -15964,7 +16114,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 56,
+      "community": 3,
       "norm_label": "platform-aware rule gating",
       "id": "concept_platform_aware_audit"
     },
@@ -16003,7 +16153,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 121,
+      "community": 56,
       "norm_label": "iamantoniodinuzzo/flutter_ai_toolkit upstream repo",
       "id": "concept_flutter_ai_toolkit_upstream"
     },
@@ -16029,7 +16179,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 121,
+      "community": 56,
       "norm_label": "skill structural conformance checks",
       "id": "concept_skill_reviewer_checks"
     },
@@ -16042,7 +16192,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 84,
       "norm_label": "riverpod widget audit rules riv-widget-01 to 04",
       "id": "concept_riv_widget_rules"
     },
@@ -18556,7 +18706,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 74,
       "norm_label": "overridewithvalue(asyncdata) for synchronous computed providers",
       "id": "unit_test_override_with_value_sync"
     },
@@ -18621,7 +18771,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 77,
       "norm_label": "futureprovider error pattern b: manual container + container.pump()",
       "id": "unit_test_future_error_pattern_b"
     },
@@ -18648,7 +18798,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 77,
       "norm_label": "streamcontroller for fine-grained emission control in ref.listen tests",
       "id": "unit_test_stream_controller_pattern"
     },
@@ -18675,7 +18825,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 77,
       "norm_label": "pattern: notifier whose build() watches a streamprovider",
       "id": "unit_test_notifier_stream_deps"
     },
@@ -18688,7 +18838,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 77,
       "norm_label": "never subclass _$foonotifier (private generated base class)",
       "id": "unit_test_no_subclass_private_notifier"
     },
@@ -18701,7 +18851,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 77,
       "norm_label": "notifier stream dep strategy a: overridewith stream (neutralise build())",
       "id": "unit_test_notifier_strategy_a"
     },
@@ -18714,7 +18864,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 74,
       "norm_label": "notifier stream dep strategy b: overridewithvalue(asyncdata) for build() logic",
       "id": "unit_test_notifier_strategy_b"
     },
@@ -18780,7 +18930,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 145,
+      "community": 74,
       "norm_label": "streamprovider override strategy b: overridewithvalue asyncdata (sync)",
       "id": "unit_test_stream_override_strategy_b"
     },
@@ -21304,9 +21454,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill",
-      "target": "asset_preload_init_skill_asset_preload_init",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_asset_preload_init"
     },
     {
       "relation": "contains",
@@ -21314,9 +21464,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L123",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_audit_branch",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_audit_branch"
     },
     {
       "relation": "contains",
@@ -21324,9 +21474,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_notes",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_notes"
     },
     {
       "relation": "contains",
@@ -21334,9 +21484,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_0_intake_classify",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_0_intake_classify"
     },
     {
       "relation": "contains",
@@ -21344,9 +21494,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_1_inventory_and_classify",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_1_inventory_and_classify"
     },
     {
       "relation": "contains",
@@ -21354,9 +21504,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_2_decisions",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_2_decisions"
     },
     {
       "relation": "contains",
@@ -21364,9 +21514,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_3_generate",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_3_generate"
     },
     {
       "relation": "contains",
@@ -21374,9 +21524,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_4_verify",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_4_verify"
     },
     {
       "relation": "contains",
@@ -21384,9 +21534,9 @@
       "source_file": "skills/asset-preload-init/SKILL.md",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "asset_preload_init_skill_asset_preload_init",
-      "target": "asset_preload_init_skill_phase_5_summary",
-      "confidence_score": 1.0
+      "target": "asset_preload_init_skill_phase_5_summary"
     },
     {
       "relation": "contains",
@@ -21394,9 +21544,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_loader_cache_matrix",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_loader_cache_matrix"
     },
     {
       "relation": "contains",
@@ -21404,9 +21554,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_adjacent_optional",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_adjacent_optional"
     },
     {
       "relation": "contains",
@@ -21414,9 +21564,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_cache_key_preconditions",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_cache_key_preconditions"
     },
     {
       "relation": "contains",
@@ -21424,9 +21574,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_error_handling_at_creation",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_error_handling_at_creation"
     },
     {
       "relation": "contains",
@@ -21434,9 +21584,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_svg_the_wrapper_is_redundant",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_svg_the_wrapper_is_redundant"
     },
     {
       "relation": "contains",
@@ -21444,9 +21594,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L56",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_theme_adaptive_variants",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_theme_adaptive_variants"
     },
     {
       "relation": "contains",
@@ -21454,9 +21604,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_web",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_web"
     },
     {
       "relation": "contains",
@@ -21464,9 +21614,9 @@
       "source_file": "skills/asset-preload-init/references/loader-cache-matrix.md",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_loader_cache_matrix_loader_cache_matrix",
-      "target": "references_loader_cache_matrix_where_to_run",
-      "confidence_score": 1.0
+      "target": "references_loader_cache_matrix_where_to_run"
     },
     {
       "relation": "contains",
@@ -21474,9 +21624,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets",
-      "target": "references_size_and_dead_assets_size_budget_and_dead_assets",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_size_budget_and_dead_assets"
     },
     {
       "relation": "contains",
@@ -21484,9 +21634,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets_size_budget_and_dead_assets",
-      "target": "references_size_and_dead_assets_dead_assets",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_dead_assets"
     },
     {
       "relation": "contains",
@@ -21494,9 +21644,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets_size_budget_and_dead_assets",
-      "target": "references_size_and_dead_assets_reference_implementation",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_reference_implementation"
     },
     {
       "relation": "contains",
@@ -21504,9 +21654,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets_size_budget_and_dead_assets",
-      "target": "references_size_and_dead_assets_size_matters_more_than_precaching",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_size_matters_more_than_precaching"
     },
     {
       "relation": "contains",
@@ -21514,9 +21664,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets_size_matters_more_than_precaching",
-      "target": "references_size_and_dead_assets_fixes_propose_never_run_unasked",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_fixes_propose_never_run_unasked"
     },
     {
       "relation": "contains",
@@ -21524,9 +21674,9 @@
       "source_file": "skills/asset-preload-init/references/size-and-dead-assets.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_size_and_dead_assets_size_matters_more_than_precaching",
-      "target": "references_size_and_dead_assets_oversize_threshold_hybrid",
-      "confidence_score": 1.0
+      "target": "references_size_and_dead_assets_oversize_threshold_hybrid"
     },
     {
       "relation": "contains",
@@ -23784,8 +23934,18 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L309",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_audit_presentation_layer_rule_catalog",
-      "target": "rules_catalog_asset_loading_rules",
+      "target": "rules_catalog_asset_loading_rules"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L349",
+      "weight": 1.0,
+      "source": "rules_catalog_audit_presentation_layer_rule_catalog",
+      "target": "rules_catalog_autofill_rules",
       "confidence_score": 1.0
     },
     {
@@ -24194,9 +24354,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L311",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_asset_loading_rules",
-      "target": "rules_catalog_asset_01",
-      "confidence_score": 1.0
+      "target": "rules_catalog_asset_01"
     },
     {
       "relation": "contains",
@@ -24204,9 +24364,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L320",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_asset_loading_rules",
-      "target": "rules_catalog_asset_02",
-      "confidence_score": 1.0
+      "target": "rules_catalog_asset_02"
     },
     {
       "relation": "contains",
@@ -24214,9 +24374,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L329",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_asset_loading_rules",
-      "target": "rules_catalog_asset_03",
-      "confidence_score": 1.0
+      "target": "rules_catalog_asset_03"
     },
     {
       "relation": "contains",
@@ -24224,8 +24384,48 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L338",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_asset_loading_rules",
-      "target": "rules_catalog_asset_04",
+      "target": "rules_catalog_asset_04"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L351",
+      "weight": 1.0,
+      "source": "rules_catalog_autofill_rules",
+      "target": "rules_catalog_autofill_01",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L360",
+      "weight": 1.0,
+      "source": "rules_catalog_autofill_rules",
+      "target": "rules_catalog_autofill_02",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "rules_catalog_autofill_rules",
+      "target": "rules_catalog_autofill_03",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L378",
+      "weight": 1.0,
+      "source": "rules_catalog_autofill_rules",
+      "target": "rules_catalog_autofill_04",
       "confidence_score": 1.0
     },
     {
@@ -24604,9 +24804,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_first_frame_warmup",
-      "target": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01",
-      "confidence_score": 1.0
+      "target": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01"
     },
     {
       "relation": "contains",
@@ -24614,9 +24814,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01",
-      "target": "patterns_asset_first_frame_warmup_do_not_flag",
-      "confidence_score": 1.0
+      "target": "patterns_asset_first_frame_warmup_do_not_flag"
     },
     {
       "relation": "contains",
@@ -24624,9 +24824,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01",
-      "target": "patterns_asset_first_frame_warmup_fix",
-      "confidence_score": 1.0
+      "target": "patterns_asset_first_frame_warmup_fix"
     },
     {
       "relation": "contains",
@@ -24634,9 +24834,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01",
-      "target": "patterns_asset_first_frame_warmup_flag",
-      "confidence_score": 1.0
+      "target": "patterns_asset_first_frame_warmup_flag"
     },
     {
       "relation": "contains",
@@ -24644,9 +24844,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_first_frame_warmup_asset_first_frame_warm_up_asset_01",
-      "target": "patterns_asset_first_frame_warmup_severity",
-      "confidence_score": 1.0
+      "target": "patterns_asset_first_frame_warmup_severity"
     },
     {
       "relation": "contains",
@@ -24654,9 +24854,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_size_budget",
-      "target": "patterns_asset_size_budget_asset_size_budget_asset_02",
-      "confidence_score": 1.0
+      "target": "patterns_asset_size_budget_asset_size_budget_asset_02"
     },
     {
       "relation": "contains",
@@ -24664,9 +24864,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_size_budget_asset_size_budget_asset_02",
-      "target": "patterns_asset_size_budget_fix",
-      "confidence_score": 1.0
+      "target": "patterns_asset_size_budget_fix"
     },
     {
       "relation": "contains",
@@ -24674,9 +24874,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_size_budget_asset_size_budget_asset_02",
-      "target": "patterns_asset_size_budget_scope",
-      "confidence_score": 1.0
+      "target": "patterns_asset_size_budget_scope"
     },
     {
       "relation": "contains",
@@ -24684,9 +24884,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_size_budget_asset_size_budget_asset_02",
-      "target": "patterns_asset_size_budget_threshold_hybrid",
-      "confidence_score": 1.0
+      "target": "patterns_asset_size_budget_threshold_hybrid"
     },
     {
       "relation": "contains",
@@ -24694,9 +24894,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-unused.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_unused",
-      "target": "patterns_asset_unused_unused_assets_asset_03",
-      "confidence_score": 1.0
+      "target": "patterns_asset_unused_unused_assets_asset_03"
     },
     {
       "relation": "contains",
@@ -24704,9 +24904,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-unused.md",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_unused_unused_assets_asset_03",
-      "target": "patterns_asset_unused_fix",
-      "confidence_score": 1.0
+      "target": "patterns_asset_unused_fix"
     },
     {
       "relation": "contains",
@@ -24714,9 +24914,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-unused.md",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_unused_unused_assets_asset_03",
-      "target": "patterns_asset_unused_heuristic_and_traps",
-      "confidence_score": 1.0
+      "target": "patterns_asset_unused_heuristic_and_traps"
     },
     {
       "relation": "contains",
@@ -24724,9 +24924,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_warmup_safety",
-      "target": "patterns_asset_warmup_safety_warm_up_safety_and_effectiveness_asset_04",
-      "confidence_score": 1.0
+      "target": "patterns_asset_warmup_safety_warm_up_safety_and_effectiveness_asset_04"
     },
     {
       "relation": "contains",
@@ -24734,9 +24934,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_warmup_safety_warm_up_safety_and_effectiveness_asset_04",
-      "target": "patterns_asset_warmup_safety_correct_form",
-      "confidence_score": 1.0
+      "target": "patterns_asset_warmup_safety_correct_form"
     },
     {
       "relation": "contains",
@@ -24744,8 +24944,88 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_asset_warmup_safety_warm_up_safety_and_effectiveness_asset_04",
-      "target": "patterns_asset_warmup_safety_flag",
+      "target": "patterns_asset_warmup_safety_flag"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "patterns_autofill",
+      "target": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_after",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_before_flagged_autofill_01_02_03",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_change_password_save_request_before_clearing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_fixtures",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_hint_table",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_pitfalls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/autofill.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "patterns_autofill_credential_form_autofill_autofill_01_04",
+      "target": "patterns_autofill_why",
       "confidence_score": 1.0
     },
     {
@@ -25377,6 +25657,16 @@
       "confidence_score": 1.0,
       "source": "patterns_robot_testing_robot_testing_pattern_audit_rules",
       "target": "patterns_robot_testing_acceptable_find_bytype_use"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/robot-testing.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "source": "patterns_robot_testing_robot_testing_pattern_audit_rules",
+      "target": "patterns_robot_testing_asserting_the_autofill_save_request",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -36294,5 +36584,5 @@
       "source_file": "skills/sentry-init/references/logger-decorator-pattern.md"
     }
   ],
-  "built_at_commit": "515867ba17284d69ae754eb35e0bfbea21a16d54"
+  "built_at_commit": "1fda3330497327c0e8afb5d22102bba9e0064a45"
 }
