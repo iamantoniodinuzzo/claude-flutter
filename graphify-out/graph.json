@@ -860,7 +860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_skill_reviewer",
-      "community": 3,
+      "community": 177,
       "norm_label": "skill-reviewer.md"
     },
     {
@@ -1330,7 +1330,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_flutter_rules",
-      "community": 94,
+      "community": 3,
       "norm_label": "flutter_rules.md"
     },
     {
@@ -5467,7 +5467,7 @@
       "label": "App-root mode",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L119",
+      "source_location": "L120",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_app_root_mode",
       "community": 32,
@@ -5477,7 +5477,7 @@
       "label": "Phase 3 \u2014 Scan",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L127",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_3_scan",
       "community": 32,
@@ -5487,7 +5487,7 @@
       "label": "Phase 4 \u2014 Report",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L183",
+      "source_location": "L186",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_4_report",
       "community": 32,
@@ -5497,7 +5497,7 @@
       "label": "Phase 5 \u2014 Fix prompt",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L216",
+      "source_location": "L219",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_5_fix_prompt",
       "community": 32,
@@ -5507,7 +5507,7 @@
       "label": "Usage examples",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L247",
+      "source_location": "L250",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_usage_examples",
       "community": 32,
@@ -5517,7 +5517,7 @@
       "label": "Notes",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L258",
+      "source_location": "L261",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_notes",
       "community": 32,
@@ -5794,40 +5794,50 @@
       "norm_label": "router-02"
     },
     {
+      "label": "ROUTER-03",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L206",
+      "_origin": "ast",
+      "id": "rules_catalog_router_03",
+      "community": 176,
+      "norm_label": "router-03"
+    },
+    {
       "label": "Layout antipattern rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L208",
+      "source_location": "L217",
       "_origin": "ast",
       "id": "rules_catalog_layout_antipattern_rules",
-      "community": 177,
+      "community": 11,
       "norm_label": "layout antipattern rules"
     },
     {
       "label": "LAYOUT-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L210",
+      "source_location": "L219",
       "_origin": "ast",
       "id": "rules_catalog_layout_01",
-      "community": 177,
+      "community": 11,
       "norm_label": "layout-01"
     },
     {
       "label": "LAYOUT-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L219",
+      "source_location": "L228",
       "_origin": "ast",
       "id": "rules_catalog_layout_02",
-      "community": 177,
+      "community": 11,
       "norm_label": "layout-02"
     },
     {
       "label": "Side-effect rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L230",
+      "source_location": "L239",
       "_origin": "ast",
       "id": "rules_catalog_side_effect_rules",
       "community": 11,
@@ -5837,7 +5847,7 @@
       "label": "SIDE-FX-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L232",
+      "source_location": "L241",
       "_origin": "ast",
       "id": "rules_catalog_side_fx_01",
       "community": 11,
@@ -5847,7 +5857,7 @@
       "label": "UI string rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L243",
+      "source_location": "L252",
       "_origin": "ast",
       "id": "skills_audit_presentation_layer_rules_catalog_md_rules_catalog_ui_string_rules",
       "community": 11,
@@ -5857,7 +5867,7 @@
       "label": "UI-STR-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L245",
+      "source_location": "L254",
       "_origin": "ast",
       "id": "rules_catalog_ui_str_01",
       "community": 11,
@@ -5867,7 +5877,7 @@
       "label": "Responsive layout rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L256",
+      "source_location": "L265",
       "_origin": "ast",
       "id": "rules_catalog_responsive_layout_rules",
       "community": 174,
@@ -5877,7 +5887,7 @@
       "label": "RESPONSIVE-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L258",
+      "source_location": "L267",
       "_origin": "ast",
       "id": "rules_catalog_responsive_01",
       "community": 174,
@@ -5887,7 +5897,7 @@
       "label": "RESPONSIVE-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L267",
+      "source_location": "L276",
       "_origin": "ast",
       "id": "rules_catalog_responsive_02",
       "community": 174,
@@ -5897,7 +5907,7 @@
       "label": "RESPONSIVE-03",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L276",
+      "source_location": "L285",
       "_origin": "ast",
       "id": "rules_catalog_responsive_03",
       "community": 174,
@@ -5907,7 +5917,7 @@
       "label": "RESPONSIVE-04",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L285",
+      "source_location": "L294",
       "_origin": "ast",
       "id": "rules_catalog_responsive_04",
       "community": 174,
@@ -5917,7 +5927,7 @@
       "label": "Web interaction affordance rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L296",
+      "source_location": "L305",
       "_origin": "ast",
       "id": "rules_catalog_web_interaction_affordance_rules",
       "community": 182,
@@ -5927,7 +5937,7 @@
       "label": "WEB-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L298",
+      "source_location": "L307",
       "_origin": "ast",
       "id": "rules_catalog_web_01",
       "community": 182,
@@ -5937,7 +5947,7 @@
       "label": "WEB-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L307",
+      "source_location": "L316",
       "_origin": "ast",
       "id": "rules_catalog_web_02",
       "community": 182,
@@ -5947,7 +5957,7 @@
       "label": "Asset loading rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L318",
+      "source_location": "L327",
       "_origin": "ast",
       "id": "rules_catalog_asset_loading_rules",
       "community": 171,
@@ -5957,7 +5967,7 @@
       "label": "ASSET-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L320",
+      "source_location": "L329",
       "_origin": "ast",
       "id": "rules_catalog_asset_01",
       "community": 171,
@@ -5967,7 +5977,7 @@
       "label": "ASSET-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L329",
+      "source_location": "L338",
       "_origin": "ast",
       "id": "rules_catalog_asset_02",
       "community": 171,
@@ -5977,7 +5987,7 @@
       "label": "ASSET-03",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L338",
+      "source_location": "L347",
       "_origin": "ast",
       "id": "rules_catalog_asset_03",
       "community": 171,
@@ -5987,7 +5997,7 @@
       "label": "ASSET-04",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L347",
+      "source_location": "L356",
       "_origin": "ast",
       "id": "rules_catalog_asset_04",
       "community": 171,
@@ -5997,7 +6007,7 @@
       "label": "Autofill rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L358",
+      "source_location": "L367",
       "_origin": "ast",
       "id": "rules_catalog_autofill_rules",
       "community": 172,
@@ -6007,7 +6017,7 @@
       "label": "AUTOFILL-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L360",
+      "source_location": "L369",
       "_origin": "ast",
       "id": "rules_catalog_autofill_01",
       "community": 172,
@@ -6017,7 +6027,7 @@
       "label": "AUTOFILL-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L369",
+      "source_location": "L378",
       "_origin": "ast",
       "id": "rules_catalog_autofill_02",
       "community": 172,
@@ -6027,7 +6037,7 @@
       "label": "AUTOFILL-03",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L378",
+      "source_location": "L387",
       "_origin": "ast",
       "id": "rules_catalog_autofill_03",
       "community": 172,
@@ -6037,7 +6047,7 @@
       "label": "AUTOFILL-04",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L387",
+      "source_location": "L396",
       "_origin": "ast",
       "id": "rules_catalog_autofill_04",
       "community": 172,
@@ -6047,7 +6057,7 @@
       "label": "Adding new rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L398",
+      "source_location": "L407",
       "_origin": "ast",
       "id": "skills_audit_presentation_layer_rules_catalog_md_rules_catalog_adding_new_rules",
       "community": 11,
@@ -6822,6 +6832,16 @@
       "id": "patterns_go_router_navigation_conventions_7_nested_routes_inside_statefulshellbranch",
       "community": 75,
       "norm_label": "7) nested routes inside `statefulshellbranch`"
+    },
+    {
+      "label": "8) Page transitions",
+      "file_type": "document",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md",
+      "source_location": "L113",
+      "_origin": "ast",
+      "id": "patterns_go_router_navigation_conventions_8_page_transitions",
+      "community": 75,
+      "norm_label": "8) page transitions"
     },
     {
       "label": "no-ui-strings-outside-ui.md",
@@ -9274,10 +9294,20 @@
       "norm_label": "nested sub-routes"
     },
     {
-      "label": "Deep Linking",
+      "label": "Page Transitions",
       "file_type": "document",
       "source_file": "skills/flutter-go-router/SKILL.md",
       "source_location": "L265",
+      "_origin": "ast",
+      "id": "flutter_go_router_skill_page_transitions",
+      "community": 30,
+      "norm_label": "page transitions"
+    },
+    {
+      "label": "Deep Linking",
+      "file_type": "document",
+      "source_file": "skills/flutter-go-router/SKILL.md",
+      "source_location": "L293",
       "_origin": "ast",
       "id": "flutter_go_router_skill_deep_linking",
       "community": 30,
@@ -9287,7 +9317,7 @@
       "label": "Common Mistakes",
       "file_type": "document",
       "source_file": "skills/flutter-go-router/SKILL.md",
-      "source_location": "L273",
+      "source_location": "L301",
       "_origin": "ast",
       "id": "flutter_go_router_skill_common_mistakes",
       "community": 30,
@@ -9297,7 +9327,7 @@
       "label": "Adding a SentryNavigatorObserver",
       "file_type": "document",
       "source_file": "skills/flutter-go-router/SKILL.md",
-      "source_location": "L287",
+      "source_location": "L316",
       "_origin": "ast",
       "id": "flutter_go_router_skill_adding_a_sentrynavigatorobserver",
       "community": 30,
@@ -9307,7 +9337,7 @@
       "label": "Quick Decision Tree",
       "file_type": "document",
       "source_file": "skills/flutter-go-router/SKILL.md",
-      "source_location": "L313",
+      "source_location": "L342",
       "_origin": "ast",
       "id": "flutter_go_router_skill_quick_decision_tree",
       "community": 30,
@@ -15660,7 +15690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths",
-      "community": 59,
+      "community": 77,
       "norm_label": "future-provider-error-paths.md"
     },
     {
@@ -15670,7 +15700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_pattern_futureprovider_error_paths_auto_dispose",
-      "community": 59,
+      "community": 77,
       "norm_label": "pattern: futureprovider error paths (auto-dispose)"
     },
     {
@@ -15680,7 +15710,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_the_problem",
-      "community": 59,
+      "community": 77,
       "norm_label": "the problem"
     },
     {
@@ -15690,7 +15720,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_two_patterns_choose_based_on_what_you_need_to_verify",
-      "community": 59,
+      "community": 77,
       "norm_label": "two patterns \u2014 choose based on what you need to verify"
     },
     {
@@ -15700,7 +15730,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_pattern_a_state_assertion_only_no_verify_needed",
-      "community": 59,
+      "community": 77,
       "norm_label": "pattern a \u2014 state assertion only (no `verify()` needed)"
     },
     {
@@ -15710,7 +15740,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_pattern_b_execution_verification_need_verify_mockrepo_method",
-      "community": 59,
+      "community": 77,
       "norm_label": "pattern b \u2014 execution verification (need `verify(mockrepo.method)`)"
     },
     {
@@ -15720,7 +15750,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_decision_table",
-      "community": 59,
+      "community": 77,
       "norm_label": "decision table"
     },
     {
@@ -15730,7 +15760,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "patterns_future_provider_error_paths_critical_rule",
-      "community": 59,
+      "community": 77,
       "norm_label": "critical rule"
     },
     {
@@ -16595,7 +16625,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "riverpod v3 provider rules",
       "id": "concept_riverpod_v3_rules"
     },
@@ -16621,7 +16651,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "gorouter navigation rules",
       "id": "concept_gorouter_rules"
     },
@@ -16673,7 +16703,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 177,
       "norm_label": "iamantoniodinuzzo/flutter_ai_toolkit upstream repo",
       "id": "concept_flutter_ai_toolkit_upstream"
     },
@@ -16699,7 +16729,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 177,
       "norm_label": "skill structural conformance checks",
       "id": "concept_skill_reviewer_checks"
     },
@@ -16712,7 +16742,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "riverpod widget audit rules riv-widget-01 to 04",
       "id": "concept_riv_widget_rules"
     },
@@ -16738,7 +16768,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "gorouter audit rules router-01 to 02",
       "id": "concept_gorouter_audit_rules"
     },
@@ -19187,7 +19217,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 59,
+      "community": 77,
       "norm_label": "unit test phase 5 \u2014 riverpod 3.x patterns",
       "id": "unit_test_riverpod_patterns"
     },
@@ -19226,7 +19256,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "overridewithvalue(asyncdata) for synchronous computed providers",
       "id": "unit_test_override_with_value_sync"
     },
@@ -19278,7 +19308,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 59,
+      "community": 77,
       "norm_label": "futureprovider error pattern a: overridewithvalue(asyncerror) \u2014 no verify",
       "id": "unit_test_future_error_pattern_a"
     },
@@ -19305,7 +19335,7 @@
       "author": null,
       "contributor": null,
       "rationale": "pumpEventQueue() drains Dart event loop but NOT Riverpod's _ProviderScheduler. Only container.pump() flushes the Riverpod pipeline for state transitions.",
-      "community": 59,
+      "community": 77,
       "norm_label": "container.pump() vs pumpeventqueue() for riverpod scheduler",
       "id": "unit_test_container_pump"
     },
@@ -19345,7 +19375,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 59,
       "norm_label": "pattern: notifier whose build() watches a streamprovider",
       "id": "unit_test_notifier_stream_deps"
     },
@@ -19358,7 +19388,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 59,
       "norm_label": "never subclass _$foonotifier (private generated base class)",
       "id": "unit_test_no_subclass_private_notifier"
     },
@@ -19371,7 +19401,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 59,
       "norm_label": "notifier stream dep strategy a: overridewith stream (neutralise build())",
       "id": "unit_test_notifier_strategy_a"
     },
@@ -19384,7 +19414,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "notifier stream dep strategy b: overridewithvalue(asyncdata) for build() logic",
       "id": "unit_test_notifier_strategy_b"
     },
@@ -19450,7 +19480,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "streamprovider override strategy b: overridewithvalue asyncdata (sync)",
       "id": "unit_test_stream_override_strategy_b"
     },
@@ -24734,9 +24764,9 @@
       "source_file": "skills/audit-presentation-layer/SKILL.md",
       "source_location": "L119",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "audit_presentation_layer_skill_phase_2_discover_files",
-      "target": "audit_presentation_layer_skill_app_root_mode",
-      "confidence_score": 1.0
+      "target": "audit_presentation_layer_skill_app_root_mode"
     },
     {
       "relation": "contains",
@@ -25102,6 +25132,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
+      "source_location": "L206",
+      "weight": 1.0,
+      "source": "rules_catalog_gorouter_rules",
+      "target": "rules_catalog_router_03",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L210",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -25194,9 +25234,9 @@
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
       "source_location": "L307",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_catalog_web_interaction_affordance_rules",
-      "target": "rules_catalog_web_02",
-      "confidence_score": 1.0
+      "target": "rules_catalog_web_02"
     },
     {
       "relation": "contains",
@@ -26002,6 +26042,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "skills_audit_presentation_layer_rules_patterns_go_router_navigation_conventions_md_patterns_go_router_navigation_conventions_gorouter_navigation_conventions_flutter",
+      "target": "patterns_go_router_navigation_conventions_8_page_transitions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md",
       "source_location": "L6",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -26584,9 +26634,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader",
-      "target": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_web_boot_loader_web_02"
     },
     {
       "relation": "contains",
@@ -26594,9 +26644,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_do_not_flag",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_do_not_flag"
     },
     {
       "relation": "contains",
@@ -26604,9 +26654,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_fix",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_fix"
     },
     {
       "relation": "contains",
@@ -26614,9 +26664,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_flag",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_flag"
     },
     {
       "relation": "contains",
@@ -26624,9 +26674,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_scope",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_scope"
     },
     {
       "relation": "contains",
@@ -26634,9 +26684,9 @@
       "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_severity",
-      "confidence_score": 1.0
+      "target": "patterns_web_boot_loader_severity"
     },
     {
       "relation": "contains",
@@ -28277,6 +28327,16 @@
       "confidence_score": 1.0,
       "source": "flutter_go_router_skill_flutter_gorouter_navigation",
       "target": "flutter_go_router_skill_overview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "skills/flutter-go-router/SKILL.md",
+      "source_location": "L265",
+      "weight": 1.0,
+      "source": "flutter_go_router_skill_flutter_gorouter_navigation",
+      "target": "flutter_go_router_skill_page_transitions",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -35484,9 +35544,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill",
-      "target": "web_loader_init_skill_web_loader_init",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_web_loader_init"
     },
     {
       "relation": "contains",
@@ -35494,9 +35554,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_audit_branch",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_audit_branch"
     },
     {
       "relation": "contains",
@@ -35504,9 +35564,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L127",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_notes",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_notes"
     },
     {
       "relation": "contains",
@@ -35514,9 +35574,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_0_target_detection",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_0_target_detection"
     },
     {
       "relation": "contains",
@@ -35524,9 +35584,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_1_discovery",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_1_discovery"
     },
     {
       "relation": "contains",
@@ -35534,9 +35594,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_2_decisions",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_2_decisions"
     },
     {
       "relation": "contains",
@@ -35544,9 +35604,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_3_generate",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_3_generate"
     },
     {
       "relation": "contains",
@@ -35554,9 +35614,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L78",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_4_verification_checklist",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_4_verification_checklist"
     },
     {
       "relation": "contains",
@@ -35564,9 +35624,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L91",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_5_summary",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_phase_5_summary"
     },
     {
       "relation": "contains",
@@ -35574,9 +35634,9 @@
       "source_file": "skills/web-loader-init/SKILL.md",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_pitfalls_all_enforced_by_the_templates",
-      "confidence_score": 1.0
+      "target": "web_loader_init_skill_pitfalls_all_enforced_by_the_templates"
     },
     {
       "relation": "contains",
@@ -35584,9 +35644,9 @@
       "source_file": "skills/web-loader-init/references/bootstrap-template.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_bootstrap_template",
-      "target": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "confidence_score": 1.0
+      "target": "references_bootstrap_template_flutter_bootstrap_js_template"
     },
     {
       "relation": "contains",
@@ -35594,9 +35654,9 @@
       "source_file": "skills/web-loader-init/references/bootstrap-template.md",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_stages",
-      "confidence_score": 1.0
+      "target": "references_bootstrap_template_stages"
     },
     {
       "relation": "contains",
@@ -35604,9 +35664,9 @@
       "source_file": "skills/web-loader-init/references/bootstrap-template.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_template",
-      "confidence_score": 1.0
+      "target": "references_bootstrap_template_template"
     },
     {
       "relation": "contains",
@@ -35614,9 +35674,9 @@
       "source_file": "skills/web-loader-init/references/bootstrap-template.md",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_why_each_non_obvious_choice",
-      "confidence_score": 1.0
+      "target": "references_bootstrap_template_why_each_non_obvious_choice"
     },
     {
       "relation": "contains",
@@ -35624,9 +35684,9 @@
       "source_file": "skills/web-loader-init/references/markup-and-style.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_markup_and_style",
-      "target": "references_markup_and_style_loader_markup_and_style",
-      "confidence_score": 1.0
+      "target": "references_markup_and_style_loader_markup_and_style"
     },
     {
       "relation": "contains",
@@ -35634,9 +35694,9 @@
       "source_file": "skills/web-loader-init/references/markup-and-style.md",
       "source_location": "L82",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_rules_this_enforces",
-      "confidence_score": 1.0
+      "target": "references_markup_and_style_rules_this_enforces"
     },
     {
       "relation": "contains",
@@ -35644,9 +35704,9 @@
       "source_file": "skills/web-loader-init/references/markup-and-style.md",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_shape_variants",
-      "confidence_score": 1.0
+      "target": "references_markup_and_style_shape_variants"
     },
     {
       "relation": "contains",
@@ -35654,9 +35714,9 @@
       "source_file": "skills/web-loader-init/references/markup-and-style.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_web_index_html",
-      "confidence_score": 1.0
+      "target": "references_markup_and_style_web_index_html"
     },
     {
       "relation": "contains",
@@ -35664,9 +35724,9 @@
       "source_file": "skills/web-loader-init/references/markup-and-style.md",
       "source_location": "L29",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_web_style_css",
-      "confidence_score": 1.0
+      "target": "references_markup_and_style_web_style_css"
     },
     {
       "relation": "references",
@@ -37684,5 +37744,5 @@
       "source_file": "skills/sentry-init/references/logger-decorator-pattern.md"
     }
   ],
-  "built_at_commit": "c14d57302ef3515bf9079fb7dbda97a0f4d0445c"
+  "built_at_commit": "ba1d163375f5ca6231ee61b86188e33ebb86cfa0"
 }

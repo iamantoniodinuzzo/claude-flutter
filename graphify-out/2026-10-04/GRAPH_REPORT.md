@@ -1,16 +1,16 @@
-# Graph Report - claude-flutter  (2026-10-01)
+# Graph Report - claude-flutter  (2026-10-04)
 
 ## Corpus Check
-- 148 files · ~124,868 words
+- 152 files · ~127,529 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1825 nodes · 1772 edges · 180 communities (164 shown, 16 thin omitted)
+- 1856 nodes · 1799 edges · 184 communities (169 shown, 15 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a69ba44a`
+- Built from commit: `c14d5730`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -192,6 +192,10 @@
 - [[_COMMUNITY_Community 177|Community 177]]
 - [[_COMMUNITY_Community 178|Community 178]]
 - [[_COMMUNITY_Community 179|Community 179]]
+- [[_COMMUNITY_Community 180|Community 180]]
+- [[_COMMUNITY_Community 181|Community 181]]
+- [[_COMMUNITY_Community 182|Community 182]]
+- [[_COMMUNITY_Community 183|Community 183]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
@@ -214,8 +218,8 @@
   skills/audit-presentation-layer/rules/CATALOG.md → ai_docs/FLUTTER_RULES.md
 - `README — claude-flutter Toolkit` --references--> `Claude Code Plugin Marketplace`  [EXTRACTED]
   README.md → ai_docs/HOW_TO_CREATE_MARKETPLACE.md
-- `audit-presentation-layer Rule CATALOG.md` --references--> `iamantoniodinuzzo/flutter_ai_toolkit Upstream Repo`  [INFERRED]
-  skills/audit-presentation-layer/rules/CATALOG.md → ai_docs/CONTRIBUTING.md
+- `audit-presentation-layer SKILL.md` --implements--> `Self-Contained Skill Pattern`  [EXTRACTED]
+  skills/audit-presentation-layer/SKILL.md → ai_docs/ARCHITECTURE.md
 
 ## Import Cycles
 - None detected.
@@ -234,7 +238,7 @@
 - **Riverpod Provider Override Strategies in Unit Tests** — unit_test_stream_override_strategy_a, unit_test_stream_override_strategy_b, unit_test_override_with_value_sync, unit_test_notifier_strategy_a, unit_test_notifier_strategy_b [INFERRED 0.85]
 - **Sentry Error Capture Pipeline (Decorator + Observer + Global Hooks)** — sentry_init_sentry_logger_service, sentry_init_async_error_logger, sentry_init_branch_a_decorator, sentry_init_branch_b_observer [INFERRED 0.85]
 
-## Communities (180 total, 16 thin omitted)
+## Communities (184 total, 15 thin omitted)
 
 ### Community 0 - "Unit Test Patterns"
 Cohesion: 0.06
@@ -249,8 +253,8 @@ Cohesion: 0.05
 Nodes (47): beforeSend and beforeSendFeedback, considerInAppFramesByDefault and addInAppInclude, Event Filtering, Sampling, and Data Minimization, Running the Phase 7 smoke test, sampleRate: leave unset, Screenshots, view hierarchy, and PII, tracesSampleRate / profilesSampleRate: opt-in, default off, Where the DioException filter does *not* live (+39 more)
 
 ### Community 3 - "Toolkit Architecture & Documentation"
-Cohesion: 0.22
-Nodes (10): audit-presentation-layer Rule CATALOG.md, GoRouter Audit Rules ROUTER-01 to 02, GoRouter Navigation Rules, Layout Antipattern Audit Rules LAYOUT-01 to 02, Responsive Layout Audit Rule RESPONSIVE-01, Riverpod Widget Audit Rules RIV-WIDGET-01 to 04, Riverpod v3 Provider Rules, Robot Testing Audit Rules ROBOT-01 to 05 (+2 more)
+Cohesion: 0.25
+Nodes (8): audit-presentation-layer Rule CATALOG.md, iamantoniodinuzzo/flutter_ai_toolkit Upstream Repo, Layout Antipattern Audit Rules LAYOUT-01 to 02, Responsive Layout Audit Rule RESPONSIVE-01, Robot Testing Audit Rules ROBOT-01 to 05, Robot Testing Pattern, Skill Structural Conformance Checks, Web Interaction Affordance Audit Rule WEB-01
 
 ### Community 4 - "GoRouter & Widget Testing"
 Cohesion: 0.06
@@ -281,8 +285,8 @@ Cohesion: 0.25
 Nodes (7): author, description, homepage, keywords, license, name, version
 
 ### Community 11 - "Sentry Wiring & Privacy"
-Cohesion: 0.22
-Nodes (8): Audit Presentation Layer — Rule Catalog, Side-effect rules, SIDE-FX-01, UI-STR-01, WEB-01, Web interaction affordance rules, Adding new rules, UI string rules
+Cohesion: 0.29
+Nodes (6): Audit Presentation Layer — Rule Catalog, Side-effect rules, SIDE-FX-01, UI-STR-01, Adding new rules, UI string rules
 
 ### Community 12 - "Accessibility Testing"
 Cohesion: 0.09
@@ -330,7 +334,7 @@ Nodes (17): Android Release — Debug Symbols (dSYM), Android workflow step, Aut
 
 ### Community 32 - "Community 32"
 Cohesion: 0.12
-Nodes (15): Audit Presentation Layer, Folder mode, Notes, Phase 0 — Resolve input and platform, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+7 more)
+Nodes (16): App-root mode, Audit Presentation Layer, Folder mode, Notes, Phase 0 — Resolve input and platform, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan (+8 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.12
@@ -358,7 +362,7 @@ Nodes (15): Audit Domain Layer — Rule Catalog, Dependency isolation rules, DOM
 
 ### Community 39 - "Community 39"
 Cohesion: 0.11
-Nodes (18): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Entity / value object, Exception hierarchy, Pattern References, Phase 0 — Testability Check (+10 more)
+Nodes (18): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Pattern References, Phase 0 — Testability Check, Phase 10 — Final Summary, Phase 1 — Gap Detection (+10 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.14
@@ -437,8 +441,8 @@ Cohesion: 0.18
 Nodes (10): 2.2 Calling `showDialog` / `ScaffoldMessenger` / `Navigator.push` inside `build()`, 2.4 Doing I/O inside `StreamBuilder` / `FutureBuilder` builder, 1. What is a side effect?, 2.1 Calling `setState()` inside `build()`, 2.3 Starting an animation in `build()`, 2.5 Running async work directly in `build()`, 2. Known bad side effects and how to fix them, 3. General DO / DON'T rules (+2 more)
 
 ### Community 59 - "Community 59"
-Cohesion: 0.18
-Nodes (10): Critical rule, Decision table, Pattern A — state assertion only (no `verify()` needed), Pattern B — execution verification (need `verify(mockRepo.method)`), Pattern: FutureProvider Error Paths (auto-dispose), The problem, Two patterns — choose based on what you need to verify, container.pump() vs pumpEventQueue() for Riverpod Scheduler (+2 more)
+Cohesion: 0.10
+Nodes (20): Critical rule, Decision table, Pattern A — state assertion only (no `verify()` needed), Pattern B — execution verification (need `verify(mockRepo.method)`), Pattern: FutureProvider Error Paths (auto-dispose), The problem, Two patterns — choose based on what you need to verify, Key Rules (+12 more)
 
 ### Community 60 - "Community 60"
 Cohesion: 0.18
@@ -497,8 +501,8 @@ Cohesion: 0.22
 Nodes (8): App resolution, Filtering output (bash / macOS / Linux), Filtering output (PowerShell / Windows), Machine-readable output, Notes, Steps, Usage examples, Zero-error false positive guard
 
 ### Community 74 - "Community 74"
-Cohesion: 0.17
-Nodes (11): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains (+3 more)
+Cohesion: 0.22
+Nodes (8): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains
 
 ### Community 75 - "Community 75"
 Cohesion: 0.22
@@ -509,8 +513,8 @@ Cohesion: 0.22
 Nodes (8): 7) Nested routes inside `StatefulShellBranch` (shell routes), 1) Prefer GoRouter APIs for app navigation, 2) Dialogs: `Navigator.pop` vs `context.pop`, 3) Returning values from dialogs, 4) `go` vs `push` on web: URL behavior (go_router v11.1.2+), 5) Back navigation and URL sync on web, 6) Consolidate Scaffolds when overriding the back button, GoRouter navigation conventions (Flutter)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.14
-Nodes (13): Key Rules, Override Strategy, Pattern: Notifier with Internal ref.listen, Setup Pattern, Testability Smell — Flag in Phase 0, The Testing Challenge, What This Covers, FutureProvider Error Pattern B: Manual Container + container.pump() (+5 more)
+Cohesion: 0.33
+Nodes (6): Never Subclass _$FooNotifier (private generated base class), Notifier Stream Dep Strategy A: overrideWith Stream (neutralise build()), Notifier Stream Dep Strategy B: overrideWithValue(AsyncData) for build() Logic, Pattern: Notifier whose build() Watches a StreamProvider, overrideWithValue(AsyncData) for Synchronous Computed Providers, StreamProvider Override Strategy B: overrideWithValue AsyncData (sync)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.22
@@ -577,8 +581,8 @@ Cohesion: 0.25
 Nodes (7): 1. Directory & Layering, 2. Domain Layer, 3. Data Layer (Repository), 4. Application Layer (Service) — **Mandatory for tomcat_portal**, 5. Presentation Layer, 6. Testing, Feature Implementation – Compact Guide
 
 ### Community 94 - "Community 94"
-Cohesion: 0.29
-Nodes (7): Codegen: `--build-filter` vs full rebuild, `dart analyze` scoping, Flutter Rules, GoRouter web rules, Logging format standard, Riverpod v3, Testing conventions
+Cohesion: 0.17
+Nodes (11): Codegen: `--build-filter` vs full rebuild, `dart analyze` scoping, Flutter Rules, GoRouter web rules, Logging format standard, Riverpod v3, Testing conventions, GoRouter Audit Rules ROUTER-01 to 02 (+3 more)
 
 ### Community 95 - "Community 95"
 Cohesion: 0.29
@@ -876,26 +880,46 @@ Nodes (3): GoRouter rules, ROUTER-01, ROUTER-02
 Cohesion: 0.67
 Nodes (3): LAYOUT-01, LAYOUT-02, Layout antipattern rules
 
+### Community 178 - "Community 178"
+Cohesion: 0.18
+Nodes (10): AUDIT branch, Notes, Phase 0 — Target detection, Phase 1 — Discovery, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verification checklist, Phase 5 — Summary (+2 more)
+
 ### Community 179 - "Community 179"
+Cohesion: 0.29
+Nodes (6): Do not flag, Fix, Flag, Scope, Severity, Web boot loader (WEB-02)
+
+### Community 180 - "Community 180"
+Cohesion: 0.33
+Nodes (5): Loader markup and style, Rules this enforces, Shape variants, `web/index.html`, `web/style.css`
+
+### Community 181 - "Community 181"
+Cohesion: 0.40
+Nodes (4): flutter_bootstrap.js template, Stages, Template, Why each non-obvious choice
+
+### Community 182 - "Community 182"
 Cohesion: 0.67
-Nodes (3): Phase 4 — Mocktail Strategy, Pre-stub non-nullable returns — REQUIRED, `verify()` + `verifyInOrder()` — do not mix
+Nodes (3): WEB-01, WEB-02, Web interaction affordance rules
+
+### Community 183 - "Community 183"
+Cohesion: 0.67
+Nodes (3): Entity / value object, Exception hierarchy, Phase 6 — Domain Model & Exception Checklist
 
 ## Knowledge Gaps
-- **1225 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1220 more)
+- **1248 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1243 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Create and distribute a plugin marketplace` connect `Community 57` to `Community 72`, `Community 111`, `Community 86`, `Community 120`, `Community 63`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 57`, `Community 178`, `Community 51`?**
+- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 51`, `Toolkit Architecture & Documentation`, `Community 57`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **Why does `Claude Code Plugin Marketplace` connect `Community 57` to `Community 56`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _1257 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1280 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Unit Test Patterns` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Feature Bootstrapping Workflow` be split into smaller, more focused modules?**
