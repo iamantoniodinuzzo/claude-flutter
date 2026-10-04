@@ -142,6 +142,8 @@ const PageTransitionsTheme appPageTransitionsTheme = PageTransitionsTheme(
 
 Result: native transitions on installed Android/iOS apps, instant navigation on web and desktop.
 
+To generate the theme, wire it into every light/dark theme and migrate the router, run `/page-transitions-init`.
+
 Notes:
 
 - `.android:` dot-shorthand needs Dart 3.10+; otherwise write `TargetPlatform.android`.

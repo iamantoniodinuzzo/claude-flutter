@@ -288,6 +288,7 @@ const PageTransitionsTheme appPageTransitionsTheme = PageTransitionsTheme(
 - Keep an explicit `NoTransitionPage`/`CustomTransitionPage` only for deliberate one-offs (e.g. a full-screen cockpit).
 - `StatefulShellRoute.indexedStack`: branch switches never animate; only pushes inside a branch do.
 - Android 14+: `PredictiveBackPageTransitionsBuilder` can replace `ZoomPageTransitionsBuilder`.
+- Generate and wire this automatically with `/page-transitions-init` (theme file, light + dark wiring, opt-in router migration).
 - Audited by **ROUTER-03** (`audit-presentation-layer`); full write-up in its `go-router-navigation-conventions.md` §8.
 
 ## Deep Linking
