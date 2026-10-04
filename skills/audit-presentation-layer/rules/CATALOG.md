@@ -304,6 +304,15 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 - **Fix**: wrap with `MouseRegion(cursor: SystemMouseCursors.click, child: ...)` for hover; add `FocusableActionDetector` (with `ActivateIntent` → tap handler) or `Focus` + `focusNode` for keyboard access
 - **autofix_safe**: false (wrapping hierarchy and keyboard binding must be reviewed manually)
 
+### WEB-02
+- **Severity**: warning
+- **Platforms**: web
+- **Source**: `rules/patterns/web-boot-loader.md`
+- **What**: Flutter web app ships without a working boot loader — blank white page for 3-5 s while the runtime downloads. Sub-checks: (a) `web/index.html` `<body>` has no visible element before the `flutter_bootstrap.js` script; (b) custom `flutter_bootstrap.js` never listens for `flutter-first-frame` (loader removed on `runApp()` resolve, or never removed); (c) custom `flutter_bootstrap.js` with top-level `const`/`let`/`class` outside an IIFE or block — breaks `flutter run -d chrome` with `Identifier 'loader' has already been declared`; (d) custom bootstrap missing `serviceWorkerSettings` while `--pwa-strategy=none` is not configured; (e) loader styles on `body` (`display:flex`)
+- **Heuristic**: **scope gate** — inspects `web/`, not Dart; run only when the audited input is an app root (directory with `pubspec.yaml`) or `lib/`, skip silently for a feature folder or single file. Read `web/index.html`, `web/flutter_bootstrap.js` (if present) and `web/*.css`. (a) first non-script element child of `<body>` before the bootstrap `<script>`; (b) no `flutter-first-frame` string in the bootstrap; (c) `^(const|let|class)\s` at column 0 outside a function/block, ignoring the `{{flutter_js}}`/`{{flutter_build_config}}` tokens; (d) no `serviceWorkerSettings` and no `--pwa-strategy=none` in CI scripts/`melos.yaml`/docs; (e) `body\s*\{[^}]*display:\s*flex`. Without a custom bootstrap only (a) and (e) apply
+- **Fix**: run `/web-loader-init` (the audit reports, the skill scaffolds); for (c) alone wrap everything after `{{flutter_js}}`/`{{flutter_build_config}}` in `(function () { ... })();`
+- **autofix_safe**: false (loader design, palette and PWA strategy need decisions)
+
 ---
 
 ## Asset loading rules

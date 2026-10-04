@@ -23,7 +23,7 @@ flowchart LR
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
         skills["skills/\nscaffold-feature · unit-test\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup · force-update-init
-asset-preload-init"]
+asset-preload-init · web-loader-init"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -46,7 +46,7 @@ asset-preload-init"]
 | `flutter-go-router` | Navigation: routes, guards, shell navigation, URL-driven state |
 | `flutter-melos-workspace` | Melos monorepo orchestration |
 | `maestro-screenshot-flow` | Maestro YAML for Android screenshots — id-based selectors (`Semantics(identifier:)`), immune to translation and UI refactors; edits app source to add missing identifiers; helper scripts for tree inspection and ADB reset |
-| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, assets, credential autofill, web affordances) — platform-aware (auto-detect / `--platform`) |
+| `audit-presentation-layer` | Rules-based static audit (Riverpod, Robot Testing, GoRouter, layout, responsive, assets, credential autofill, web affordances, web boot loader on app-root runs) — platform-aware (auto-detect / `--platform`) |
 | `audit-domain-layer` | Rules-based static audit: infra imports in domain, untyped/non-sealed exceptions, entity serialization, hardcoded UI strings |
 | `audit-data-layer` | Rules-based static audit: leaky abstractions, missing exception conversion, model mapper gaps, untyped datasource exceptions |
 | `audit-application-layer` | Rules-based static audit: Flutter imports in application code, redundant try/catch in notifiers, mutation return types, unconstrained state types |
@@ -55,6 +55,7 @@ asset-preload-init"]
 | `flutter-flavors` | Init dev/stg/prod flavors (flutter_flavorizr targeted processors, or manual fallback) across Android/iOS/Web + VSCode/Android Studio IDE config; detects an existing partial/broken setup and switches to an AUDIT+FIX branch against a bundled rule catalog; optional multi-project Firebase |
 | `force-update-init` | Bootstrap `force_update_helper`: installs deps, patches `AndroidManifest.xml`, wires `ForceUpdateWidget` into `MaterialApp.builder`/GoRouter, sets up a remote `required_version` source (GitHub Gist, Firebase Remote Config, or a scaffolded Dart Shelf backend), handles non-store distribution (Firebase App Distribution, TestFlight, enterprise); or audits an existing setup against the two silent failure modes (missing `APP_STORE_ID`, missing Android `<queries>` intent) |
 | `asset-preload-init` | Inventory assets by loader/cache, generate only the needed first-frame warm-up (SVG `loadBytes(null)` with error handling at creation; `precacheImage` for raster), report oversized/unused assets; AUDIT mode checks existing warm-ups against `ASSET-01..04` in `audit-presentation-layer` |
+| `web-loader-init` | Scaffold a Flutter web boot loader (overlay + staged progress bar, no Dart): patches `web/index.html`, writes `style.css` and an IIFE-wrapped `flutter_bootstrap.js` that removes the loader on `flutter-first-frame`, conditional `serviceWorkerSettings`; AUDIT mode checks an existing loader against `WEB-02` in `audit-presentation-layer` |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 | `retro` | End-of-task self-audit: reads session transcript for verifiable friction evidence (`scripts/session-evidence.{sh,ps1}`), answers 6 hard questions backed by it, auto-persists learnings to auto-memory with dedup, flags unintegrated git work, proposes fixes (generic, not Flutter-specific) |
 | `tune-setup` | On-demand config & workflow audit: `CLAUDE.md` / `.claude/settings.json`(+`.local`) / hooks / `agents/` / skill-trigger-miss, backed by `retro`'s script extended with an opt-in `--config-audit` flag; proposes config fixes, never runs automatically (generic, not Flutter-specific) |

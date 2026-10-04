@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), web interaction affordances, and the web boot loader (app-root run only). Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -24,10 +24,11 @@ Read the user's request and extract one of:
 
 - **Single file**: a path ending in `.dart`
 - **Feature folder**: a path containing a `presentation/` directory
+- **App root or `lib/`**: a directory containing `pubspec.yaml`, or a `lib/` whose parent has one (enables app-level checks such as WEB-02)
 
 If neither is clear, ask exactly one question:
 
-> "Provide a widget file path or a feature folder path containing a `presentation/` directory."
+> "Provide a widget file path, a feature folder path containing a `presentation/` directory, or an app root."
 
 Do not proceed until a path is confirmed.
 
@@ -113,6 +114,13 @@ Classify each file:
 - `widget` — non-test dart file under `presentation/`
 - `widget-test` — `*_test.dart` file mirroring a presentation widget
 - `domain-file` — dart file outside `presentation/` in the same feature tree
+- `web-entry` — `web/index.html`, `web/flutter_bootstrap.js`, `web/*.css` (**app-root/`lib/` mode only**, web target only)
+
+### App-root mode
+
+When the input is an app root or `lib/`, discover Dart files as in folder mode (all `presentation/` trees under
+`lib/`) and additionally collect the `web-entry` files. For a feature folder or single file, skip `web-entry`
+silently.
 
 ---
 
@@ -126,6 +134,7 @@ For each file:
    - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, ASSET-*, AUTOFILL-*, WEB-01
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
+   - `web-entry` files → apply: WEB-02 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
 
 Heuristic application notes:
@@ -166,6 +175,7 @@ Heuristic application notes:
 - **AUTOFILL-02**: flag password/email/name/phone fields lacking `autofillHints:`, and hint/keyboard mismatches (`AutofillHints.email` without `TextInputType.emailAddress`; `AutofillHints.password` on a new-password field in `register|sign_?up|reset|change_?password` files). Skip non-personal fields (e.g. organisation name).
 - **AUTOFILL-03**: (a) flag `AutofillGroup(` spans without `onDisposeAction: AutofillContextAction.cancel`; (b) flag the owning `State` when no `finishAutofillContext(` follows an awaited success check — skip forgot-password screens; (c) flag `.clear()`/`.text = ''` on credential controllers textually before `finishAutofillContext(` in the success branch.
 - **AUTOFILL-04**: flag classes under `common/`/`shared/`/`widgets/` whose `build` returns `TextFormField(`/`TextField(` and whose constructor has no `autofillHints` parameter.
+- **WEB-02** _(web target, app-root/`lib/` input only)_: inspect `web/` for a missing or broken boot loader — (a) no visible `<body>` element before the bootstrap script, (b) custom `flutter_bootstrap.js` without `flutter-first-frame`, (c) top-level `const`/`let`/`class` outside an IIFE, (d) missing `serviceWorkerSettings` without `--pwa-strategy=none`, (e) `display:flex` on `body`. Skip silently outside app-root mode. Fix text: run `/web-loader-init`.
 - **WEB-01** _(web target only)_: flag `GestureDetector(` or `InkWell(` blocks containing `onTap:` where no `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (~20 lines above). Skip occurrences inside Flutter's built-in button/tile classes.
 
 ---
@@ -216,7 +226,7 @@ Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
                    ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
                    UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
                    RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, AUTOFILL-01, AUTOFILL-02,
-                   AUTOFILL-03 (b/c), WEB-01
+                   AUTOFILL-03 (b/c), WEB-01, WEB-02
 ```
 
 On response:
