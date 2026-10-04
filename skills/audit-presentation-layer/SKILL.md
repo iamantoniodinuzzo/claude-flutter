@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), web interaction affordances, and the web boot loader (app-root run only). Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), web interaction affordances, the web boot loader and the router page-transition strategy (app-root run only). Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -24,7 +24,7 @@ Read the user's request and extract one of:
 
 - **Single file**: a path ending in `.dart`
 - **Feature folder**: a path containing a `presentation/` directory
-- **App root or `lib/`**: a directory containing `pubspec.yaml`, or a `lib/` whose parent has one (enables app-level checks such as WEB-02)
+- **App root or `lib/`**: a directory containing `pubspec.yaml`, or a `lib/` whose parent has one (enables app-level checks such as WEB-02 and ROUTER-03; a `routing/` folder or the router file itself also enables ROUTER-03)
 
 If neither is clear, ask exactly one question:
 
@@ -115,12 +115,13 @@ Classify each file:
 - `widget-test` — `*_test.dart` file mirroring a presentation widget
 - `domain-file` — dart file outside `presentation/` in the same feature tree
 - `web-entry` — `web/index.html`, `web/flutter_bootstrap.js`, `web/*.css` (**app-root/`lib/` mode only**, web target only)
+- `router` — a `.dart` file under `lib/` containing `GoRouter(` or `pageBuilder:` (**app-root/`lib/` mode, a `routing/` folder, or the router file passed directly**; mobile target only)
 
 ### App-root mode
 
 When the input is an app root or `lib/`, discover Dart files as in folder mode (all `presentation/` trees under
-`lib/`) and additionally collect the `web-entry` files. For a feature folder or single file, skip `web-entry`
-silently.
+`lib/`) and additionally collect the `web-entry` and `router` files. For a feature folder or other single file, skip
+`web-entry` and `router` silently.
 
 ---
 
@@ -135,6 +136,7 @@ For each file:
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
    - `web-entry` files → apply: WEB-02 only
+   - `router` files → apply: ROUTER-03 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
 
 Heuristic application notes:
@@ -159,6 +161,7 @@ Heuristic application notes:
 - **ROBOT-05**: flag public `find…()` methods in Robot classes (method name starts with `find` but no leading `_`).
 - **ROUTER-01**: flag `context.push(` and `GoRouter.of(context).push(` in `presentation/` source files.
 - **ROUTER-02**: flag `AppBar(` in `*_screen.dart` files where `leading:` is not present in the same `AppBar(…)` span.
+- **ROUTER-03** _(mobile target, router file, app-root/`lib/`/`routing/` input only)_: flag a ≤ 3-line helper returning `NoTransitionPage(`/`NoTransitionPage<...>(` (or inline `pageBuilder: ... => NoTransitionPage(`) used by ≥ 50% of `GoRoute` page builders and ≥ 3 routes; one-offs below the threshold never fire. Severity is warning when android/ios is explicitly targeted, info on the `all` fallback. Grep `lib/` for `pageTransitionsTheme:` to pick the message — *theme set but bypassed* vs *no transition strategy* — and note a light/dark mismatch. Fix text: adaptive `PageTransitionsTheme` on both themes + `MaterialPage`; see `flutter-go-router` § Page Transitions.
 - **LAYOUT-01**: flag any file with more than one `Scaffold(` occurrence.
 - **LAYOUT-02**: flag `Widget _` methods inside widget class bodies.
 - **SIDE-FX-01**: flag `showDialog(`, `Navigator.push(`, `ScaffoldMessenger.of(context).show`, `addPostFrameCallback(` inside `build(BuildContext` method spans.
@@ -223,7 +226,7 @@ Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05, AUTOFILL-04, AUT
 Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
                    REBUILD-04, EXTRACT-01, EXTRACT-02, COHESION-01, COUPLING-01,
                    COUPLING-02, ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-04,
-                   ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
+                   ROUTER-01, ROUTER-02, ROUTER-03, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
                    UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
                    RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, AUTOFILL-01, AUTOFILL-02,
                    AUTOFILL-03 (b/c), WEB-01, WEB-02
