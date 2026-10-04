@@ -860,7 +860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "agents_skill_reviewer",
-      "community": 3,
+      "community": 178,
       "norm_label": "skill-reviewer.md"
     },
     {
@@ -967,7 +967,7 @@
       "label": "Agents",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L85",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "readme_agents",
       "community": 52,
@@ -977,7 +977,7 @@
       "label": "Core methodology",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L94",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "readme_core_methodology",
       "community": 52,
@@ -987,7 +987,7 @@
       "label": "Release",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L101",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "readme_release",
       "community": 52,
@@ -997,7 +997,7 @@
       "label": "License",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L116",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "readme_license",
       "community": 52,
@@ -1237,7 +1237,7 @@
       "label": "Agents",
       "file_type": "document",
       "source_file": "ai_docs/ARCHITECTURE.md",
-      "source_location": "L63",
+      "source_location": "L62",
       "_origin": "ast",
       "id": "ai_docs_architecture_agents",
       "community": 85,
@@ -1247,7 +1247,7 @@
       "label": "Skill design: self-contained",
       "file_type": "document",
       "source_file": "ai_docs/ARCHITECTURE.md",
-      "source_location": "L70",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "ai_docs_architecture_skill_design_self_contained",
       "community": 85,
@@ -1257,7 +1257,7 @@
       "label": "Orchestrator skills",
       "file_type": "document",
       "source_file": "ai_docs/ARCHITECTURE.md",
-      "source_location": "L76",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "ai_docs_architecture_orchestrator_skills",
       "community": 85,
@@ -1330,7 +1330,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ai_docs_flutter_rules",
-      "community": 94,
+      "community": 3,
       "norm_label": "flutter_rules.md"
     },
     {
@@ -5407,7 +5407,7 @@
       "label": "Step 2 \u2014 Resolve target platforms",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L35",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_step_2_resolve_target_platforms",
       "community": 32,
@@ -5417,7 +5417,7 @@
       "label": "Step 3 \u2014 Rule gating",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L54",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_step_3_rule_gating",
       "community": 32,
@@ -5427,7 +5427,7 @@
       "label": "Phase 1 \u2014 Load rule catalog",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L62",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_1_load_rule_catalog",
       "community": 32,
@@ -5437,7 +5437,7 @@
       "label": "Phase 2 \u2014 Discover files",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L72",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_2_discover_files",
       "community": 32,
@@ -5447,7 +5447,7 @@
       "label": "Single-file mode",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L74",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_single_file_mode",
       "community": 32,
@@ -5457,27 +5457,17 @@
       "label": "Folder mode",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L90",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_folder_mode",
       "community": 32,
       "norm_label": "folder mode"
     },
     {
-      "label": "App-root mode",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L119",
-      "_origin": "ast",
-      "id": "audit_presentation_layer_skill_app_root_mode",
-      "community": 32,
-      "norm_label": "app-root mode"
-    },
-    {
       "label": "Phase 3 \u2014 Scan",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L127",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_3_scan",
       "community": 32,
@@ -5487,7 +5477,7 @@
       "label": "Phase 4 \u2014 Report",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L183",
+      "source_location": "L173",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_4_report",
       "community": 32,
@@ -5497,7 +5487,7 @@
       "label": "Phase 5 \u2014 Fix prompt",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L216",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_phase_5_fix_prompt",
       "community": 32,
@@ -5507,7 +5497,7 @@
       "label": "Usage examples",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L247",
+      "source_location": "L237",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_usage_examples",
       "community": 32,
@@ -5517,7 +5507,7 @@
       "label": "Notes",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L258",
+      "source_location": "L248",
       "_origin": "ast",
       "id": "audit_presentation_layer_skill_notes",
       "community": 32,
@@ -5920,7 +5910,7 @@
       "source_location": "L296",
       "_origin": "ast",
       "id": "rules_catalog_web_interaction_affordance_rules",
-      "community": 182,
+      "community": 11,
       "norm_label": "web interaction affordance rules"
     },
     {
@@ -5930,24 +5920,14 @@
       "source_location": "L298",
       "_origin": "ast",
       "id": "rules_catalog_web_01",
-      "community": 182,
+      "community": 11,
       "norm_label": "web-01"
-    },
-    {
-      "label": "WEB-02",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L307",
-      "_origin": "ast",
-      "id": "rules_catalog_web_02",
-      "community": 182,
-      "norm_label": "web-02"
     },
     {
       "label": "Asset loading rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L318",
+      "source_location": "L309",
       "_origin": "ast",
       "id": "rules_catalog_asset_loading_rules",
       "community": 171,
@@ -5957,7 +5937,7 @@
       "label": "ASSET-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L320",
+      "source_location": "L311",
       "_origin": "ast",
       "id": "rules_catalog_asset_01",
       "community": 171,
@@ -5967,7 +5947,7 @@
       "label": "ASSET-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L329",
+      "source_location": "L320",
       "_origin": "ast",
       "id": "rules_catalog_asset_02",
       "community": 171,
@@ -5977,7 +5957,7 @@
       "label": "ASSET-03",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L338",
+      "source_location": "L329",
       "_origin": "ast",
       "id": "rules_catalog_asset_03",
       "community": 171,
@@ -5987,7 +5967,7 @@
       "label": "ASSET-04",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L347",
+      "source_location": "L338",
       "_origin": "ast",
       "id": "rules_catalog_asset_04",
       "community": 171,
@@ -5997,7 +5977,7 @@
       "label": "Autofill rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L358",
+      "source_location": "L349",
       "_origin": "ast",
       "id": "rules_catalog_autofill_rules",
       "community": 172,
@@ -6007,7 +5987,7 @@
       "label": "AUTOFILL-01",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L360",
+      "source_location": "L351",
       "_origin": "ast",
       "id": "rules_catalog_autofill_01",
       "community": 172,
@@ -6017,7 +5997,7 @@
       "label": "AUTOFILL-02",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L369",
+      "source_location": "L360",
       "_origin": "ast",
       "id": "rules_catalog_autofill_02",
       "community": 172,
@@ -6027,7 +6007,7 @@
       "label": "AUTOFILL-03",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L378",
+      "source_location": "L369",
       "_origin": "ast",
       "id": "rules_catalog_autofill_03",
       "community": 172,
@@ -6037,7 +6017,7 @@
       "label": "AUTOFILL-04",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L387",
+      "source_location": "L378",
       "_origin": "ast",
       "id": "rules_catalog_autofill_04",
       "community": 172,
@@ -6047,7 +6027,7 @@
       "label": "Adding new rules",
       "file_type": "document",
       "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L398",
+      "source_location": "L389",
       "_origin": "ast",
       "id": "skills_audit_presentation_layer_rules_catalog_md_rules_catalog_adding_new_rules",
       "community": 11,
@@ -7332,76 +7312,6 @@
       "id": "patterns_robot_testing_asserting_the_autofill_save_request",
       "community": 9,
       "norm_label": "asserting the autofill save request"
-    },
-    {
-      "label": "web-boot-loader.md",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader",
-      "community": 179,
-      "norm_label": "web-boot-loader.md"
-    },
-    {
-      "label": "Web boot loader (WEB-02)",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "community": 179,
-      "norm_label": "web boot loader (web-02)"
-    },
-    {
-      "label": "Scope",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_scope",
-      "community": 179,
-      "norm_label": "scope"
-    },
-    {
-      "label": "Flag",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_flag",
-      "community": 179,
-      "norm_label": "flag"
-    },
-    {
-      "label": "Severity",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L26",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_severity",
-      "community": 179,
-      "norm_label": "severity"
-    },
-    {
-      "label": "Do not flag",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_do_not_flag",
-      "community": 179,
-      "norm_label": "do not flag"
-    },
-    {
-      "label": "Fix",
-      "file_type": "document",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "patterns_web_boot_loader_fix",
-      "community": 179,
-      "norm_label": "fix"
     },
     {
       "label": "web-interaction-affordances.md",
@@ -15200,7 +15110,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "unit_test_skill_phase_4_mocktail_strategy",
-      "community": 39,
+      "community": 179,
       "norm_label": "phase 4 \u2014 mocktail strategy"
     },
     {
@@ -15210,7 +15120,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "unit_test_skill_pre_stub_non_nullable_returns_required",
-      "community": 39,
+      "community": 179,
       "norm_label": "pre-stub non-nullable returns \u2014 required"
     },
     {
@@ -15220,7 +15130,7 @@
       "source_location": "L170",
       "_origin": "ast",
       "id": "unit_test_skill_verify_verifyinorder_do_not_mix",
-      "community": 39,
+      "community": 179,
       "norm_label": "`verify()` + `verifyinorder()` \u2014 do not mix"
     },
     {
@@ -15330,7 +15240,7 @@
       "source_location": "L330",
       "_origin": "ast",
       "id": "unit_test_skill_phase_6_domain_model_exception_checklist",
-      "community": 183,
+      "community": 39,
       "norm_label": "phase 6 \u2014 domain model & exception checklist"
     },
     {
@@ -15340,7 +15250,7 @@
       "source_location": "L332",
       "_origin": "ast",
       "id": "unit_test_skill_entity_value_object",
-      "community": 183,
+      "community": 39,
       "norm_label": "entity / value object"
     },
     {
@@ -15350,7 +15260,7 @@
       "source_location": "L343",
       "_origin": "ast",
       "id": "unit_test_skill_exception_hierarchy",
-      "community": 183,
+      "community": 39,
       "norm_label": "exception hierarchy"
     },
     {
@@ -15740,7 +15650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen",
-      "community": 59,
+      "community": 77,
       "norm_label": "notifier-with-internal-ref-listen.md"
     },
     {
@@ -15750,7 +15660,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_pattern_notifier_with_internal_ref_listen",
-      "community": 59,
+      "community": 77,
       "norm_label": "pattern: notifier with internal ref.listen"
     },
     {
@@ -15760,7 +15670,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_what_this_covers",
-      "community": 59,
+      "community": 77,
       "norm_label": "what this covers"
     },
     {
@@ -15770,7 +15680,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_the_testing_challenge",
-      "community": 59,
+      "community": 77,
       "norm_label": "the testing challenge"
     },
     {
@@ -15780,7 +15690,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_setup_pattern",
-      "community": 59,
+      "community": 77,
       "norm_label": "setup pattern"
     },
     {
@@ -15790,7 +15700,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_key_rules",
-      "community": 59,
+      "community": 77,
       "norm_label": "key rules"
     },
     {
@@ -15800,7 +15710,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_testability_smell_flag_in_phase_0",
-      "community": 59,
+      "community": 77,
       "norm_label": "testability smell \u2014 flag in phase 0"
     },
     {
@@ -15810,7 +15720,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "patterns_notifier_with_internal_ref_listen_override_strategy",
-      "community": 59,
+      "community": 77,
       "norm_label": "override strategy"
     },
     {
@@ -16224,226 +16134,6 @@
       "norm_label": "rule summary"
     },
     {
-      "label": "SKILL.md",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "web_loader_init_skill",
-      "community": 178,
-      "norm_label": "skill.md"
-    },
-    {
-      "label": "web-loader-init",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_web_loader_init",
-      "community": 178,
-      "norm_label": "web-loader-init"
-    },
-    {
-      "label": "Phase 0 \u2014 Target detection",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_0_target_detection",
-      "community": 178,
-      "norm_label": "phase 0 \u2014 target detection"
-    },
-    {
-      "label": "Phase 1 \u2014 Discovery",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L37",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_1_discovery",
-      "community": 178,
-      "norm_label": "phase 1 \u2014 discovery"
-    },
-    {
-      "label": "Phase 2 \u2014 Decisions",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L50",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_2_decisions",
-      "community": 178,
-      "norm_label": "phase 2 \u2014 decisions"
-    },
-    {
-      "label": "Phase 3 \u2014 Generate",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L63",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_3_generate",
-      "community": 178,
-      "norm_label": "phase 3 \u2014 generate"
-    },
-    {
-      "label": "Phase 4 \u2014 Verification checklist",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_4_verification_checklist",
-      "community": 178,
-      "norm_label": "phase 4 \u2014 verification checklist"
-    },
-    {
-      "label": "Phase 5 \u2014 Summary",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L91",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_phase_5_summary",
-      "community": 178,
-      "norm_label": "phase 5 \u2014 summary"
-    },
-    {
-      "label": "Pitfalls (all enforced by the templates)",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L98",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_pitfalls_all_enforced_by_the_templates",
-      "community": 178,
-      "norm_label": "pitfalls (all enforced by the templates)"
-    },
-    {
-      "label": "AUDIT branch",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L113",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_audit_branch",
-      "community": 178,
-      "norm_label": "audit branch"
-    },
-    {
-      "label": "Notes",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L127",
-      "_origin": "ast",
-      "id": "web_loader_init_skill_notes",
-      "community": 178,
-      "norm_label": "notes"
-    },
-    {
-      "label": "bootstrap-template.md",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "references_bootstrap_template",
-      "community": 181,
-      "norm_label": "bootstrap-template.md"
-    },
-    {
-      "label": "flutter_bootstrap.js template",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "community": 181,
-      "norm_label": "flutter_bootstrap.js template"
-    },
-    {
-      "label": "Template",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "references_bootstrap_template_template",
-      "community": 181,
-      "norm_label": "template"
-    },
-    {
-      "label": "Stages",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L62",
-      "_origin": "ast",
-      "id": "references_bootstrap_template_stages",
-      "community": 181,
-      "norm_label": "stages"
-    },
-    {
-      "label": "Why each non-obvious choice",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L72",
-      "_origin": "ast",
-      "id": "references_bootstrap_template_why_each_non_obvious_choice",
-      "community": 181,
-      "norm_label": "why each non-obvious choice"
-    },
-    {
-      "label": "markup-and-style.md",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "references_markup_and_style",
-      "community": 180,
-      "norm_label": "markup-and-style.md"
-    },
-    {
-      "label": "Loader markup and style",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "references_markup_and_style_loader_markup_and_style",
-      "community": 180,
-      "norm_label": "loader markup and style"
-    },
-    {
-      "label": "`web/index.html`",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "references_markup_and_style_web_index_html",
-      "community": 180,
-      "norm_label": "`web/index.html`"
-    },
-    {
-      "label": "`web/style.css`",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "references_markup_and_style_web_style_css",
-      "community": 180,
-      "norm_label": "`web/style.css`"
-    },
-    {
-      "label": "Rules this enforces",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L82",
-      "_origin": "ast",
-      "id": "references_markup_and_style_rules_this_enforces",
-      "community": 180,
-      "norm_label": "rules this enforces"
-    },
-    {
-      "label": "Shape variants",
-      "file_type": "document",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L99",
-      "_origin": "ast",
-      "id": "references_markup_and_style_shape_variants",
-      "community": 180,
-      "norm_label": "shape variants"
-    },
-    {
       "label": "Bug Report Issue Template",
       "file_type": "document",
       "source_file": ".github/ISSUE_TEMPLATE/bug.yml",
@@ -16595,7 +16285,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "riverpod v3 provider rules",
       "id": "concept_riverpod_v3_rules"
     },
@@ -16621,7 +16311,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "gorouter navigation rules",
       "id": "concept_gorouter_rules"
     },
@@ -16673,7 +16363,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 178,
       "norm_label": "iamantoniodinuzzo/flutter_ai_toolkit upstream repo",
       "id": "concept_flutter_ai_toolkit_upstream"
     },
@@ -16699,7 +16389,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 3,
+      "community": 178,
       "norm_label": "skill structural conformance checks",
       "id": "concept_skill_reviewer_checks"
     },
@@ -16712,7 +16402,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "riverpod widget audit rules riv-widget-01 to 04",
       "id": "concept_riv_widget_rules"
     },
@@ -16738,7 +16428,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 3,
       "norm_label": "gorouter audit rules router-01 to 02",
       "id": "concept_gorouter_audit_rules"
     },
@@ -19226,7 +18916,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "overridewithvalue(asyncdata) for synchronous computed providers",
       "id": "unit_test_override_with_value_sync"
     },
@@ -19291,7 +18981,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 59,
+      "community": 77,
       "norm_label": "futureprovider error pattern b: manual container + container.pump()",
       "id": "unit_test_future_error_pattern_b"
     },
@@ -19318,7 +19008,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 59,
+      "community": 77,
       "norm_label": "streamcontroller for fine-grained emission control in ref.listen tests",
       "id": "unit_test_stream_controller_pattern"
     },
@@ -19332,7 +19022,7 @@
       "author": null,
       "contributor": null,
       "rationale": "A Notifier that sets up ref.listen inside an action method conflates send and watch responsibilities, making state transitions depend on microtask scheduling. Recommend the UI watch the stream provider directly.",
-      "community": 59,
+      "community": 77,
       "norm_label": "testability smell: internal ref.listen conflates command and query",
       "id": "unit_test_ref_listen_smell"
     },
@@ -19384,7 +19074,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "notifier stream dep strategy b: overridewithvalue(asyncdata) for build() logic",
       "id": "unit_test_notifier_strategy_b"
     },
@@ -19450,7 +19140,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 77,
+      "community": 74,
       "norm_label": "streamprovider override strategy b: overridewithvalue asyncdata (sync)",
       "id": "unit_test_stream_override_strategy_b"
     },
@@ -19703,9 +19393,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L336",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_errorline"
+      "target": "scripts_session_evidence_errorline",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19713,9 +19403,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L208",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_findbysessionid"
+      "target": "scripts_session_evidence_findbysessionid",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19753,9 +19443,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L260",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_humanage"
+      "target": "scripts_session_evidence_humanage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19763,9 +19453,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L322",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_inputexcerpt"
+      "target": "scripts_session_evidence_inputexcerpt",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19773,9 +19463,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L270",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_listcandidates"
+      "target": "scripts_session_evidence_listcandidates",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19853,9 +19543,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L318",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_shell_tools"
+      "target": "scripts_session_evidence_shell_tools",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19873,9 +19563,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L308",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_stalethresholdms"
+      "target": "scripts_session_evidence_stalethresholdms",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19883,9 +19573,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L347",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_tailsegments"
+      "target": "scripts_session_evidence_tailsegments",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -19893,9 +19583,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L236",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "skills_retro_scripts_session_evidence_js_scripts_session_evidence",
-      "target": "scripts_session_evidence_transcriptsummary"
+      "target": "scripts_session_evidence_transcriptsummary",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19926,9 +19616,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L446",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_slugforcwd"
+      "target": "scripts_session_evidence_slugforcwd",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19948,9 +19638,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L278",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_listcandidates",
-      "target": "scripts_session_evidence_canonicalslug"
+      "target": "scripts_session_evidence_canonicalslug",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19981,9 +19671,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L410",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_findbysessionid"
+      "target": "scripts_session_evidence_findbysessionid",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -19992,9 +19682,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L431",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_transcriptsummary"
+      "target": "scripts_session_evidence_transcriptsummary",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20003,9 +19693,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L588",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_humanage"
+      "target": "scripts_session_evidence_humanage",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20014,9 +19704,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L434",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_listcandidates"
+      "target": "scripts_session_evidence_listcandidates",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20025,9 +19715,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L432",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_stalethresholdms"
+      "target": "scripts_session_evidence_stalethresholdms",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20047,9 +19737,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L512",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_inputexcerpt"
+      "target": "scripts_session_evidence_inputexcerpt",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20058,9 +19748,9 @@
       "source_file": "skills/retro/scripts/session-evidence.js",
       "source_location": "L535",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "scripts_session_evidence_main",
-      "target": "scripts_session_evidence_errorline"
+      "target": "scripts_session_evidence_errorline",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20133,9 +19823,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_assert"
+      "target": "retro_session_evidence_test_assert",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20143,9 +19833,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_fs"
+      "target": "retro_session_evidence_test_fs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20153,9 +19843,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_makeenv"
+      "target": "retro_session_evidence_test_makeenv",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20163,9 +19853,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_os"
+      "target": "retro_session_evidence_test_os",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20173,9 +19863,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_path"
+      "target": "retro_session_evidence_test_path",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20183,9 +19873,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_run"
+      "target": "retro_session_evidence_test_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20193,9 +19883,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_script"
+      "target": "retro_session_evidence_test_script",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20203,9 +19893,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_slugof"
+      "target": "retro_session_evidence_test_slugof",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20213,9 +19903,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_spawnsync"
+      "target": "retro_session_evidence_test_spawnsync",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20223,9 +19913,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_test"
+      "target": "retro_session_evidence_test_test",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -20233,9 +19923,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L30",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test",
-      "target": "retro_session_evidence_test_writetranscript"
+      "target": "retro_session_evidence_test_writetranscript",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -20244,9 +19934,9 @@
       "source_file": "tests/retro/session-evidence.test.js",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "retro_session_evidence_test_makeenv",
-      "target": "retro_session_evidence_test_slugof"
+      "target": "retro_session_evidence_test_slugof",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -24732,16 +24422,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "skills/audit-presentation-layer/SKILL.md",
-      "source_location": "L119",
-      "weight": 1.0,
-      "source": "audit_presentation_layer_skill_phase_2_discover_files",
-      "target": "audit_presentation_layer_skill_app_root_mode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/SKILL.md",
       "source_location": "L89",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -25187,16 +24867,6 @@
       "confidence_score": 1.0,
       "source": "rules_catalog_web_interaction_affordance_rules",
       "target": "rules_catalog_web_01"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/CATALOG.md",
-      "source_location": "L307",
-      "weight": 1.0,
-      "source": "rules_catalog_web_interaction_affordance_rules",
-      "target": "rules_catalog_web_02",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -26577,66 +26247,6 @@
       "confidence_score": 1.0,
       "source": "patterns_robot_testing_robot_testing_pattern_audit_rules",
       "target": "patterns_robot_testing_viewport_rule_robot_06"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader",
-      "target": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_do_not_flag",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_fix",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L15",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_flag",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_scope",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "patterns_web_boot_loader_web_boot_loader_web_02",
-      "target": "patterns_web_boot_loader_severity",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -35479,196 +35089,6 @@
       "target": "patterns_verify_verifyinorder_antipattern_pattern_verify_verifyinorder_anti_pattern"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "web_loader_init_skill",
-      "target": "web_loader_init_skill_web_loader_init",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L113",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_audit_branch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L127",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_notes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_0_target_detection",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_1_discovery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L50",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_2_decisions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L63",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_3_generate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_4_verification_checklist",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L91",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_phase_5_summary",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/SKILL.md",
-      "source_location": "L98",
-      "weight": 1.0,
-      "source": "web_loader_init_skill_web_loader_init",
-      "target": "web_loader_init_skill_pitfalls_all_enforced_by_the_templates",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "references_bootstrap_template",
-      "target": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_stages",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_template",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/bootstrap-template.md",
-      "source_location": "L72",
-      "weight": 1.0,
-      "source": "references_bootstrap_template_flutter_bootstrap_js_template",
-      "target": "references_bootstrap_template_why_each_non_obvious_choice",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "references_markup_and_style",
-      "target": "references_markup_and_style_loader_markup_and_style",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L82",
-      "weight": 1.0,
-      "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_rules_this_enforces",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L99",
-      "weight": 1.0,
-      "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_shape_variants",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_web_index_html",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "skills/web-loader-init/references/markup-and-style.md",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "references_markup_and_style_loader_markup_and_style",
-      "target": "references_markup_and_style_web_style_css",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -37684,5 +37104,5 @@
       "source_file": "skills/sentry-init/references/logger-decorator-pattern.md"
     }
   ],
-  "built_at_commit": "c14d57302ef3515bf9079fb7dbda97a0f4d0445c"
+  "built_at_commit": "a69ba44a0670732b6494e4235b863c11c5288b7c"
 }
