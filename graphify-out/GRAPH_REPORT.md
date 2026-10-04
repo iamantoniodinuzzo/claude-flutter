@@ -1,16 +1,16 @@
 # Graph Report - claude-flutter  (2026-10-04)
 
 ## Corpus Check
-- 152 files · ~127,529 words
+- 152 files · ~128,408 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1856 nodes · 1799 edges · 184 communities (169 shown, 15 thin omitted)
+- 1859 nodes · 1802 edges · 184 communities (168 shown, 16 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c14d5730`
+- Built from commit: `ba1d1633`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -200,7 +200,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
 2. `main()` - 16 edges
-3. `Flutter GoRouter Navigation` - 15 edges
+3. `Flutter GoRouter Navigation` - 16 edges
 4. `Audit Presentation Layer — Rule Catalog` - 14 edges
 5. `Flutter Flavors` - 14 edges
 6. `Pattern: verify() + verifyInOrder() Anti-pattern` - 13 edges
@@ -218,8 +218,8 @@
   skills/audit-presentation-layer/rules/CATALOG.md → ai_docs/FLUTTER_RULES.md
 - `README — claude-flutter Toolkit` --references--> `Claude Code Plugin Marketplace`  [EXTRACTED]
   README.md → ai_docs/HOW_TO_CREATE_MARKETPLACE.md
-- `audit-presentation-layer SKILL.md` --implements--> `Self-Contained Skill Pattern`  [EXTRACTED]
-  skills/audit-presentation-layer/SKILL.md → ai_docs/ARCHITECTURE.md
+- `audit-presentation-layer Rule CATALOG.md` --references--> `iamantoniodinuzzo/flutter_ai_toolkit Upstream Repo`  [INFERRED]
+  skills/audit-presentation-layer/rules/CATALOG.md → ai_docs/CONTRIBUTING.md
 
 ## Import Cycles
 - None detected.
@@ -238,7 +238,7 @@
 - **Riverpod Provider Override Strategies in Unit Tests** — unit_test_stream_override_strategy_a, unit_test_stream_override_strategy_b, unit_test_override_with_value_sync, unit_test_notifier_strategy_a, unit_test_notifier_strategy_b [INFERRED 0.85]
 - **Sentry Error Capture Pipeline (Decorator + Observer + Global Hooks)** — sentry_init_sentry_logger_service, sentry_init_async_error_logger, sentry_init_branch_a_decorator, sentry_init_branch_b_observer [INFERRED 0.85]
 
-## Communities (184 total, 15 thin omitted)
+## Communities (184 total, 16 thin omitted)
 
 ### Community 0 - "Unit Test Patterns"
 Cohesion: 0.06
@@ -253,8 +253,8 @@ Cohesion: 0.05
 Nodes (47): beforeSend and beforeSendFeedback, considerInAppFramesByDefault and addInAppInclude, Event Filtering, Sampling, and Data Minimization, Running the Phase 7 smoke test, sampleRate: leave unset, Screenshots, view hierarchy, and PII, tracesSampleRate / profilesSampleRate: opt-in, default off, Where the DioException filter does *not* live (+39 more)
 
 ### Community 3 - "Toolkit Architecture & Documentation"
-Cohesion: 0.25
-Nodes (8): audit-presentation-layer Rule CATALOG.md, iamantoniodinuzzo/flutter_ai_toolkit Upstream Repo, Layout Antipattern Audit Rules LAYOUT-01 to 02, Responsive Layout Audit Rule RESPONSIVE-01, Robot Testing Audit Rules ROBOT-01 to 05, Robot Testing Pattern, Skill Structural Conformance Checks, Web Interaction Affordance Audit Rule WEB-01
+Cohesion: 0.22
+Nodes (10): audit-presentation-layer Rule CATALOG.md, GoRouter Audit Rules ROUTER-01 to 02, GoRouter Navigation Rules, Layout Antipattern Audit Rules LAYOUT-01 to 02, Responsive Layout Audit Rule RESPONSIVE-01, Riverpod Widget Audit Rules RIV-WIDGET-01 to 04, Riverpod v3 Provider Rules, Robot Testing Audit Rules ROBOT-01 to 05 (+2 more)
 
 ### Community 4 - "GoRouter & Widget Testing"
 Cohesion: 0.06
@@ -285,8 +285,8 @@ Cohesion: 0.25
 Nodes (7): author, description, homepage, keywords, license, name, version
 
 ### Community 11 - "Sentry Wiring & Privacy"
-Cohesion: 0.29
-Nodes (6): Audit Presentation Layer — Rule Catalog, Side-effect rules, SIDE-FX-01, UI-STR-01, Adding new rules, UI string rules
+Cohesion: 0.20
+Nodes (9): Audit Presentation Layer — Rule Catalog, LAYOUT-01, LAYOUT-02, Layout antipattern rules, Side-effect rules, SIDE-FX-01, UI-STR-01, Adding new rules (+1 more)
 
 ### Community 12 - "Accessibility Testing"
 Cohesion: 0.09
@@ -326,7 +326,7 @@ Nodes (11): Checklist, Named Parameter Gotcha, Pattern: Pre-stub Non-nullable Re
 
 ### Community 30 - "Community 30"
 Cohesion: 0.09
-Nodes (21): Adding a SentryNavigatorObserver, Calling go() from ref.listen (Riverpod), Common Mistakes, Deep Linking, Flutter GoRouter Navigation, Navigation Methods, Nested Sub-Routes, Overview (+13 more)
+Nodes (22): Adding a SentryNavigatorObserver, Calling go() from ref.listen (Riverpod), Common Mistakes, Deep Linking, Flutter GoRouter Navigation, Navigation Methods, Nested Sub-Routes, Overview (+14 more)
 
 ### Community 31 - "Community 31"
 Cohesion: 0.11
@@ -441,8 +441,8 @@ Cohesion: 0.18
 Nodes (10): 2.2 Calling `showDialog` / `ScaffoldMessenger` / `Navigator.push` inside `build()`, 2.4 Doing I/O inside `StreamBuilder` / `FutureBuilder` builder, 1. What is a side effect?, 2.1 Calling `setState()` inside `build()`, 2.3 Starting an animation in `build()`, 2.5 Running async work directly in `build()`, 2. Known bad side effects and how to fix them, 3. General DO / DON'T rules (+2 more)
 
 ### Community 59 - "Community 59"
-Cohesion: 0.10
-Nodes (20): Critical rule, Decision table, Pattern A — state assertion only (no `verify()` needed), Pattern B — execution verification (need `verify(mockRepo.method)`), Pattern: FutureProvider Error Paths (auto-dispose), The problem, Two patterns — choose based on what you need to verify, Key Rules (+12 more)
+Cohesion: 0.14
+Nodes (13): Key Rules, Override Strategy, Pattern: Notifier with Internal ref.listen, Setup Pattern, Testability Smell — Flag in Phase 0, The Testing Challenge, What This Covers, FutureProvider Error Pattern B: Manual Container + container.pump() (+5 more)
 
 ### Community 60 - "Community 60"
 Cohesion: 0.18
@@ -501,20 +501,20 @@ Cohesion: 0.22
 Nodes (8): App resolution, Filtering output (bash / macOS / Linux), Filtering output (PowerShell / Windows), Machine-readable output, Notes, Steps, Usage examples, Zero-error false positive guard
 
 ### Community 74 - "Community 74"
-Cohesion: 0.22
-Nodes (8): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains
+Cohesion: 0.17
+Nodes (11): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains (+3 more)
 
 ### Community 75 - "Community 75"
-Cohesion: 0.22
-Nodes (8): 7) Nested routes inside `StatefulShellBranch`, 1) Prefer GoRouter APIs for app navigation, 2) Dialogs: `Navigator.pop` vs `context.pop`, 3) Returning values from dialogs, 4) `go` vs `push` on web: URL behavior (go_router v11.1.2+), 5) Back navigation and URL sync on web, 6) Consolidate Scaffolds when overriding the back button, GoRouter navigation conventions (Flutter)
+Cohesion: 0.20
+Nodes (9): 7) Nested routes inside `StatefulShellBranch`, 8) Page transitions, 1) Prefer GoRouter APIs for app navigation, 2) Dialogs: `Navigator.pop` vs `context.pop`, 3) Returning values from dialogs, 4) `go` vs `push` on web: URL behavior (go_router v11.1.2+), 5) Back navigation and URL sync on web, 6) Consolidate Scaffolds when overriding the back button (+1 more)
 
 ### Community 76 - "Community 76"
 Cohesion: 0.22
 Nodes (8): 7) Nested routes inside `StatefulShellBranch` (shell routes), 1) Prefer GoRouter APIs for app navigation, 2) Dialogs: `Navigator.pop` vs `context.pop`, 3) Returning values from dialogs, 4) `go` vs `push` on web: URL behavior (go_router v11.1.2+), 5) Back navigation and URL sync on web, 6) Consolidate Scaffolds when overriding the back button, GoRouter navigation conventions (Flutter)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.33
-Nodes (6): Never Subclass _$FooNotifier (private generated base class), Notifier Stream Dep Strategy A: overrideWith Stream (neutralise build()), Notifier Stream Dep Strategy B: overrideWithValue(AsyncData) for build() Logic, Pattern: Notifier whose build() Watches a StreamProvider, overrideWithValue(AsyncData) for Synchronous Computed Providers, StreamProvider Override Strategy B: overrideWithValue AsyncData (sync)
+Cohesion: 0.18
+Nodes (10): Critical rule, Decision table, Pattern A — state assertion only (no `verify()` needed), Pattern B — execution verification (need `verify(mockRepo.method)`), Pattern: FutureProvider Error Paths (auto-dispose), The problem, Two patterns — choose based on what you need to verify, container.pump() vs pumpEventQueue() for Riverpod Scheduler (+2 more)
 
 ### Community 78 - "Community 78"
 Cohesion: 0.22
@@ -581,8 +581,8 @@ Cohesion: 0.25
 Nodes (7): 1. Directory & Layering, 2. Domain Layer, 3. Data Layer (Repository), 4. Application Layer (Service) — **Mandatory for tomcat_portal**, 5. Presentation Layer, 6. Testing, Feature Implementation – Compact Guide
 
 ### Community 94 - "Community 94"
-Cohesion: 0.17
-Nodes (11): Codegen: `--build-filter` vs full rebuild, `dart analyze` scoping, Flutter Rules, GoRouter web rules, Logging format standard, Riverpod v3, Testing conventions, GoRouter Audit Rules ROUTER-01 to 02 (+3 more)
+Cohesion: 0.29
+Nodes (7): Codegen: `--build-filter` vs full rebuild, `dart analyze` scoping, Flutter Rules, GoRouter web rules, Logging format standard, Riverpod v3, Testing conventions
 
 ### Community 95 - "Community 95"
 Cohesion: 0.29
@@ -873,12 +873,8 @@ Cohesion: 0.40
 Nodes (5): RIV-WIDGET-01, RIV-WIDGET-02, RIV-WIDGET-03, RIV-WIDGET-04, Riverpod widget rules
 
 ### Community 176 - "Community 176"
-Cohesion: 0.67
-Nodes (3): GoRouter rules, ROUTER-01, ROUTER-02
-
-### Community 177 - "Community 177"
-Cohesion: 0.67
-Nodes (3): LAYOUT-01, LAYOUT-02, Layout antipattern rules
+Cohesion: 0.50
+Nodes (4): GoRouter rules, ROUTER-01, ROUTER-02, ROUTER-03
 
 ### Community 178 - "Community 178"
 Cohesion: 0.18
@@ -905,21 +901,21 @@ Cohesion: 0.67
 Nodes (3): Entity / value object, Exception hierarchy, Phase 6 — Domain Model & Exception Checklist
 
 ## Knowledge Gaps
-- **1248 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1243 more)
+- **1251 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1246 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **15 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Create and distribute a plugin marketplace` connect `Community 57` to `Community 72`, `Community 111`, `Community 86`, `Community 120`, `Community 63`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 51`, `Toolkit Architecture & Documentation`, `Community 57`?**
+- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 177`, `Community 51`, `Community 57`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **Why does `Claude Code Plugin Marketplace` connect `Community 57` to `Community 56`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _1280 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1283 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Unit Test Patterns` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Feature Bootstrapping Workflow` be split into smaller, more focused modules?**
