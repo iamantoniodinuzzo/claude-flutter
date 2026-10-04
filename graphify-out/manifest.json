@@ -1,12 +1,12 @@
 {
   ".claude-plugin/marketplace.json": {
-    "mtime": 1786772938.2355716,
-    "ast_hash": "87bfaa31a7ab1477164bc99f15a79ff2",
+    "mtime": 1787993615.5664873,
+    "ast_hash": "8a87322f2b2231aa2b44715df197409c",
     "semantic_hash": ""
   },
   ".claude-plugin/plugin.json": {
-    "mtime": 1786772938.2365677,
-    "ast_hash": "cb39beff04f066d78603d8f5c655cdff",
+    "mtime": 1787993615.5674868,
+    "ast_hash": "eb27d1681b4d798b6f13a47f39da09d8",
     "semantic_hash": ""
   },
   ".claude/settings.json": {
@@ -20,8 +20,8 @@
     "semantic_hash": "ddc6069a85a1acc06096e06bcd8087ac"
   },
   "package.json": {
-    "mtime": 1786772938.241569,
-    "ast_hash": "fb80c8f9e876969c3638d9a7c6dbb360",
+    "mtime": 1787993615.5714755,
+    "ast_hash": "98e3bca3592e5310f1f9216f17711b18",
     "semantic_hash": ""
   },
   ".claude/agents/skill-reviewer.md": {
@@ -50,8 +50,8 @@
     "semantic_hash": "112acd2f3356ee327778bff4111573a4"
   },
   "CHANGELOG.md": {
-    "mtime": 1786772938.238563,
-    "ast_hash": "98e49caac2616a4fab2a81c9e440f6e9",
+    "mtime": 1787992120.0209026,
+    "ast_hash": "2947d6701e03f7a154f5d142827e0123",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
@@ -65,8 +65,8 @@
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
   "README.md": {
-    "mtime": 1787678095.8589766,
-    "ast_hash": "a4d3ce04222b98c46a2fe91ed1bb9ec2",
+    "mtime": 1791137283.9967844,
+    "ast_hash": "a3041148868eb68bbae8ad86315a5dc7",
     "semantic_hash": ""
   },
   "agents/prompt-engineer.md": {
@@ -75,13 +75,13 @@
     "semantic_hash": "ef778600c9b1ff543fc3a52276cca408"
   },
   "agents/riverpod-reviewer.md": {
-    "mtime": 1778308979.1549873,
-    "ast_hash": "3ec1db80588ecd29108c6f52ccd589bd",
-    "semantic_hash": "3ec1db80588ecd29108c6f52ccd589bd"
+    "mtime": 1787992118.6861267,
+    "ast_hash": "e2f820f79158ae10e498b1bfea1d7c44",
+    "semantic_hash": ""
   },
   "ai_docs/ARCHITECTURE.md": {
-    "mtime": 1787678095.8603735,
-    "ast_hash": "57da24f7ed3a8d69ac436a100489de77",
+    "mtime": 1791137283.9967844,
+    "ast_hash": "04db796a41fc50b68553b3533202015c",
     "semantic_hash": ""
   },
   "ai_docs/CONTRIBUTING.md": {
@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "ai_docs/FLUTTER_RULES.md": {
-    "mtime": 1786111901.3836906,
-    "ast_hash": "e810c5eee527a4b3173966075b2d5f11",
+    "mtime": 1787992118.6894794,
+    "ast_hash": "fd827dcde4c0edbf78e91506ab40379c",
     "semantic_hash": ""
   },
   "ai_docs/GIT_WORKFLOW.md": {
@@ -105,13 +105,13 @@
     "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
   },
   "skills/audit-presentation-layer/SKILL.md": {
-    "mtime": 1783404632.088256,
-    "ast_hash": "a95ac558f1483fa6bc517172432b5e0b",
+    "mtime": 1791137968.2396894,
+    "ast_hash": "388c024fb4a961ef1417d110ff94d2b6",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/CATALOG.md": {
-    "mtime": 1783404632.088256,
-    "ast_hash": "8b21549321528706302da2f4d5aeb138",
+    "mtime": 1791137928.0302603,
+    "ast_hash": "378120ceba8def3893062de5272b2a84",
     "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/breaking/flutter-accessibility-testing.md": {
@@ -135,9 +135,9 @@
     "semantic_hash": "4fc399102fbe518b4b6202869b808536"
   },
   "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md": {
-    "mtime": 1779217335.019049,
-    "ast_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194",
-    "semantic_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194"
+    "mtime": 1791137941.7175703,
+    "ast_hash": "7cd7745b5a27e0f02b9bb0d3638a2fed",
+    "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/no-ui-strings-outside-ui.md": {
     "mtime": 1779217335.019049,
@@ -160,9 +160,9 @@
     "semantic_hash": "c8a1de98d33264b41a925e54ea2df384"
   },
   "skills/audit-presentation-layer/rules/patterns/robot-testing.md": {
-    "mtime": 1779217335.0230691,
-    "ast_hash": "46555332f07d1fb2ecd05d317bb44f55",
-    "semantic_hash": "46555332f07d1fb2ecd05d317bb44f55"
+    "mtime": 1790879810.3907816,
+    "ast_hash": "96661fd4c8d0c7ffe5065c8d5560dc5d",
+    "semantic_hash": ""
   },
   "skills/audit-presentation-layer/rules/patterns/web-interaction-affordances.md": {
     "mtime": 1780944188.327235,
@@ -185,9 +185,9 @@
     "semantic_hash": "054f2083297078be31c3d73aa7f460de"
   },
   "skills/flutter-go-router/SKILL.md": {
-    "mtime": 1780944188.3292296,
-    "ast_hash": "93df599a5e85f2edf053474a87b5fce7",
-    "semantic_hash": "93df599a5e85f2edf053474a87b5fce7"
+    "mtime": 1791137982.9329584,
+    "ast_hash": "bfb930175f895299d3b1bcdc41915b31",
+    "semantic_hash": ""
   },
   "skills/flutter-melos-workspace/SKILL.md": {
     "mtime": 1778917108.2509062,
@@ -215,12 +215,12 @@
     "semantic_hash": ""
   },
   "skills/sentry-init/SKILL.md": {
-    "mtime": 1787857626.0169492,
-    "ast_hash": "2507b053dd1e3f31a350dfe5cba89080",
+    "mtime": 1787951853.2291446,
+    "ast_hash": "a915372665fdc2fbbc10fead61ca717f",
     "semantic_hash": ""
   },
   "skills/sentry-init/references/gorouter-and-dio-wiring.md": {
-    "mtime": 1787857626.020558,
+    "mtime": 1787857936.19873,
     "ast_hash": "6bd1b226f423daaab13edd01217f1d93",
     "semantic_hash": ""
   },
@@ -235,7 +235,7 @@
     "semantic_hash": "a29de44c9be1b86ec6d892b3769ece38"
   },
   "skills/sentry-init/references/web-feedback-canvaskit.md": {
-    "mtime": 1787857626.0225632,
+    "mtime": 1787857936.200727,
     "ast_hash": "20104faca648640e311dbc07bfa06d36",
     "semantic_hash": ""
   },
@@ -430,8 +430,8 @@
     "semantic_hash": ""
   },
   "skills/build-filter/SKILL.md": {
-    "mtime": 1786111901.3852625,
-    "ast_hash": "9bfd49fd2e015c06be7453f0ca583d2c",
+    "mtime": 1787992118.6987753,
+    "ast_hash": "5e532b20334f236ad347f5ecf984cad2",
     "semantic_hash": ""
   },
   "skills/maestro-screenshot-flow/reference/commands.md": {
@@ -460,8 +460,8 @@
     "semantic_hash": ""
   },
   "skills/scaffold-feature/SKILL.md": {
-    "mtime": 1783001785.2498105,
-    "ast_hash": "bdb2759b79f169f35ce3540f6a4b416b",
+    "mtime": 1787992118.711485,
+    "ast_hash": "ab0bb1fbc6d3bfca6750bb027eb55c43",
     "semantic_hash": ""
   },
   "skills/scaffold-feature/references/breaking/dart-async-errors.md": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "skills.sh.json": {
-    "mtime": 1786772937.6231844,
-    "ast_hash": "b547be35865b36e7fb13b6f6cb61e85d",
+    "mtime": 1791137283.9987953,
+    "ast_hash": "93a8be3d99a6a0b3688051ffb19e6267",
     "semantic_hash": ""
   },
   "skills/build-filter/scripts/guarded-build.ps1": {
@@ -570,18 +570,18 @@
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.js": {
-    "mtime": 1786111901.393747,
-    "ast_hash": "a7f76e0cc23af0e7f2d0c97715c762cd",
+    "mtime": 1790880345.5763109,
+    "ast_hash": "4af2709a74ad311dbe44f6ee7880b082",
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.ps1": {
-    "mtime": 1786111901.3947432,
-    "ast_hash": "95a4a0bf628c9d0b69e9e0c160a67e19",
+    "mtime": 1790880345.578318,
+    "ast_hash": "c1596b8b51b24f10881d978a9d57eaf3",
     "semantic_hash": ""
   },
   "skills/retro/scripts/session-evidence.sh": {
-    "mtime": 1786111901.3957598,
-    "ast_hash": "74b2da95768ea78535233d90510dad4b",
+    "mtime": 1790880345.5803237,
+    "ast_hash": "cf7ad5dbbd878fea558bbd639a001017",
     "semantic_hash": ""
   },
   "ai_docs/TROUBLESHOOTING.md": {
@@ -590,33 +590,33 @@
     "semantic_hash": ""
   },
   "docs/adr/0001-sentry-init-dsn-source-convention.md": {
-    "mtime": 1787684341.7144835,
-    "ast_hash": "4ce7ace2fd897fc7c410b3395e13a838",
+    "mtime": 1787992118.6914837,
+    "ast_hash": "b7cadfe3855c96dcdfa2d809446e3f2d",
     "semantic_hash": ""
   },
   "docs/adr/0002-sentry-init-error-sink-architecture.md": {
-    "mtime": 1787685628.826102,
+    "mtime": 1787857936.051176,
     "ast_hash": "e5303cc0d6f0e8fdb2e3f7b77816d8e5",
     "semantic_hash": ""
   },
   "docs/adr/0003-sentry-init-before-send-policy.md": {
-    "mtime": 1787856277.5758655,
-    "ast_hash": "ce57e5a95bfd9935d828e7677148fc04",
+    "mtime": 1787951853.214581,
+    "ast_hash": "c4ba10eb9c83ee4572ccc4e92549f9b5",
     "semantic_hash": ""
   },
   "docs/adr/0004-sentry-init-sampling-defaults.md": {
-    "mtime": 1787856277.5758655,
-    "ast_hash": "d7e61426caa6427ba0059bb71093dcda",
+    "mtime": 1787951853.2165763,
+    "ast_hash": "0cb3981eee316903be8ad41d4fc2b7e5",
     "semantic_hash": ""
   },
   "docs/adr/0005-sentry-init-content-architecture.md": {
-    "mtime": 1787856717.873266,
+    "mtime": 1787857936.0541685,
     "ast_hash": "6208c6fc63533239bb38e28844a86ff3",
     "semantic_hash": ""
   },
   "docs/agents/issue-tracker.md": {
-    "mtime": 1787682636.4966953,
-    "ast_hash": "a3f2bbc2600f958bbab6df22fd5557b9",
+    "mtime": 1787857936.062185,
+    "ast_hash": "1b04291cf5b1492d61cbfce45f454cf9",
     "semantic_hash": ""
   },
   "skills/audit-domain-layer/rules/patterns/sealed-exceptions.md": {
@@ -625,63 +625,178 @@
     "semantic_hash": ""
   },
   "skills/flutter-flavors/SKILL.md": {
-    "mtime": 1787678095.863397,
+    "mtime": 1787857936.1652365,
     "ast_hash": "763f462a41af7e323c0af6b224c2b713",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/dart-layer.md": {
-    "mtime": 1787678095.864511,
+    "mtime": 1787857936.1672797,
     "ast_hash": "63ab694f9aae02a2665737699ff64f76",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/firebase-flavors.md": {
-    "mtime": 1787678095.8655155,
+    "mtime": 1787857936.1692858,
     "ast_hash": "7f45066cb7eb6c9f81edca205e1c4ed2",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/flavorizr-processors.md": {
-    "mtime": 1787678479.515012,
+    "mtime": 1787857936.1753044,
     "ast_hash": "1e5774ff599e8eb839195859756a2926",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/ide-config.md": {
-    "mtime": 1787678095.8685074,
+    "mtime": 1787857936.1793163,
     "ast_hash": "80d9e1045624c7a5fcfa38d25024cb31",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/manual-android.md": {
-    "mtime": 1787678095.869506,
+    "mtime": 1787857936.1830666,
     "ast_hash": "f4a42c5a8f74ec7ed2e9b985f3035997",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/manual-ios.md": {
-    "mtime": 1787678095.870502,
+    "mtime": 1787857936.185083,
     "ast_hash": "1bbe4629efeb29ceffdd28f04cb68572",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/references/web-flavors.md": {
-    "mtime": 1787678095.8715003,
+    "mtime": 1787857936.1870942,
     "ast_hash": "aaa2fc544bd4a572184f04df15e7bd25",
     "semantic_hash": ""
   },
   "skills/flutter-flavors/rules/CATALOG.md": {
-    "mtime": 1787678095.8740005,
+    "mtime": 1787857936.1911137,
     "ast_hash": "95a4fd762954c2dc8ddf94d17aebe089",
     "semantic_hash": ""
   },
   "skills/retro/SKILL.md": {
-    "mtime": 1786772937.625179,
-    "ast_hash": "f11aa8516ea3c934ae741b85d70a6268",
+    "mtime": 1790880345.574303,
+    "ast_hash": "235ffabc37fa6c5263a4959cbc2d86b4",
     "semantic_hash": ""
   },
   "skills/sentry-init/references/error-capture-architecture.md": {
-    "mtime": 1787857626.0185194,
+    "mtime": 1787857936.1951253,
     "ast_hash": "9a3a654ac267bc25b3f96b4d34fe77c2",
     "semantic_hash": ""
   },
   "skills/sentry-init/references/event-filtering-and-sampling.md": {
-    "mtime": 1787857626.0185194,
-    "ast_hash": "08d52301f19830c0192eb1bc89befc39",
+    "mtime": 1787951853.2327595,
+    "ast_hash": "59e235baacf576b96789f76953a7e126",
+    "semantic_hash": ""
+  },
+  "docs/adr/0006-retro-v2-skill-shape.md": {
+    "mtime": 1787951853.217572,
+    "ast_hash": "4eb44134771e302c5e84e6f60a4be77e",
+    "semantic_hash": ""
+  },
+  "docs/adr/0007-retro-v2-question-set.md": {
+    "mtime": 1787951853.2185698,
+    "ast_hash": "8d9132e76d539347b6a54fd8dccf1630",
+    "semantic_hash": ""
+  },
+  "docs/adr/0008-tune-setup-audit-surface.md": {
+    "mtime": 1787951853.2200053,
+    "ast_hash": "46432180d17f61280a4c4b78ea16f3bd",
+    "semantic_hash": ""
+  },
+  "docs/adr/0009-proposal-routing-and-caps.md": {
+    "mtime": 1787951853.2210073,
+    "ast_hash": "7f774e1c37fe5db5dac65f5642c09160",
+    "semantic_hash": ""
+  },
+  "docs/adr/0010-force-update-remote-source-default.md": {
+    "mtime": 1787992118.6935315,
+    "ast_hash": "aa74135a6de0fb898d5133d49928801a",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/SKILL.md": {
+    "mtime": 1787992118.701774,
+    "ast_hash": "c1fd010ba8062a3dd369965ba0742c13",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/release-playbook.md": {
+    "mtime": 1787992118.7027738,
+    "ast_hash": "c6794b86e226032e21d30e314c6ff9a0",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/remote-sources.md": {
+    "mtime": 1787992118.7054648,
+    "ast_hash": "ee63f025a35b9917617e271ecbdafc1b",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/store-urls-and-env.md": {
+    "mtime": 1787992118.7074702,
+    "ast_hash": "eadd41e5ac73fb91e14a2f0a58e44522",
+    "semantic_hash": ""
+  },
+  "skills/tune-setup/SKILL.md": {
+    "mtime": 1787951853.2349148,
+    "ast_hash": "6808f05bebb13cf0d8bb773865b41f76",
+    "semantic_hash": ""
+  },
+  "skills/asset-preload-init/SKILL.md": {
+    "mtime": 1790879466.9627097,
+    "ast_hash": "a422fc14134e7414974fe603b8c795e5",
+    "semantic_hash": ""
+  },
+  "skills/asset-preload-init/references/loader-cache-matrix.md": {
+    "mtime": 1790879466.9667242,
+    "ast_hash": "71782dc8a0ec8e238b906f014f9f49b6",
+    "semantic_hash": ""
+  },
+  "skills/asset-preload-init/references/size-and-dead-assets.md": {
+    "mtime": 1790879466.9667242,
+    "ast_hash": "8fa6bb07fff8e6fe09292e4f3e9c6e0d",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/asset-first-frame-warmup.md": {
+    "mtime": 1790879466.9715335,
+    "ast_hash": "d49a991f9672e45aa02f855bdd26be35",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/asset-size-budget.md": {
+    "mtime": 1790879466.9740522,
+    "ast_hash": "392d06a3ade619a083f4d32e800c0340",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/asset-unused.md": {
+    "mtime": 1790879466.9745593,
+    "ast_hash": "ffe92533498b6dc6b7ca3fb7af81f301",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/asset-warmup-safety.md": {
+    "mtime": 1790879466.9765716,
+    "ast_hash": "911351f901fa5646f64c60f34b3a2800",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/autofill.md": {
+    "mtime": 1790879810.3887427,
+    "ast_hash": "4e37d60fca3e8e1d2bed153fc728a601",
+    "semantic_hash": ""
+  },
+  "tests/retro/session-evidence.test.js": {
+    "mtime": 1790880345.58233,
+    "ast_hash": "2bc41528c8aacda2062cc58438ea9e65",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/web-boot-loader.md": {
+    "mtime": 1791137284.00282,
+    "ast_hash": "985f915f802a22b1afaa30e134fb2313",
+    "semantic_hash": ""
+  },
+  "skills/web-loader-init/SKILL.md": {
+    "mtime": 1791137284.004833,
+    "ast_hash": "9dc7e201f563eaa29ace80abf6018a9b",
+    "semantic_hash": ""
+  },
+  "skills/web-loader-init/references/bootstrap-template.md": {
+    "mtime": 1791137284.0078547,
+    "ast_hash": "babef9bb596d0510db20560769955ebd",
+    "semantic_hash": ""
+  },
+  "skills/web-loader-init/references/markup-and-style.md": {
+    "mtime": 1791137284.0078547,
+    "ast_hash": "7e0269c1edbb269b61adfa678f71518d",
     "semantic_hash": ""
   }
 }

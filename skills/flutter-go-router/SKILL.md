@@ -262,6 +262,35 @@ GoRoute(
 ),
 ```
 
+## Page Transitions
+
+Decide transitions **once, in the theme** — not per route. A page built with `NoTransitionPage` never asks
+`ThemeData.pageTransitionsTheme`, so a blanket `_page(child) => NoTransitionPage(child: child)` helper
+(usually added to stop web slide animations) also removes native Android/iOS transitions and makes any theme
+setting a no-op. Use plain `MaterialPage` (or `builder:`) on routes and set an adaptive theme:
+
+```dart
+const PageTransitionsTheme appPageTransitionsTheme = PageTransitionsTheme(
+  builders: {
+    // Mobile browsers report android/iOS too, so gate on kIsWeb.
+    TargetPlatform.android: kIsWeb ? _NoPageTransitionsBuilder() : ZoomPageTransitionsBuilder(),
+    TargetPlatform.iOS: kIsWeb ? _NoPageTransitionsBuilder() : CupertinoPageTransitionsBuilder(),
+    TargetPlatform.macOS: _NoPageTransitionsBuilder(),
+    TargetPlatform.windows: _NoPageTransitionsBuilder(),
+    TargetPlatform.linux: _NoPageTransitionsBuilder(),
+    TargetPlatform.fuchsia: _NoPageTransitionsBuilder(),
+  },
+);
+// _NoPageTransitionsBuilder: zero durations, buildTransitions returns child.
+```
+
+- Apply it to **both** light and dark `ThemeData` (`pageTransitionsTheme: appPageTransitionsTheme`).
+- Keep an explicit `NoTransitionPage`/`CustomTransitionPage` only for deliberate one-offs (e.g. a full-screen cockpit).
+- `StatefulShellRoute.indexedStack`: branch switches never animate; only pushes inside a branch do.
+- Android 14+: `PredictiveBackPageTransitionsBuilder` can replace `ZoomPageTransitionsBuilder`.
+- Generate and wire this automatically with `/page-transitions-init` (theme file, light + dark wiring, opt-in router migration).
+- Audited by **ROUTER-03** (`audit-presentation-layer`); full write-up in its `go-router-navigation-conventions.md` §8.
+
 ## Deep Linking
 
 **Android** (`AndroidManifest.xml`): add `<intent-filter>` with `android.intent.action.VIEW` for your scheme/host.
@@ -283,6 +312,7 @@ GoRouter handles the URL → route matching automatically.
 | `context.go('/path', queryParameters: {...})` | not valid — inline: `context.go('/path?k=v')` or use `goNamed` |
 | Riverpod provider for tab state when URL can hold it | use `GoRouterState.of(context).uri.queryParameters` instead |
 | Calling `context.go()` inside `ref.listen` directly | wrap in `addPostFrameCallback` + `context.mounted` guard |
+| Blanket `NoTransitionPage` helper on every route | kills native mobile transitions and bypasses `pageTransitionsTheme` — use `MaterialPage` + adaptive theme (ROUTER-03) |
 
 ## Adding a SentryNavigatorObserver
 
@@ -325,6 +355,10 @@ Persistent UI (tabs)?
 Tab/view state inside a screen?
 ├── Should be bookmarkable / deep-linkable? → query param + GoRouterState.of(context)
 └── In-memory only (no URL needed)? → Riverpod provider
+
+Page transitions?
+├── Native on mobile, instant on web/desktop? → adaptive pageTransitionsTheme + MaterialPage
+└── One screen must stay instant everywhere? → explicit NoTransitionPage on that route only
 
 Route params?
 ├── URL-addressable / deep-linkable? → pathParameters / queryParameters

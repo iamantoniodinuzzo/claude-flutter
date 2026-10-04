@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.10.0] - 2026-10-04
+
+### Added
+
+- `skills/web-loader-init` — boot progress loader for Flutter web: patches `web/index.html` with an
+  accessible overlay (logo + staged progress bar), writes `web/style.css` (light/dark, reduced-motion) and
+  a custom `web/flutter_bootstrap.js` that removes the loader on `flutter-first-frame`. INIT when no loader
+  exists, AUDIT when one does (new rule WEB-02) (ref #71).
+- `skills/asset-preload-init` — fixes first-frame asset pop-in: inventories declared assets by consuming
+  loader/cache, generates only the needed warm-up (SVG `loadBytes` with errors handled at creation,
+  `precacheImage` for raster) and reports oversized/unused assets (report only). Adds ASSET-01..04 audit
+  rules to `audit-presentation-layer` (ref #76).
+- `skills/page-transitions-init` — adaptive `PageTransitionsTheme` generator (native transitions on
+  installed Android/iOS, instant on web/desktop), wires it into every theme construction and optionally
+  migrates a blanket `NoTransitionPage` router helper (ref #73).
+- `audit-presentation-layer` — AUTOFILL-01..04 rule family for credential forms (`AutofillGroup`,
+  `autofillHints`, save-on-success policy) with an `autofill.md` pattern doc (ref #70); ROUTER-03 flags a
+  blanket `NoTransitionPage` helper, with go-router transition docs in `flutter-go-router` (ref #72).
+
+### Fixed
+
+- `retro` — `session-evidence` now selects the transcript by session id (`CLAUDE_CODE_SESSION_ID` /
+  `--session`), flags stale mtime-based picks, and makes failed-tool evidence citable; adds regression
+  tests (ref #74).
+- `retro` — `session-evidence` falls back to a canonical-slug directory match when the derived transcript
+  dir is missing (ref #69).
+- Dropped stale "commands" from repo/package descriptions (`commands/` was removed in v3.0.0).
+
 ## [3.9.0] - 2026-08-29
 
 ### Added

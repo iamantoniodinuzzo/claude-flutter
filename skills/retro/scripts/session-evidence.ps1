@@ -4,7 +4,9 @@
 # lives there and not here).
 #
 # Usage:
-#   .\session-evidence.ps1 [-Transcript <path-to-jsonl>] [-ConfigAudit]
+#   .\session-evidence.ps1 [-Transcript <path-to-jsonl>] [-Session <id>] [-List] [-ConfigAudit]
+#
+# -Session / -List forward --session / --list (see session-evidence.js for selection order).
 #
 # -ConfigAudit forwards --config-audit to session-evidence.js (tune-setup's opt-in
 # extended block — retro never passes this, see that file's header for why).
@@ -14,6 +16,8 @@
 
 param(
     [string]$Transcript,
+    [string]$Session,
+    [switch]$List,
     [switch]$ConfigAudit
 )
 
@@ -26,6 +30,8 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 
 $nodeArgs = @()
 if ($Transcript) { $nodeArgs += @('--transcript', $Transcript) }
+if ($Session) { $nodeArgs += @('--session', $Session) }
+if ($List) { $nodeArgs += @('--list') }
 if ($ConfigAudit) { $nodeArgs += @('--config-audit') }
 
 & node (Join-Path $dir 'session-evidence.js') @nodeArgs

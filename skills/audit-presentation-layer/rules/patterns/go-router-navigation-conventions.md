@@ -108,3 +108,47 @@ class MyScreen extends ConsumerWidget {
 - Declare nested routes in the `routes:` list of their **parent** `GoRoute`.
 - Use `goNamed` to navigate to nested routes.
 - Back navigation must call `context.go(AppRoute.parent.path)`, not `context.pop()`.
+
+<!-- local addition (claude-flutter) — audit rule ROUTER-03 -->
+### 8) Page transitions
+
+A common helper disables transitions everywhere (added for the web, where URL navigation should not slide):
+
+```dart
+NoTransitionPage<void> _page(Widget child) => NoTransitionPage<void>(child: child);
+// every route: pageBuilder: (context, state) => _page(const SomeScreen())
+```
+
+It also removes the native transitions on Android/iOS, and it **bypasses `ThemeData.pageTransitionsTheme`**:
+a page built with `NoTransitionPage` never asks the theme, so setting a theme alone changes nothing.
+
+**Fix**: decide once, in the theme, and let routes use plain `MaterialPage` (or omit `pageBuilder` and use `builder`):
+
+```dart
+const PageTransitionsTheme appPageTransitionsTheme = PageTransitionsTheme(
+  builders: {
+    // Mobile browsers report android/iOS too, so gate on kIsWeb.
+    TargetPlatform.android: kIsWeb ? _NoPageTransitionsBuilder() : ZoomPageTransitionsBuilder(),
+    TargetPlatform.iOS: kIsWeb ? _NoPageTransitionsBuilder() : CupertinoPageTransitionsBuilder(),
+    TargetPlatform.macOS: _NoPageTransitionsBuilder(),
+    TargetPlatform.windows: _NoPageTransitionsBuilder(),
+    TargetPlatform.linux: _NoPageTransitionsBuilder(),
+    TargetPlatform.fuchsia: _NoPageTransitionsBuilder(),
+  },
+);
+// _NoPageTransitionsBuilder extends PageTransitionsBuilder:
+// transitionDuration = reverseTransitionDuration = Duration.zero; buildTransitions returns child.
+```
+
+Result: native transitions on installed Android/iOS apps, instant navigation on web and desktop.
+
+To generate the theme, wire it into every light/dark theme and migrate the router, run `/page-transitions-init`.
+
+Notes:
+
+- `.android:` dot-shorthand needs Dart 3.10+; otherwise write `TargetPlatform.android`.
+- A `const` map with `kIsWeb ? const A() : const B()` values is a valid compile-time constant.
+- Apply the theme to **both** light and dark `ThemeData` (easy to miss when separate providers build them).
+- A route that must stay instant on mobile too (e.g. a full-screen cockpit) may keep an explicit `NoTransitionPage`/`CustomTransitionPage` — ROUTER-03 targets only the blanket helper.
+- `StatefulShellRoute.indexedStack`: branch switches never animate; only pushes inside a branch do.
+- `PredictiveBackPageTransitionsBuilder` can replace `ZoomPageTransitionsBuilder` on Android 14+.

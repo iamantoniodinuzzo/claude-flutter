@@ -1,6 +1,6 @@
 ---
 name: audit-presentation-layer
-description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), and web interaction affordances. Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", or asks to verify a widget/screen against project rules before code review.'
+description: 'Audit a Flutter presentation-layer file or folder (screens, widgets, pages, related widget tests) against the project''s documented UI guidelines — Riverpod v3 widget rules, rebuild isolation (const subtrees, scoped MediaQuery, builder child caching, setState blast radius), widget extraction and cohesion/coupling (oversized builds, function widgets, Law of Demeter params, layer/cross-feature imports), Robot Testing pattern, GoRouter conventions, layout antipatterns, side-effect handling, responsive layout (named breakpoints, flex rows, adaptive grids), asset loading (first-frame warm-up, oversized and unused assets, warm-up safety), credential-form autofill (AutofillGroup, autofillHints, password-manager save-on-success), web interaction affordances, the web boot loader and the router page-transition strategy (app-root run only). Platform-aware: auto-detects target platforms from pubspec.yaml and gates rules accordingly; override with --platform=web|android|ios|mobile|all. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit presentation layer", "audit this widget", "review this widget", "check UI guidelines", "find UI violations", "presentation audit", "lint widgets", "audit autofill", "check password manager support", or asks to verify a widget/screen against project rules before code review.'
 user-invocable: true
 ---
 
@@ -24,10 +24,11 @@ Read the user's request and extract one of:
 
 - **Single file**: a path ending in `.dart`
 - **Feature folder**: a path containing a `presentation/` directory
+- **App root or `lib/`**: a directory containing `pubspec.yaml`, or a `lib/` whose parent has one (enables app-level checks such as WEB-02 and ROUTER-03; a `routing/` folder or the router file itself also enables ROUTER-03)
 
 If neither is clear, ask exactly one question:
 
-> "Provide a widget file path or a feature folder path containing a `presentation/` directory."
+> "Provide a widget file path, a feature folder path containing a `presentation/` directory, or an app root."
 
 Do not proceed until a path is confirmed.
 
@@ -113,6 +114,14 @@ Classify each file:
 - `widget` — non-test dart file under `presentation/`
 - `widget-test` — `*_test.dart` file mirroring a presentation widget
 - `domain-file` — dart file outside `presentation/` in the same feature tree
+- `web-entry` — `web/index.html`, `web/flutter_bootstrap.js`, `web/*.css` (**app-root/`lib/` mode only**, web target only)
+- `router` — a `.dart` file under `lib/` containing `GoRouter(` or `pageBuilder:` (**app-root/`lib/` mode, a `routing/` folder, or the router file passed directly**; mobile target only)
+
+### App-root mode
+
+When the input is an app root or `lib/`, discover Dart files as in folder mode (all `presentation/` trees under
+`lib/`) and additionally collect the `web-entry` and `router` files. For a feature folder or other single file, skip
+`web-entry` and `router` silently.
 
 ---
 
@@ -123,9 +132,11 @@ For each file:
 1. Read the full file contents.
 2. Apply every heuristic in `rules/CATALOG.md` relevant to the file type **and**
    not gated out by the platform target (see Phase 0 Step 3):
-   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, WEB-01
+   - `widget` files → apply: RIV-WIDGET-*, REBUILD-*, EXTRACT-*, COHESION-01, COUPLING-*, LAYOUT-*, SIDE-FX-01, ROBOT-04, ROUTER-*, RESPONSIVE-*, ASSET-*, AUTOFILL-*, WEB-01
    - `widget-test` files → apply: ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-05
    - `domain-file` files → apply: UI-STR-01 only
+   - `web-entry` files → apply: WEB-02 only
+   - `router` files → apply: ROUTER-03 only
 3. For each match: record `{file, line_number, rule_id, severity, message, fix_hint, autofix_safe}`.
 
 Heuristic application notes:
@@ -150,6 +161,7 @@ Heuristic application notes:
 - **ROBOT-05**: flag public `find…()` methods in Robot classes (method name starts with `find` but no leading `_`).
 - **ROUTER-01**: flag `context.push(` and `GoRouter.of(context).push(` in `presentation/` source files.
 - **ROUTER-02**: flag `AppBar(` in `*_screen.dart` files where `leading:` is not present in the same `AppBar(…)` span.
+- **ROUTER-03** _(mobile target, router file, app-root/`lib/`/`routing/` input only)_: flag a ≤ 3-line helper returning `NoTransitionPage(`/`NoTransitionPage<...>(` (or inline `pageBuilder: ... => NoTransitionPage(`) used by ≥ 50% of `GoRoute` page builders and ≥ 3 routes; one-offs below the threshold never fire. Severity is warning when android/ios is explicitly targeted, info on the `all` fallback. Grep `lib/` for `pageTransitionsTheme:` to pick the message — *theme set but bypassed* vs *no transition strategy* — and note a light/dark mismatch. Fix text: adaptive `PageTransitionsTheme` on both themes + `MaterialPage`; see `flutter-go-router` § Page Transitions, or run `/page-transitions-init`.
 - **LAYOUT-01**: flag any file with more than one `Scaffold(` occurrence.
 - **LAYOUT-02**: flag `Widget _` methods inside widget class bodies.
 - **SIDE-FX-01**: flag `showDialog(`, `Navigator.push(`, `ScaffoldMessenger.of(context).show`, `addPostFrameCallback(` inside `build(BuildContext` method spans.
@@ -158,6 +170,15 @@ Heuristic application notes:
 - **RESPONSIVE-02**: flag width-like expressions (`constraints.maxWidth`, `size.width`, `width`) compared against 3–4 digit numeric literals in `if`/ternary/`switch` conditions; skip when the value comes from a named constant (e.g. `AppBreakpoints.compact`).
 - **RESPONSIVE-03**: within `Row(` spans, flag the `Row(` line when ≥ 2 children carry `width: <num>` and no `Flexible(`/`Expanded(` appears in the span.
 - **RESPONSIVE-04**: flag literal `crossAxisCount: <num>` in `SliverGridDelegateWithFixedCrossAxisCount(` and `GridView.count(` spans, unless computed from constraints/width.
+- **ASSET-01**: flag `SvgPicture.asset(`/`Image.asset(`/`AssetImage(` in first-route/shell widgets whose path has no `SvgAssetLoader(`/`precacheImage(` warm-up in startup code; skip engine-registry and `rootBundle`-only assets. Warning for SVG, info for raster.
+- **ASSET-02**: needs project root. Flag raster assets whose pixels exceed display logical px × 3 × 1.5, or (display size unknown) decoded `w × h × 4` > 4 MB. Report only.
+- **ASSET-03**: needs project root. Flag pubspec-declared assets with no reference; follow `flutter_gen` accessors and runtime-built paths first. Report only — never delete.
+- **ASSET-04**: flag warm-ups with no error handler at the creation expression, a cache key that cannot match the widget's (`theme`/`colorMapper`/`bundle`/`DefaultSvgTheme`), or `precacheImage` on engine-managed assets.
+- **AUTOFILL-01**: flag a password field (`obscureText: true` or `Password\w*Field`) alongside an email/username field (`TextInputType.emailAddress` or label/controller matching `email|user(name)?|login`) with no `AutofillGroup(` enclosing both in the `build` span.
+- **AUTOFILL-02**: flag password/email/name/phone fields lacking `autofillHints:`, and hint/keyboard mismatches (`AutofillHints.email` without `TextInputType.emailAddress`; `AutofillHints.password` on a new-password field in `register|sign_?up|reset|change_?password` files). Skip non-personal fields (e.g. organisation name).
+- **AUTOFILL-03**: (a) flag `AutofillGroup(` spans without `onDisposeAction: AutofillContextAction.cancel`; (b) flag the owning `State` when no `finishAutofillContext(` follows an awaited success check — skip forgot-password screens; (c) flag `.clear()`/`.text = ''` on credential controllers textually before `finishAutofillContext(` in the success branch.
+- **AUTOFILL-04**: flag classes under `common/`/`shared/`/`widgets/` whose `build` returns `TextFormField(`/`TextField(` and whose constructor has no `autofillHints` parameter.
+- **WEB-02** _(web target, app-root/`lib/` input only)_: inspect `web/` for a missing or broken boot loader — (a) no visible `<body>` element before the bootstrap script, (b) custom `flutter_bootstrap.js` without `flutter-first-frame`, (c) top-level `const`/`let`/`class` outside an IIFE, (d) missing `serviceWorkerSettings` without `--pwa-strategy=none`, (e) `display:flex` on `body`. Skip silently outside app-root mode. Fix text: run `/web-loader-init`.
 - **WEB-01** _(web target only)_: flag `GestureDetector(` or `InkWell(` blocks containing `onTap:` where no `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (~20 lines above). Skip occurrences inside Flutter's built-in button/tile classes.
 
 ---
@@ -201,13 +222,14 @@ After the report, ask:
 
 ```
 Apply fixes for which rule IDs? (comma-separated list, "all", or "none")
-Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05
+Auto-fix safe: RIV-WIDGET-02, REBUILD-01, REBUILD-02, ROBOT-05, AUTOFILL-04, AUTOFILL-03 (a only)
 Requires judgment: RIV-WIDGET-01, RIV-WIDGET-03, RIV-WIDGET-04, REBUILD-03,
                    REBUILD-04, EXTRACT-01, EXTRACT-02, COHESION-01, COUPLING-01,
                    COUPLING-02, ROBOT-01, ROBOT-02, ROBOT-03, ROBOT-04,
-                   ROUTER-01, ROUTER-02, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
+                   ROUTER-01, ROUTER-02, ROUTER-03, LAYOUT-01, LAYOUT-02, SIDE-FX-01,
                    UI-STR-01, RESPONSIVE-01, RESPONSIVE-02, RESPONSIVE-03,
-                   RESPONSIVE-04, WEB-01
+                   RESPONSIVE-04, ASSET-01, ASSET-02, ASSET-03, ASSET-04, AUTOFILL-01, AUTOFILL-02,
+                   AUTOFILL-03 (b/c), WEB-01, WEB-02
 ```
 
 On response:

@@ -203,6 +203,15 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 - **Fix**: add `leading: BackButton(onPressed: () => context.goNamed(AppRoute.parent.name, ...))` to the `AppBar`
 - **autofix_safe**: false (parent route name must be provided manually)
 
+### ROUTER-03
+- **Severity**: warning when the resolved target explicitly includes android or ios (`--platform` or pubspec `platforms`); info when the target is the `all` fallback
+- **Platforms**: mobile
+- **Source**: `rules/patterns/go-router-navigation-conventions.md` §8
+- **What**: Blanket `NoTransitionPage` in the router file — a helper (top-level/private function or lambda, body ≤ 3 lines) returning `NoTransitionPage(` / `NoTransitionPage<...>(`, or inline `pageBuilder: ... => NoTransitionPage(`, used by ≥ 50% of the file's `GoRoute` page builders (and at least 3 routes). It removes native transitions on Android/iOS and bypasses `ThemeData.pageTransitionsTheme` — a page built with `NoTransitionPage` never asks the theme
+- **Heuristic**: **scope gate** — inspects the router file; run only when the audited input is an app root, `lib/`, a `routing/` folder, or the router file itself; skip silently for a feature folder or other single file. Find `NoTransitionPage(<[^>]*>)?\(` inside a function/lambda body of ≤ 3 lines (helper); count helper call sites plus inline uses vs total `pageBuilder:`/`builder:` entries in `GoRoute(`/`StatefulShellRoute` spans; flag when ≥ 50% and ≥ 3. Never flag one-offs below the threshold. Then grep `lib/` for `pageTransitionsTheme:`: it does not gate firing, it selects the message — *theme set but bypassed by the helper* vs *no transition strategy defined*; also note when it appears in fewer calls than there are `ThemeData(`/`FlexThemeData.*(` calls (light/dark mismatch)
+- **Fix**: define an adaptive `PageTransitionsTheme` (native on installed mobile, instant on web/desktop), set it on **both** light and dark themes, and change the helper to `MaterialPage` (or drop it and use `builder:`); keep an explicit `NoTransitionPage`/`CustomTransitionPage` only for deliberate one-offs. See `flutter-go-router` § Page Transitions, or run `/page-transitions-init` to generate the theme and migrate the router
+- **autofix_safe**: false (product decision on which platforms animate)
+
 ---
 
 ## Layout antipattern rules
@@ -303,6 +312,95 @@ auto-fix is safe (`autofix_safe`). Phase 3 of the skill scans using this catalog
 - **Heuristic**: in widget files, find `GestureDetector(` or `InkWell(` that include `onTap:`; check whether `MouseRegion`, `Focus`, or `FocusableActionDetector` appears as an ancestor within the same `build` method span (within ~20 lines above); flag if none found. Skip occurrences inside Flutter's built-in button classes (`ElevatedButton`, `TextButton`, `FilledButton`, `OutlinedButton`, `IconButton`, `ListTile`).
 - **Fix**: wrap with `MouseRegion(cursor: SystemMouseCursors.click, child: ...)` for hover; add `FocusableActionDetector` (with `ActivateIntent` → tap handler) or `Focus` + `focusNode` for keyboard access
 - **autofix_safe**: false (wrapping hierarchy and keyboard binding must be reviewed manually)
+
+### WEB-02
+- **Severity**: warning
+- **Platforms**: web
+- **Source**: `rules/patterns/web-boot-loader.md`
+- **What**: Flutter web app ships without a working boot loader — blank white page for 3-5 s while the runtime downloads. Sub-checks: (a) `web/index.html` `<body>` has no visible element before the `flutter_bootstrap.js` script; (b) custom `flutter_bootstrap.js` never listens for `flutter-first-frame` (loader removed on `runApp()` resolve, or never removed); (c) custom `flutter_bootstrap.js` with top-level `const`/`let`/`class` outside an IIFE or block — breaks `flutter run -d chrome` with `Identifier 'loader' has already been declared`; (d) custom bootstrap missing `serviceWorkerSettings` while `--pwa-strategy=none` is not configured; (e) loader styles on `body` (`display:flex`)
+- **Heuristic**: **scope gate** — inspects `web/`, not Dart; run only when the audited input is an app root (directory with `pubspec.yaml`) or `lib/`, skip silently for a feature folder or single file. Read `web/index.html`, `web/flutter_bootstrap.js` (if present) and `web/*.css`. (a) first non-script element child of `<body>` before the bootstrap `<script>`; (b) no `flutter-first-frame` string in the bootstrap; (c) `^(const|let|class)\s` at column 0 outside a function/block, ignoring the `{{flutter_js}}`/`{{flutter_build_config}}` tokens; (d) no `serviceWorkerSettings` and no `--pwa-strategy=none` in CI scripts/`melos.yaml`/docs; (e) `body\s*\{[^}]*display:\s*flex`. Without a custom bootstrap only (a) and (e) apply
+- **Fix**: run `/web-loader-init` (the audit reports, the skill scaffolds); for (c) alone wrap everything after `{{flutter_js}}`/`{{flutter_build_config}}` in `(function () { ... })();`
+- **autofix_safe**: false (loader design, palette and PWA strategy need decisions)
+
+---
+
+## Asset loading rules
+
+### ASSET-01
+- **Severity**: warning (SVG) / info (raster)
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-first-frame-warmup.md`
+- **What**: `SvgPicture.asset(` / `Image.asset(` / `AssetImage(` in a first-route or shell widget whose path has no warm-up in startup code — the first frame draws it one or two frames late (pop-in)
+- **Heuristic**: in widget files reachable from the first route/shell, find these constructors with a literal or constant path; grep `main.dart`/startup code for `SvgAssetLoader(`/`precacheImage(` covering the same path; flag if none. Skip assets preloaded by an engine registry (Flame `Images`, sprite registry) and `rootBundle`-only assets. Severity is warning for SVG (cache reachable before `runApp`), info for raster (needs a `BuildContext`)
+- **Fix**: SVG → `SvgAssetLoader(path).loadBytes(null)` in `main()` before `runApp`; raster → `precacheImage(AssetImage(path), context)` post-first-frame or in a splash widget; or run `/asset-preload-init`
+- **autofix_safe**: false (first-frame reachability and startup placement need judgment)
+
+### ASSET-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-size-budget.md`
+- **What**: Raster asset far larger than its display size — source pixels > display logical px × 3 (max DPR) × 1.5, or, when display size is unknown, decoded size (`w × h × 4`) > 4 MB
+- **Heuristic**: needs the project root (`pubspec.yaml`); read pixel size from the file header for raster assets declared under `flutter: assets:`; take display size from `width:`/`height:` on the consuming widget when present. In single-file mode, check only assets referenced by the file. Skip SVG
+- **Fix**: propose a resize (e.g. `magick in.png -resize 256x256 out.png`) — never run unasked; if files cannot be edited, `cacheWidth`/`cacheHeight` or `ResizeImage`
+- **autofix_safe**: false (modifies binary assets)
+
+### ASSET-03
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-unused.md`
+- **What**: Asset declared in pubspec (file or directory entry) but referenced nowhere — it still ships in every build
+- **Heuristic**: needs the project root; expand `flutter: assets:`, grep quoted file names (names may contain spaces), follow `flutter_gen` accessors and runtime-built paths (prefix + enum `.name` + extension) before flagging. `rootBundle.load` counts as a reference
+- **Fix**: report only — the user decides whether to delete the file or narrow the pubspec entry
+- **autofix_safe**: false (never delete automatically)
+
+### ASSET-04
+- **Severity**: error
+- **Platforms**: all
+- **Source**: `rules/patterns/asset-warmup-safety.md`
+- **What**: Existing warm-up is unsafe or ineffective: (a) the warm-up `Future` has no error handler attached at creation; (b) the cache key cannot match the widget's (`theme:`/`colorMapper:`/`bundle:` on `SvgPicture.asset`, or a `DefaultSvgTheme` ancestor); (c) `precacheImage` used for an engine-managed cache
+- **Heuristic**: find `SvgAssetLoader(`/`precacheImage(` in startup code; (a) check for `.then(…, onError:` / `catchError` at the creation expression, not only at the `await`; (b) for each warmed path, inspect its `SvgPicture.asset` consumers for the args above; (c) check whether the path is consumed by a Flame `Images`/sprite registry
+- **Fix**: (a) `.then<void>((_) {}, onError: …)` at creation; (b) remove the warm-up for that asset or align the key; (c) use the engine's own preload
+- **autofix_safe**: false (startup flow and cache-key alignment need review)
+
+---
+
+## Autofill rules
+
+### AUTOFILL-01
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: A `Form`/screen with a password field (`obscureText: true`, or a `PasswordTextField`-style wrapper) next to an email/username field, with no `AutofillGroup` ancestor wrapping both — the OS cannot link them into one credential
+- **Heuristic**: in a widget file, find a password field (`obscureText:\s*true` or a class matching `Password\w*Field`) and a sibling field whose `keyboardType` is `TextInputType.emailAddress` or whose label/controller name matches `email|user(name)?|login`; flag when `AutofillGroup(` does not enclose both within the same `build` span
+- **Fix**: wrap the credential fields (not the whole screen if avoidable) in `AutofillGroup(onDisposeAction: AutofillContextAction.cancel, child: Column(...))`
+- **autofix_safe**: false (group boundaries must be chosen)
+
+### AUTOFILL-02
+- **Severity**: warning
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: Credential field with no `autofillHints`, or hints that do not match the flow/keyboard — sign-in: email `[username, email]`, password `[password]`; sign-up/reset/change-password: new password `[newPassword]` (also on the confirm field), sign-up email `[newUsername, email]`; `AutofillHints.email` needs `TextInputType.emailAddress`, `AutofillHints.name` needs `TextInputType.name`; a field that must not be personal data (e.g. an organisation name being created) should have no hints
+- **Heuristic**: for each password/email/name/phone field lacking `autofillHints:`, flag. For each present hint, check the pairing above; in files whose class/route name matches `register|sign_?up|reset|change_?password`, flag `AutofillHints.password` used on a *new* password field
+- **Fix**: add the hint list; set the matching `keyboardType`
+- **autofix_safe**: false (correct hint depends on the flow)
+
+### AUTOFILL-03
+- **Severity**: error
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: (a) `AutofillGroup(` without `onDisposeAction: AutofillContextAction.cancel` — the default `commit` offers to save a wrong password after a failed login; (b) a submit handler (sign-in / register / change-password) with no `TextInput.finishAutofillContext()` on its success path; (c) `finishAutofillContext()` placed after the credential controllers are cleared
+- **Heuristic**: (a) `AutofillGroup(` span lacks `onDisposeAction:\s*AutofillContextAction\.cancel`; (b) in the `State` class that owns the group, no `finishAutofillContext(` call reachable after an awaited success result (`if (success)`, `if (ok)`, `.then`); (c) in the success branch, `.clear()` / `.text = ''` on the credential controllers appears textually before `finishAutofillContext(`. Skip (b) for forgot-password screens — the reset completes outside the app
+- **Fix**: `onDisposeAction: AutofillContextAction.cancel` on the group; `if (success) TextInput.finishAutofillContext();` right after the awaited call and before clearing the form
+- **autofix_safe**: true for (a); false for (b)/(c) (needs the success condition)
+
+### AUTOFILL-04
+- **Severity**: info
+- **Platforms**: all
+- **Source**: `rules/patterns/autofill.md`
+- **What**: Shared text-field wrapper (`AppTextField`, `PasswordTextField`, ...) that builds a `TextFormField`/`TextField` but does not expose/forward `autofillHints` (ideally also `focusNode`, `onChanged`) — feature screens are forced back to raw `TextFormField`, fragmenting the design system
+- **Heuristic**: a class under a `common/`/`shared/`/`widgets/` folder whose `build` returns `TextFormField(`/`TextField(` and whose constructor has no `autofillHints` parameter. Also flag a password wrapper that re-implements its own border instead of composing the shared field
+- **Fix**: add `final Iterable<String>? autofillHints;` and forward it; make the password wrapper compose the shared field
+- **autofix_safe**: true (additive optional parameter)
 
 ---
 

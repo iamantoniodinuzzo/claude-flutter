@@ -7,11 +7,11 @@
   "plugins": [
     {
       "name": "flutter-toolkit",
-      "description": "Comprehensive suite of Flutter/Dart skills, agents and commands (Riverpod v3, GoRouter, Melos, clean architecture).",
+      "description": "Comprehensive suite of Flutter/Dart skills and agents (Riverpod v3, GoRouter, Melos, clean architecture).",
       "source": {
         "source": "github",
         "repo": "iamantoniodinuzzo/claude-flutter",
-        "ref": "v3.9.0"
+        "ref": "v3.10.0"
       },
       "author": {
         "name": "Antonio Di Nuzzo",

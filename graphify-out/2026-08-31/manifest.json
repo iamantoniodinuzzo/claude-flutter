@@ -1,0 +1,737 @@
+{
+  ".claude-plugin/marketplace.json": {
+    "mtime": 1787993615.5664873,
+    "ast_hash": "8a87322f2b2231aa2b44715df197409c",
+    "semantic_hash": ""
+  },
+  ".claude-plugin/plugin.json": {
+    "mtime": 1787993615.5674868,
+    "ast_hash": "eb27d1681b4d798b6f13a47f39da09d8",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1783001785.1456864,
+    "ast_hash": "1d4c42393a147e295245841890699fbb",
+    "semantic_hash": ""
+  },
+  ".gemini/settings.json": {
+    "mtime": 1781982812.9405954,
+    "ast_hash": "ddc6069a85a1acc06096e06bcd8087ac",
+    "semantic_hash": "ddc6069a85a1acc06096e06bcd8087ac"
+  },
+  "package.json": {
+    "mtime": 1787993615.5714755,
+    "ast_hash": "98e3bca3592e5310f1f9216f17711b18",
+    "semantic_hash": ""
+  },
+  ".claude/agents/skill-reviewer.md": {
+    "mtime": 1780944188.3014336,
+    "ast_hash": "fd66a95c0289aa6f79788a2b732fdddb",
+    "semantic_hash": "fd66a95c0289aa6f79788a2b732fdddb"
+  },
+  ".github/ISSUE_TEMPLATE/bug.yml": {
+    "mtime": 1779907749.3290708,
+    "ast_hash": "8816184133f9a418a550f30a171deaf5",
+    "semantic_hash": "8816184133f9a418a550f30a171deaf5"
+  },
+  ".github/ISSUE_TEMPLATE/config.yml": {
+    "mtime": 1779907749.3308156,
+    "ast_hash": "380907e20f1ec544c96a562a2ac57ec8",
+    "semantic_hash": "380907e20f1ec544c96a562a2ac57ec8"
+  },
+  ".github/ISSUE_TEMPLATE/feature.yml": {
+    "mtime": 1779907749.3308156,
+    "ast_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e",
+    "semantic_hash": "809aaf8bedc8a60f0fac86c48c7b2f8e"
+  },
+  ".github/ISSUE_TEMPLATE/task.yml": {
+    "mtime": 1779907749.332826,
+    "ast_hash": "112acd2f3356ee327778bff4111573a4",
+    "semantic_hash": "112acd2f3356ee327778bff4111573a4"
+  },
+  "CHANGELOG.md": {
+    "mtime": 1787992120.0209026,
+    "ast_hash": "2947d6701e03f7a154f5d142827e0123",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1783001785.148725,
+    "ast_hash": "f6c89f2e2e3c707f7c881de71927ef60",
+    "semantic_hash": ""
+  },
+  "GEMINI.md": {
+    "mtime": 1781982812.9415898,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
+  },
+  "README.md": {
+    "mtime": 1787993615.5694807,
+    "ast_hash": "5a4d9058336210a1f81b25fccc12997f",
+    "semantic_hash": ""
+  },
+  "agents/prompt-engineer.md": {
+    "mtime": 1778308979.1549873,
+    "ast_hash": "ef778600c9b1ff543fc3a52276cca408",
+    "semantic_hash": "ef778600c9b1ff543fc3a52276cca408"
+  },
+  "agents/riverpod-reviewer.md": {
+    "mtime": 1787992118.6861267,
+    "ast_hash": "e2f820f79158ae10e498b1bfea1d7c44",
+    "semantic_hash": ""
+  },
+  "ai_docs/ARCHITECTURE.md": {
+    "mtime": 1787992118.6881213,
+    "ast_hash": "0de97197935b2dbe9cdd136f45d65e11",
+    "semantic_hash": ""
+  },
+  "ai_docs/CONTRIBUTING.md": {
+    "mtime": 1783003858.5853558,
+    "ast_hash": "39b83f2d4b7d58cf6a8d12ea399bcb76",
+    "semantic_hash": ""
+  },
+  "ai_docs/FLUTTER_RULES.md": {
+    "mtime": 1787992118.6894794,
+    "ast_hash": "fd827dcde4c0edbf78e91506ab40379c",
+    "semantic_hash": ""
+  },
+  "ai_docs/GIT_WORKFLOW.md": {
+    "mtime": 1781982812.8616476,
+    "ast_hash": "cc824b9beb525c00fd277264d0399272",
+    "semantic_hash": ""
+  },
+  "ai_docs/HOW_TO_CREATE_MARKETPLACE.md": {
+    "mtime": 1780212265.0449972,
+    "ast_hash": "ff9eab1a30b2de7769cdcab6e5792be3",
+    "semantic_hash": "ff9eab1a30b2de7769cdcab6e5792be3"
+  },
+  "skills/audit-presentation-layer/SKILL.md": {
+    "mtime": 1783404632.088256,
+    "ast_hash": "a95ac558f1483fa6bc517172432b5e0b",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/CATALOG.md": {
+    "mtime": 1783404632.088256,
+    "ast_hash": "8b21549321528706302da2f4d5aeb138",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/breaking/flutter-accessibility-testing.md": {
+    "mtime": 1779217335.0119793,
+    "ast_hash": "1a4c94295a21b0d14469e9d87d9e306b",
+    "semantic_hash": "1a4c94295a21b0d14469e9d87d9e306b"
+  },
+  "skills/audit-presentation-layer/rules/breaking/flutter-widgets-perf.md": {
+    "mtime": 1779217335.0119793,
+    "ast_hash": "33acb6dcc87807559fe3b5a64ab1eabe",
+    "semantic_hash": "33acb6dcc87807559fe3b5a64ab1eabe"
+  },
+  "skills/audit-presentation-layer/rules/breaking/riverpod-flutter.md": {
+    "mtime": 1779217335.0150392,
+    "ast_hash": "bda6228a6abf7264aca5f1217eb966e0",
+    "semantic_hash": "bda6228a6abf7264aca5f1217eb966e0"
+  },
+  "skills/audit-presentation-layer/rules/patterns/flutter-side-effects.md": {
+    "mtime": 1779217335.0170438,
+    "ast_hash": "4fc399102fbe518b4b6202869b808536",
+    "semantic_hash": "4fc399102fbe518b4b6202869b808536"
+  },
+  "skills/audit-presentation-layer/rules/patterns/go-router-navigation-conventions.md": {
+    "mtime": 1779217335.019049,
+    "ast_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194",
+    "semantic_hash": "8b0dac1ba37a0ea57dcdcbaf00dcc194"
+  },
+  "skills/audit-presentation-layer/rules/patterns/no-ui-strings-outside-ui.md": {
+    "mtime": 1779217335.019049,
+    "ast_hash": "592871c8dd4f9d938d6f6c64d0e87e41",
+    "semantic_hash": "592871c8dd4f9d938d6f6c64d0e87e41"
+  },
+  "skills/audit-presentation-layer/rules/patterns/replace-container-nested-widgets.md": {
+    "mtime": 1779217335.0210555,
+    "ast_hash": "a67f9afd65bfa3045d2c266c73e4dbff",
+    "semantic_hash": "a67f9afd65bfa3045d2c266c73e4dbff"
+  },
+  "skills/audit-presentation-layer/rules/patterns/responsive-layout.md": {
+    "mtime": 1783404632.0922701,
+    "ast_hash": "6981b613291a00d2f45be8d1167331e6",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/riverpod-rebuild-optimization.md": {
+    "mtime": 1779217335.0230691,
+    "ast_hash": "c8a1de98d33264b41a925e54ea2df384",
+    "semantic_hash": "c8a1de98d33264b41a925e54ea2df384"
+  },
+  "skills/audit-presentation-layer/rules/patterns/robot-testing.md": {
+    "mtime": 1779217335.0230691,
+    "ast_hash": "46555332f07d1fb2ecd05d317bb44f55",
+    "semantic_hash": "46555332f07d1fb2ecd05d317bb44f55"
+  },
+  "skills/audit-presentation-layer/rules/patterns/web-interaction-affordances.md": {
+    "mtime": 1780944188.327235,
+    "ast_hash": "816e10d2285ea641cc5ffab8c822804d",
+    "semantic_hash": "816e10d2285ea641cc5ffab8c822804d"
+  },
+  "skills/audit-presentation-layer/rules/patterns/widget-classes-no-build-helpers.md": {
+    "mtime": 1779217335.0250745,
+    "ast_hash": "6598ae73ff196817dc046b1f648b6ad2",
+    "semantic_hash": "6598ae73ff196817dc046b1f648b6ad2"
+  },
+  "skills/build-filter/skill.md": {
+    "mtime": 1780944274.0339913,
+    "ast_hash": "a11a1cd684ca4ec7ccfa87769c227b58",
+    "semantic_hash": "a11a1cd684ca4ec7ccfa87769c227b58"
+  },
+  "skills/flutter-analyze-targeted/SKILL.md": {
+    "mtime": 1779909114.180425,
+    "ast_hash": "054f2083297078be31c3d73aa7f460de",
+    "semantic_hash": "054f2083297078be31c3d73aa7f460de"
+  },
+  "skills/flutter-go-router/SKILL.md": {
+    "mtime": 1780944188.3292296,
+    "ast_hash": "93df599a5e85f2edf053474a87b5fce7",
+    "semantic_hash": "93df599a5e85f2edf053474a87b5fce7"
+  },
+  "skills/flutter-melos-workspace/SKILL.md": {
+    "mtime": 1778917108.2509062,
+    "ast_hash": "f40b2cccee92bdf3bc6708cd5f62848e",
+    "semantic_hash": "f40b2cccee92bdf3bc6708cd5f62848e"
+  },
+  "skills/flutter-melos-workspace/references/melos-best-practices.md": {
+    "mtime": 1778308979.2184384,
+    "ast_hash": "f2a8cfdf80f2c19f20c41740c39e5e02",
+    "semantic_hash": "f2a8cfdf80f2c19f20c41740c39e5e02"
+  },
+  "skills/generate-widget-tests/SKILL.md": {
+    "mtime": 1779608699.3940396,
+    "ast_hash": "1d509d5a2a19831418ffddf97b9ee276",
+    "semantic_hash": "1d509d5a2a19831418ffddf97b9ee276"
+  },
+  "skills/maestro-screenshot-flow/SKILL.md": {
+    "mtime": 1783003858.5902176,
+    "ast_hash": "e097520682979d24cd169dd01e64903f",
+    "semantic_hash": ""
+  },
+  "skills/second-opinion/SKILL.md": {
+    "mtime": 1783003858.5922132,
+    "ast_hash": "3959170092d615f468519944b3b9447e",
+    "semantic_hash": ""
+  },
+  "skills/sentry-init/SKILL.md": {
+    "mtime": 1787951853.2291446,
+    "ast_hash": "a915372665fdc2fbbc10fead61ca717f",
+    "semantic_hash": ""
+  },
+  "skills/sentry-init/references/gorouter-and-dio-wiring.md": {
+    "mtime": 1787857936.19873,
+    "ast_hash": "6bd1b226f423daaab13edd01217f1d93",
+    "semantic_hash": ""
+  },
+  "skills/sentry-init/references/initialization-flow.md": {
+    "mtime": 1780944188.3564334,
+    "ast_hash": "d9821f5bcd6724eec42041e36dff8680",
+    "semantic_hash": "d9821f5bcd6724eec42041e36dff8680"
+  },
+  "skills/sentry-init/references/release-uploads.md": {
+    "mtime": 1780944188.3635838,
+    "ast_hash": "a29de44c9be1b86ec6d892b3769ece38",
+    "semantic_hash": "a29de44c9be1b86ec6d892b3769ece38"
+  },
+  "skills/sentry-init/references/web-feedback-canvaskit.md": {
+    "mtime": 1787857936.200727,
+    "ast_hash": "20104faca648640e311dbc07bfa06d36",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/SKILL.md": {
+    "mtime": 1783404632.094276,
+    "ast_hash": "22e5e9218495ce3576b1bf1ae04d5b00",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/patterns/computed-async-value-providers.md": {
+    "mtime": 1779608699.401021,
+    "ast_hash": "8eb5aafad1500689d980290b7fed568a",
+    "semantic_hash": "8eb5aafad1500689d980290b7fed568a"
+  },
+  "skills/unit-test/patterns/fixture-helpers.md": {
+    "mtime": 1779608699.4020178,
+    "ast_hash": "03dcca09553494b53f78b849dcf0adad",
+    "semantic_hash": "03dcca09553494b53f78b849dcf0adad"
+  },
+  "skills/unit-test/patterns/future-provider-error-paths.md": {
+    "mtime": 1779608699.4030166,
+    "ast_hash": "44c6a463b8690f6a9db7b3b8fad099ff",
+    "semantic_hash": "44c6a463b8690f6a9db7b3b8fad099ff"
+  },
+  "skills/unit-test/patterns/notifier-with-internal-ref-listen.md": {
+    "mtime": 1779608699.4040127,
+    "ast_hash": "5443ec7770c25a96a7f0759dd5db0f9e",
+    "semantic_hash": "5443ec7770c25a96a7f0759dd5db0f9e"
+  },
+  "skills/unit-test/patterns/notifier-with-stream-deps.md": {
+    "mtime": 1779608699.4050095,
+    "ast_hash": "1a2d8809f66b8503cbf4d38329b3207a",
+    "semantic_hash": "1a2d8809f66b8503cbf4d38329b3207a"
+  },
+  "skills/unit-test/patterns/prestub-nonnullable-returns.md": {
+    "mtime": 1779608699.4060073,
+    "ast_hash": "472e907614bc8ac0064ccaeb34d0f06e",
+    "semantic_hash": "472e907614bc8ac0064ccaeb34d0f06e"
+  },
+  "skills/unit-test/patterns/stream-provider-overrides.md": {
+    "mtime": 1779608699.4070053,
+    "ast_hash": "6a2375408725ad8c5c5b2b144aabdc8e",
+    "semantic_hash": "6a2375408725ad8c5c5b2b144aabdc8e"
+  },
+  "skills/unit-test/patterns/verify-verifyinorder-antipattern.md": {
+    "mtime": 1779608699.4080007,
+    "ast_hash": "17e664a894c28b28a111304e37c823ce",
+    "semantic_hash": "17e664a894c28b28a111304e37c823ce"
+  },
+  "scripts/bump-version.sh": {
+    "mtime": 1781982812.863653,
+    "ast_hash": "c156f263086bdfd2b143dfdba9d91484",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/fix-port-7001.ps1": {
+    "mtime": 1783001785.2443333,
+    "ast_hash": "23ae75d875167eb793900de0d6045d4a",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/maestro-audit-ids.sh": {
+    "mtime": 1783001785.2453296,
+    "ast_hash": "2818531037960c9643130160f7d47546",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh": {
+    "mtime": 1783001785.2478168,
+    "ast_hash": "303a382c6be21b7b459dcfed07e444ac",
+    "semantic_hash": ""
+  },
+  ".github/workflows/release.yml": {
+    "mtime": 1781982812.8576362,
+    "ast_hash": "edc21254f84b0ab82a7306ad598948c9",
+    "semantic_hash": ""
+  },
+  ".github/workflows/validate-marketplace.yml": {
+    "mtime": 1781982812.8576362,
+    "ast_hash": "f5e3011ca744b35edef41e0922a8870e",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/SKILL.md": {
+    "mtime": 1783404632.0724788,
+    "ast_hash": "2c4f8b10bd0f6d58f57ec97d2c2573ac",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/CATALOG.md": {
+    "mtime": 1783404632.0744836,
+    "ast_hash": "74da9697ee0cedeb58047c0e58b96b5a",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/dart-async-errors.md": {
+    "mtime": 1783001785.1873548,
+    "ast_hash": "96f8be40d25b4fa50d99a322bcd29681",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/riverpod-async-mutations.md": {
+    "mtime": 1783001785.1873548,
+    "ast_hash": "2beda4607bc4fca25e414d29f2164f0b",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/breaking/riverpod-core.md": {
+    "mtime": 1783001785.189367,
+    "ast_hash": "4c19d13a0b1149c5834fbc19034652d3",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/application-cohesion-coupling.md": {
+    "mtime": 1783404632.0764894,
+    "ast_hash": "bc2c13bd9f3b2152dd4d3fc9a09a95d0",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/async-notifier-command-api.md": {
+    "mtime": 1783001785.1913786,
+    "ast_hash": "0fe111c74634e3e9c4e9b6b7fa6b1d07",
+    "semantic_hash": ""
+  },
+  "skills/audit-application-layer/rules/patterns/feature-creation.md": {
+    "mtime": 1783001785.1933918,
+    "ast_hash": "453a66889333e888b249e402726ef546",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/SKILL.md": {
+    "mtime": 1783404632.0784945,
+    "ast_hash": "64a15442b2f67f1723c9bd9395c4a6eb",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/CATALOG.md": {
+    "mtime": 1783404632.0804987,
+    "ast_hash": "f3a99905c91c0917f0ad9f145e663832",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/data-cohesion-coupling.md": {
+    "mtime": 1783404632.0804987,
+    "ast_hash": "5392f5e06cd95afe303fbc228267f32a",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/exception-handling.md": {
+    "mtime": 1783001785.1997602,
+    "ast_hash": "57dea5716d26ec2fd39b93cfc1aa367d",
+    "semantic_hash": ""
+  },
+  "skills/audit-data-layer/rules/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2017536,
+    "ast_hash": "208897f837f1b779f760cde2333a937e",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/SKILL.md": {
+    "mtime": 1786687283.1219954,
+    "ast_hash": "5b4801aa7aaf4b7c82c7b668959f6b71",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/CATALOG.md": {
+    "mtime": 1786687283.12399,
+    "ast_hash": "1adb299666130e7152ba780ecd64a32e",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/domain-cohesion-coupling.md": {
+    "mtime": 1783404632.0865128,
+    "ast_hash": "e03f3dec8c5babd4faac1c5d3d18c657",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/exception-handling.md": {
+    "mtime": 1783001785.2077384,
+    "ast_hash": "57dea5716d26ec2fd39b93cfc1aa367d",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/feature-creation.md": {
+    "mtime": 1783001785.2087355,
+    "ast_hash": "453a66889333e888b249e402726ef546",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/no-ui-strings-outside-ui.md": {
+    "mtime": 1783001785.209733,
+    "ast_hash": "7830d2f2426236c2d3f7ab8043afcfeb",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2117283,
+    "ast_hash": "208897f837f1b779f760cde2333a937e",
+    "semantic_hash": ""
+  },
+  "skills/audit-feature/SKILL.md": {
+    "mtime": 1783001785.213371,
+    "ast_hash": "5292713962f199743952e0fda47d2b9f",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/rebuild-isolation.md": {
+    "mtime": 1783404632.09026,
+    "ast_hash": "fda4253bd5809df73a144e0b960598e6",
+    "semantic_hash": ""
+  },
+  "skills/audit-presentation-layer/rules/patterns/widget-extraction-cohesion.md": {
+    "mtime": 1783404632.0922701,
+    "ast_hash": "b16d20737aa0918c867e100608ca0adb",
+    "semantic_hash": ""
+  },
+  "skills/build-filter/SKILL.md": {
+    "mtime": 1787992118.6987753,
+    "ast_hash": "5e532b20334f236ad347f5ecf984cad2",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/commands.md": {
+    "mtime": 1783001785.2353568,
+    "ast_hash": "4dddd2afd477f8ce094f0f30411c0e9d",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/examples.md": {
+    "mtime": 1783001785.2373512,
+    "ast_hash": "58114ef2b00f5ae1bb6a112b88ca142b",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/selectors.md": {
+    "mtime": 1783001785.2383482,
+    "ast_hash": "3b3703c51ab5891fc2f5b41d9f6d2396",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/suite-config.md": {
+    "mtime": 1783001785.2413409,
+    "ast_hash": "eafeecbe720ad2d53a8cae3a1ead0c74",
+    "semantic_hash": ""
+  },
+  "skills/maestro-screenshot-flow/reference/troubleshooting.md": {
+    "mtime": 1783001785.2423382,
+    "ast_hash": "54d359e16df13a66eed69c2e2a1f853b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/SKILL.md": {
+    "mtime": 1787992118.711485,
+    "ast_hash": "ab0bb1fbc6d3bfca6750bb027eb55c43",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/dart-async-errors.md": {
+    "mtime": 1783001785.2518048,
+    "ast_hash": "e9f98e9c8ece459eb1218b95500dd01f",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/dart-language.md": {
+    "mtime": 1783001785.252802,
+    "ast_hash": "6b675eb94f531edddef9cce4629ed1fd",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-async-mutations.md": {
+    "mtime": 1783001785.2537997,
+    "ast_hash": "a968e23d90e08a69c7678bf03a74932b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-core.md": {
+    "mtime": 1783001785.2547967,
+    "ast_hash": "566e2893579c05142884e9153a7c13dd",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-flutter.md": {
+    "mtime": 1783001785.2547967,
+    "ast_hash": "9103e3e59ef8db59dcbbbccf5a21d529",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/breaking/riverpod-streams-lifecycle.md": {
+    "mtime": 1783001785.2558029,
+    "ast_hash": "142ebebcc8bd9da85b98212aa1c0f5d5",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/logging.md": {
+    "mtime": 1783001785.2567914,
+    "ast_hash": "5cc31523c2c24a11233ffd0cda1ac0af",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/async-notifier-command-api.md": {
+    "mtime": 1783001785.258786,
+    "ast_hash": "a2716ce8e392b937a9bdedad9d541f2c",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/exception-handling.md": {
+    "mtime": 1783001785.2597845,
+    "ast_hash": "3c5303d1c7ec65970bca51f46a2fa36a",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/feature-creation.md": {
+    "mtime": 1783001785.2632842,
+    "ast_hash": "eac3871617da462c90fb78da14f0032c",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/flutter-side-effects.md": {
+    "mtime": 1783001785.2632842,
+    "ast_hash": "eae8fbcf3d17869dd6c31b738d328130",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/go-router-navigation-conventions.md": {
+    "mtime": 1783001785.2652926,
+    "ast_hash": "993debc9e9ec09e4b20d52c345e4d85b",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/no-ui-strings-outside-ui.md": {
+    "mtime": 1783001785.2652926,
+    "ast_hash": "713a074088ee86f1f9e10dfc8467b3f6",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/repository-pattern.md": {
+    "mtime": 1783001785.2673025,
+    "ast_hash": "b3d3c731ab4e8feabb3adf65c042f2cb",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/riverpod-rebuild-optimization.md": {
+    "mtime": 1783001785.2673025,
+    "ast_hash": "cc1056c5d72a2230f5000967d40cd0a2",
+    "semantic_hash": ""
+  },
+  "skills/scaffold-feature/references/patterns/widget-classes-no-build-helpers.md": {
+    "mtime": 1783001785.2693124,
+    "ast_hash": "ce8d4e33d36f37643974cbdfda602ff6",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/patterns/edge-case-catalog.md": {
+    "mtime": 1783404632.0962799,
+    "ast_hash": "aa5b334607c83a9d49bfc48052272f55",
+    "semantic_hash": ""
+  },
+  "skills/unit-test/patterns/test-quality-gate.md": {
+    "mtime": 1783404632.0962799,
+    "ast_hash": "f84589be6edf55211576267999cc1a7c",
+    "semantic_hash": ""
+  },
+  "skills.sh.json": {
+    "mtime": 1787992118.6955383,
+    "ast_hash": "28324419ed721b70ce76c36801e57cfc",
+    "semantic_hash": ""
+  },
+  "skills/build-filter/scripts/guarded-build.ps1": {
+    "mtime": 1786111901.3877633,
+    "ast_hash": "cd5540d758668acc1ffeeec6e2260628",
+    "semantic_hash": ""
+  },
+  "skills/build-filter/scripts/guarded-build.sh": {
+    "mtime": 1786111901.389757,
+    "ast_hash": "9847dd4bf339999431aae33bc21d9496",
+    "semantic_hash": ""
+  },
+  "skills/retro/scripts/session-evidence.js": {
+    "mtime": 1788200444.006582,
+    "ast_hash": "b0dd6c8cafb3f047641cdc88d66b84b1",
+    "semantic_hash": ""
+  },
+  "skills/retro/scripts/session-evidence.ps1": {
+    "mtime": 1787951853.227988,
+    "ast_hash": "ea85bd63bb0964673fbcd3ebe4ae657e",
+    "semantic_hash": ""
+  },
+  "skills/retro/scripts/session-evidence.sh": {
+    "mtime": 1786111901.3957598,
+    "ast_hash": "74b2da95768ea78535233d90510dad4b",
+    "semantic_hash": ""
+  },
+  "ai_docs/TROUBLESHOOTING.md": {
+    "mtime": 1786772937.62119,
+    "ast_hash": "13e64d961390b6b8f53340c017fca1b1",
+    "semantic_hash": ""
+  },
+  "docs/adr/0001-sentry-init-dsn-source-convention.md": {
+    "mtime": 1787992118.6914837,
+    "ast_hash": "b7cadfe3855c96dcdfa2d809446e3f2d",
+    "semantic_hash": ""
+  },
+  "docs/adr/0002-sentry-init-error-sink-architecture.md": {
+    "mtime": 1787857936.051176,
+    "ast_hash": "e5303cc0d6f0e8fdb2e3f7b77816d8e5",
+    "semantic_hash": ""
+  },
+  "docs/adr/0003-sentry-init-before-send-policy.md": {
+    "mtime": 1787951853.214581,
+    "ast_hash": "c4ba10eb9c83ee4572ccc4e92549f9b5",
+    "semantic_hash": ""
+  },
+  "docs/adr/0004-sentry-init-sampling-defaults.md": {
+    "mtime": 1787951853.2165763,
+    "ast_hash": "0cb3981eee316903be8ad41d4fc2b7e5",
+    "semantic_hash": ""
+  },
+  "docs/adr/0005-sentry-init-content-architecture.md": {
+    "mtime": 1787857936.0541685,
+    "ast_hash": "6208c6fc63533239bb38e28844a86ff3",
+    "semantic_hash": ""
+  },
+  "docs/agents/issue-tracker.md": {
+    "mtime": 1787857936.062185,
+    "ast_hash": "1b04291cf5b1492d61cbfce45f454cf9",
+    "semantic_hash": ""
+  },
+  "skills/audit-domain-layer/rules/patterns/sealed-exceptions.md": {
+    "mtime": 1786687283.1249888,
+    "ast_hash": "e20a88a7961d89f96fa4d7da4f6612bc",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/SKILL.md": {
+    "mtime": 1787857936.1652365,
+    "ast_hash": "763f462a41af7e323c0af6b224c2b713",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/dart-layer.md": {
+    "mtime": 1787857936.1672797,
+    "ast_hash": "63ab694f9aae02a2665737699ff64f76",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/firebase-flavors.md": {
+    "mtime": 1787857936.1692858,
+    "ast_hash": "7f45066cb7eb6c9f81edca205e1c4ed2",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/flavorizr-processors.md": {
+    "mtime": 1787857936.1753044,
+    "ast_hash": "1e5774ff599e8eb839195859756a2926",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/ide-config.md": {
+    "mtime": 1787857936.1793163,
+    "ast_hash": "80d9e1045624c7a5fcfa38d25024cb31",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/manual-android.md": {
+    "mtime": 1787857936.1830666,
+    "ast_hash": "f4a42c5a8f74ec7ed2e9b985f3035997",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/manual-ios.md": {
+    "mtime": 1787857936.185083,
+    "ast_hash": "1bbe4629efeb29ceffdd28f04cb68572",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/references/web-flavors.md": {
+    "mtime": 1787857936.1870942,
+    "ast_hash": "aaa2fc544bd4a572184f04df15e7bd25",
+    "semantic_hash": ""
+  },
+  "skills/flutter-flavors/rules/CATALOG.md": {
+    "mtime": 1787857936.1911137,
+    "ast_hash": "95a4fd762954c2dc8ddf94d17aebe089",
+    "semantic_hash": ""
+  },
+  "skills/retro/SKILL.md": {
+    "mtime": 1788200444.005072,
+    "ast_hash": "9b3f72b21e9e53cbca8b1e21e7116c39",
+    "semantic_hash": ""
+  },
+  "skills/sentry-init/references/error-capture-architecture.md": {
+    "mtime": 1787857936.1951253,
+    "ast_hash": "9a3a654ac267bc25b3f96b4d34fe77c2",
+    "semantic_hash": ""
+  },
+  "skills/sentry-init/references/event-filtering-and-sampling.md": {
+    "mtime": 1787951853.2327595,
+    "ast_hash": "59e235baacf576b96789f76953a7e126",
+    "semantic_hash": ""
+  },
+  "docs/adr/0006-retro-v2-skill-shape.md": {
+    "mtime": 1787951853.217572,
+    "ast_hash": "4eb44134771e302c5e84e6f60a4be77e",
+    "semantic_hash": ""
+  },
+  "docs/adr/0007-retro-v2-question-set.md": {
+    "mtime": 1787951853.2185698,
+    "ast_hash": "8d9132e76d539347b6a54fd8dccf1630",
+    "semantic_hash": ""
+  },
+  "docs/adr/0008-tune-setup-audit-surface.md": {
+    "mtime": 1787951853.2200053,
+    "ast_hash": "46432180d17f61280a4c4b78ea16f3bd",
+    "semantic_hash": ""
+  },
+  "docs/adr/0009-proposal-routing-and-caps.md": {
+    "mtime": 1787951853.2210073,
+    "ast_hash": "7f774e1c37fe5db5dac65f5642c09160",
+    "semantic_hash": ""
+  },
+  "docs/adr/0010-force-update-remote-source-default.md": {
+    "mtime": 1787992118.6935315,
+    "ast_hash": "aa74135a6de0fb898d5133d49928801a",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/SKILL.md": {
+    "mtime": 1787992118.701774,
+    "ast_hash": "c1fd010ba8062a3dd369965ba0742c13",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/release-playbook.md": {
+    "mtime": 1787992118.7027738,
+    "ast_hash": "c6794b86e226032e21d30e314c6ff9a0",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/remote-sources.md": {
+    "mtime": 1787992118.7054648,
+    "ast_hash": "ee63f025a35b9917617e271ecbdafc1b",
+    "semantic_hash": ""
+  },
+  "skills/force-update-init/references/store-urls-and-env.md": {
+    "mtime": 1787992118.7074702,
+    "ast_hash": "eadd41e5ac73fb91e14a2f0a58e44522",
+    "semantic_hash": ""
+  },
+  "skills/tune-setup/SKILL.md": {
+    "mtime": 1787951853.2349148,
+    "ast_hash": "6808f05bebb13cf0d8bb773865b41f76",
+    "semantic_hash": ""
+  }
+}

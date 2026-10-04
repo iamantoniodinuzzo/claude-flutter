@@ -21,12 +21,18 @@ Se la sessione è **già stata compattata** quando parte la retro: dichiaralo ap
 Prima delle cinque domande, esegui:
 
 ```bash
-skills/retro/scripts/session-evidence.sh              # bash
-# oppure
-skills/retro/scripts/session-evidence.ps1              # PowerShell
+node "<base directory di questa skill>/scripts/session-evidence.js"
 ```
 
-Legge il transcript `.jsonl` della sessione corrente ed estrae, in forma aggregata: tool call falliti (per tool, con conteggio ed esempio), comandi Bash identici eseguiti più di una volta, file rieditati più di due volte. Se non trova un transcript (dir assente, sessione non tracciata) stampa una riga sola e esce con successo — **questo non è prova di una sessione pulita**: dichiara nel report che non hai potuto verificare, non presentare il silenzio come "nessun problema".
+Usa il percorso **assoluto** (la base directory è mostrata quando la skill viene caricata): funziona da qualsiasi cwd, nessun `cd`. In alternativa i wrapper `scripts/session-evidence.sh` / `.ps1`, sempre col percorso risolto.
+
+Legge il transcript `.jsonl` della sessione corrente ed estrae, in forma aggregata: tool call falliti (per tool, con il comando eseguito e la riga d'errore — citabili), comandi shell (Bash/PowerShell) identici eseguiti più di una volta, file rieditati più di due volte (ultimi due segmenti di path). Selezione del transcript, in ordine: `--transcript <path>`, `--session <id>`, variabile d'ambiente `CLAUDE_CODE_SESSION_ID` (esatta, indipendente dal cwd), poi l'euristica "più recente per mtime" sullo slug del cwd (con match a slug canonico se la directory derivata non esiste, ref #69). La riga `selected by:` dell'header dice quale ha deciso.
+
+Solo l'euristica può sbagliare sessione, e dipende dal cwd: va lanciata dalla **working directory primaria della sessione** (nel blocco environment a inizio sessione). In un monorepo Melos c'è una project dir per app (`<slug>-apps-<app>`), quindi dal root si legge un'altra directory. Se l'ultimo evento del transcript scelto è più vecchio di `RETRO_STALE_HOURS` (default 6) l'output stampa `WARNING`, più l'elenco dei candidati (`--list` lo stampa sempre); rilancia con `--session <id>`.
+
+**Sanity check prima di Q1** — l'header deve mostrare `selected by: session id`, oppure un ultimo evento recente e un numero di eventi plausibile per questa conversazione. Altrimenti rilancia con `--session`/`--transcript` e dichiaralo nel report.
+
+Se non trova un transcript (nessuna directory, sessione non tracciata) stampa una riga sola ed esce con successo; se trova un transcript **stantio o di un'altra sessione** (`WARNING`, età incoerente, conteggio eventi implausibile) l'output sembra valido ma non lo è. In entrambi i casi **non è prova di una sessione pulita** ("0 errori, 0 ripetizioni" su un transcript sbagliato non significa nulla): dichiara nel report che non hai potuto verificare, non presentare il silenzio come "nessun problema".
 
 Esegui poi:
 
