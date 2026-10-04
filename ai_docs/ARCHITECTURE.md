@@ -23,7 +23,7 @@ flowchart LR
         plugin[".claude-plugin/\nmarketplace.json + plugin.json"]
         agents["agents/\nriverpod-reviewer\nprompt-engineer"]
         skills["skills/\nscaffold-feature · unit-test\nflutter-analyze-targeted · flutter-go-router\nflutter-melos-workspace · generate-widget-tests\nmaestro-screenshot-flow · audit-presentation-layer\naudit-domain-layer · audit-data-layer\naudit-application-layer · audit-feature\nsentry-init · flutter-flavors · second-opinion\nretro · tune-setup · force-update-init
-asset-preload-init · web-loader-init"]
+asset-preload-init · web-loader-init · page-transitions-init"]
         aidocs["ai_docs/\nARCHITECTURE · FLUTTER_RULES\nGIT_WORKFLOW · CONTRIBUTING"]
     end
 
@@ -55,6 +55,7 @@ asset-preload-init · web-loader-init"]
 | `flutter-flavors` | Init dev/stg/prod flavors (flutter_flavorizr targeted processors, or manual fallback) across Android/iOS/Web + VSCode/Android Studio IDE config; detects an existing partial/broken setup and switches to an AUDIT+FIX branch against a bundled rule catalog; optional multi-project Firebase |
 | `force-update-init` | Bootstrap `force_update_helper`: installs deps, patches `AndroidManifest.xml`, wires `ForceUpdateWidget` into `MaterialApp.builder`/GoRouter, sets up a remote `required_version` source (GitHub Gist, Firebase Remote Config, or a scaffolded Dart Shelf backend), handles non-store distribution (Firebase App Distribution, TestFlight, enterprise); or audits an existing setup against the two silent failure modes (missing `APP_STORE_ID`, missing Android `<queries>` intent) |
 | `asset-preload-init` | Inventory assets by loader/cache, generate only the needed first-frame warm-up (SVG `loadBytes(null)` with error handling at creation; `precacheImage` for raster), report oversized/unused assets; AUDIT mode checks existing warm-ups against `ASSET-01..04` in `audit-presentation-layer` |
+| `page-transitions-init` | Generate an adaptive `PageTransitionsTheme` (Android zoom / iOS Cupertino, instant on web/desktop), wire it into every light and dark theme, opt-in router migration off the `NoTransitionPage` helper; AUDIT mode maps to `ROUTER-03` in `audit-presentation-layer` |
 | `web-loader-init` | Scaffold a Flutter web boot loader (overlay + staged progress bar, no Dart): patches `web/index.html`, writes `style.css` and an IIFE-wrapped `flutter_bootstrap.js` that removes the loader on `flutter-first-frame`, conditional `serviceWorkerSettings`; AUDIT mode checks an existing loader against `WEB-02` in `audit-presentation-layer` |
 | `second-opinion` | Independent architecture review (requires Gemini CLI) |
 | `retro` | End-of-task self-audit: reads session transcript for verifiable friction evidence (`scripts/session-evidence.{sh,ps1}`), answers 6 hard questions backed by it, auto-persists learnings to auto-memory with dedup, flags unintegrated git work, proposes fixes (generic, not Flutter-specific) |
