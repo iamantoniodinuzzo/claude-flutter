@@ -8,22 +8,32 @@ on:
 
 jobs:
   validate:
-    name: Version parity + marketplace schema
-    runs-on: ubuntu-latest
+    name: Catalog, versions and helper tests (${{ matrix.os }})
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Check version parity across all four locations
+      - name: Validate shared catalog and Codex marketplace
+        run: npm run validate
+
+      - name: Test transcript adapters and simulated providers
+        run: npm test
+
+      - name: Check version parity across all five locations
         shell: bash
         run: |
           set -euo pipefail
 
           PKG_VER="$(node -p "require('./package.json').version")"
+          CODEX_VER="$(node -p "require('./.codex-plugin/plugin.json').version")"
           PLUGIN_VER="$(grep '"version"' .claude-plugin/plugin.json | head -1 \
             | sed 's/.*"version": "\([^"]*\)".*/\1/')"
           MKT_REF="$(grep '"ref"' .claude-plugin/marketplace.json | head -1 \
@@ -32,12 +42,13 @@ jobs:
             | head -1 | sed 's/version-//;s/-blue//')"
 
           echo "package.json  : $PKG_VER"
+          echo "Codex plugin  : $CODEX_VER"
           echo "plugin.json   : $PLUGIN_VER"
           echo "marketplace ref: v$MKT_REF"
           echo "README badge  : $README_VER"
 
           FAIL=0
-          for LABEL_VAL in "plugin.json:$PLUGIN_VER" "marketplace.json ref:$MKT_REF" "README badge:$README_VER"; do
+          for LABEL_VAL in "plugin.json:$PLUGIN_VER" "Codex plugin.json:$CODEX_VER" "marketplace.json ref:$MKT_REF" "README badge:$README_VER"; do
             LABEL="${LABEL_VAL%%:*}"
             VAL="${LABEL_VAL#*:}"
             if [ "$VAL" != "$PKG_VER" ]; then

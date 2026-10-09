@@ -2,7 +2,11 @@
 
 ## Adding a new skill
 
-Skills are auto-discovered by directory presence under `skills/` — no `marketplace.json` change needed. New skills automatically become available through both the Claude Code plugin marketplace and `npx skills add` — no extra manifest edit required for either.
+Skills are auto-discovered by directory presence under `skills/` — no `marketplace.json` change needed. New skills automatically become available through the Claude Code plugin marketplace and `npx skills add` — no extra manifest edit required for either.
+
+For Codex, also add each active skill directory to `.codex-plugin/plugin.json` (`skills` paths must start with `./`), and provide `agents/openai.yaml`. The validator enforces complete active-catalog coverage. Do not include archived skills.
+
+Keep resource paths independent of the target cwd, declare required sibling skills and unavailable-capability behavior, and preserve explicit-only invocation policies. Run `npm run validate` and `npm test`; `node scripts/smoke-plugins.js` verifies installed CLI discovery without AI calls.
 
 When adding a new skill, update BOTH:
 - `README.md` → skills table
@@ -25,8 +29,9 @@ Add `<!-- source: iamantoniodinuzzo/flutter_ai_toolkit @ <sha> -->` at top of ea
 
 ## Version bump
 
-Use `scripts/bump-version.sh` — it syncs all four locations atomically:
+Use `scripts/bump-version.sh` — it syncs all five version locations atomically:
 - `package.json` `version` (authoritative)
+- `.codex-plugin/plugin.json` `version`
 - `.claude-plugin/plugin.json` `version`
 - `.claude-plugin/marketplace.json` `source.ref` (vX.Y.Z) ← **critical for auto-update**
 - `README.md` version badge
@@ -48,3 +53,5 @@ It does NOT commit or tag — that is owned by git-flow `git finish`.
 ## Tracking gotcha
 
 Files can exist on disk but be untracked by git. Before closing an issue about file existence, verify with `git ls-files <path>` — not just a filesystem check.
+
+The Codex marketplace uses a local source pointing to the repository root; it inherits the selected checkout revision. It has no independent version field to bump. Pin a published release with `codex plugin marketplace add ... --ref v<version>` when reproducibility is required.
