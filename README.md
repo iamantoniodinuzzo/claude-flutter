@@ -23,6 +23,41 @@ npx skills update
 
 > Tracks `master` HEAD — bleeding edge, no version pinning.
 
+### Individual skills, via `npx`
+
+Run from the target Flutter project. Select the skill and agent explicitly:
+
+```bash
+# List available skills without installing them
+npx skills add iamantoniodinuzzo/claude-flutter --list
+
+# Install one skill for Codex in the current project
+npx skills add iamantoniodinuzzo/claude-flutter --skill scaffold-feature --agent codex
+
+# Install one skill for Claude Code in the current project
+npx skills add iamantoniodinuzzo/claude-flutter --skill scaffold-feature --agent claude-code
+
+# Install one skill for Codex across all your projects
+npx skills add iamantoniodinuzzo/claude-flutter --skill scaffold-feature --agent codex --global
+```
+
+Replace `scaffold-feature` with an active skill from the table below. Project installation is the default; `--global` installs for your user. These flags follow the [skills CLI documentation](https://github.com/vercel-labs/skills#readme). Leave archived `build-filter` unselected.
+
+Install shared dependencies together when selecting these workflows:
+
+```bash
+# Full feature audits: orchestrator plus all four layer skills
+npx skills add iamantoniodinuzzo/claude-flutter --agent codex --skill audit-feature audit-domain-layer audit-data-layer audit-application-layer audit-presentation-layer
+
+# Widget tests: shared provider patterns come from unit-test
+npx skills add iamantoniodinuzzo/claude-flutter --agent codex --skill generate-widget-tests unit-test
+
+# Configuration audit: session parser comes from retro
+npx skills add iamantoniodinuzzo/claude-flutter --agent codex --skill tune-setup retro
+```
+
+Use `--agent claude-code` for Claude Code, and add `--global` if needed. The native plugins include these dependencies together.
+
 ### Codex, via native plugin marketplace
 
 ```bash
@@ -30,9 +65,16 @@ codex plugin marketplace add iamantoniodinuzzo/claude-flutter
 codex plugin add flutter-toolkit@claude-flutter
 ```
 
+To install the published release reproducibly, use this alternative:
+
+```bash
+codex plugin marketplace add iamantoniodinuzzo/claude-flutter --ref v3.11.0
+codex plugin add flutter-toolkit@claude-flutter
+```
+
 The native Codex manifest distributes the 21 active skills from the same catalog. The marketplace follows the repository revision you install; use `--ref v<version>` on `marketplace add` to pin a published release. For editable files instead, use `npx skills add iamantoniodinuzzo/claude-flutter -a codex`.
 
-Install one channel per agent to avoid duplicate skills. These commands become available from the remote after this change is merged/published.
+Install one channel per agent to avoid duplicate skills.
 
 ### Claude Code, via plugin marketplace (stable, pinned)
 
