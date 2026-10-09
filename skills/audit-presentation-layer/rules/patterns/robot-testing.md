@@ -1,8 +1,8 @@
-<!-- distilled from: skills/generate-widget-tests/SKILL.md (Phases 2, 3, 6, 10) -->
+<!-- distilled from: ../../../generate-widget-tests/SKILL.md (Phases 2, 3, 6, 10) -->
 # Robot Testing Pattern — Audit Rules
 
 Rules enforced by the `audit-presentation-layer` skill. Original full spec in
-`skills/generate-widget-tests/SKILL.md`.
+`../../../generate-widget-tests/SKILL.md`.
 
 ---
 

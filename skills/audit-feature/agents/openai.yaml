@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Feature"
+  short_description: "Flutter toolkit: audit feature"
+  default_prompt: "Use $audit-feature to handle the requested audit feature task."

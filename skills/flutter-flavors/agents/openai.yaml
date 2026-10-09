@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Flavors"
+  short_description: "Flutter toolkit: flutter flavors"
+  default_prompt: "Use $flutter-flavors to handle the requested flutter flavors task."

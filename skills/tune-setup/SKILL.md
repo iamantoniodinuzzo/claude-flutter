@@ -1,10 +1,14 @@
 ---
 name: tune-setup
-description: On-demand config & workflow audit. Reads the target project's CLAUDE.md, .claude/settings.json (+.local.json), hooks, and agents/, cross-referenced against transcript evidence (repeated hook injections, hook_cancelled, toolDenialKind breakdown, skill-trigger-miss), and proposes concrete config fixes. Never runs automatically — invoke explicitly with "/tune-setup", "ottimizza il setup", "audit config", or similar. Sibling to `retro` (which audits the session, not the config) — see that skill for end-of-task self-audit instead.
+description: Audit the current agent configuration and workflow on explicit request. Supports Claude Code and Codex instructions, settings, hooks, agents, and available session evidence. Use for "tune-setup", "ottimizza il setup", or "audit config"; never run automatically.
 user-invocable: true
 ---
 
 # tune-setup — audit di configurazione e workflow
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 Answer in the conversation language. Be honest, specific, non-defensive. No praise, no filler. Every finding must cite a concrete artifact (file, line, hookName, turn number) from THIS session or THIS project's config — no generic advice.
 
@@ -12,36 +16,50 @@ Answer in the conversation language. Be honest, specific, non-defensive. No prai
 
 **Solo su richiesta esplicita** — mai automaticamente, non a fine task, non a milestone, non a release. Trigger: `/tune-setup`, "ottimizza il setup", "audit config", o richiesta equivalente. Cadenza e costo (~4.160 token solo per leggere le superfici di configurazione, misurato in ADR 0006) sono incompatibili con un trigger automatico — per questo `tune-setup` esiste come skill separata da [[retro]] invece di crescere al suo interno.
 
+## Agente e dipendenze
+
+Richiede la skill `retro` per il parser condiviso. Risolvi la sua directory dal registro delle skill installate o da `../retro/`, non dal cwd del progetto. Se manca, segnala le metriche di sessione non disponibili e continua solo con l'ispezione della configurazione.
+
+Per Claude usa le superfici sotto. Per Codex leggi `AGENTS.md` / `AGENTS.override.md` applicabili, `.codex/config.toml` e la configurazione utente accessibile sotto `CODEX_HOME` (default `~/.codex`). Controlla hook, `.codex/agents/`, skill e plugin solo se esistono e sono supportati dalla versione corrente. Non trattare la configurazione Claude come impostazioni Codex, non riportare credenziali e non modificare configurazioni personali.
+
+Il parser Codex riporta errori, comandi ripetuti e patch ripetute. Le metriche Claude (`Skill`, `skill_listing`, hook injection/cancellation, `toolDenialKind`) sono **non disponibili**, non zero. Cita evidenze equivalenti solo se accessibili. Per altri agenti dichiara la copertura parziale. Una capacita assente non e configurazione rotta; un trigger-miss richiede la prova che la skill era offerta e pertinente.
+
 ## Passo 0 — Evidenze dal transcript
 
 ```bash
-node skills/retro/scripts/session-evidence.js --config-audit
+node "<installed retro directory>/scripts/session-evidence.js" --agent <claude|codex> --config-audit
 ```
 
-Sì, il path punta dentro `skills/retro/` — è deliberato (ADR 0008): un solo parser `.jsonl`, non duplicato. `retro` non passa mai `--config-audit` (il suo Passo 0 resta byte-per-byte invariato); `tune-setup` lo passa sempre. Il flag aggiunge un blocco separato, sotto un cap proprio (`CONFIG_AUDIT_LINE_CAP`, indipendente da quello di `retro`), con: conteggio invocazioni `Skill`, ripetizioni di hook injection (stesso `hookName` + contenuto, >2 occorrenze), `hook_cancelled` (qualsiasi occorrenza), split a tre vie di `toolDenialKind`, e l'ancora strutturale per skill-trigger-miss (skill offerte in `skill_listing` mai invocate).
+Il parser appartiene alla skill installata `retro` — è deliberato (ADR 0008): un solo parser `.jsonl`, non duplicato. `retro` non passa `--config-audit`; `tune-setup` lo passa sempre. Per Claude il flag aggiunge un blocco separato, sotto un cap proprio (`CONFIG_AUDIT_LINE_CAP`), con invocazioni `Skill`, hook injection ripetute, `hook_cancelled`, `toolDenialKind` e skill offerte ma mai invocate. Per Codex il blocco dichiara queste metriche non disponibili.
 
 Se non trova un transcript, stampa una riga sola e esce con successo — **non è prova di una sessione pulita**: dichiaralo, non presentare il silenzio come "nessun problema" (stessa regola di `retro`).
 
 ## Passo 1 — Leggi i file di configurazione
 
-Il Passo 0 copre solo il derivato dal transcript. I file stessi vanno letti direttamente (`Read`), non passano dallo script (ADR 0008):
+Il Passo 0 copre solo il derivato dal transcript. Leggi direttamente i file applicabili all'agente corrente con gli strumenti nativi; non passano dallo script (ADR 0008).
 
-- `CLAUDE.md` (root del progetto target)
-- `.claude/settings.json` + `.claude/settings.local.json`
-- Definizioni hook (inline in `settings.json`, o file hook dedicato se presente)
-- `agents/*`
+| Superficie | Claude Code | Codex |
+|---|---|---|
+| Istruzioni | `CLAUDE.md` applicabili | `AGENTS.md` / `AGENTS.override.md` applicabili |
+| Impostazioni | `.claude/settings.json` + `.claude/settings.local.json` | `.codex/config.toml` e configurazione utente accessibile in `CODEX_HOME` |
+| Hook e agenti | Definizizioni hook e agenti installati | Solo definizioni esistenti e supportate dall'host corrente |
+| Skill e plugin | Catalogo offerto e invocazioni accessibili | Catalogo offerto e prove di caricamento accessibili |
+
+Se una superficie o la sua evidenza non è accessibile, segnala "non verificata"; se non è supportata, segnala "non applicabile". Non riportarla come pulita.
 
 ## Le cinque superfici
 
 Un finding per superficie che mostra un problema; dichiara esplicitamente "nessun finding" per una superficie pulita — un audit silenzioso su un risultato pulito è un anti-pattern (stessa regola dell'anti-pattern di `retro` contro il "nulla da migliorare" non dichiarato).
 
-1. **`CLAUDE.md`** — contenuto stale, istruzioni che contraddicono il comportamento osservato in Passo 0, convenzioni mai più valide.
-2. **`.claude/settings.json` / `.local.json`** — permessi troppo larghi o troppo stretti rispetto a `toolDenialKind`, config disallineata da come il progetto viene realmente usato.
-3. **Hook** — usa la regola di ripetizione del Passo 0: stesso `hookName` + contenuto **>2 volte** nella sessione è il segnale (non `>1` — un hook che spara ad ogni tool call è normale by design; serve una ripetizione vera per essere segnale). `hook_cancelled` è un finding a qualsiasi occorrenza (timeout/kill, non un pattern di ripetizione).
-4. **`agents/`** — agenti mai invocati quando il loro scope avrebbe dovuto applicarsi, o agenti la cui descrizione non corrisponde più a cosa fanno.
+1. **Istruzioni dell'agente** — contenuto stale, istruzioni che contraddicono il comportamento osservato in Passo 0, convenzioni mai più valide.
+2. **Impostazioni e permessi** — config disallineata dall'uso osservato. Usa `toolDenialKind` solo per Claude; per Codex cita le evidenze accessibili senza inventare metriche equivalenti.
+3. **Hook** — per Claude, stesso `hookName` + contenuto **>2 volte** è il segnale di ripetizione; `hook_cancelled` è un finding a qualsiasi occorrenza. Per Codex controlla solo hook supportati e osservabili; le metriche Claude restano non disponibili.
+4. **Agenti installati** — descrizioni incoerenti con il comportamento; mancato uso solo quando l'agente era disponibile, pertinente e la delega autorizzata.
 5. **Skill-trigger-miss** — vedi sotto, disciplina separata.
 
 ### Disciplina skill-trigger-miss
+
+La procedura `skill_listing` / `Skill` seguente riguarda Claude. Per Codex serve una prova accessibile che la skill era offerta, pertinente e non caricata; se manca, dichiara il controllo non verificato.
 
 Il Passo 0 fornisce **solo l'ancora strutturale**: skill X offerta in `skill_listing` al turno N, mai invocata come blocco `Skill` in tutta la sessione. Il giudizio se X *avrebbe dovuto* scattare è tuo, non dello script — a differenza di Q5 di `retro` (pura aggregazione strutturale, perché gira nel punto più esposto a compattazione di una sessione), `tune-setup` gira on-demand con più margine ed esiste apposta per fare giudizi, non solo contare eventi. La regola "nessuna proposta senza evento verificabile" resta soddisfatta dall'ancora strutturale; il giudizio sopra è il lavoro vero di questa skill, non una violazione della regola.
 
@@ -53,9 +71,11 @@ Una citazione senza turno + testo esatto della description non è una citazione 
 
 ## Persistenza
 
+Non creare memoria sostitutiva se manca una destinazione nativa autorizzata. Le modifiche a `AGENTS.md` e `.codex/config.toml` restano proposte finche non autorizzate.
+
 | Destinazione | Quando | Chi approva |
 |---|---|---|
-| Auto-memory topic file + riga in `MEMORY.md` | Fatto degno di nota ma non abbastanza strutturale da meritare una proposta di config | Auto-applicato |
+| Memoria nativa autorizzata; apprendimenti nel report se assente | Fatto degno di nota ma non abbastanza strutturale da meritare una proposta di config | Solo se consentito dall'host e dalle autorizzazioni correnti |
 | Config del progetto target (`CLAUDE.md` / `.claude/settings.json` / hooks / `agents/`) | Convenzione permanente da correggere, o superficie che questo audit ha segnalato come rotta/stale | Proposta — aspetta l'ok |
 | Automation spec (skill / hook / slash command / subagent) | Pattern ripetuto che dovrebbe diventare automazione riutilizzabile | Proposta — aspetta l'ok |
 | Issue cross-repo su `iamantoniodinuzzo/claude-flutter` | L'attrito risale a una skill del toolkit stesso, non al progetto target | Proposta — aspetta l'ok |
@@ -67,8 +87,11 @@ Cap: **max 5 proposte** in "Proposed" — indipendente dal cap di 3 di `retro` (
 ## Report finale
 
 ```
-Applied
-1. [knowledge] <fatto> → auto-memory: <file>
+Applied — solo con memoria nativa autorizzata
+1. [knowledge] <fatto> → memoria nativa: <destinazione>
+
+Reported — se la memoria non è disponibile
+1. [knowledge] <apprendimento conservato nel report>
 
 Proposed — aspetto il tuo ok
 2. [config] <superficie, con evidenza da Passo 0/1> → config progetto: <cosa>

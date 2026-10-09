@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentry Init"
+  short_description: "Flutter toolkit: sentry init"
+  default_prompt: "Use $sentry-init to handle the requested sentry init task."

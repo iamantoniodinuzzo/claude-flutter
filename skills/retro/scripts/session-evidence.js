@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// session-evidence.js — reads the current Claude Code session transcript (.jsonl) and
+// session-evidence.js — reads Claude Code or Codex session transcripts (.jsonl) and
 // extracts verifiable friction signals: tool calls that errored, Bash commands run more
 // than once, and files edited more than twice. This is the evidence `skills/retro`'s Q5
 // (session friction) must cite instead of guessing from the model's own memory of the
@@ -7,7 +7,9 @@
 // compacted.
 //
 // Usage:
-//   node session-evidence.js [--transcript <path>] [--session <id>] [--list] [--config-audit]
+//   node session-evidence.js [--agent auto|claude|codex] [--transcript <path>] [--session <id>] [--list] [--config-audit]
+// Codex selection/normalization lives in codex-transcript.js. The Claude path below
+// preserves its existing selection order and valid-transcript output.
 //
 // Transcript selection, in order (the header's `selected by:` line says which one fired):
 //   1. --transcript <path>            explicit file.
@@ -78,12 +80,20 @@ const TOP_N = 10;
 const HOOK_REPEAT_THRESHOLD = 2;
 
 function parseArgs(argv) {
+  let agent = 'auto';
   let transcript = null;
   let session = null;
   let list = false;
   let configAudit = false;
   for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === '--transcript') {
+    if (['--agent', '--transcript', '--session'].includes(argv[i]) && (!argv[i + 1] || argv[i + 1].startsWith('--'))) {
+      throw new Error(`Missing value for ${argv[i]}`);
+    }
+    if (argv[i] === '--agent') {
+      agent = argv[++i];
+    } else if (argv[i].startsWith('--agent=')) {
+      agent = argv[i].slice('--agent='.length);
+    } else if (argv[i] === '--transcript') {
       transcript = argv[i + 1];
       i++;
     } else if (argv[i].startsWith('--transcript=')) {
@@ -99,7 +109,8 @@ function parseArgs(argv) {
       configAudit = true;
     }
   }
-  return { transcript, session, list, configAudit };
+  if (!['auto', 'claude', 'codex'].includes(agent)) throw new Error('--agent must be auto, claude, or codex');
+  return { transcript, session, list, configAudit, agent };
 }
 
 function slugForCwd(cwd) {
@@ -315,7 +326,7 @@ function firstLine(text, maxLen) {
   return line.length > maxLen ? line.slice(0, maxLen) + '…' : line;
 }
 
-const SHELL_TOOLS = new Set(['Bash', 'PowerShell']);
+const SHELL_TOOLS = new Set(['Bash', 'PowerShell', 'exec_command', 'functions.exec_command']);
 
 // What was run, short enough to cite: the command for shells, the path for file tools,
 // else truncated JSON. Newlines collapsed so one error group stays one output line.
@@ -393,7 +404,10 @@ function parseSkillListing(content) {
 }
 
 function main() {
-  const { transcript: explicit, session, list, configAudit } = parseArgs(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2));
+  const { transcript: explicit, session, list, configAudit } = args;
+  const codex = require('./codex-transcript.js').select(args);
+  if (codex && !codex.path) { console.log(codex.message); return; }
 
   // Selection (see header). `notes` are header lines for anything unusual on the way.
   const notes = [];
@@ -403,7 +417,12 @@ function main() {
   let candidates = null;
   let stale = null; // { ageMs } when the heuristic pick is older than the threshold
 
-  if (explicit) {
+  if (codex) {
+    transcriptPath = codex.path;
+    selectedBy = codex.selectedBy;
+    candidates = codex.candidates;
+    stale = codex.stale;
+  } else if (explicit) {
     transcriptPath = explicit;
     selectedBy = '--transcript';
   } else if (session) {
@@ -441,8 +460,8 @@ function main() {
       }
     }
   }
-  if (list && !candidates && auto) candidates = listCandidates(auto.slug, 5);
-  if (list && !candidates) {
+  if (list && !candidates && auto && !codex) candidates = listCandidates(auto.slug, 5);
+  if (list && !candidates && !codex) {
     candidates = listCandidates(slugForCwd(process.cwd()), 5);
   }
 
@@ -466,6 +485,14 @@ function main() {
     process.exit(0);
   }
 
+  if (codex) {
+    const normalized = require('./codex-transcript.js').normalize(raw);
+    if (!normalized.recognized) { console.log('WARNING: unrecognized Codex transcript; evidence UNVERIFIED'); return; }
+    raw = normalized.raw;
+    if (normalized.malformed || normalized.unsupported) notes.push(
+      `WARNING: partial Codex evidence (${normalized.malformed} malformed records, ${normalized.unsupported} unsupported tool records); do not claim complete coverage.`);
+  }
+
   const toolNameById = new Map();
   const toolInputById = new Map(); // tool_use id -> short, citable excerpt of what was run
   const errorsByTool = new Map(); // "tool\0excerpt" -> {count, sidechain, sample, name, excerpt}
@@ -475,6 +502,7 @@ function main() {
   let firstTs = null;
   let lastTs = null;
   let eventCount = 0;
+  let malformedCount = 0;
 
   // --config-audit only (ADR 0008). Left unpopulated and unread when the flag is
   // absent, so the default path's output cannot be affected by any of this.
@@ -491,8 +519,10 @@ function main() {
     try {
       evt = JSON.parse(line);
     } catch {
+      malformedCount++;
       continue;
     }
+    if (!evt || typeof evt !== 'object' || Array.isArray(evt)) { malformedCount++; continue; }
     eventCount++;
     if (!sessionId && evt.sessionId) sessionId = evt.sessionId;
     if (evt.timestamp) {
@@ -578,6 +608,8 @@ function main() {
   // is. Kept outside OUTPUT_LINE_CAP — it is bounded (<= ~12 lines) and the cap protects the
   // evidence body, which must not be cut to make room for it.
   const header = [];
+  if (!eventCount) { console.log('WARNING: empty or malformed transcript; evidence UNVERIFIED'); return; }
+  if (malformedCount) notes.push(`WARNING: ${malformedCount} malformed records skipped; evidence is partial.`);
   header.push(`transcript: ${transcriptPath}`);
   header.push(`  selected by: ${selectedBy}`);
   if (auto && auto.matchedDir) {
@@ -585,6 +617,9 @@ function main() {
   }
   notes.forEach((n) => header.push(n));
   const lastMs = lastTs ? Date.parse(lastTs) : NaN;
+  if (codex && !stale && Number.isFinite(lastMs) && Date.now() - lastMs > staleThresholdMs()) {
+    stale = { ageMs: Date.now() - lastMs };
+  }
   const ageText = Number.isNaN(lastMs) ? 'unknown' : `${humanAge(Date.now() - lastMs)} ago`;
   header.push(
     `session: ${sessionId || 'unknown'}  events: ${eventCount}  ` +
@@ -643,6 +678,14 @@ function main() {
 
   if (!configAudit) {
     console.log(header.concat(out.slice(0, OUTPUT_LINE_CAP)).join('\n'));
+    return;
+  }
+
+  if (codex) {
+    out.push('', '--- config audit (tune-setup, --config-audit) ---',
+      'unavailable: Claude Skill invocations, hook injection/cancellation, toolDenialKind, and skill_listing trigger-miss metrics.',
+      'Inspect Codex configuration and accessible session evidence directly; unavailable metrics are not zero findings.');
+    console.log(header.concat(out.slice(0, OUTPUT_LINE_CAP + CONFIG_AUDIT_LINE_CAP)).join('\n'));
     return;
   }
 

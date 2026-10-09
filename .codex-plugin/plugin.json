@@ -1,0 +1,32 @@
+{
+  "name": "flutter-toolkit",
+  "version": "3.10.0",
+  "description": "Flutter/Dart skills for Claude Code, Codex, and other coding agents.",
+  "skills": [
+    "./skills/asset-preload-init",
+    "./skills/audit-application-layer",
+    "./skills/audit-data-layer",
+    "./skills/audit-domain-layer",
+    "./skills/audit-feature",
+    "./skills/audit-presentation-layer",
+    "./skills/flutter-analyze-targeted",
+    "./skills/flutter-flavors",
+    "./skills/flutter-go-router",
+    "./skills/flutter-melos-workspace",
+    "./skills/force-update-init",
+    "./skills/generate-widget-tests",
+    "./skills/maestro-screenshot-flow",
+    "./skills/page-transitions-init",
+    "./skills/retro",
+    "./skills/scaffold-feature",
+    "./skills/second-opinion",
+    "./skills/sentry-init",
+    "./skills/tune-setup",
+    "./skills/unit-test",
+    "./skills/web-loader-init"
+  ],
+  "interface": {
+    "displayName": "Flutter Toolkit",
+    "shortDescription": "Flutter, Riverpod, architecture audits and testing"
+  }
+}

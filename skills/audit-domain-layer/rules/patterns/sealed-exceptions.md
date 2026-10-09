@@ -1,6 +1,6 @@
 # Sealed exception hierarchies (exhaustive error handling)
 
-Complements `patterns/exception-handling.md`. That doc establishes the hierarchy
+Complements `exception-handling.md`. That doc establishes the hierarchy
 (`AppException` → feature abstract exception → concrete `const` classes). This doc covers
 **sealing** that hierarchy so the compiler — not a runtime check — guarantees every error state
 is handled.

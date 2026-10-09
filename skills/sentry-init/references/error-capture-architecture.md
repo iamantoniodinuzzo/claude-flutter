@@ -152,7 +152,7 @@ matter:
    provider failures entirely.
 2. **The `ProviderException` guard.** Without it, one root failure reports once per dependent provider in
    the chain — the toolkit already documents this rule in
-   `skills/scaffold-feature/references/breaking/riverpod-core.md`; this observer just has to actually
+   `../../scaffold-feature/references/breaking/riverpod-core.md`; this observer just has to actually
    follow it.
 3. **Resolve the sink via `context.container.read(SINK_PROVIDER)`, never a hand-constructed instance.**
    Constructing `AsyncErrorLogger(SomeSinkImpl())` outside the container means

@@ -6,12 +6,16 @@ user-invocable: true
 
 # Audit Data Layer
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Statically scans Flutter data-layer source files against bundled repository pattern
 and exception handling rules. Emits a violations table, then offers targeted fixes.
 
 ## Rule source
 
-Rules are bundled locally in `skills/audit-data-layer/rules/`.
+Rules are bundled locally in `rules`.
 This skill does **not** delegate to `ai_toolkit/` — it is self-contained.
 
 ---
@@ -33,7 +37,7 @@ Do not proceed until a path is confirmed.
 
 ## Phase 1 — Load rule catalog
 
-Read `skills/audit-data-layer/rules/CATALOG.md` in full before scanning.
+Read `rules/CATALOG.md` in full before scanning.
 
 Do not read individual rule doc files yet — the catalog contains all heuristics
 needed for Phase 3. Open a specific rule doc only if you need to clarify a
@@ -55,19 +59,16 @@ Classify it as one of:
 
 ### Folder mode
 
-Spawn an Explore subagent:
+Discover files with a permitted read-only subagent, otherwise scan directly. Use this prompt:
 
 ```
-Agent(
-  subagent_type="Explore",
-  prompt="List all .dart files (excluding .g.dart, .freezed.dart) recursively
+List all .dart files (excluding .g.dart, .freezed.dart) recursively
   under <input_path>/data/ (or under <input_path> if it is already a data/ dir).
   For each file report:
   - Relative path
   - Whether it appears to be a repository, datasource, or model file (from name/path)
   - Line count (approximate)
-  Report as a plain table."
-)
+  Report as a plain table.
 ```
 
 ---
@@ -180,8 +181,8 @@ Never edit files that were not explicitly approved by the user.
 
 ## Notes
 
-- Paths are relative to the project root — always resolve from there.
+- Application paths resolve from the project root; bundled references resolve from this installed skill directory.
 - This skill does not shell out to `dart analyze`; it reads files directly.
 - It does not overlap with `audit-domain-layer` (which audits domain entity and exception
   definitions) or `audit-application-layer` (which audits notifier/provider code).
-- To add or modify rules, edit `skills/audit-data-layer/rules/CATALOG.md` only.
+- To add or modify rules, edit `rules/CATALOG.md` only.

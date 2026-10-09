@@ -1,39 +1,35 @@
 ---
 name: second-opinion
-description: 'Use when you want an independent review of an architecture decision, implementation choice, or technical approach before committing. Triggers on: "second opinion", "review this approach", "is this the right pattern", "validate my design", "Flutter/Riverpod architecture review".'
+description: Get an independent review of a Flutter/Riverpod architecture decision or implementation through Gemini, Codex, or Claude CLI. Use for "second opinion", "review this approach", "validate my design", or "is this the right pattern". Requires an installed, authenticated provider CLI.
 user-invocable: true
 ---
 
 # Second Opinion
 
-When invoked:
+## Runtime and resources
 
-1. **Summarize the problem** from conversation context (~100 words)
+Resolve `scripts/review.js` from this installed skill directory, not the application's cwd. Requires Node.js and an authenticated provider CLI; no named subagent is required. Use native shell and question tools, or ask in plain text.
 
-2. **Spawn subagent** using Task tool:
-   - `gemini-consultant` with the problem summary
+## Provider selection
 
-3. **Apply Flutter/Riverpod-specific checks**:
-   - `ref.watch()` only in `build()`, `ref.read()` only in callbacks
-   - `FooNotifier` generates `fooProvider` (not `fooNotifierProvider`)
-   - No business logic in widgets — use notifiers/providers
-   - `.select()` when only one field is consumed
-   - GoRouter: no imperative `Navigator.push` inside providers
-
-4. **Present combined results** showing:
-   - Gemini's perspective
-   - Flutter/Riverpod-specific findings
-   - Where they agree/differ
-   - Recommended approach with rationale
-
-## Prerequisites
-
-**Requires Gemini CLI installed locally.** This skill intentionally retains a Gemini CLI runtime dependency — it is the only Gemini reference remaining in this repo after the 2.0.0 Claude-only refactor.
-
-Install: https://github.com/google/gemini-cli
-
-## CLI Commands Used by Subagents
+Use the provider requested by the user, otherwise default to Gemini. Check availability without an AI call:
 
 ```bash
-gemini -p "I'm working on a coding problem... [problem]"
+node "<installed skill directory>/scripts/review.js" --list
 ```
+
+If Gemini is absent, ask which available provider to use. Do not install, authenticate, change providers, or select a model silently. CLI errors, timeouts, and missing capabilities mean the external opinion is unavailable. When the provider is the same as the host, disclose that this is a separate session of the same provider, not a different model.
+
+## Review
+
+1. Summarize the decision and alternatives in about 100 words. Read pertinent code and include minimum relevant snippets, file paths, and constraints in a temporary UTF-8 prompt file. Exclude credentials and unrelated session content.
+2. Invoke the helper with absolute paths:
+
+```bash
+node "<installed skill directory>/scripts/review.js" --provider gemini --prompt-file "<absolute prompt file>" --cwd "<target project>" --timeout-seconds 180
+```
+
+Replace `gemini` with `codex` or `claude` only after provider selection. The helper passes context through stdin without shell interpolation and runs in a temporary directory. Gemini and Claude tools/hooks are disabled; Codex uses a read-only sandbox without user config. The provider reviews supplied context and does not browse the application. Recent CLI options are required; report unsupported options instead of removing restrictions. Remove the temporary prompt file afterward.
+
+3. Independently check Flutter/Riverpod rules: `ref.watch` in build, `ref.read` in callbacks, provider naming, business logic outside widgets, selective rebuilds, and GoRouter usage.
+4. Report the actual provider, its perspective, your findings, agreements/disagreements, and recommendation. Cite missing context. If the external review failed, label it unavailable and distinguish your own checks.

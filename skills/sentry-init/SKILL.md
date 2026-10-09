@@ -6,16 +6,20 @@ user-invocable: true
 
 # sentry-init
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Bootstraps the Sentry Flutter SDK in an existing Flutter project that uses Riverpod and GoRouter. Run all phases in order; each phase is idempotent — if the target already has partial Sentry setup, report deltas only, do not duplicate.
 
 Before coding anything, load the bundled references in parallel:
 
-- `skills/sentry-init/references/initialization-flow.md`
-- `skills/sentry-init/references/error-capture-architecture.md`
-- `skills/sentry-init/references/event-filtering-and-sampling.md`
-- `skills/sentry-init/references/gorouter-and-dio-wiring.md`
-- `skills/sentry-init/references/web-feedback-canvaskit.md`
-- `skills/sentry-init/references/release-uploads.md`
+- `references/initialization-flow.md`
+- `references/error-capture-architecture.md`
+- `references/event-filtering-and-sampling.md`
+- `references/gorouter-and-dio-wiring.md`
+- `references/web-feedback-canvaskit.md`
+- `references/release-uploads.md`
 
 Also fetch the latest `sentry_flutter` SDK docs via context7 (`getsentry/sentry-dart`) before pinning any version numbers — the reference files cite minimum-tested baselines, not pinned versions.
 
@@ -745,9 +749,9 @@ Items that cannot be automated:
 ### References
 
 For deeper context on each decision, see:
-- `skills/sentry-init/references/initialization-flow.md` — why Approach 3 (no appRunner)
-- `skills/sentry-init/references/error-capture-architecture.md` — channel/sink architecture, both branches, severity mapping
-- `skills/sentry-init/references/event-filtering-and-sampling.md` — beforeSend/beforeSendFeedback, sampling policy, in-app frames, PII
-- `skills/sentry-init/references/gorouter-and-dio-wiring.md` — observer placement, Dio breadcrumbs, CORS
-- `skills/sentry-init/references/web-feedback-canvaskit.md` — BetterFeedback integration and CanvasKit gate
-- `skills/sentry-init/references/release-uploads.md` — source maps vs dSYM upload commands
+- `references/initialization-flow.md` — why Approach 3 (no appRunner)
+- `references/error-capture-architecture.md` — channel/sink architecture, both branches, severity mapping
+- `references/event-filtering-and-sampling.md` — beforeSend/beforeSendFeedback, sampling policy, in-app frames, PII
+- `references/gorouter-and-dio-wiring.md` — observer placement, Dio breadcrumbs, CORS
+- `references/web-feedback-canvaskit.md` — BetterFeedback integration and CanvasKit gate
+- `references/release-uploads.md` — source maps vs dSYM upload commands
