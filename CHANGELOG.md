@@ -5,6 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.11.0] - 2026-10-09
+
+### Added
+
+- Native Codex plugin and marketplace distributing the 21 active skills from the shared catalog,
+  with per-skill UI metadata and explicit-only invocation for `tune-setup`.
+- Codex transcript adapter for `retro` and `tune-setup`: explicit session selection, tool-result
+  pairing, repeated commands and edits, and warnings for stale, ambiguous or partial evidence.
+- Configurable `second-opinion` helper supporting Gemini (default), Codex and Claude in isolated
+  sessions with restricted tools, timeouts and no implicit provider fallback.
+- Catalog validation, partial-dependency checks, simulated-provider tests, Windows/Linux CI and
+  local plugin discovery smoke checks without paid model calls.
+
+### Changed
+
+- Skill instructions use native host tools, optional delegation and sequential fallbacks. Bundled
+  resources resolve from installed skill directories; shared dependencies are declared explicitly.
+- `retro` and `tune-setup` use authorized native memory when available and retain learnings in the
+  report otherwise. Unavailable Claude metrics are disclosed for Codex.
+- README documents plugin and individual-skill installation, dependency groups and release pinning.
+  Release version synchronization now includes the Codex manifest.
+
+### Fixed
+
+- Quote plain skill descriptions so YAML punctuation does not invalidate discovery metadata.
+- Feature audit scanners receive installed resource paths and layer-specific scan instructions,
+  preserving presentation platform gating and incomplete-coverage reporting.
+- Catalog validation identifies missing required skills, including `retro` for `tune-setup`.
+
+`build-filter` remains archived; no deprecated workflow is re-enabled.
+
 ## [3.10.0] - 2026-10-04
 
 ### Added
