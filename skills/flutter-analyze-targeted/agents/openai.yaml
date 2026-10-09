@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Analyze Targeted"
+  short_description: "Flutter toolkit: flutter analyze targeted"
+  default_prompt: "Use $flutter-analyze-targeted to handle the requested flutter analyze targeted task."

@@ -1,10 +1,14 @@
 ---
 name: flutter-flavors
-description: Initialize flavors (dev/stg/prod) in a Flutter project, or audit and fix an existing partial/broken flavor setup — Android (build.gradle.kts, AndroidManifest), iOS (xcconfig, xcscheme, Info.plist), Web (--dart-define WEB_FLAVOR workaround), multiple entry points (main_*.dart), IDE config (VSCode launch.json, Android Studio .idea/runConfigurations), and optional multi-project Firebase (flutterfire configure per flavor). Detects project state first and branches into an INIT flow (flutter_flavorizr with targeted processors, or manual fallback) or an AUDIT+FIX flow against a bundled rule catalog. Use proactively when the user says "aggiungi flavor a questa app", "inizializza flavors", "setup dev/stg/prod", "flutter_flavorizr", "audit flavors", "i miei flavor sono rotti", "add flavors to this Flutter app", "set up flavors", "fix my flavor setup", "flavor configuration is broken", or asks to distinguish flavors from dart-defines.
+description: "Initialize flavors (dev/stg/prod) in a Flutter project, or audit and fix an existing partial/broken flavor setup — Android (build.gradle.kts, AndroidManifest), iOS (xcconfig, xcscheme, Info.plist), Web (--dart-define WEB_FLAVOR workaround), multiple entry points (main_*.dart), IDE config (VSCode launch.json, Android Studio .idea/runConfigurations), and optional multi-project Firebase (flutterfire configure per flavor). Detects project state first and branches into an INIT flow (flutter_flavorizr with targeted processors, or manual fallback) or an AUDIT+FIX flow against a bundled rule catalog. Use proactively when the user says \"aggiungi flavor a questa app\", \"inizializza flavors\", \"setup dev/stg/prod\", \"flutter_flavorizr\", \"audit flavors\", \"i miei flavor sono rotti\", \"add flavors to this Flutter app\", \"set up flavors\", \"fix my flavor setup\", \"flavor configuration is broken\", or asks to distinguish flavors from dart-defines."
 user-invocable: true
 ---
 
 # Flutter Flavors
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 Adds `dev`/`stg`/`prod` (or custom) flavors to a Flutter project, or audits and repairs an existing
 flavor setup that is partial or broken. Never runs `dart run flutter_flavorizr` bare — the bare
@@ -16,8 +20,8 @@ input does not help, only `-f` does.
 
 ## Rule and reference sources
 
-Rules for the AUDIT branch are bundled in `skills/flutter-flavors/rules/CATALOG.md`.
-Deep how-to context for the INIT branch is bundled in `skills/flutter-flavors/references/`.
+Rules for the AUDIT branch are bundled in `rules/CATALOG.md`.
+Deep how-to context for the INIT branch is bundled in `references`.
 This skill does not delegate to `ai_toolkit/` — it is self-contained.
 
 Version baselines cited below (`flutter_flavorizr: 2.6.0`, `flutterfire_cli: 1.4.1`) are the
@@ -71,7 +75,7 @@ not just the resulting branch choice.
 core of the skill — a wrong answer here (especially on `applicationId`/`bundleId`) is expensive to
 undo once builds have shipped.
 
-Ask, with explicit defaults, using `AskUserQuestion` where the options are enumerable:
+Ask, with explicit defaults, using the agent's question tool, or a plain-text question where the options are enumerable:
 
 1. **Flavor names** — default `dev`, `stg`, `prod`. Confirm the list and order.
 2. **App name per flavor** — e.g. `Flutter Ship Dev`, `Flutter Ship Stg`, `Flutter Ship`.
@@ -329,8 +333,8 @@ Entered from Phase 0 when any flavor signal already exists.
 1. Load `rules/CATALOG.md` in full before scanning — it contains every heuristic needed; do not
    open individual reference docs unless a violation needs a deeper fix explanation.
 2. Scan the project against every rule in the catalog. For folder-scale scans (native config +
-   `lib/`), spawn an Explore subagent to enumerate candidate files first, the same pattern as
-   `skills/audit-domain-layer/SKILL.md` Phase 2 folder mode — list `.dart` files under `lib/`,
+   `lib/`), spawn an read-only subagent to enumerate candidate files first, the same pattern as
+   `../audit-domain-layer/SKILL.md` Phase 2 folder mode — list `.dart` files under `lib/`,
    `android/app/build.gradle.kts`, `ios/Flutter/*.xcconfig`, `ios/**/xcschemes/*.xcscheme`,
    `.vscode/launch.json`, `.idea/runConfigurations/*.xml`.
 3. Emit a violations table exactly like `audit-domain-layer`'s Phase 4 format:

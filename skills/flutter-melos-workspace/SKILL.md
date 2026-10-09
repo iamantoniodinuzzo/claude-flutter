@@ -1,10 +1,14 @@
 ---
 name: flutter-melos-workspace
-description: Apply Melos to Flutter/Dart monorepo projects for workspace orchestration, shared scripts, dependency management, versioning, and CI automation. Use when setting up Melos from scratch, adding/removing packages, defining custom scripts, configuring filters, managing versioning/changelogs, or troubleshooting workspace-level build/test/analyze workflows.
+description: "Apply Melos to Flutter/Dart monorepo projects for workspace orchestration, shared scripts, dependency management, versioning, and CI automation. Use when setting up Melos from scratch, adding/removing packages, defining custom scripts, configuring filters, managing versioning/changelogs, or troubleshooting workspace-level build/test/analyze workflows."
 user-invocable: true
 ---
 
 # Flutter Melos Workspace
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 ## Overview
 

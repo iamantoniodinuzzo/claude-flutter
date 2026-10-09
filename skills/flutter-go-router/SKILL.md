@@ -1,10 +1,14 @@
 ---
 name: flutter-go-router
-description: Use when implementing, reviewing, or debugging navigation in Flutter apps that use go_router — routes, guards, shell navigation, type-safe routes, deep linking, nested navigators, or bottom nav persistence.
+description: "Use when implementing, reviewing, or debugging navigation in Flutter apps that use go_router — routes, guards, shell navigation, type-safe routes, deep linking, nested navigators, or bottom nav persistence."
 user-invocable: true
 ---
 
 # Flutter GoRouter Navigation
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 ## Overview
 
@@ -338,7 +342,7 @@ GoRouter router(Ref ref) {
 }
 ```
 
-Observer is only useful with **named routes** (add `name:` to each `GoRoute`). See `skills/sentry-init` for full Sentry integration instructions.
+Observer is only useful with **named routes** (add `name:` to each `GoRoute`). See `../sentry-init` for full Sentry integration instructions.
 
 ## Quick Decision Tree
 

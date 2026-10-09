@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Domain Layer"
+  short_description: "Flutter toolkit: audit domain layer"
+  default_prompt: "Use $audit-domain-layer to handle the requested audit domain layer task."

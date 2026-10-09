@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retro"
+  short_description: "Review session evidence and reusable learnings"
+  default_prompt: "Use $retro to handle the requested retro task."

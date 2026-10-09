@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scaffold Feature"
+  short_description: "Flutter toolkit: scaffold feature"
+  default_prompt: "Use $scaffold-feature to handle the requested scaffold feature task."

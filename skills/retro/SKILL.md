@@ -1,10 +1,14 @@
 ---
 name: retro
-description: End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, and proposes concrete fixes. Use when the user says "/retro", "retrospettiva", "cosa mi sfugge", "self-audit", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted.
+description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
 user-invocable: true
 ---
 
 # Retro — self-audit di fine task
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 Answer in the conversation language. Be honest, specific, non-defensive. No praise, no filler. Every point must name a concrete artifact (file, issue, decision) from THIS session — no generic advice.
 
@@ -16,12 +20,18 @@ Answer in the conversation language. Be honest, specific, non-defensive. No prai
 
 Se la sessione è **già stata compattata** quando parte la retro: dichiaralo apertamente nella risposta e limita Q5 a ciò che il Passo 0 conferma dal transcript — non riempire con ricordi plausibili del riassunto.
 
+## Compatibilita della sessione
+
+Passa `--agent claude` o `--agent codex` in base all'agente corrente; `--agent auto` riconosce transcript espliciti e identificativi disponibili. Codex usa `CODEX_HOME/sessions` (default `~/.codex/sessions`) e i metadati `session_meta.cwd` / `session_meta.id`; `CODEX_THREAD_ID` identifica la sessione quando presente. Se la selezione e ambigua, usa `--session <id>` o `--transcript <path>` senza indovinare. Non usare sessioni di altri progetti come prova del lavoro corrente.
+
+Se manca Node.js, un transcript accessibile o un formato riconosciuto, usa solo le evidenze della conversazione e dichiara i controlli non verificati. Record malformati, strumenti non riconosciuti e dati obsoleti producono evidenza parziale o non verificata, mai una sessione certificata pulita.
+
 ## Passo 0 — Raccogli evidenze
 
-Prima delle cinque domande, esegui:
+Prima delle sei domande, esegui:
 
 ```bash
-node "<base directory di questa skill>/scripts/session-evidence.js"
+node "<base directory di questa skill>/scripts/session-evidence.js" --agent <claude|codex>
 ```
 
 Usa il percorso **assoluto** (la base directory è mostrata quando la skill viene caricata): funziona da qualsiasi cwd, nessun `cd`. In alternativa i wrapper `scripts/session-evidence.sh` / `.ps1`, sempre col percorso risolto.
@@ -62,11 +72,13 @@ Read the `git status --porcelain` / branch output from Passo 0:
 
 ## Persistenza
 
+Le configurazioni del progetto includono `AGENTS.md` e `.codex/config.toml` per Codex; le relative modifiche restano proposte finche non autorizzate.
+
 Route each learning to exactly one destination:
 
 | Destinazione | Quando | Chi approva |
 |---|---|---|
-| Auto-memory topic file + riga in `MEMORY.md` | Default. Serve *a volte*, dipende dal contesto della sessione (pattern scoperto, gotcha, preferenza) | Auto-applicato |
+| Memoria nativa autorizzata; apprendimenti nel report se assente | Default. Serve *a volte*, dipende dal contesto della sessione (pattern scoperto, gotcha, preferenza) | Solo se consentito dall'host e dalle autorizzazioni correnti |
 | Config del progetto target (`CLAUDE.md` / `.claude/settings.json` / hooks / `agents/`) | Convenzione permanente che deve guidare *ogni* sessione futura su questo repo | Proposta — aspetta l'ok |
 | Automation spec (skill / hook / slash command / subagent) | Pattern ripetuto che dovrebbe diventare automazione riutilizzabile | Proposta — aspetta l'ok |
 | Issue cross-repo su `iamantoniodinuzzo/claude-flutter` | L'attrito risale a una skill del toolkit stesso, non al progetto target | Proposta — aspetta l'ok |
@@ -75,7 +87,8 @@ Route each learning to exactly one destination:
 
 **Issue cross-repo**: `gh issue create --repo iamantoniodinuzzo/claude-flutter`, con `--repo` **sempre esplicito** — non va mai dedotto dal `git remote` locale, che punta al progetto target, non al toolkit. Sempre "Proposta — aspetta l'ok": aprire una issue pubblica su un altro repo non è mai un default silenzioso. `tune-setup` può produrre la stessa destinazione in modo indipendente, sulla propria evidenza — non c'è canale di handoff tra le due skill.
 
-**Prima di scrivere in auto-memory:**
+**Prima di scrivere nella memoria nativa:**
+Usa solo una destinazione offerta dall'agente e autorizzata. Se assente, lascia gli apprendimenti nel report; non creare `MEMORY.md` o altri sostituti. I passi seguenti su `MEMORY.md` si applicano solo alla memoria Claude quando presente.
 1. Leggi `MEMORY.md`. Se una voce esistente copre già il fatto, **aggiorna quel file** (segui il formato già in uso lì — spesso più fatti correlati nello stesso file, separati da `---`) invece di crearne uno nuovo.
 2. Se l'indice è cresciuto e più voci coprono lo stesso tema, consolidale in una.
 3. Nessun cap numerico rigido — la cifra "solo le prime 200 righe si caricano" circola su Reddit ma non è verificata in questo ambiente; non progettare intorno a un numero che non hai controllato.
@@ -87,8 +100,11 @@ Per un audit più ampio della configurazione (CLAUDE.md, settings, hooks, agents
 ## Report finale
 
 ```
-Applied
-1. [knowledge] <fatto> → auto-memory: <file>
+Applied — solo con memoria nativa autorizzata
+1. [knowledge] <fatto> → memoria nativa: <destinazione>
+
+Reported — se la memoria non è disponibile
+1. [knowledge] <apprendimento conservato nel report>
 
 Proposed — aspetto il tuo ok
 2. [automation] <pattern ripetuto, con conteggio da Passo 0> → skill spec: <nome>
@@ -97,9 +113,9 @@ No action
 3. [friction] <cosa> — già coperto da <dove>
 ```
 
-Categorie: `skill gap` (Claude ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che Claude non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato).
+Categorie: `skill gap` (l'agente ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che l'agente non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato).
 
-Cap invariato: **max 3 proposte** in "Proposed". Le scritture "Applied" in auto-memory non contano nel cap — sono già fatte, non richiedono slot di attenzione dell'utente.
+Cap invariato: **max 3 proposte** in "Proposed". Le scritture autorizzate "Applied" nella memoria nativa non contano nel cap — sono già fatte, non richiedono slot di attenzione dell'utente.
 
 ## Anti-patterns
 
@@ -110,4 +126,4 @@ Cap invariato: **max 3 proposte** in "Proposed". Le scritture "Applied" in auto-
 - **Scrivere in `CLAUDE.md`, `.claude/rules/`, creare una skill, o aprire una issue cross-repo senza ok esplicito.**
 - **Duplicare una voce di memoria che esiste già invece di aggiornarla.**
 - **Dichiarare "nulla da migliorare" quando Passo 0 ha trovato errori o ripetizioni non ancora spiegati.**
-- Fixing things during the retro that the user hasn't approved (oltre alla scrittura in auto-memory, che è l'unica azione pre-approvata da questa skill).
+- Fixing things during the retro without authorization. Native memory writes also follow host permissions; unavailable memory means report-only learnings.

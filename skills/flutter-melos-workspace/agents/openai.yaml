@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Melos Workspace"
+  short_description: "Flutter toolkit: flutter melos workspace"
+  default_prompt: "Use $flutter-melos-workspace to handle the requested flutter melos workspace task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Widget Tests"
+  short_description: "Flutter toolkit: generate widget tests"
+  default_prompt: "Use $generate-widget-tests to handle the requested generate widget tests task."

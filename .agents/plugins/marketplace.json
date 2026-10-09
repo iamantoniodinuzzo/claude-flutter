@@ -1,0 +1,13 @@
+{
+  "name": "claude-flutter",
+  "plugins": [
+    {
+      "name": "flutter-toolkit",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "category": "development"
+    }
+  ]
+}

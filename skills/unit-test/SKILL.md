@@ -1,8 +1,14 @@
 ---
 name: unit-test
-description: Generate, update, or repair unit tests for a Flutter feature path or single Dart class. Knows what to test (domain models, services, notifiers, providers, exceptions) and what to skip (widgets, generated code, Firebase repos). Stresses code with adversarial edge cases instead of merely satisfying it — expected values come from the contract, never from running the code; red tests that expose real bugs are reported, never weakened. Uses mocktail, GWT pattern, Riverpod 3.x ProviderContainer, and an incremental run-fix cycle targeting ≥80% coverage. Use proactively when the user asks to write, generate, add, fix, or improve unit tests for any feature, class, service, notifier, or provider — even if they just say "write tests for X" or "add test coverage to Y".
+description: "Generate, update, or repair unit tests for a Flutter feature path or single Dart class. Knows what to test (domain models, services, notifiers, providers, exceptions) and what to skip (widgets, generated code, Firebase repos). Stresses code with adversarial edge cases instead of merely satisfying it — expected values come from the contract, never from running the code; red tests that expose real bugs are reported, never weakened. Uses mocktail, GWT pattern, Riverpod 3.x ProviderContainer, and an incremental run-fix cycle targeting ≥80% coverage. Use proactively when the user asks to write, generate, add, fix, or improve unit tests for any feature, class, service, notifier, or provider — even if they just say \"write tests for X\" or \"add test coverage to Y\"."
 user-invocable: true
 ---
+
+# unit-test
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 ## Pattern References
 

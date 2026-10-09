@@ -49,7 +49,7 @@ Regole:
 ### Step 1 — Ispeziona cosa vede Maestro
 
 ```bash
-bash skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh [<query>]
+bash "<installed skill directory>/scripts/maestro-hierarchy.sh" [<query>]
 # oppure direttamente:
 maestro hierarchy
 ```

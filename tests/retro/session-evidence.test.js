@@ -48,6 +48,8 @@ function writeTranscript(env, dirName, id, events) {
 
 function run(env, args = [], extraEnv = {}) {
   const childEnv = { ...process.env, HOME: env.home, USERPROFILE: env.home, ...extraEnv };
+  childEnv.CODEX_HOME = path.join(env.home, '.codex');
+  delete childEnv.CODEX_THREAD_ID;
   if (!('CLAUDE_CODE_SESSION_ID' in extraEnv)) delete childEnv.CLAUDE_CODE_SESSION_ID;
   const r = spawnSync(process.execPath, [SCRIPT, ...args], { cwd: env.cwd, env: childEnv, encoding: 'utf8' });
   assert.strictEqual(r.status, 0, r.stderr);

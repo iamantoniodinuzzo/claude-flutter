@@ -29,11 +29,11 @@ gh issue close <n>              # GitHub does NOT auto-close on merge
 
 ```bash
 bash scripts/bump-version.sh patch   # or minor / major / X.Y.Z
-# syncs package.json, plugin.json, marketplace.json source.ref, README badge
+# syncs package.json, both plugin manifests, marketplace.json source.ref, README badge
 
 git start release v<version>    # branch from develop
 # edit CHANGELOG.md: add ## [<version>] section WITHOUT a date (git finish adds it)
-git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md
+git add package.json .claude-plugin/plugin.json .codex-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md
 git c                           # "chore(release): bump version to <version>"
 git finish -y
 # git finish -y on release: merges master+develop, creates tag v<version>,

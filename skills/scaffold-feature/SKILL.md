@@ -1,8 +1,14 @@
 ---
 name: scaffold-feature
-description: Scaffold a new Flutter feature respecting clean architecture (feature-first), repository pattern with dependency inversion, Riverpod v3 DI, go_router navigation, structured logging, and explicit exception handling. Use when the user says they are starting a new feature, scaffolding feature folders, or kicking off feature implementation. Does NOT handle git, issues, or branches — those stay manual.
+description: "Scaffold a new Flutter feature respecting clean architecture (feature-first), repository pattern with dependency inversion, Riverpod v3 DI, go_router navigation, structured logging, and explicit exception handling. Use when the user says they are starting a new feature, scaffolding feature folders, or kicking off feature implementation. Does NOT handle git, issues, or branches — those stay manual."
 user-invocable: true
 ---
+
+# scaffold-feature
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 ## Phase 1 — Socratic intake
 
@@ -64,31 +70,31 @@ Read the following files **in parallel** from inside this skill's own `reference
 ### Mandatory (always load)
 
 **Breaking changes — language and async safety**
-- `skills/scaffold-feature/references/breaking/dart-language.md`
-- `skills/scaffold-feature/references/breaking/dart-async-errors.md`
-- `skills/scaffold-feature/references/breaking/riverpod-core.md`
-- `skills/scaffold-feature/references/breaking/riverpod-async-mutations.md`
-- `skills/scaffold-feature/references/breaking/riverpod-flutter.md`
+- `references/breaking/dart-language.md`
+- `references/breaking/dart-async-errors.md`
+- `references/breaking/riverpod-core.md`
+- `references/breaking/riverpod-async-mutations.md`
+- `references/breaking/riverpod-flutter.md`
 
 **Architecture patterns**
-- `skills/scaffold-feature/references/patterns/feature-creation.md`
-- `skills/scaffold-feature/references/patterns/repository-pattern.md`
-- `skills/scaffold-feature/references/patterns/exception-handling.md`
-- `skills/scaffold-feature/references/patterns/go-router-navigation-conventions.md`
-- `skills/scaffold-feature/references/patterns/async-notifier-command-api.md`
-- `skills/scaffold-feature/references/patterns/riverpod-rebuild-optimization.md`
-- `skills/scaffold-feature/references/patterns/no-ui-strings-outside-ui.md`
-- `skills/scaffold-feature/references/patterns/widget-classes-no-build-helpers.md`
-- `skills/scaffold-feature/references/patterns/flutter-side-effects.md`
+- `references/patterns/feature-creation.md`
+- `references/patterns/repository-pattern.md`
+- `references/patterns/exception-handling.md`
+- `references/patterns/go-router-navigation-conventions.md`
+- `references/patterns/async-notifier-command-api.md`
+- `references/patterns/riverpod-rebuild-optimization.md`
+- `references/patterns/no-ui-strings-outside-ui.md`
+- `references/patterns/widget-classes-no-build-helpers.md`
+- `references/patterns/flutter-side-effects.md`
 
 **Logging standard**
-- `skills/scaffold-feature/references/logging.md`
+- `references/logging.md`
 
 ### Conditional (load only when Phase 1 answer matches)
 
 | Condition | File |
 |---|---|
-| Primary state shape is real-time stream | `skills/scaffold-feature/references/breaking/riverpod-streams-lifecycle.md` |
+| Primary state shape is real-time stream | `references/breaking/riverpod-streams-lifecycle.md` |
 
 Internalize rules silently — do not echo back unless the user explicitly asks.
 

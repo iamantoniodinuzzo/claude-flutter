@@ -1,10 +1,14 @@
 ---
 name: page-transitions-init
-description: Generate an adaptive `PageTransitionsTheme` for a Flutter app (native transitions on installed Android/iOS, instant on web/desktop) — writes the theme file with a `kIsWeb` gate and a zero-duration builder, wires `pageTransitionsTheme:` into every light and dark theme construction (`ThemeData`, `FlexThemeData`, `copyWith` builders), and optionally migrates a blanket `NoTransitionPage` router helper to plain `builder:` routes with balanced-paren rewriting, keeping `CustomTransitionPage` one-offs. INIT when no `pageTransitionsTheme:` exists, AUDIT when a theme and/or helper already exists (ROUTER-03). Use when the user says "page transitions", "NoTransitionPage", "no animation on android", "no slide animation on mobile", "pageTransitionsTheme", "adaptive transitions", "transizioni pagine", "animazione di navigazione", or after audit-presentation-layer reports ROUTER-03.
+description: "Generate an adaptive `PageTransitionsTheme` for a Flutter app (native transitions on installed Android/iOS, instant on web/desktop) — writes the theme file with a `kIsWeb` gate and a zero-duration builder, wires `pageTransitionsTheme:` into every light and dark theme construction (`ThemeData`, `FlexThemeData`, `copyWith` builders), and optionally migrates a blanket `NoTransitionPage` router helper to plain `builder:` routes with balanced-paren rewriting, keeping `CustomTransitionPage` one-offs. INIT when no `pageTransitionsTheme:` exists, AUDIT when a theme and/or helper already exists (ROUTER-03). Use when the user says \"page transitions\", \"NoTransitionPage\", \"no animation on android\", \"no slide animation on mobile\", \"pageTransitionsTheme\", \"adaptive transitions\", \"transizioni pagine\", \"animazione di navigazione\", or after audit-presentation-layer reports ROUTER-03."
 user-invocable: true
 ---
 
 # page-transitions-init
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 Generates the adaptive `PageTransitionsTheme`, wires it into the app theme(s) and, opt-in, removes the blanket
 `NoTransitionPage` helper from the router. Fix companion of **ROUTER-03** (`audit-presentation-layer`). Run phases in
@@ -12,8 +16,8 @@ order.
 
 Before coding, load the references in parallel:
 
-- `skills/page-transitions-init/references/platform-matrix.md`
-- `skills/page-transitions-init/references/router-migration.md`
+- `references/platform-matrix.md`
+- `references/router-migration.md`
 
 Usage: `/page-transitions-init [app-path]`
 
@@ -49,7 +53,7 @@ Usage: `/page-transitions-init [app-path]`
 
 ## Phase 2 — Decisions
 
-One `AskUserQuestion` round (recommendation first, max 1–2 blocking questions):
+One the agent's question tool, or a plain-text question round (recommendation first, max 1–2 blocking questions):
 
 - **Platform matrix**: Android Zoom + iOS Cupertino, web/desktop instant *(recommended)* / Android Predictive Back
   (Android 14+) / fade-through / native on every platform.
@@ -105,7 +109,7 @@ checklist. If the repo keeps a hand-curated CHANGELOG, remind the user to add an
 ## AUDIT branch
 
 When a theme and/or helper already exists, do not edit. Report against **ROUTER-03**
-(`skills/audit-presentation-layer/rules/CATALOG.md`): theme set but bypassed by the helper; no transition strategy
+(`../audit-presentation-layer/rules/CATALOG.md`): theme set but bypassed by the helper; no transition strategy
 defined; theme present on fewer constructions than `ThemeData(`/`FlexThemeData.*(` calls. Show the diff of any
 proposed change and edit only what the user approves.
 
