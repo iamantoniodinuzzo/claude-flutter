@@ -1,6 +1,6 @@
 ---
 name: scaffold-feature
-description: Scaffold a new Flutter feature respecting clean architecture (feature-first), repository pattern with dependency inversion, Riverpod v3 DI, go_router navigation, structured logging, and explicit exception handling. Use when the user says they are starting a new feature, scaffolding feature folders, or kicking off feature implementation. Does NOT handle git, issues, or branches — those stay manual.
+description: "Scaffold a new Flutter feature respecting clean architecture (feature-first), repository pattern with dependency inversion, Riverpod v3 DI, go_router navigation, structured logging, and explicit exception handling. Use when the user says they are starting a new feature, scaffolding feature folders, or kicking off feature implementation. Does NOT handle git, issues, or branches — those stay manual."
 user-invocable: true
 ---
 

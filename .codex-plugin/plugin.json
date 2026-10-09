@@ -1,6 +1,6 @@
 {
   "name": "flutter-toolkit",
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "Flutter/Dart skills for Claude Code, Codex, and other coding agents.",
   "skills": [
     "./skills/asset-preload-init",

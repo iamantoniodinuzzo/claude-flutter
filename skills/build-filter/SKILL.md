@@ -1,6 +1,6 @@
 ---
 name: build-filter
-description: Archived build-filter guidance and standalone guard scripts. Deprecated and not an operational skill; never invoke code generation through this entrypoint.
+description: "Archived build-filter guidance and standalone guard scripts. Deprecated and not an operational skill; never invoke code generation through this entrypoint."
 user-invocable: false
 disable-model-invocation: true
 ---

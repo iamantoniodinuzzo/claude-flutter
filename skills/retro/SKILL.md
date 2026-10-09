@@ -1,6 +1,6 @@
 ---
 name: retro
-description: End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, and proposes concrete fixes. Use when the user says "/retro", "retrospettiva", "cosa mi sfugge", "self-audit", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted.
+description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
 user-invocable: true
 ---
 

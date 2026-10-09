@@ -1,6 +1,6 @@
 ---
 name: audit-data-layer
-description: Audit a Flutter data-layer file or folder against the project's documented repository pattern, exception handling, and cohesion/coupling rules — leaky abstractions (raw framework types in public API), missing exception conversion, model mapper gaps, untyped exceptions in datasources, upward imports (application/presentation), cross-feature data coupling, god repositories, and mixed remote+local datasources. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit data layer", "review repository", "check data layer", "find data violations", "audit this repository", or asks to verify a data file against project architecture rules before code review.
+description: "Audit a Flutter data-layer file or folder against the project's documented repository pattern, exception handling, and cohesion/coupling rules — leaky abstractions (raw framework types in public API), missing exception conversion, model mapper gaps, untyped exceptions in datasources, upward imports (application/presentation), cross-feature data coupling, god repositories, and mixed remote+local datasources. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says \"audit data layer\", \"review repository\", \"check data layer\", \"find data violations\", \"audit this repository\", or asks to verify a data file against project architecture rules before code review."
 user-invocable: true
 ---
 

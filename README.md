@@ -1,6 +1,6 @@
 # claude-flutter
 
-[![Version](https://img.shields.io/badge/version-3.10.0-blue)](package.json)
+[![Version](https://img.shields.io/badge/version-3.11.0-blue)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-compatible-blueviolet)](https://claude.ai/code)
 [![Codex](https://img.shields.io/badge/Codex-compatible-blue)](https://developers.openai.com/codex/skills)

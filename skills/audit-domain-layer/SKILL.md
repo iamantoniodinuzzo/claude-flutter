@@ -1,6 +1,6 @@
 ---
 name: audit-domain-layer
-description: Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra or Flutter imports), outward layer imports (data/application/presentation), cross-feature domain coupling, god entities, typed and sealed/exhaustive exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says "audit domain layer", "audit this entity", "review domain", "check domain rules", "find domain violations", or asks to verify a domain file against project architecture rules before code review.
+description: "Audit a Flutter domain-layer file or folder against the project's documented clean-architecture rules — dependency isolation (no infra or Flutter imports), outward layer imports (data/application/presentation), cross-feature domain coupling, god entities, typed and sealed/exhaustive exceptions, entity purity (no serialization logic), and hardcoded UI strings. Emits a violations table with file:line and rule ID, then offers to apply fixes. Use proactively when the user says \"audit domain layer\", \"audit this entity\", \"review domain\", \"check domain rules\", \"find domain violations\", or asks to verify a domain file against project architecture rules before code review."
 user-invocable: true
 ---
 

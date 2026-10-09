@@ -1,6 +1,6 @@
 ---
 name: flutter-analyze-targeted
-description: Run dart analyze scoped to a specific feature or file path for fast targeted feedback (seconds vs full-project minutes). Auto-detects apps from melos.yaml or infers from path. Supports machine-readable output for tooling integration. Use when you've edited files in a feature and need fast feedback on compile errors and lint issues.
+description: "Run dart analyze scoped to a specific feature or file path for fast targeted feedback (seconds vs full-project minutes). Auto-detects apps from melos.yaml or infers from path. Supports machine-readable output for tooling integration. Use when you've edited files in a feature and need fast feedback on compile errors and lint issues."
 user-invocable: true
 ---
 
