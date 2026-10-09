@@ -1,6 +1,6 @@
 ---
 name: audit-feature
-description: Orchestrate a full static audit of a Flutter feature folder across all present clean-architecture layers — domain, data, application, and presentation. Delegates each layer to its dedicated per-layer audit skill (using permitted read-only subagents or sequential scans), then aggregates violations into one grouped report and offers targeted fixes. Falls back to audit-presentation-layer alone when only presentation/ is present (sub-feature or UI-only feature). Use proactively when the user says "audit feature", "audit this feature", "review feature", "audit this feature folder", "check all layers", or "full feature audit".
+description: "Orchestrate a full static audit of a Flutter feature folder across all present clean-architecture layers — domain, data, application, and presentation. Delegates each layer to its dedicated per-layer audit skill (using permitted read-only subagents or sequential scans), then aggregates violations into one grouped report and offers targeted fixes. Falls back to audit-presentation-layer alone when only presentation/ is present (sub-feature or UI-only feature). Use proactively when the user says \"audit feature\", \"audit this feature\", \"review feature\", \"audit this feature folder\", \"check all layers\", or \"full feature audit\"."
 user-invocable: true
 ---
 

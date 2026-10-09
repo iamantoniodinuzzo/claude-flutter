@@ -1,6 +1,6 @@
 ---
 name: sentry-init
-description: Bootstrap sentry_flutter in a Flutter+Riverpod+GoRouter project — installs deps, wires SentryFlutter.init (Approach 3), GoRouter observer, Riverpod error capture (LoggerService decorator if present, else a scaffolded ErrorLogger sink), web BetterFeedback gated by CanvasKit renderer, beforeSend/sampling policy, and a release upload checklist (source maps + dSYM). Use when the user says "add Sentry to this app", "set up error monitoring", "bootstrap sentry-init", "integrate crash reporting", or asks to wire up Sentry for a Flutter/Riverpod/GoRouter project.
+description: "Bootstrap sentry_flutter in a Flutter+Riverpod+GoRouter project — installs deps, wires SentryFlutter.init (Approach 3), GoRouter observer, Riverpod error capture (LoggerService decorator if present, else a scaffolded ErrorLogger sink), web BetterFeedback gated by CanvasKit renderer, beforeSend/sampling policy, and a release upload checklist (source maps + dSYM). Use when the user says \"add Sentry to this app\", \"set up error monitoring\", \"bootstrap sentry-init\", \"integrate crash reporting\", or asks to wire up Sentry for a Flutter/Riverpod/GoRouter project."
 user-invocable: true
 ---
 

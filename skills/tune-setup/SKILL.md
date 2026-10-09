@@ -1,6 +1,6 @@
 ---
 name: tune-setup
-description: Audit the current agent configuration and workflow on explicit request. Supports Claude Code and Codex instructions, settings, hooks, agents, and available session evidence. Use for "tune-setup", "ottimizza il setup", or "audit config"; never run automatically.
+description: "Audit the current agent configuration and workflow on explicit request. Supports Claude Code and Codex instructions, settings, hooks, agents, and available session evidence. Use for \"tune-setup\", \"ottimizza il setup\", or \"audit config\"; never run automatically."
 user-invocable: true
 ---
 

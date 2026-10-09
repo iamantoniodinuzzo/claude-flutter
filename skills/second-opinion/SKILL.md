@@ -1,6 +1,6 @@
 ---
 name: second-opinion
-description: Get an independent review of a Flutter/Riverpod architecture decision or implementation through Gemini, Codex, or Claude CLI. Use for "second opinion", "review this approach", "validate my design", or "is this the right pattern". Requires an installed, authenticated provider CLI.
+description: "Get an independent review of a Flutter/Riverpod architecture decision or implementation through Gemini, Codex, or Claude CLI. Use for \"second opinion\", \"review this approach\", \"validate my design\", or \"is this the right pattern\". Requires an installed, authenticated provider CLI."
 user-invocable: true
 ---
 
