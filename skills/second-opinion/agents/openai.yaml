@@ -1,0 +1,4 @@
+interface:
+  display_name: "Second Opinion"
+  short_description: "Flutter toolkit: second opinion"
+  default_prompt: "Use $second-opinion to handle the requested second opinion task."

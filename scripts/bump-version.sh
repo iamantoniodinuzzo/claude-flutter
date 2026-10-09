@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 # scripts/bump-version.sh
 #
-# Atomically bump version in all four locations that must stay in sync:
+# Bump version in all five locations that must stay in sync:
 #   package.json              (authoritative source)
 #   .claude-plugin/plugin.json  version field
+#   .codex-plugin/plugin.json   version field
 #   .claude-plugin/marketplace.json  source.ref  (vX.Y.Z)
 #   README.md                 version badge
 #
@@ -15,7 +16,7 @@
 #
 # The script does NOT commit or tag — that is owned by git-flow:
 #   git start release v<version>
-#   git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json README.md
+#   git add package.json .claude-plugin/plugin.json .codex-plugin/plugin.json .claude-plugin/marketplace.json README.md
 #   git c                       # chore(release): bump version to <version>
 #   git finish -y               # merges master+develop, tags v<version>, pushes, deletes branch
 
@@ -24,6 +25,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 PLUGIN_JSON="$REPO_ROOT/.claude-plugin/plugin.json"
+CODEX_PLUGIN_JSON="$REPO_ROOT/.codex-plugin/plugin.json"
 MARKETPLACE_JSON="$REPO_ROOT/.claude-plugin/marketplace.json"
 PKG_JSON="$REPO_ROOT/package.json"
 README="$REPO_ROOT/README.md"
@@ -62,6 +64,8 @@ echo "Bumping to ${NEW_VER} …"
 sed -i.bak "s/\"version\": \"[^\"]*\"/\"version\": \"${NEW_VER}\"/" "$PLUGIN_JSON"
 rm -f "${PLUGIN_JSON}.bak"
 
+node -e 'const fs = require("fs"); const file = process.argv[1]; const manifest = JSON.parse(fs.readFileSync(file, "utf8")); manifest.version = process.argv[2]; fs.writeFileSync(file, JSON.stringify(manifest, null, 2) + "\n");' "$CODEX_PLUGIN_JSON" "$NEW_VER"
+
 # ── 4. Sync .claude-plugin/marketplace.json source.ref ───────────────────────
 # This is the step that fixes auto-update: consumers resolve the version string
 # at this ref; if it stays on the old tag, marketplace update is a no-op.
@@ -73,14 +77,15 @@ rm -f "${MARKETPLACE_JSON}.bak"
 sed -i.bak "s/version-[0-9][^-]*-blue/version-${NEW_VER}-blue/" "$README"
 rm -f "${README}.bak"
 
-# ── 6. Verify all four locations now agree ───────────────────────────────────
+# ── 6. Verify all five locations now agree ───────────────────────────────────
 PKG_VER="$(node -p "require('./package.json').version")"
+CODEX_VER="$(node -e 'console.log(require(process.argv[1]).version)' "$CODEX_PLUGIN_JSON")"
 PLUGIN_VER="$(grep '"version"' "$PLUGIN_JSON" | head -1 | sed 's/.*"version": "\([^"]*\)".*/\1/')"
 MKT_REF="$(grep '"ref"' "$MARKETPLACE_JSON" | head -1 | sed 's/.*"ref": "v\([^"]*\)".*/\1/')"
 README_VER="$(grep -oE 'version-[0-9]+\.[0-9]+\.[0-9]+-blue' "$README" | head -1 | sed 's/version-//;s/-blue//')"
 
 MISMATCH=0
-for LABEL_VAL in "package.json:$PKG_VER" "plugin.json:$PLUGIN_VER" "marketplace.json ref:$MKT_REF" "README badge:$README_VER"; do
+for LABEL_VAL in "package.json:$PKG_VER" "plugin.json:$PLUGIN_VER" "codex plugin.json:$CODEX_VER" "marketplace.json ref:$MKT_REF" "README badge:$README_VER"; do
   LABEL="${LABEL_VAL%%:*}"
   VAL="${LABEL_VAL#*:}"
   if [ "$VAL" != "$NEW_VER" ]; then
@@ -96,12 +101,13 @@ fi
 
 echo "  ✓ package.json            ${NEW_VER}"
 echo "  ✓ plugin.json             ${NEW_VER}"
+echo "  ✓ codex plugin.json       ${NEW_VER}"
 echo "  ✓ marketplace.json ref    ${NEW_REF}"
 echo "  ✓ README badge            ${NEW_VER}"
 echo ""
 echo "Next steps (release lifecycle):"
 echo "  git start release ${NEW_REF}"
 echo "  # edit CHANGELOG.md — add ## [${NEW_VER}] section WITHOUT a date"
-echo "  git add package.json .claude-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md"
+echo "  git add package.json .claude-plugin/plugin.json .codex-plugin/plugin.json .claude-plugin/marketplace.json README.md CHANGELOG.md"
 echo "  git c   # chore(release): bump version to ${NEW_VER}"
 echo "  git finish -y"

@@ -6,15 +6,19 @@ user-invocable: true
 
 # force-update-init
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Bootstraps force update in an existing Flutter project using the [force_update_helper](https://pub.dev/packages/force_update_helper) package (course shape: Andrea Bizzotto, *Flutter in Production*). Run phases in order; the skill first classifies the project as INIT (nothing wired yet) or AUDIT (partial/complete setup already present) and follows the matching branch below.
 
 Force update must ship in the **very first version** of an app or it can never reach users already on an older one — there is no way to retroactively add the check to installs that predate it.
 
 Before coding anything, load the bundled references in parallel:
 
-- `skills/force-update-init/references/remote-sources.md`
-- `skills/force-update-init/references/store-urls-and-env.md`
-- `skills/force-update-init/references/release-playbook.md`
+- `references/remote-sources.md`
+- `references/store-urls-and-env.md`
+- `references/release-playbook.md`
 
 Version baseline cited below (`force_update_helper: 0.3.0`) is the latest published on pub.dev at the time
 this skill was written (2025-11-04) — verify current latest before pinning. The package itself has been
@@ -63,7 +67,7 @@ Print the detection matrix either way before proceeding.
 
 ### 0.3 Distribution channel (INIT branch)
 
-Ask, with `AskUserQuestion` if available:
+Ask, with the agent's question tool, or a plain-text question if available:
 
 > How is this app distributed?
 > 1. **App Store + Play Store** (default) — both platforms go through their public stores.
@@ -548,11 +552,11 @@ This skill does not scaffold CI workflow files — state what CI must supply, no
 
 ### References
 
-- `skills/force-update-init/references/remote-sources.md` — Gist/Remote Config/Shelf tradeoffs and full
+- `references/remote-sources.md` — Gist/Remote Config/Shelf tradeoffs and full
   source for each
-- `skills/force-update-init/references/store-urls-and-env.md` — App Store ID lookup, URL formats, env
+- `references/store-urls-and-env.md` — App Store ID lookup, URL formats, env
   wiring detail
-- `skills/force-update-init/references/release-playbook.md` — how to actually trigger a force update in
+- `references/release-playbook.md` — how to actually trigger a force update in
   production, and the rolling-release-window limitation
 
 ---

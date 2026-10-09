@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Presentation Layer"
+  short_description: "Flutter toolkit: audit presentation layer"
+  default_prompt: "Use $audit-presentation-layer to handle the requested audit presentation layer task."

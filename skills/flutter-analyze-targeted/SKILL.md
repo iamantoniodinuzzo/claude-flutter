@@ -4,6 +4,12 @@ description: Run dart analyze scoped to a specific feature or file path for fast
 user-invocable: true
 ---
 
+# flutter-analyze-targeted
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Run `dart analyze` scoped to the path(s) the user specifies, from the correct app working directory.
 
 ## App resolution

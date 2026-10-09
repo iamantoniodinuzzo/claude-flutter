@@ -1,0 +1,4 @@
+interface:
+  display_name: "Force Update Init"
+  short_description: "Flutter toolkit: force update init"
+  default_prompt: "Use $force-update-init to handle the requested force update init task."

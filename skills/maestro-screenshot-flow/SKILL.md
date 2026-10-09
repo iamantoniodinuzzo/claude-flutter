@@ -6,6 +6,10 @@ user-invocable: true
 
 # Maestro Screenshot Flow
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Genera flow YAML di Maestro per screenshot automatizzati di app Flutter Android.
 Usa selettori **id-only** (`Semantics(identifier:)`) — immune a traduzioni e refactoring.
 
@@ -31,7 +35,7 @@ Dettaglio completo → [`reference/selectors.md`](reference/selectors.md)
 
 ```bash
 # Audit interattivi/asserted widget mancanti di Semantics(identifier:)
-bash skills/maestro-screenshot-flow/scripts/maestro-audit-ids.sh <feature-path>
+bash "<installed skill directory>/scripts/maestro-audit-ids.sh" <feature-path>
 # Stampa anche: appId, device connesso, reminder Firebase emulator
 ```
 
@@ -78,7 +82,7 @@ bash skills/maestro-screenshot-flow/scripts/maestro-audit-ids.sh <feature-path>
 
 ```bash
 # Lista id/nodi esposti da Maestro sul device connesso
-bash skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh [<query>]
+bash "<installed skill directory>/scripts/maestro-hierarchy.sh" [<query>]
 ```
 
 Se un target non appare → vedi decision tree in [`reference/selectors.md`](reference/selectors.md).

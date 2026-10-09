@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maestro Screenshot Flow"
+  short_description: "Flutter toolkit: maestro screenshot flow"
+  default_prompt: "Use $maestro-screenshot-flow to handle the requested maestro screenshot flow task."

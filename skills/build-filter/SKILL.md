@@ -1,9 +1,17 @@
 ---
 name: build-filter
-description: Run dart build_runner optimally on a specific feature or file path. Supports targeted codegen with --build-filter, watch mode for active development, --define for per-build builder overrides, and --workspace for Melos monorepos. Use when you've modified @riverpod, @JsonSerializable, or other annotated code and need to regenerate .g.dart files efficiently.
+description: Archived build-filter guidance and standalone guard scripts. Deprecated and not an operational skill; never invoke code generation through this entrypoint.
 user-invocable: false
 disable-model-invocation: true
 ---
+
+# build-filter
+
+**Archived: do not execute this workflow on any agent.** If explicitly loaded, explain the deprecation and point to the standalone guard scripts. The historical procedure is reference material only.
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
 
 > **Deprecated (v3.9.0).** This skill is no longer invocable — kept on disk, not deleted, because the
 > [Known failure mode](#known-failure-mode-1-345-deleted-gdart-files) below (`#41`, 345 unrelated `.g.dart`
@@ -16,7 +24,7 @@ disable-model-invocation: true
 > large batch of edits. The guard scripts (`scripts/guarded-build.sh` / `.ps1`) still work standalone if you
 > want the pre-flight/snapshot-diff protection without the skill wrapper:
 > ```bash
-> bash skills/build-filter/scripts/guarded-build.sh --cwd "<package-dir>" --build-filter="<path>"
+> bash "<installed skill directory>/scripts/guarded-build.sh" --cwd "<package-dir>" --build-filter="<path>"
 > ```
 
 ---
@@ -75,7 +83,7 @@ Run `dart run build_runner` using the best combination of flags for the user's w
 4. Run the filtered build from the package working directory through the guard script — **without** `--delete-conflicting-outputs`:
 
    ```bash
-   bash <toolkit-root>/skills/build-filter/scripts/guarded-build.sh \
+   bash "<installed skill directory>/scripts/guarded-build.sh" \
      --cwd "<package-working-dir>" \
      --build-filter="<normalized-path>" \
      [--build-filter="<other-path>" ...]
@@ -84,7 +92,7 @@ Run `dart run build_runner` using the best combination of flags for the user's w
    On Windows/PowerShell, use the companion script instead:
 
    ```powershell
-   & <toolkit-root>/skills/build-filter/scripts/guarded-build.ps1 `
+   & "<installed skill directory>/scripts/guarded-build.ps1" `
      -Cwd "<package-working-dir>" `
      -BuildFilter "<normalized-path>" [-BuildFilter "<other-path>" ...]
    ```
@@ -179,6 +187,7 @@ Manually delete only the `.g.dart` file(s) for the target you were building, the
 
 ```bash
 # Single file target (including a brand-new file with no .g.dart yet — this is a no-op, not an error)
+
 rm -f lib/src/features/foo/bar.g.dart
 
 # Directory target (only when the original argument was a directory/glob)

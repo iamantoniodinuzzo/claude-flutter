@@ -1,0 +1,6 @@
+interface:
+  display_name: "Tune Setup"
+  short_description: "Audit agent configuration on explicit request"
+  default_prompt: "Use $tune-setup to handle the requested tune setup task."
+policy:
+  allow_implicit_invocation: false

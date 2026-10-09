@@ -6,14 +6,18 @@ user-invocable: true
 
 # web-loader-init
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Adds a staged boot loader to a Flutter web app with no Dart changes. Flutter mounts into `<body>`, so HTML/CSS placed
 there paints immediately; a custom `web/flutter_bootstrap.js` drives progress from the loader lifecycle hooks. Run
 phases in order.
 
 Before coding, load the references in parallel:
 
-- `skills/web-loader-init/references/bootstrap-template.md`
-- `skills/web-loader-init/references/markup-and-style.md`
+- `references/bootstrap-template.md`
+- `references/markup-and-style.md`
 
 Usage: `/web-loader-init [app-path]`
 
@@ -49,7 +53,7 @@ Usage: `/web-loader-init [app-path]`
 
 ## Phase 2 — Decisions
 
-One `AskUserQuestion` round (recommendation first, max 1–2 blocking questions):
+One the agent's question tool, or a plain-text question round (recommendation first, max 1–2 blocking questions):
 
 - **Loader shape**: logo + linear bar *(recommended)* / bar only / top-of-page bar with logo / spinner.
 - **Dark mode**: `prefers-color-scheme` *(recommended; zero coupling, flashes if the user forced the opposite theme
@@ -112,7 +116,7 @@ hand-curated CHANGELOG, remind the user to add an entry; do not edit it blindly.
 
 ## AUDIT branch
 
-When a loader already exists, do not edit it. Report against **WEB-02** (`skills/audit-presentation-layer/rules/CATALOG.md`):
+When a loader already exists, do not edit it. Report against **WEB-02** (`../audit-presentation-layer/rules/CATALOG.md`):
 
 - (a) no visible `<body>` element before the bootstrap script
 - (b) custom bootstrap never listens for `flutter-first-frame`

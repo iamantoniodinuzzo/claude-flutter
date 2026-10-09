@@ -289,7 +289,7 @@ showMedia(.movie); // Instead of MediaType.movie
 **Clean architecture note (this workspace):** avoid putting **user-facing labels**
 or **UI-only types** (e.g. `IconData`) inside enums that live in `domain/`,
 `data/`, or `application/`. Keep enums “pure” and map them to UI strings/icons
-in `presentation/` via an extension. See `patterns/no-ui-strings-outside-ui.md`.
+in `presentation/` via an extension. See `../patterns/no-ui-strings-outside-ui.md`.
 
 ### DO use extension methods for adding functionality
 

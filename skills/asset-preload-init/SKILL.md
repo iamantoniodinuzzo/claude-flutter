@@ -6,14 +6,18 @@ user-invocable: true
 
 # asset-preload-init
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 Removes first-frame asset pop-in and audits asset hygiene in a Flutter app. Run phases in order. The warm-up is only a
 small part of the answer: most value comes from knowing which assets are really used, how each is loaded, and how big
 they are. **Generate nothing for assets that do not need it.**
 
 Before coding, load the references in parallel:
 
-- `skills/asset-preload-init/references/loader-cache-matrix.md`
-- `skills/asset-preload-init/references/size-and-dead-assets.md`
+- `references/loader-cache-matrix.md`
+- `references/size-and-dead-assets.md`
 
 Usage: `/asset-preload-init [app-path]`
 
@@ -60,7 +64,7 @@ Usage: `/asset-preload-init [app-path]`
 
 ## Phase 2 — Decisions
 
-Use `AskUserQuestion` (recommendation first, max 1–2 blocking questions per round) for:
+Use the agent's question tool, or a plain-text question (recommendation first, max 1–2 blocking questions per round) for:
 
 - **Await vs background**: await only first-screen assets; background the rest. On web, never await the full set.
 - **Raster warm-up location** (only if raster first-frame assets exist): splash widget vs post-first-frame step.
@@ -123,7 +127,7 @@ List: inventory table, files created/modified, assets deliberately not warmed (a
 ## AUDIT branch
 
 When a warm-up already exists, do not edit it. Report against the audit rules (same IDs as
-`skills/audit-presentation-layer/rules/CATALOG.md`):
+`../audit-presentation-layer/rules/CATALOG.md`):
 
 - **ASSET-01** — first-frame `SvgPicture.asset`/`Image.asset` with no warm-up.
 - **ASSET-02** — raster over the size budget.

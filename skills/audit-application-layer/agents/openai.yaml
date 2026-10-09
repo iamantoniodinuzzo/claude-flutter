@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Application Layer"
+  short_description: "Flutter toolkit: audit application layer"
+  default_prompt: "Use $audit-application-layer to handle the requested audit application layer task."

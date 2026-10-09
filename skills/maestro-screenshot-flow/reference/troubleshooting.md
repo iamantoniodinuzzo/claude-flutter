@@ -18,7 +18,7 @@ Maestro usa la porta 7001 per comunicare con il driver sull'emulatore. Se √® gi√
 ```powershell
 # Script pronto: fix-port-7001.ps1
 # Eseguire dalla root del progetto:
-pwsh skills/maestro-screenshot-flow/scripts/fix-port-7001.ps1
+pwsh "<installed skill directory>/scripts/fix-port-7001.ps1"
 ```
 
 Il script esegue in sequenza:
@@ -81,7 +81,7 @@ Quick check:
 
 ```bash
 # Ispeziona cosa vede Maestro
-bash skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh [<query>]
+bash "<installed skill directory>/scripts/maestro-hierarchy.sh" [<query>]
 ```
 
 Cause frequenti:
@@ -98,7 +98,7 @@ Lancia il dump del view tree sul device connesso:
 ```bash
 maestro hierarchy
 # Con filtro substring:
-bash skills/maestro-screenshot-flow/scripts/maestro-hierarchy.sh <query>
+bash "<installed skill directory>/scripts/maestro-hierarchy.sh" <query>
 ```
 
 Utile per:

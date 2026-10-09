@@ -1,0 +1,4 @@
+interface:
+  display_name: "Page Transitions Init"
+  short_description: "Flutter toolkit: page transitions init"
+  default_prompt: "Use $page-transitions-init to handle the requested page transitions init task."

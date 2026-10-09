@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Loader Init"
+  short_description: "Flutter toolkit: web loader init"
+  default_prompt: "Use $web-loader-init to handle the requested web loader init task."

@@ -15,6 +15,8 @@
 # no separate parsing logic to keep in sync, only argument passing.
 
 param(
+    [ValidateSet('auto', 'claude', 'codex')]
+    [string]$Agent = 'auto',
     [string]$Transcript,
     [string]$Session,
     [switch]$List,
@@ -28,7 +30,7 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     exit 0
 }
 
-$nodeArgs = @()
+$nodeArgs = @('--agent', $Agent)
 if ($Transcript) { $nodeArgs += @('--transcript', $Transcript) }
 if ($Session) { $nodeArgs += @('--session', $Session) }
 if ($List) { $nodeArgs += @('--list') }

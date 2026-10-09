@@ -6,6 +6,10 @@ user-invocable: true
 
 # Generate Widget Tests — Robot Testing Pattern
 
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 ## Entry Point: Single Widget or Entire Folder?
 
 Read the user's request first to determine operating mode:
@@ -21,15 +25,15 @@ Read the user's request first to determine operating mode:
 
 ### Step F1 — Discover all widgets in the folder
 
-Use the Explore subagent to list all `.dart` files recursively in `presentation/`. Exclude `.g.dart` and `*_test.dart`.
+Use a permitted read-only subagent, otherwise list directly all `.dart` files recursively in `presentation/`. Exclude `.g.dart` and `*_test.dart`.
 
 ```
-Agent(subagent_type="Explore", prompt="List all .dart files (excluding .g.dart and *_test.dart) 
+List all .dart files (excluding .g.dart and *_test.dart)
 in apps/pollicino_viewer/lib/src/features/<name>/presentation/. 
 For each file read only the first 30 lines and report:
 - Widget class name and superclass (StatelessWidget, StatefulWidget, ConsumerWidget, ConsumerStatefulWidget)
 - Presence of existing `static const *Key` fields
-- Approximate file line count")
+- Approximate file line count
 ```
 
 ### Step F2 — Classify each widget
@@ -60,7 +64,7 @@ Before launching agents, read all Tier A+B widget files fully and identify:
 
 ### Step F4 — Launch parallel agents
 
-Launch **one Agent per Tier A widget**, and **group Tier B widgets** (max 2–3 per agent) to avoid overloading context. Send all agent calls in a single turn to run them concurrently:
+Launch **one Agent per Tier A widget**, and **group Tier B widgets** (max 2–3 per agent) to avoid overloading context. Use parallel subagents only when available and permitted; otherwise process the same groups sequentially:
 
 ```
 Agent 1: sign_in_screen.dart → full Robot test
@@ -81,17 +85,21 @@ Each agent receives:
 
 ---
 
+## Dependencies
+
+Complex provider scenarios require the installed `unit-test` skill. Resolve its directory from the registry or `../unit-test/`. If absent, report missing patterns without claiming those scenarios are covered.
+
 ## Pattern References
 
 For complex scenarios, read the relevant pattern file before writing any code:
 
 | Pattern | File |
 |---|---|
-| StreamProvider overrides (`AsyncData` vs `Stream.value`) | `.claude/skills/unit-test/patterns/stream-provider-overrides.md` |
-| Notifier whose `build()` watches a StreamProvider | `.claude/skills/unit-test/patterns/notifier-with-stream-deps.md` |
-| Computed provider that returns `AsyncValue<T>` synchronously | `.claude/skills/unit-test/patterns/computed-async-value-providers.md` |
-| Fixture helper functions and `makeContainer` factory | `.claude/skills/unit-test/patterns/fixture-helpers.md` |
-| StreamProvider **family** error / loading state in widget tests | `.claude/skills/unit-test/patterns/stream-provider-overrides.md` |
+| StreamProvider overrides (`AsyncData` vs `Stream.value`) | `../unit-test/patterns/stream-provider-overrides.md` |
+| Notifier whose `build()` watches a StreamProvider | `../unit-test/patterns/notifier-with-stream-deps.md` |
+| Computed provider that returns `AsyncValue<T>` synchronously | `../unit-test/patterns/computed-async-value-providers.md` |
+| Fixture helper functions and `makeContainer` factory | `../unit-test/patterns/fixture-helpers.md` |
+| StreamProvider **family** error / loading state in widget tests | `../unit-test/patterns/stream-provider-overrides.md` |
 
 ---
 

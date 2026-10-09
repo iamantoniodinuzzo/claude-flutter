@@ -1,0 +1,4 @@
+interface:
+  display_name: "Asset Preload Init"
+  short_description: "Flutter toolkit: asset preload init"
+  default_prompt: "Use $asset-preload-init to handle the requested asset preload init task."

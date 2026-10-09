@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unit Test"
+  short_description: "Flutter toolkit: unit test"
+  default_prompt: "Use $unit-test to handle the requested unit test task."

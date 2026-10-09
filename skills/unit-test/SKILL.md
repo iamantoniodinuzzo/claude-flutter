@@ -4,6 +4,12 @@ description: Generate, update, or repair unit tests for a Flutter feature path o
 user-invocable: true
 ---
 
+# unit-test
+
+## Runtime and resources
+
+Use the current agent's native file, search, shell, and question tools; plain-text questions and direct sequential scans are valid fallbacks. Subagents are optional and require host permission. Bundled paths below are relative to this installed skill directory; application paths are relative to the target Flutter project. Resolve sibling skills through the installed skill registry (or sibling directories), never by assuming a `skills/` folder in the application. If a required dependency is absent, name it and report the affected step as unavailable; never invent its rules or claim complete coverage.
+
 ## Pattern References
 
 For complex Riverpod scenarios, read the relevant pattern file **before** writing any code:

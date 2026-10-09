@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit Data Layer"
+  short_description: "Flutter toolkit: audit data layer"
+  default_prompt: "Use $audit-data-layer to handle the requested audit data layer task."

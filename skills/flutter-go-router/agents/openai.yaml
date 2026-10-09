@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Go Router"
+  short_description: "Flutter toolkit: flutter go router"
+  default_prompt: "Use $flutter-go-router to handle the requested flutter go router task."
