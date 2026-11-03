@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted (wayfinder ticket #58, map #57)
+Accepted (wayfinder ticket #58, map #57). Decision 1 ("`retro` stays exactly as it is") is
+partially superseded by [0011](0011-retro-v3-environment-lens.md); decisions 2-6 still hold.
 
 ## Context
 
