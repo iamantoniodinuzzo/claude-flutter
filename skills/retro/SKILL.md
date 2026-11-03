@@ -1,6 +1,6 @@
 ---
 name: retro
-description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
+description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, reads transcript-only environment signals to propose environment fixes, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
 user-invocable: true
 ---
 
@@ -20,6 +20,8 @@ Answer in the conversation language. Be honest, specific, non-defensive. No prai
 
 Se la sessione è **già stata compattata** quando parte la retro: dichiaralo apertamente nella risposta e limita Q5 a ciò che il Passo 0 conferma dal transcript — non riempire con ricordi plausibili del riassunto.
 
+Se l'utente indica una **sessione diversa dalla corrente**: lancia il Passo 0 con `--session <id>` e lavora solo sulle evidenze — Passo 0 (con `diff:`), Q5, blocco `Ambiente` e Ship handoff. Q1, Q2, Q3, Q4 e Q6 si dichiarano «non applicabile: richiedono la memoria del lavoro». Più sessioni insieme: fuori scope.
+
 ## Compatibilita della sessione
 
 Passa `--agent claude` o `--agent codex` in base all'agente corrente; `--agent auto` riconosce transcript espliciti e identificativi disponibili. Codex usa `CODEX_HOME/sessions` (default `~/.codex/sessions`) e i metadati `session_meta.cwd` / `session_meta.id`; `CODEX_THREAD_ID` identifica la sessione quando presente. Se la selezione e ambigua, usa `--session <id>` o `--transcript <path>` senza indovinare. Non usare sessioni di altri progetti come prova del lavoro corrente.
@@ -36,7 +38,13 @@ node "<base directory di questa skill>/scripts/session-evidence.js" --agent <cla
 
 Usa il percorso **assoluto** (la base directory è mostrata quando la skill viene caricata): funziona da qualsiasi cwd, nessun `cd`. In alternativa i wrapper `scripts/session-evidence.sh` / `.ps1`, sempre col percorso risolto.
 
-Legge il transcript `.jsonl` della sessione corrente ed estrae, in forma aggregata: tool call falliti (per tool, con il comando eseguito e la riga d'errore — citabili), comandi shell (Bash/PowerShell) identici eseguiti più di una volta, file rieditati più di due volte (ultimi due segmenti di path). Selezione del transcript, in ordine: `--transcript <path>`, `--session <id>`, variabile d'ambiente `CLAUDE_CODE_SESSION_ID` (esatta, indipendente dal cwd), poi l'euristica "più recente per mtime" sullo slug del cwd (con match a slug canonico se la directory derivata non esiste, ref #69). La riga `selected by:` dell'header dice quale ha deciso.
+Legge il transcript `.jsonl` della sessione corrente (e `subagents/` solo per edit riusciti e rifiuti) ed estrae, in forma aggregata e contando per `id` del `tool_use`: tool call falliti (per tool, con il comando eseguito e la riga d'errore — citabili), comandi shell identici eseguiti più di una volta, file rieditati più di due volte (ultimi due segmenti di path), più tre blocchi:
+
+- `diff:` — un diff per branch di sessione, ognuno con uno stato: **ATTRIBUITO** (il diff git coincide con gli edit del transcript, o commit della sessione), **PARZIALE** (anche file non spiegati dal transcript), **NON ATTRIBUIBILE** (diff non vuoto ma non della sessione), **NESSUNA MODIFICA**, **NON RICAVABILE** (git non può rispondere: usa i soli path del transcript, etichettati parziali, e non scrivere mai «nessuna modifica»). La riga `rifiuti:` in coda conta i `toolDenialKind`, subagent inclusi.
+- `attribuiti ad ambiente: N` — chiamate già reclamate dal blocco `Ambiente` (la riga manca se N = 0): citale una volta sola, sotto `Ambiente`, e non ricontarle in Q5.
+- `ambiente:` — i segnali accesi, con livello di severità (vedi «Ambiente»). Su Codex dice «non valutato», che non equivale a «nessun segnale».
+
+Selezione del transcript, in ordine: `--transcript <path>`, `--session <id>`, variabile d'ambiente `CLAUDE_CODE_SESSION_ID` (esatta, indipendente dal cwd), poi l'euristica "più recente per mtime" sullo slug del cwd (con match a slug canonico se la directory derivata non esiste, ref #69). La riga `selected by:` dell'header dice quale ha deciso.
 
 Solo l'euristica può sbagliare sessione, e dipende dal cwd: va lanciata dalla **working directory primaria della sessione** (nel blocco environment a inizio sessione). In un monorepo Melos c'è una project dir per app (`<slug>-apps-<app>`), quindi dal root si legge un'altra directory. Se l'ultimo evento del transcript scelto è più vecchio di `RETRO_STALE_HOURS` (default 6) l'output stampa `WARNING`, più l'elenco dei candidati (`--list` lo stampa sempre); rilancia con `--session <id>`.
 
@@ -50,9 +58,11 @@ Esegui poi:
 git status --porcelain && git branch --show-current
 ```
 
-Questo alimenta l'handoff finale (sotto), non le domande.
+`diff:` risponde a «cosa è cambiato in questa sessione»; questo a «cosa non è integrato adesso» e alimenta l'handoff finale (sotto), non le domande.
 
 ## Le sei domande
+
+Q1, Q2 e Q4 si ancorano ai file del `diff:` con stato ATTRIBUITO/PARZIALE; con ogni altro stato si ancorano ai soli edit del transcript e il report lo dichiara in una riga. Con `attribuiti ad ambiente: N` e N > 0 Q5 rimanda al blocco `Ambiente`: nessuna voce propria, nessuna «sessione pulita».
 
 Answer all six, in this order, as separate sections:
 
@@ -63,16 +73,40 @@ Answer all six, in this order, as separate sections:
 5. **Smoother session** — Cite concrete events from the Passo 0 output: a specific failed tool call, a command run twice, a file rewritten repeatedly, something the user had to ask for a second time. No entry without a matching event. If Passo 0 found genuinely nothing (0 errors, 0 repeats) and you have no other verifiable friction, say so plainly instead of inventing a "could have been smoother" — that is itself a valid answer, not a hedge.
 6. **What worked well** — Name one concrete pattern from this session worth repeating: a skill invocation that paid off, a sequence that avoided rework, a decision that held up under later pressure. Must name a specific artifact (skill name, tool sequence, file, commit) — no generic praise ("things went smoothly"). If nothing genuinely stands out, say so plainly instead of manufacturing a compliment — same standard Q5 already applies to its negative case.
 
+## Ambiente
+
+`ambiente:` con almeno un segnale acceso → leggi `references/environment-lens.md` (segnali, esempi Flutter-aware, repo di atterraggio) prima di scrivere il blocco; senza segnali o con «non valutato», non leggerlo.
+
+Blocco dopo Q6, senza Q7+, di sole evidenze: una riga per ogni categoria accesa nell'`ambiente:` del Passo 0. Scrivi «ambiente: nessun segnale» solo se lo script lo stampa, «ambiente: non valutato» se la riga manca o lo dice (Codex, transcript assente).
+
+**Invariante: la prova è sempre un evento del transcript. `retro` non legge mai un file di configurazione** (`CLAUDE.md`, `settings`, hook, `agents/`). Giudicare il contenuto di quei file è il lavoro di `tune-setup`, su richiesta esplicita. Un guasto transitorio (`automode-unavailable`, o un `toolDenialKind` non noto) resta un numero nella riga `rifiuti:`, mai una proposta.
+
+Ogni proposta porta un livello di severità, in questo ordine (spareggio: più eventi del transcript a sostegno, poi meno righe di prova):
+
+| Livello | Prova misurabile nel transcript |
+|---|---|
+| bloccante | accesso o permesso negato che ha fermato l'agente |
+| costoso | una chiamata o una riga di contesto sopra soglia, o ripetuta |
+| attrito | ricerca a vuoto, check fallito, Read su path inesistente |
+| strutturale | proprietà costante misurata nel transcript (es. dimensione delle istruzioni caricate) |
+
+La tabella vale per **tutte** le proposte, anche dei tag non ambiente.
+
 ## Ship handoff
 
-Read the `git status --porcelain` / branch output from Passo 0:
+Dal blocco `diff:` e dall'output di `git status`/branch del Passo 0, con git in sola lettura:
 
-- Working tree dirty, or current branch is an unmerged feature branch → **finding**, not action: "lavoro non integrato — usa `git-workflow` / `issue-dev` per commit, merge, chiusura issue." Retro never commits, pushes, or merges.
-- Clean tree on `develop`/`main` → nothing to report here.
+- Ogni branch ATTRIBUITO o PARZIALE non integrato → **finding**: `lavoro non integrato: <branch> (+N commit, pushato sì/no)` — usa `git-workflow` / `issue-dev` per commit, merge, chiusura issue. «Integrato» = commit contenuti in `develop` se esiste, altrimenti in `main`/`master` (non `origin/HEAD`: in git-flow punta al ramo di release); modifiche non committate non sono integrate (`+0 commit`).
+- Finding solo per ATTRIBUITO/PARZIALE. NON ATTRIBUIBILE e NON RICAVABILE: nessun finding, una riga neutra («non valutabile»). HEAD corrente fuori dai branch della sessione: riga neutra «non della sessione, non valutato».
+- Working tree sporco: finding solo per i file presenti anche negli edit della sessione, gli altri in una riga di riepilogo.
+- Nessuna esenzione per nome di branch (`research/*` inclusi): 
+- Retro non committa, non pusha, non fa merge.
 
 ## Persistenza
 
 Le configurazioni del progetto includono `AGENTS.md` e `.codex/config.toml` per Codex; le relative modifiche restano proposte finche non autorizzate.
+
+Proposta che tocca `AGENTS.md`, `CLAUDE.md` o il testo di una skill, nuova o esistente → leggi `references/writing-for-agents.md` prima di scriverla.
 
 Route each learning to exactly one destination:
 
@@ -93,7 +127,7 @@ Usa solo una destinazione offerta dall'agente e autorizzata. Se assente, lascia 
 2. Se l'indice è cresciuto e più voci coprono lo stesso tema, consolidale in una.
 3. Nessun cap numerico rigido — la cifra "solo le prime 200 righe si caricano" circola su Reddit ma non è verificata in questo ambiente; non progettare intorno a un numero che non hai controllato.
 
-Le proposte per config del progetto, automation spec, o issue cross-repo restano **proposte**: presentale, non applicarle senza ok esplicito.
+Le proposte per config del progetto, automation spec, o issue cross-repo restano **proposte**: presentale, non applicarle senza ok esplicito. Le proposte `environment` non sono mai «Applied» e dichiarano il repo di atterraggio (`repo: da confermare` se il transcript non lo dice).
 
 Per un audit più ampio della configurazione (CLAUDE.md, settings, hooks, agents/, skill-trigger-miss), fuori dal perimetro di questa skill: esegui `tune-setup` — su richiesta esplicita, non da qui.
 
@@ -106,16 +140,20 @@ Applied — solo con memoria nativa autorizzata
 Reported — se la memoria non è disponibile
 1. [knowledge] <apprendimento conservato nel report>
 
-Proposed — aspetto il tuo ok
-2. [automation] <pattern ripetuto, con conteggio da Passo 0> → skill spec: <nome>
+Proposed — aspetto il tuo ok (ordinate per severità: bloccante, costoso, attrito, strutturale)
+2. [automation] [strutturale] <pattern ripetuto, con conteggio da Passo 0> → skill spec: <nome>
+3. [environment: tool-economy] [costoso] <evidenza dal blocco Ambiente> → config progetto: <cosa> (repo: <dove atterra | da confermare>)
 
 No action
-3. [friction] <cosa> — già coperto da <dove>
+4. [friction] <cosa> — già coperto da <dove>
+5. [environment: navigation] <proposta oltre il cap> — oltre il cap di 3
 ```
 
-Categorie: `skill gap` (l'agente ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che l'agente non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato).
+Categorie: `skill gap` (l'agente ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che l'agente non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato) · `environment` (solo con prova dal blocco `Ambiente`, sottocategoria tra parentesi: `tool-economy`, `navigation`, `automated-checks`, `information-access`, `global-agents-md`).
 
-Cap invariato: **max 3 proposte** in "Proposed". Le scritture autorizzate "Applied" nella memoria nativa non contano nel cap — sono già fatte, non richiedono slot di attenzione dell'utente.
+Cap unico: **max 3 proposte** in "Proposed", ambiente incluso: restano le 3 di severità maggiore, le altre vanno in `No action` con il motivo. Un `automation` senza costo misurato è «strutturale». Più segnali che portano a una sola proposta contano una voce. Le scritture autorizzate "Applied" nella memoria nativa non contano nel cap — sono già fatte, non richiedono slot di attenzione dell'utente.
+
+Un fatto compare **una sola volta** nel report come proposta, e vince `Ambiente`: Q1 può nominarlo (verificarlo ora non è una proposta), Q5 tiene solo il comportamento dell'agente.
 
 ## Anti-patterns
 
@@ -126,4 +164,7 @@ Cap invariato: **max 3 proposte** in "Proposed". Le scritture autorizzate "Appli
 - **Scrivere in `CLAUDE.md`, `.claude/rules/`, creare una skill, o aprire una issue cross-repo senza ok esplicito.**
 - **Duplicare una voce di memoria che esiste già invece di aggiornarla.**
 - **Dichiarare "nulla da migliorare" quando Passo 0 ha trovato errori o ripetizioni non ancora spiegati.**
+- **Leggere un file di configurazione del progetto per costruire una proposta ambiente** (è il lavoro di `tune-setup`).
+- **Proposta ambiente senza un evento del transcript** che la provi, o con un repo di atterraggio assunto invece che dichiarato.
+- **Riproporre come `friction` o `skill gap` un fatto già nel blocco `Ambiente`.**
 - Fixing things during the retro without authorization. Native memory writes also follow host permissions; unavailable memory means report-only learnings.
