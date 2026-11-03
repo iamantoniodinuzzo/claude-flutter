@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.12.0] - 2026-11-03
+
+### Added
+
+- `retro` v3: a per-branch session diff (`diff:` in Passo 0) anchored on the HEAD each branch had when
+  the session started, with ATTRIBUITO / PARZIALE / NON ATTRIBUIBILE / NON RICAVABILE states and a
+  ship handoff that flags unintegrated session work per branch.
+- `retro` environment lens: an `Ambiente` block after Q6 with five transcript-derived signals
+  (tool economy, navigation, automated checks, information access, global AGENTS.md size), a fifth
+  `environment` tag, severity levels, a cap of 3 proposals and a declared landing repo for each.
+  Reference files `environment-lens.md` and `writing-for-agents.md` (MIT attribution).
+- `retro` tests: synthetic fixtures with real record shapes, a real-shape canary, a structural test
+  for `SKILL.md` and a pre-release behaviour checklist.
+- ADR 0011 (supersedes decision 1 of ADR 0006).
+
+### Changed
+
+- `session-evidence.js` counts tool calls by `tool_use` id and reports every `toolDenialKind` value
+  seen, including transient ones such as `automode-unavailable`.
+- `tune-setup` documents the event-versus-file boundary with `retro`.
+- README and ARCHITECTURE describe retro v3 and carry an honest Codex best-effort caveat.
+
+### Known issues
+
+- The Codex transcript parser does not read the real rollout format (tracked in #88).
+
 ## [3.11.0] - 2026-10-09
 
 ### Added
