@@ -75,3 +75,11 @@ sostiene sono superati.
   decisione 5; `skills/retro/SKILL.md` e `session-evidence.js` ricevono il lavoro delle altre
   decisioni della mappa. Nessun file è toccato da questo ADR oltre allo stato di 0006.
 - Chi legge 0006 da solo viene indirizzato qui dalla riga di stato.
+
+## Nota del 2026-11-03 — allineamento alle decisioni successive
+
+Le decisioni sopra restano come scritte; queste note correggono ciò che i ticket successivi della mappa #78 hanno precisato.
+
+- **Decisione 3 (Global AGENTS.md):** la «dimensione relativa» e le «righe duplicate» sono superate dal ticket #90. Il flag è un totale assoluto: la riga `global agents.md [strutturale]` si accende quando il totale delle istruzioni caricate raggiunge `AGENTS_MD_TOTAL_CHARS` (in `retro-lens.js`). La forma relativa è stata scartata perché non discrimina (la quota del file più grande è quasi costante). Le righe duplicate tra file di steering **non sono implementate**: nessuna soglia decisa, nessun segnale emesso.
+- **Decisione 2 (invariante):** vale anche per questa riga. L'input è l'allegato `instructions` / `world_state.agents_md` del transcript, non la lettura di un file: il blocco `Ambiente` non legge file di configurazione.
+- **Conseguenze:** i lavori citati come «#85 (build)» sono stati eseguiti nei ticket #95 (script), #96 (`SKILL.md`, reference, ritocchi a `tune-setup`) e #97 (documentazione), prima del rilascio in #85.
