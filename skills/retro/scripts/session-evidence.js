@@ -27,6 +27,19 @@
 // A WARNING means the evidence is UNVERIFIED — same as "no transcript found", never a clean
 // session.
 //
+// Retro v3 (ADR 0011) adds two blocks in the default mode, each under its own line cap and
+// outside OUTPUT_LINE_CAP, and neither is emitted under --config-audit:
+//   diff:      per-branch session diff (session-diff.js, cap DIFF_LINE_CAP), anchored on the HEAD
+//              the branch had when the session started; subagent edits and denials are read from
+//              <session>/subagents/. NON RICAVABILE = git cannot answer; NON ATTRIBUIBILE = git
+//              answered but the diff is not this session's.
+//   ambiente:  five environment signals derived from the transcript only (retro-lens.js, cap
+//              AMBIENTE_LINE_CAP, thresholds are named constants there). Each tool call is counted
+//              once by tool_use id; a failed call claimed by a lit signal leaves `tool errors:` and
+//              `repeated shell commands:` (reported as `attribuiti ad ambiente: N`).
+// Codex is best-effort: the diff anchors on session_meta.git.commit_hash, ambiente is declared
+// not evaluated, and a cli_version outside the observed range carries a WARNING.
+//
 // --config-audit (opt-in, ADR 0008): appends a fourth block — skill invocations,
 // hook-repetition, hook_cancelled, toolDenialKind breakdown, skill-listing-vs-invoked
 // trigger-miss anchor — under its own CONFIG_AUDIT_LINE_CAP, separate from
@@ -66,6 +79,8 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const lens = require('./retro-lens.js');
+const sessionDiff = require('./session-diff.js');
 
 const OUTPUT_LINE_CAP = 40;
 // CONFIG_AUDIT_LINE_CAP (ADR 0008 decision 2) is deliberately a SEPARATE constant from
@@ -326,7 +341,55 @@ function firstLine(text, maxLen) {
   return line.length > maxLen ? line.slice(0, maxLen) + '…' : line;
 }
 
-const SHELL_TOOLS = new Set(['Bash', 'PowerShell', 'exec_command', 'functions.exec_command']);
+// Codex CLI versions whose rollout format was observed (research ticket #79); outside this
+// range the evidence is flagged, not trusted silently (ticket "Retro v3 su Codex").
+const CODEX_OBSERVED = { min: [0, 153, 4], max: [0, 165, 0] };
+
+function readCodexMeta(raw) {
+  for (const line of raw.split('\n')) {
+    if (!line.trim()) continue;
+    let e;
+    try { e = JSON.parse(line); } catch { continue; }
+    if (e && e.type === 'session_meta') {
+      const p = e.payload || {};
+      return { cwd: p.cwd, commit: p.git && p.git.commit_hash, branch: p.git && p.git.branch, cliVersion: p.cli_version };
+    }
+  }
+  return null;
+}
+
+function outsideCodexRange(v) {
+  const m = /^(\d+)\.(\d+)\.(\d+)/.exec(String(v || ''));
+  if (!m) return true;
+  const n = [Number(m[1]), Number(m[2]), Number(m[3])];
+  const cmp = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+  return cmp(n, CODEX_OBSERVED.min) < 0 || cmp(n, CODEX_OBSERVED.max) > 0;
+}
+
+// Subagent transcripts live in <session dir>/subagents/agent-*.jsonl with an agent-*.meta.json
+// beside each (worktreeBranch / worktreePath). Retro reads them only for successful edit
+// paths and tool denials (ticket "Diff e handoff con sessioni parallele").
+function scanSubagents(transcriptPath) {
+  const dir = path.join(path.dirname(transcriptPath), path.basename(transcriptPath, '.jsonl'), 'subagents');
+  const sub = { st: lens.newState(), branches: [], roots: [] };
+  let files;
+  try { files = fs.readdirSync(dir); } catch { return sub; }
+  for (const name of files) {
+    if (!name.endsWith('.jsonl')) continue;
+    try {
+      for (const line of fs.readFileSync(path.join(dir, name), 'utf8').split('\n')) {
+        if (!line.trim()) continue;
+        try { lens.collect(sub.st, JSON.parse(line), true); } catch { /* skip malformed */ }
+      }
+    } catch { /* unreadable subagent file */ }
+    try {
+      const meta = JSON.parse(fs.readFileSync(path.join(dir, name.replace(/\.jsonl$/, '.meta.json')), 'utf8'));
+      if (meta.worktreeBranch) sub.branches.push(meta.worktreeBranch);
+      if (meta.worktreePath) sub.roots.push(meta.worktreePath);
+    } catch { /* no meta */ }
+  }
+  return sub;
+}
 
 // What was run, short enough to cite: the command for shells, the path for file tools,
 // else truncated JSON. Newlines collapsed so one error group stays one output line.
@@ -485,19 +548,17 @@ function main() {
     process.exit(0);
   }
 
+  let codexMeta = null;
   if (codex) {
     const normalized = require('./codex-transcript.js').normalize(raw);
     if (!normalized.recognized) { console.log('WARNING: unrecognized Codex transcript; evidence UNVERIFIED'); return; }
+    codexMeta = readCodexMeta(raw);
     raw = normalized.raw;
     if (normalized.malformed || normalized.unsupported) notes.push(
       `WARNING: partial Codex evidence (${normalized.malformed} malformed records, ${normalized.unsupported} unsupported tool records); do not claim complete coverage.`);
   }
 
-  const toolNameById = new Map();
-  const toolInputById = new Map(); // tool_use id -> short, citable excerpt of what was run
-  const errorsByTool = new Map(); // "tool\0excerpt" -> {count, sidechain, sample, name, excerpt}
-  const bashCommandCounts = new Map();
-  const editedFileCounts = new Map();
+  const st = lens.newState();
   let sessionId = null;
   let firstTs = null;
   let lastTs = null;
@@ -506,12 +567,9 @@ function main() {
 
   // --config-audit only (ADR 0008). Left unpopulated and unread when the flag is
   // absent, so the default path's output cannot be affected by any of this.
-  const skillInvocations = new Map(); // skill name -> count
   const skillsOffered = new Map(); // skill name -> event # first offered
-  const hookInjections = new Map(); // "hookName sample" -> {count, hookName, sample}
+  const hookInjections = new Map(); // "hookName sample" -> {count, hookName, sample}
   const hookCancelled = [];
-  const denialCounts = { 'user-rejected': 0, 'permission-rule': 0, 'automode-blocked': 0 };
-  const userRejectedFeedback = [];
 
   for (const line of raw.split('\n')) {
     if (!line.trim()) continue;
@@ -530,41 +588,9 @@ function main() {
       if (!lastTs || evt.timestamp > lastTs) lastTs = evt.timestamp;
     }
 
-    const content = evt.message && Array.isArray(evt.message.content) ? evt.message.content : [];
-    const sidechain = !!evt.isSidechain;
-
-    for (const block of content) {
-      if (!block || typeof block !== 'object') continue;
-
-      if (block.type === 'tool_use') {
-        if (block.id && block.name) {
-          toolNameById.set(block.id, block.name);
-          toolInputById.set(block.id, inputExcerpt(block.input));
-        }
-        if (SHELL_TOOLS.has(block.name) && block.input && typeof block.input.command === 'string') {
-          bump(bashCommandCounts, block.input.command.trim(), sidechain);
-        }
-        if (
-          (block.name === 'Edit' || block.name === 'Write') &&
-          block.input &&
-          typeof block.input.file_path === 'string'
-        ) {
-          bump(editedFileCounts, block.input.file_path, sidechain);
-        }
-        if (configAudit && block.name === 'Skill' && block.input && typeof block.input.skill === 'string') {
-          skillInvocations.set(block.input.skill, (skillInvocations.get(block.input.skill) || 0) + 1);
-        }
-      }
-
-      if (block.type === 'tool_result' && block.is_error) {
-        const name = toolNameById.get(block.tool_use_id) || 'unknown';
-        const excerpt = toolInputById.get(block.tool_use_id) || '';
-        const rec = bump(errorsByTool, `${name}\u0001${excerpt}`, sidechain);
-        rec.name = name;
-        rec.excerpt = excerpt;
-        if (!rec.sample) rec.sample = errorLine(sampleFromContent(block.content));
-      }
-    }
+    // Tool calls, results, denials and steering attachments are folded by id (retro-lens.js),
+    // so records the CLI replays (api-request-blob) count once.
+    lens.collect(st, evt, !!evt.isSidechain);
 
     if (!configAudit) continue;
 
@@ -580,7 +606,7 @@ function main() {
       } else if (att.type === 'hook_additional_context' || att.type === 'hook_system_message') {
         const hookName = att.hookName || 'unknown';
         const sample = firstLine(attachmentText(att.content), 80);
-        const key = `${hookName} ${sample}`;
+        const key = `${hookName} ${sample}`;
         const rec = hookInjections.get(key) || { count: 0, hookName, sample };
         rec.count++;
         hookInjections.set(key, rec);
@@ -592,15 +618,100 @@ function main() {
         });
       }
     }
+  }
+  if (codexMeta) {
+    if (!st.cwd && codexMeta.cwd) st.cwd = codexMeta.cwd;
+    if (codexMeta.branch) st.branches.add(codexMeta.branch);
+    if (outsideCodexRange(codexMeta.cliVersion)) {
+      notes.push(
+        `WARNING: Codex cli_version ${codexMeta.cliVersion || 'unknown'} outside the observed range ` +
+          `${CODEX_OBSERVED.min.join('.')} - ${CODEX_OBSERVED.max.join('.')}; the rollout format may have changed, evidence is partial.`
+      );
+    }
+  }
+  {
+    // Format canary (ticket "Come verificare che la skill retro si comporti come descritta"):
+    // tool_use blocks with not a single matching tool_result mean the record shape is not
+    // the one this parser knows. Silence must never read as a clean session.
+    let paired = 0;
+    for (const id of st.uses.keys()) if (st.results.has(id)) paired++;
+    if (st.uses.size > 0 && paired === 0) {
+      notes.push(
+        `WARNING: evidenza parziale (formato non riconosciuto): ${st.uses.size} tool_use senza alcun tool_result; ` +
+          'do not read the counters below as a clean session.'
+      );
+    }
+  }
 
-    // toolDenialKind lives on the top-level `type: "user"` tool_result event itself,
-    // not inside message.content — a separate field to check per-event.
-    if (typeof evt.toolDenialKind === 'string') {
-      const kind = evt.toolDenialKind;
-      if (Object.prototype.hasOwnProperty.call(denialCounts, kind)) denialCounts[kind]++;
-      if (kind === 'user-rejected' && typeof evt.userFeedback === 'string') {
-        userRejectedFeedback.push(firstLine(evt.userFeedback, 100));
+  const uses = [...st.uses.values()];
+  const skillInvocations = new Map(); // skill name -> count
+  if (configAudit) {
+    for (const u of uses) {
+      if (u.name === 'Skill' && u.input && typeof u.input.skill === 'string') {
+        skillInvocations.set(u.input.skill, (skillInvocations.get(u.input.skill) || 0) + 1);
       }
+    }
+  }
+
+  // diff: and ambiente: (default mode only: tune-setup's --config-audit output is unchanged).
+  let diffLines = null;
+  let ambiente = null;
+  let claimedFailed = new Set();
+  let claimedChecks = new Set();
+  if (!configAudit) {
+    const sub = codex ? { st: lens.newState(), branches: [], roots: [] } : scanSubagents(transcriptPath);
+    const subDenials = [...sub.st.denials].map((d) => {
+      const u = d.id && sub.st.uses.get(d.id);
+      return { ...d, what: u ? `${u.name} ${inputExcerpt(u.input)}` : null };
+    });
+    const roots = [st.cwd, ...sub.roots].filter(Boolean);
+    if (codex) {
+      ambiente = { block: ['ambiente: non valutato su Codex (best-effort: nessun segnale ambiente, non è una sessione pulita)'] };
+    } else {
+      ambiente = lens.evaluate(st, { excerpt: inputExcerpt, roots }, subDenials);
+      claimedFailed = ambiente.claimedFailed;
+      claimedChecks = ambiente.claimedChecks;
+    }
+    const editPaths = new Set(
+      lens.successfulEdits(st, { mainOnly: false }).concat(lens.successfulEdits(sub.st, { mainOnly: false })).map((e) => e.file)
+    );
+    const lastMsForLive = lastTs ? Date.parse(lastTs) : NaN;
+    diffLines = sessionDiff.buildDiff({
+      cwd: st.cwd,
+      firstTs,
+      lastTs,
+      live: Number.isFinite(lastMsForLive) && Date.now() - lastMsForLive <= staleThresholdMs(),
+      branches: [...st.branches, ...sub.branches],
+      worktreeRoots: sub.roots,
+      anchorCommit: codexMeta && codexMeta.commit ? codexMeta.commit : null,
+      editPaths,
+      deniedLine: lens.denialPairs(st.denials.concat(sub.st.denials)) + ' (transcript principale + subagent)',
+    });
+  }
+
+  // Failed tool calls grouped by tool + what was run, minus the ones the ambiente block
+  // claimed (each fact appears once, ticket "Dedup tra blocco Ambiente e Q1/Q5").
+  const errorsByTool = new Map(); // "tool\0excerpt" -> {count, sidechain, sample, name, excerpt}
+  let attributed = 0;
+  for (const [id, r] of st.results) {
+    if (!r.isError) continue;
+    if (claimedFailed.has(id)) { attributed++; continue; }
+    const u = st.uses.get(id);
+    const name = u ? u.name : 'unknown';
+    const excerpt = u ? inputExcerpt(u.input) : '';
+    const rec = bump(errorsByTool, `${name}\u0001${excerpt}`, !!(u && u.sidechain));
+    rec.name = name;
+    rec.excerpt = excerpt;
+    if (!rec.sample) rec.sample = errorLine(r.text);
+  }
+  const bashCommandCounts = new Map();
+  const editedFileCounts = new Map();
+  for (const u of uses) {
+    const cmd = lens.SHELL_TOOLS.has(u.name) && u.input && typeof u.input.command === 'string' ? u.input.command : null;
+    if (cmd !== null && !claimedChecks.has(u.id) && !claimedFailed.has(u.id)) bump(bashCommandCounts, cmd.trim(), u.sidechain);
+    if ((u.name === 'Edit' || u.name === 'Write') && u.input && typeof u.input.file_path === 'string') {
+      const r = st.results.get(u.id);
+      if (!(r && r.isError)) bump(editedFileCounts, u.input.file_path, u.sidechain);
     }
   }
 
@@ -655,6 +766,7 @@ function main() {
         `  ${rec.name} x${rec.count}${rec.sidechain ? ' [subagent]' : ''}${ran} → ${rec.sample}`
       );
     });
+  if (attributed) out.push(`attribuiti ad ambiente: ${attributed} (vedi blocco Ambiente)`);
   out.push('');
 
   const repeatedCmds = [...bashCommandCounts.entries()].filter(([, r]) => r.count > 1);
@@ -677,7 +789,8 @@ function main() {
     });
 
   if (!configAudit) {
-    console.log(header.concat(out.slice(0, OUTPUT_LINE_CAP)).join('\n'));
+    const body = out.slice(0, OUTPUT_LINE_CAP);
+    console.log(header.concat(diffLines, '', body, '', ambiente.block).join('\n'));
     return;
   }
 
@@ -724,13 +837,13 @@ function main() {
   });
   out.push('');
 
-  out.push(
-    `toolDenialKind: user-rejected=${denialCounts['user-rejected']} ` +
-      `permission-rule=${denialCounts['permission-rule']} automode-blocked=${denialCounts['automode-blocked']}`
-  );
-  userRejectedFeedback.slice(0, TOP_N).forEach((fb) => {
-    out.push(`  user-rejected: ${fb}`);
-  });
+  out.push(`toolDenialKind: ${lens.denialPairs(st.denials)}`);
+  st.denials
+    .filter((d) => d.kind === 'user-rejected' && d.feedback)
+    .slice(0, TOP_N)
+    .forEach((d) => {
+      out.push(`  user-rejected: ${firstLine(d.feedback, 100)}`);
+    });
   out.push('');
 
   const missed = [...skillsOffered.keys()].filter((name) => !skillInvocations.has(name));

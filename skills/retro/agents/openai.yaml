@@ -1,4 +1,4 @@
 interface:
   display_name: "Retro"
-  short_description: "Review session evidence and reusable learnings"
+  short_description: "Audit session work and environment signals"
   default_prompt: "Use $retro to handle the requested retro task."

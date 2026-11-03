@@ -14,7 +14,7 @@ Answer in the conversation language. Be honest, specific, non-defensive. No prai
 
 ## Quando lanciarla
 
-**Solo su richiesta esplicita** — mai automaticamente, non a fine task, non a milestone, non a release. Trigger: `/tune-setup`, "ottimizza il setup", "audit config", o richiesta equivalente. Cadenza e costo (~4.160 token solo per leggere le superfici di configurazione, misurato in ADR 0006) sono incompatibili con un trigger automatico — per questo `tune-setup` esiste come skill separata da [[retro]] invece di crescere al suo interno.
+**Solo su richiesta esplicita** — mai automaticamente, non a fine task, non a milestone, non a release. Trigger: `/tune-setup`, "ottimizza il setup", "audit config", o richiesta equivalente. Cadenza e costo (~4.160 token solo per leggere le superfici di configurazione, misurato in ADR 0006) sono incompatibili con un trigger automatico. Il confine con [[retro]] è **evento contro file** (ADR 0011): `retro` parte dagli eventi del transcript e non legge mai i file di configurazione, `tune-setup` parte dai file, li legge e li giudica.
 
 ## Agente e dipendenze
 
@@ -51,7 +51,7 @@ Se una superficie o la sua evidenza non è accessibile, segnala "non verificata"
 
 Un finding per superficie che mostra un problema; dichiara esplicitamente "nessun finding" per una superficie pulita — un audit silenzioso su un risultato pulito è un anti-pattern (stessa regola dell'anti-pattern di `retro` contro il "nulla da migliorare" non dichiarato).
 
-1. **Istruzioni dell'agente** — contenuto stale, istruzioni che contraddicono il comportamento osservato in Passo 0, convenzioni mai più valide.
+1. **Istruzioni dell'agente** — contenuto stale, istruzioni che contraddicono il comportamento osservato in Passo 0, convenzioni mai più valide. La riga `global agents.md` di `retro` misura solo la dimensione: il giudizio sul contenuto è tuo.
 2. **Impostazioni e permessi** — config disallineata dall'uso osservato. Usa `toolDenialKind` solo per Claude; per Codex cita le evidenze accessibili senza inventare metriche equivalenti.
 3. **Hook** — per Claude, stesso `hookName` + contenuto **>2 volte** è il segnale di ripetizione; `hook_cancelled` è un finding a qualsiasi occorrenza. Per Codex controlla solo hook supportati e osservabili; le metriche Claude restano non disponibili.
 4. **Agenti installati** — descrizioni incoerenti con il comportamento; mancato uso solo quando l'agente era disponibile, pertinente e la delega autorizzata.
@@ -102,13 +102,14 @@ No action
 
 Categorie: `config` (CLAUDE.md/settings/hooks/agents da correggere) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent) · `friction` (segnale da `toolDenialKind`/`hook_cancelled`) · `knowledge` (fatto utile ma non abbastanza strutturale per una proposta di config).
 
-`toolDenialKind`: solo `user-rejected` conta come attrito reale, quotato con `userFeedback` quando presente. `permission-rule` e `automode-blocked` vanno riportati separatamente, come conferma che i guardrail configurati funzionano — non come attrito, non vanno mescolati con `user-rejected`.
+`toolDenialKind`: solo `user-rejected` conta come attrito reale, quotato con `userFeedback` quando presente. `permission-rule` e `automode-blocked` vanno riportati separatamente, come conferma che i guardrail configurati funzionano — non come attrito, non vanno mescolati con `user-rejected`. Ogni altro valore (es. `automode-unavailable`) è un guasto transitorio del classificatore: riga neutra «guasto transitorio, né attrito né guardrail», mai una proposta.
 
 ## Anti-patterns
 
 - Proposta di config senza evento verificabile citato (Passo 0 o Passo 1).
 - Trigger-miss senza citazione del turno esatto + testo della description.
 - Confondere `permission-rule`/`automode-blocked` (guardrail che funziona) con `user-rejected` (attrito reale).
+- Trattare `automode-unavailable` (o un valore non noto) come `automode-blocked`: è un guasto transitorio, non un guardrail.
 - Scrivere in `CLAUDE.md`, `.claude/settings.json`, un hook, `agents/`, o aprire una issue cross-repo senza ok esplicito.
 - Dichiarare una superficie "pulita" senza averla effettivamente controllata in Passo 0/1.
 - Superare il cap di 5 proposte "Proposed" in un singolo report.
