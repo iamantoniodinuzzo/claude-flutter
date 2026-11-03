@@ -99,7 +99,7 @@ Dal blocco `diff:` e dall'output di `git status`/branch del Passo 0, con git in 
 - Ogni branch ATTRIBUITO o PARZIALE non integrato → **finding**: `lavoro non integrato: <branch> (+N commit, pushato sì/no)` — usa `git-workflow` / `issue-dev` per commit, merge, chiusura issue. «Integrato» = commit contenuti in `develop` se esiste, altrimenti in `main`/`master` (non `origin/HEAD`: in git-flow punta al ramo di release); modifiche non committate non sono integrate (`+0 commit`).
 - Finding solo per ATTRIBUITO/PARZIALE. NON ATTRIBUIBILE e NON RICAVABILE: nessun finding, una riga neutra («non valutabile»). HEAD corrente fuori dai branch della sessione: riga neutra «non della sessione, non valutato».
 - Working tree sporco: finding solo per i file presenti anche negli edit della sessione, gli altri in una riga di riepilogo.
-- Nessuna esenzione per nome di branch (`research/*` inclusi): 
+- Nessuna esenzione per nome di branch (`research/*` inclusi): se la sessione ci ha lavorato e il lavoro non è integrato, il finding scatta; decide l'utente se scartarlo.
 - Retro non committa, non pusha, non fa merge.
 
 ## Persistenza
