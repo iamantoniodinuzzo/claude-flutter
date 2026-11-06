@@ -95,6 +95,13 @@ test('auto agent detection refuses overlapping Claude and Codex candidates', t =
   assert.match(f.run(['--agent', 'codex']), /session: codex-session/);
 });
 
+test('Codex declares the standardizzazione block not evaluated, never zero', t => {
+  const f = fixture(t); const file = f.write('std');
+  const out = f.run(['--agent', 'codex', '--transcript', file]);
+  assert.match(out, /standardizzazione:\n  non valutato su Codex/);
+  assert.doesNotMatch(out, /repeated user instructions: 0/);
+});
+
 test('large Codex metadata can be discovered without parsing entire rollouts', t => {
   const f = fixture(t); const file = f.write('large');
   const record = JSON.parse(fs.readFileSync(file, 'utf8')); record.payload.base_instructions = 'x'.repeat(100000);

@@ -1,6 +1,6 @@
 ---
 name: retro
-description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), auto-persists reusable learnings to memory, flags unintegrated work, reads transcript-only environment signals to propose environment fixes, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
+description: "End-of-task retrospective. Gathers verifiable evidence from the session transcript, answers six hard self-audit questions (least confident, what user is missing, most likely 3-month failure, unstated assumptions, smoother session, what worked well — backed by that evidence), turns recurring patterns and cross-session repeated instructions into standardization proposals, auto-persists reusable learnings to memory, flags unintegrated work, reads transcript-only environment signals to propose environment fixes, and proposes concrete fixes. Use when the user says \"/retro\", \"retrospettiva\", \"cosa mi sfugge\", \"self-audit\", after completing a significant deliverable (plan, milestone, feature, migration), at the end of `issue-dev` after merge, or before the session's context is about to be compacted."
 user-invocable: true
 ---
 
@@ -38,11 +38,12 @@ node "<base directory di questa skill>/scripts/session-evidence.js" --agent <cla
 
 Usa il percorso **assoluto** (la base directory è mostrata quando la skill viene caricata): funziona da qualsiasi cwd, nessun `cd`. In alternativa i wrapper `scripts/session-evidence.sh` / `.ps1`, sempre col percorso risolto.
 
-Legge il transcript `.jsonl` della sessione corrente (e `subagents/` solo per edit riusciti e rifiuti) ed estrae, in forma aggregata e contando per `id` del `tool_use`: tool call falliti (per tool, con il comando eseguito e la riga d'errore — citabili), comandi shell identici eseguiti più di una volta, file rieditati più di due volte (ultimi due segmenti di path), più tre blocchi:
+Legge il transcript `.jsonl` della sessione corrente (e `subagents/` solo per edit riusciti e rifiuti) ed estrae, in forma aggregata e contando per `id` del `tool_use`: tool call falliti (per tool, con il comando eseguito e la riga d'errore — citabili), comandi shell identici eseguiti più di una volta, file rieditati più di due volte (ultimi due segmenti di path), più quattro blocchi:
 
 - `diff:` — un diff per branch di sessione, ognuno con uno stato: **ATTRIBUITO** (il diff git coincide con gli edit del transcript, o commit della sessione), **PARZIALE** (anche file non spiegati dal transcript), **NON ATTRIBUIBILE** (diff non vuoto ma non della sessione), **NESSUNA MODIFICA**, **NON RICAVABILE** (git non può rispondere: usa i soli path del transcript, etichettati parziali, e non scrivere mai «nessuna modifica»). La riga `rifiuti:` in coda conta i `toolDenialKind`, subagent inclusi.
 - `attribuiti ad ambiente: N` — chiamate già reclamate dal blocco `Ambiente` (la riga manca se N = 0): citale una volta sola, sotto `Ambiente`, e non ricontarle in Q5.
 - `ambiente:` — i segnali accesi, con livello di severità (vedi «Ambiente»). Su Codex dice «non valutato», che non equivale a «nessun segnale».
+- `standardizzazione:` — le chiamate `Skill` del modello in questa sessione (esito, `args identici xN`) e `repeated user instructions:`, le istruzioni dell'utente scritte in almeno `USER_REPEAT_MIN_SESSIONS` sessioni distinte della **stessa project dir** (mai di altri progetti). La riga `ripetute in sessione:` è evidenza per Q5: una ripetizione nella stessa sessione di solito significa che l'agente ha ignorato la prima richiesta. Su Codex o senza transcript precedenti dice «non valutato», che non equivale a «nessuna ripetizione».
 
 Selezione del transcript, in ordine: `--transcript <path>`, `--session <id>`, variabile d'ambiente `CLAUDE_CODE_SESSION_ID` (esatta, indipendente dal cwd), poi l'euristica "più recente per mtime" sullo slug del cwd (con match a slug canonico se la directory derivata non esiste, ref #69). La riga `selected by:` dell'header dice quale ha deciso.
 
@@ -72,6 +73,8 @@ Answer all six, in this order, as separate sections:
 4. **Unstated assumptions** — Decisions I made silently: scale, locale, edge-case behavior, ordering, naming. List each as "assumed X, never asked".
 5. **Smoother session** — Cite concrete events from the Passo 0 output: a specific failed tool call, a command run twice, a file rewritten repeatedly, something the user had to ask for a second time. No entry without a matching event. If Passo 0 found genuinely nothing (0 errors, 0 repeats) and you have no other verifiable friction, say so plainly instead of inventing a "could have been smoother" — that is itself a valid answer, not a hedge.
 6. **What worked well** — Name one concrete pattern from this session worth repeating: a skill invocation that paid off, a sequence that avoided rework, a decision that held up under later pressure. Must name a specific artifact (skill name, tool sequence, file, commit) — no generic praise ("things went smoothly"). If nothing genuinely stands out, say so plainly instead of manufacturing a compliment — same standard Q5 already applies to its negative case.
+
+   **Da Q6 a proposta**: al massimo una, tag `[automation]` o `[knowledge]` con marcatore `(da Q6)`, livello strutturale, dentro il cap. Serve una prova: una skill chiamata con `args identici` almeno `SKILL_ARGS_REPEAT_MIN` volte e senza errori nel blocco `standardizzazione:`, oppure lo stesso pattern già in `MEMORY.md`. Una skill esiste già: la proposta riguarda *come* viene invocata (→ slash command), non la skill. Senza prova Q6 resta una riflessione.
 
 ## Ambiente
 
@@ -149,11 +152,11 @@ No action
 5. [environment: navigation] <proposta oltre il cap> — oltre il cap di 3
 ```
 
-Categorie: `skill gap` (l'agente ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che l'agente non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato) · `environment` (solo con prova dal blocco `Ambiente`, sottocategoria tra parentesi: `tool-economy`, `navigation`, `automated-checks`, `information-access`, `global-agents-md`).
+Categorie: `skill gap` (l'agente ha sbagliato o ha impiegato più tentativi) · `friction` (passo manuale ripetuto, cosa chiesta esplicitamente che doveva essere automatica) · `knowledge` (fatto su progetto/preferenze che l'agente non sapeva) · `automation` (pattern ripetuto che potrebbe diventare skill/hook/slash command/subagent — include esplicitamente: istruzioni ripetute che potrebbero diventare uno slash command, un workflow che dovrebbe diventare una skill o un subagent dedicato; instradamento: istruzione in `repeated user instructions:` o skill con `args identici` → slash command · workflow ripetuto → skill · competenza di dominio ricorrente → subagent · convenzione di progetto → `[knowledge]` verso config progetto; solo il primo ha un contatore, gli altri richiedono una voce già in `MEMORY.md` più l'evento di sessione) · `environment` (solo con prova dal blocco `Ambiente`, sottocategoria tra parentesi: `tool-economy`, `navigation`, `automated-checks`, `information-access`, `global-agents-md`).
 
 Cap unico: **max 3 proposte** in "Proposed", ambiente incluso: restano le 3 di severità maggiore, le altre vanno in `No action` con il motivo. Un `automation` senza costo misurato è «strutturale». Più segnali che portano a una sola proposta contano una voce. Le scritture autorizzate "Applied" nella memoria nativa non contano nel cap — sono già fatte, non richiedono slot di attenzione dell'utente.
 
-Un fatto compare **una sola volta** nel report come proposta, e vince `Ambiente`: Q1 può nominarlo (verificarlo ora non è una proposta), Q5 tiene solo il comportamento dell'agente.
+Un fatto compare **una sola volta** nel report come proposta, e vince `Ambiente`: Q1 può nominarlo (verificarlo ora non è una proposta), Q5 tiene solo il comportamento dell'agente. Un'istruzione che è sia in `ripetute in sessione:` sia in `repeated user instructions:` è la proposta `automation`: Q5 non la riconta.
 
 ## Anti-patterns
 
@@ -167,4 +170,5 @@ Un fatto compare **una sola volta** nel report come proposta, e vince `Ambiente`
 - **Leggere un file di configurazione del progetto per costruire una proposta ambiente** (è il lavoro di `tune-setup`).
 - **Proposta ambiente senza un evento del transcript** che la provi, o con un repo di atterraggio assunto invece che dichiarato.
 - **Riproporre come `friction` o `skill gap` un fatto già nel blocco `Ambiente`.**
+- **Una proposta da Q6 senza prova** (`args identici`, istruzione ripetuta tra sessioni, o voce in `MEMORY.md`), o uno slash command proposto per una ripetizione avvenuta in una sola sessione.
 - Fixing things during the retro without authorization. Native memory writes also follow host permissions; unavailable memory means report-only learnings.

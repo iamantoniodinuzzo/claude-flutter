@@ -90,6 +90,26 @@ test('labels and states cited in SKILL.md are emitted by the scripts', () => {
   }
 });
 
+test('Q6-to-proposal rule and the automation routing map are wired to evidence the scripts emit (ADR 0012)', () => {
+  const passo0 = skill.slice(idx(skill, '## Passo 0'), idx(skill, '## Le sei domande'));
+  for (const label of ['`standardizzazione:`', '`repeated user instructions:`', '`ripetute in sessione:`']) {
+    assert(passo0.includes(label), `Passo 0 does not mention ${label}`);
+  }
+  const questions = skill.slice(idx(skill, '## Le sei domande'), idx(skill, '## Ambiente'));
+  assert(questions.includes('**Da Q6 a proposta**') && questions.includes('(da Q6)'), 'Q6 proposal rule missing');
+  const categories = skill.slice(idx(skill, 'Categorie:'), idx(skill, 'Cap unico'));
+  for (const route of ['slash command', 'skill', 'subagent', '`[knowledge]`']) {
+    assert(categories.includes(route), `automation routing map misses ${route}`);
+  }
+  for (const name of ['USER_REPEAT_MIN_SESSIONS', 'SKILL_ARGS_REPEAT_MIN']) {
+    assert(skill.includes(name), `SKILL.md does not cite ${name}`);
+    assert(new RegExp(`\\bconst ${name}\\b`).test(scriptsSrc), `constant ${name} not defined in scripts/`);
+  }
+  for (const label of ['standardizzazione:', 'repeated user instructions:', 'ripetute in sessione', 'args identici']) {
+    assert(scriptsSrc.includes(label), `scripts do not emit "${label}"`);
+  }
+});
+
 test('the writing reference carries attribution, a 40-60 line body and the MIT text', () => {
   const ref = read('references', 'writing-for-agents.md');
   assert(/^> Adapted from /m.test(ref.split('\n').slice(0, 4).join('\n')));

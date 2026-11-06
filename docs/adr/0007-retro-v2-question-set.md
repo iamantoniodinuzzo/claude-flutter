@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted (wayfinder ticket #62, map #57)
+Accepted (wayfinder ticket #62, map #57). Amended by [ADR 0012](0012-retro-positive-loop.md): Q6 may
+now produce one evidence-backed proposal (decision 4 and the #64 consequence no longer hold).
 
 ## Context
 
