@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.13.0] - 2026-11-06
+
+### Added
+
+- `retro` Passo 0 `standardizzazione:` block: model-issued `Skill` calls with outcome and an
+  `args identici` marker, and `repeated user instructions:`, the same instruction written in at
+  least two distinct sessions of the same project directory. A repeat inside one session is
+  reported separately as Q5 friction (`ripetute in sessione:`), never as slash-command proof.
+- `retro` Q6 can now produce one standardization proposal (`(da Q6)`, structural level, inside the
+  existing cap of 3), only with evidence: identical-args `Skill` calls or a pattern already in
+  `MEMORY.md`. The `automation` category carries the insight-to-building-block routing map
+  (slash command, skill, subagent, project config).
+- ADR 0012 (amends ADR 0007), `standardize-lens.js`, nine tests and three behaviour-checklist rows.
+
+### Changed
+
+- `retro` reads up to ten previous transcripts of the same project directory for the first time
+  (never other projects). Codex and projects without previous transcripts print `non valutato`,
+  never zero. `--config-audit` output is unchanged.
+
 ## [3.12.0] - 2026-11-03
 
 ### Added

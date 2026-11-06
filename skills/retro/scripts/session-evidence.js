@@ -37,8 +37,14 @@
 //              AMBIENTE_LINE_CAP, thresholds are named constants there). Each tool call is counted
 //              once by tool_use id; a failed call claimed by a lit signal leaves `tool errors:` and
 //              `repeated shell commands:` (reported as `attribuiti ad ambiente: N`).
-// Codex is best-effort: the diff anchors on session_meta.git.commit_hash, ambiente is declared
-// not evaluated, and a cli_version outside the observed range carries a WARNING.
+// Retro v3.1 (ADR 0012) adds a third default-mode block, outside OUTPUT_LINE_CAP and under its own
+// cap (standardize-lens.js, STANDARDIZE_LINE_CAP), also absent under --config-audit:
+//   standardizzazione:  model-issued Skill calls of this session (outcome, identical args) and user
+//                       instructions repeated across >= 2 distinct sessions of the same project dir
+//                       (proof for a slash-command proposal; a repeat inside one session is friction).
+// Codex is best-effort: the diff anchors on session_meta.git.commit_hash, ambiente and
+// standardizzazione are declared not evaluated, and a cli_version outside the observed range
+// carries a WARNING.
 //
 // --config-audit (opt-in, ADR 0008): appends a fourth block — skill invocations,
 // hook-repetition, hook_cancelled, toolDenialKind breakdown, skill-listing-vs-invoked
@@ -81,6 +87,7 @@ const path = require('path');
 const os = require('os');
 const lens = require('./retro-lens.js');
 const sessionDiff = require('./session-diff.js');
+const standardize = require('./standardize-lens.js');
 
 const OUTPUT_LINE_CAP = 40;
 // CONFIG_AUDIT_LINE_CAP (ADR 0008 decision 2) is deliberately a SEPARATE constant from
@@ -570,6 +577,8 @@ function main() {
   const skillsOffered = new Map(); // skill name -> event # first offered
   const hookInjections = new Map(); // "hookName sample" -> {count, hookName, sample}
   const hookCancelled = [];
+  // Default mode only (standardize-lens.js, ADR 0012): the human-typed messages of this session.
+  const userMsgs = [];
 
   for (const line of raw.split('\n')) {
     if (!line.trim()) continue;
@@ -592,7 +601,13 @@ function main() {
     // so records the CLI replays (api-request-blob) count once.
     lens.collect(st, evt, !!evt.isSidechain);
 
-    if (!configAudit) continue;
+    if (!configAudit) {
+      if (!codex) {
+        const t = standardize.humanText(evt);
+        if (t) userMsgs.push(t);
+      }
+      continue;
+    }
 
     // hook_* and skill_listing events are top-level `type: "attachment"` events, not
     // nested in message.content — a different shape from the tool_use/tool_result
@@ -790,7 +805,8 @@ function main() {
 
   if (!configAudit) {
     const body = out.slice(0, OUTPUT_LINE_CAP);
-    console.log(header.concat(diffLines, '', body, '', ambiente.block).join('\n'));
+    const standardizeBlock = standardize.evaluate({ st, userMsgs, transcriptPath, codex: !!codex });
+    console.log(header.concat(diffLines, '', body, '', ambiente.block, '', standardizeBlock).join('\n'));
     return;
   }
 
