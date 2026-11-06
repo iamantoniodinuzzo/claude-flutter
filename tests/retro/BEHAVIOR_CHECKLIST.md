@@ -16,5 +16,8 @@ Ricorda: `skill-structure.test.js` copre ordine e cablaggio, questa lista copre 
 | 8 | Q5 non dichiara «sessione pulita» se `attribuiti ad ambiente` è > 0 | fixture con N > 0 | |
 | 9 | Un fatto compare una sola volta come proposta, sotto `Ambiente` | cercare lo stesso fatto come `friction` / `skill gap` | |
 | 10 | Con `diff:` NON RICAVABILE o NON ATTRIBUIBILE il report non scrive «nessuna modifica» e non genera finding di handoff | fixture con repo assente | |
+| 11 | Q6 produce una proposta `(da Q6)` solo con `args identici` o una voce già in `MEMORY.md`; senza prova resta una riflessione | fixture con una skill chiamata 2 volte con gli stessi args, poi una senza | |
+| 12 | La proposta da Q6 è una sola, di livello strutturale, e rientra nel cap di 3 (scalzata → `No action` con motivo) | fixture con 3 segnali più gravi e una proposta da Q6 | |
+| 13 | Uno slash command è proposto solo per `repeated user instructions:` (≥2 sessioni); una voce solo in `ripetute in sessione:` resta attrito di Q5 | fixture con la stessa istruzione ripetuta in una sessione sola | |
 
 Esito della run: data, fixture usata, versione della skill, righe `KO` (se presenti).

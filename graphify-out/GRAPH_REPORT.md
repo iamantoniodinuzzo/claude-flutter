@@ -1,16 +1,16 @@
-# Graph Report - claude-flutter  (2026-10-04)
+# Graph Report - claude-flutter  (2026-11-06)
 
 ## Corpus Check
-- 152 files · ~128,408 words
+- 178 files · ~155,065 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1859 nodes · 1802 edges · 184 communities (168 shown, 16 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.84)
+- 2132 nodes · 2168 edges · 214 communities (198 shown, 16 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ba1d1633`
+- Built from commit: `e888a45f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -196,18 +196,48 @@
 - [[_COMMUNITY_Community 181|Community 181]]
 - [[_COMMUNITY_Community 182|Community 182]]
 - [[_COMMUNITY_Community 183|Community 183]]
+- [[_COMMUNITY_Community 184|Community 184]]
+- [[_COMMUNITY_Community 185|Community 185]]
+- [[_COMMUNITY_Community 186|Community 186]]
+- [[_COMMUNITY_Community 187|Community 187]]
+- [[_COMMUNITY_Community 188|Community 188]]
+- [[_COMMUNITY_Community 189|Community 189]]
+- [[_COMMUNITY_Community 190|Community 190]]
+- [[_COMMUNITY_Community 191|Community 191]]
+- [[_COMMUNITY_Community 192|Community 192]]
+- [[_COMMUNITY_Community 193|Community 193]]
+- [[_COMMUNITY_Community 194|Community 194]]
+- [[_COMMUNITY_Community 195|Community 195]]
+- [[_COMMUNITY_Community 196|Community 196]]
+- [[_COMMUNITY_Community 197|Community 197]]
+- [[_COMMUNITY_Community 198|Community 198]]
+- [[_COMMUNITY_Community 199|Community 199]]
+- [[_COMMUNITY_Community 200|Community 200]]
+- [[_COMMUNITY_Community 201|Community 201]]
+- [[_COMMUNITY_Community 202|Community 202]]
+- [[_COMMUNITY_Community 203|Community 203]]
+- [[_COMMUNITY_Community 204|Community 204]]
+- [[_COMMUNITY_Community 205|Community 205]]
+- [[_COMMUNITY_Community 206|Community 206]]
+- [[_COMMUNITY_Community 207|Community 207]]
+- [[_COMMUNITY_Community 208|Community 208]]
+- [[_COMMUNITY_Community 209|Community 209]]
+- [[_COMMUNITY_Community 210|Community 210]]
+- [[_COMMUNITY_Community 211|Community 211]]
+- [[_COMMUNITY_Community 212|Community 212]]
+- [[_COMMUNITY_Community 213|Community 213]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Generate Widget Tests — Robot Testing Pattern` - 18 edges
-2. `main()` - 16 edges
-3. `Flutter GoRouter Navigation` - 16 edges
-4. `Audit Presentation Layer — Rule Catalog` - 14 edges
-5. `Flutter Flavors` - 14 edges
-6. `Pattern: verify() + verifyInOrder() Anti-pattern` - 13 edges
-7. `Create and distribute a plugin marketplace` - 12 edges
-8. `Flutter Melos Workspace` - 12 edges
-9. `force-update-init` - 12 edges
-10. `Phase 0 — Intake & detection` - 11 edges
+1. `Generate Widget Tests — Robot Testing Pattern` - 20 edges
+2. `main()` - 19 edges
+3. `Flutter GoRouter Navigation` - 17 edges
+4. `build-filter` - 15 edges
+5. `Flutter Flavors` - 15 edges
+6. `unit-test` - 15 edges
+7. `Audit Presentation Layer — Rule Catalog` - 14 edges
+8. `Flutter Melos Workspace` - 13 edges
+9. `force-update-init` - 13 edges
+10. `Pattern: verify() + verifyInOrder() Anti-pattern` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Riverpod Widget Audit Rules RIV-WIDGET-01 to 04` --semantically_similar_to--> `Riverpod v3 Provider Rules`  [INFERRED] [semantically similar]
@@ -238,15 +268,15 @@
 - **Riverpod Provider Override Strategies in Unit Tests** — unit_test_stream_override_strategy_a, unit_test_stream_override_strategy_b, unit_test_override_with_value_sync, unit_test_notifier_strategy_a, unit_test_notifier_strategy_b [INFERRED 0.85]
 - **Sentry Error Capture Pipeline (Decorator + Observer + Global Hooks)** — sentry_init_sentry_logger_service, sentry_init_async_error_logger, sentry_init_branch_a_decorator, sentry_init_branch_b_observer [INFERRED 0.85]
 
-## Communities (184 total, 16 thin omitted)
+## Communities (214 total, 16 thin omitted)
 
 ### Community 0 - "Unit Test Patterns"
 Cohesion: 0.06
 Nodes (32): Android rules, Config rules, Dart-layer rules, Firebase rules, FLAVOR-AND-01, FLAVOR-AND-02, FLAVOR-AND-03, FLAVOR-AND-04 (+24 more)
 
 ### Community 1 - "Feature Bootstrapping Workflow"
-Cohesion: 0.05
-Nodes (46): Clean Architecture Layers (domain/data/application/presentation), Phase 1: Socratic Intake (Scope, Name, Purpose, Design Probes), Phase 2: Scaffold Clean Architecture Directories, Phase 3: Load Architectural Context References, Phase 4: Architecture Contract (Domain/Data/Application/Presentation), Bootstrap Feature Skill (Clean Architecture Scaffolding), Sub-Feature is UI-Only (Domain/Data from Parent Feature), AsyncValue.when Flags (skipLoadingOnReload, skipError) (+38 more)
+Cohesion: 0.29
+Nodes (8): Phase 3: Load Architectural Context References, Riverpod Core Reference (Principles, Provider Selection, ref API), Legacy APIs Moved to legacy.dart (StateProvider, StateNotifierProvider, ChangeNotifierProvider), listenSelf() for Notifier Self-State Reaction, Riverpod Provider Parameter Ordering (Ref First, Params Second), Riverpod Provider Types Quick Reference (sync/async/stream/notifier), ref.watch / ref.read / ref.listen / ref.invalidate (Ref API), Riverpod Flutter Widget APIs Reference (bootstrap-feature copy)
 
 ### Community 2 - "Sentry Integration & Error Monitoring"
 Cohesion: 0.05
@@ -269,8 +299,8 @@ Cohesion: 0.06
 Nodes (33): Card clipBehavior: Clip.antiAlias for Ripple Containment, Code organization (UI), Const Constructors for Rebuild Prevention, Flutter widgets & performance – construction rules, build discipline, perf checklist, InkWell Over GestureDetector (Material Tap Targets), Keep build() lightweight, Keys in lists, Keep build() Lightweight (No Heavy Work in Build) (+25 more)
 
 ### Community 7 - "Riverpod-Flutter Audit Rules"
-Cohesion: 0.04
-Nodes (47): API Summary, Avoid `pumpAndSettle()` when:, Descendant matching (scoped to Key-based parent), Entry Point: Single Widget or Entire Folder?, Exception: `find.byType()` is acceptable, Exception: private widget classes, File location, File template (+39 more)
+Cohesion: 0.14
+Nodes (13): Dependencies, Entry Point: Single Widget or Entire Folder?, Generate Widget Tests — Robot Testing Pattern, Pattern References, Phase 0 — Gap Detection (existing test file), Phase 10 — Do Not, Phase 11 — Central Mocks File, Phase 1 — Discover Before Writing (+5 more)
 
 ### Community 8 - "Exception Handling & Clean Architecture"
 Cohesion: 0.20
@@ -281,8 +311,8 @@ Cohesion: 0.11
 Nodes (18): Acceptable `find.byType()` use, Asserting the autofill save request, Use ElevatedButton + tester.tap() to Trigger Dialogs in Tests (ROBOT-05), Dialog trigger rule (ROBOT-05), Do not, Finder rules (ROBOT-01, ROBOT-02), Key-Based Finders in Robot Classes (ROBOT-01, ROBOT-02), Key rules (ROBOT-04) (+10 more)
 
 ### Community 10 - "Package Metadata"
-Cohesion: 0.25
-Nodes (7): author, description, homepage, keywords, license, name, version
+Cohesion: 0.18
+Nodes (10): author, description, homepage, keywords, license, name, scripts, test (+2 more)
 
 ### Community 11 - "Sentry Wiring & Privacy"
 Cohesion: 0.20
@@ -305,36 +335,40 @@ Cohesion: 0.40
 Nodes (5): AppBar Back Button Must Use context.goNamed (URL Sync), GoRouter Navigation Conventions, context.go vs context.push URL Behavior (go_router v11.1.2+), Nested Routes in StatefulShellBranch (Relative Paths), Consolidate Multiple Scaffolds Into Single Outer Scaffold
 
 ### Community 16 - "Build Filter & CI Tooling"
-Cohesion: 0.50
-Nodes (4): build-filter Skill (targeted build_runner via --build-filter), No --delete-conflicting-outputs with --build-filter, Melos concurrency:1 for build_runner (avoid file lock failures), Melos --since Filter for CI (run only affected package tests)
+Cohesion: 0.09
+Nodes (34): CHECK_RES, collect(), commandSegments(), DENIAL_KINDS, denialCounts(), denialPairs(), emptySearch(), ENV_DENIALS (+26 more)
 
 ### Community 17 - "Melos Workspace Setup"
 Cohesion: 0.06
-Nodes (32): 1. Install Melos, 2. Configuration file, 3. Minimal configuration, 4. Bootstrap, Build runner across workspace, Common patterns, Configuration reference, Custom environment variables (+24 more)
+Nodes (33): 1. Install Melos, 2. Configuration file, 3. Minimal configuration, 4. Bootstrap, Build runner across workspace, Common patterns, Configuration reference, Custom environment variables (+25 more)
 
 ### Community 18 - "Second Opinion Skill"
-Cohesion: 0.33
-Nodes (5): Gemini Consultant Subagent, Flutter/Riverpod Architecture Checks, CLI Commands Used by Subagents, Prerequisites, Second Opinion
+Cohesion: 0.29
+Nodes (6): Gemini Consultant Subagent, Flutter/Riverpod Architecture Checks, Provider selection, Review, Runtime and resources, Second Opinion
+
+### Community 19 - "Targeted Flutter Analysis"
+Cohesion: 0.09
+Nodes (30): executable(), finalText(), fs, invocation(), main(), NPM_ENTRY, os, parseArgs() (+22 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.20
-Nodes (9): asset-preload-init, AUDIT branch, Notes, Phase 0 — Intake & classify, Phase 1 — Inventory and classify, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verify (+1 more)
+Cohesion: 0.18
+Nodes (10): asset-preload-init, AUDIT branch, Notes, Phase 0 — Intake & classify, Phase 1 — Inventory and classify, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verify (+2 more)
 
 ### Community 29 - "Community 29"
 Cohesion: 0.17
 Nodes (11): Checklist, Named Parameter Gotcha, Pattern: Pre-stub Non-nullable Returns, The Fix: Pre-stub in `setUp()`, The Problem, When it Occurs, Mocktail Null Safety TypeError on Non-nullable Returns, Unit Test Phase 4 — Mocktail Strategy (+3 more)
 
 ### Community 30 - "Community 30"
-Cohesion: 0.09
-Nodes (22): Adding a SentryNavigatorObserver, Calling go() from ref.listen (Riverpod), Common Mistakes, Deep Linking, Flutter GoRouter Navigation, Navigation Methods, Nested Sub-Routes, Overview (+14 more)
+Cohesion: 0.08
+Nodes (23): Adding a SentryNavigatorObserver, Calling go() from ref.listen (Riverpod), Common Mistakes, Deep Linking, Flutter GoRouter Navigation, Navigation Methods, Nested Sub-Routes, Overview (+15 more)
 
 ### Community 31 - "Community 31"
 Cohesion: 0.11
 Nodes (17): Android Release — Debug Symbols (dSYM), Android workflow step, Authentication, Build, Build with obfuscation, First-Run Verification, GitHub Actions Snippets, Installation (+9 more)
 
 ### Community 32 - "Community 32"
-Cohesion: 0.12
-Nodes (16): App-root mode, Audit Presentation Layer, Folder mode, Notes, Phase 0 — Resolve input and platform, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan (+8 more)
+Cohesion: 0.11
+Nodes (17): App-root mode, Audit Presentation Layer, Folder mode, Notes, Phase 0 — Resolve input and platform, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan (+9 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.12
@@ -361,8 +395,8 @@ Cohesion: 0.12
 Nodes (15): Audit Domain Layer — Rule Catalog, Dependency isolation rules, DOMAIN-COHESION-01, DOMAIN-COUPLE-01, DOMAIN-COUPLE-02, DOMAIN-DEP-01, DOMAIN-ENT-01, DOMAIN-FAIL-01 (+7 more)
 
 ### Community 39 - "Community 39"
-Cohesion: 0.11
-Nodes (18): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Pattern References, Phase 0 — Testability Check, Phase 10 — Final Summary, Phase 1 — Gap Detection (+10 more)
+Cohesion: 0.13
+Nodes (23): Unit Test Phase 7 — Coverage Strategy (target 80%), Unit Test Phase 2 — Discovery, Unit Test Phase 1 — Gap Detection, Unit Test Phase 8 — Incremental Write/Run/Fix Cycle, Entity / value object, Exception hierarchy, Pattern References, Phase 0 — Testability Check (+15 more)
 
 ### Community 40 - "Community 40"
 Cohesion: 0.14
@@ -377,20 +411,20 @@ Cohesion: 0.14
 Nodes (13): Async Programming, AVOID async when it has no benefit, Dart async & error handling – async/await, streams, exceptions, DO create custom exceptions for domain errors, DO handle errors in async code, DO throw Error for programming errors, DO use async/await over raw Futures, DO use async* for stream generation (+5 more)
 
 ### Community 43 - "Community 43"
-Cohesion: 0.15
-Nodes (12): Audit Application Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+4 more)
+Cohesion: 0.14
+Nodes (13): Audit Application Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+5 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.15
-Nodes (12): Audit Data Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+4 more)
+Cohesion: 0.14
+Nodes (13): Audit Data Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+5 more)
 
 ### Community 45 - "Community 45"
-Cohesion: 0.15
-Nodes (12): Audit Domain Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+4 more)
+Cohesion: 0.14
+Nodes (13): Audit Domain Layer, Folder mode, Notes, Phase 0 — Resolve input, Phase 1 — Load rule catalog, Phase 2 — Discover files, Phase 3 — Scan, Phase 4 — Report (+5 more)
 
 ### Community 46 - "Community 46"
-Cohesion: 0.14
-Nodes (13): Advanced flags, Builder option overrides (`--define`), Known failure mode: 345 deleted `.g.dart` files (#41), Melos workspace (`--workspace`), Note on `--release`, Notes, Steps — `build` mode (default), Steps — `watch` mode (+5 more)
+Cohesion: 0.17
+Nodes (18): Advanced flags, build-filter, Builder option overrides (`--define`), Known failure mode: 345 deleted `.g.dart` files (#41), Melos workspace (`--workspace`), No --delete-conflicting-outputs with --build-filter, Note on `--release`, Notes (+10 more)
 
 ### Community 47 - "Community 47"
 Cohesion: 0.15
@@ -409,12 +443,12 @@ Cohesion: 0.15
 Nodes (12): 1. Core principles, 2. Why widget classes (and not build helpers)?, 3. Extraction pattern: from build helpers to dumb widgets, 4. Parent decides size, children stay adaptive, 5. When can a widget be “smart”?, 6. Practical rules for this codebase, 7. Keys for testability, Naming convention (+4 more)
 
 ### Community 51 - "Community 51"
-Cohesion: 0.18
-Nodes (9): Adding a new skill, Contributing, Fetching upstream rule docs (flutter_ai_toolkit), Tracking gotcha, Version bump, CLAUDE.md — Toolkit Entry Point, graphify, Conventional Commits Scopes (+1 more)
+Cohesion: 0.40
+Nodes (5): Adding a new skill, Contributing, Fetching upstream rule docs (flutter_ai_toolkit), Tracking gotcha, Version bump
 
 ### Community 52 - "Community 52"
-Cohesion: 0.14
-Nodes (12): How auto-update works, Plugin stuck on old version / install fails with SSH error, Troubleshooting, Agents, Any agent, via `npx` (broadest reach), Claude Code, via plugin marketplace (stable, pinned), claude-flutter, Core methodology (+4 more)
+Cohesion: 0.11
+Nodes (16): How auto-update works, Plugin stuck on old version / install fails with SSH error, Troubleshooting, Agents, Any agent, via `npx` (broadest reach), Claude Code, via plugin marketplace (stable, pinned), claude-flutter, Codex, via native plugin marketplace (+8 more)
 
 ### Community 53 - "Community 53"
 Cohesion: 0.17
@@ -429,20 +463,20 @@ Cohesion: 0.17
 Nodes (11): Choosing the right provider (rule of thumb), Core principles, Legacy APIs moved under `legacy.dart`, Notifier helpers: `listenSelf()` (migrating from StateNotifier listeners), Parameter ordering rules (non-negotiable), Provider types (quick reference), `ProviderException` wrapper, ref API – watch, read, listen, invalidate, refresh (+3 more)
 
 ### Community 56 - "Community 56"
-Cohesion: 0.25
-Nodes (8): Communication Protocol, Prompt Context Assessment, Output format, audit-presentation-layer SKILL.md, README — claude-flutter Toolkit, Dispatcher Skill Pattern, Platform-Aware Rule Gating, Self-Contained Skill Pattern
+Cohesion: 0.20
+Nodes (11): Communication Protocol, Prompt Context Assessment, Output format, audit-presentation-layer SKILL.md, CLAUDE.md — Toolkit Entry Point, README — claude-flutter Toolkit, Dispatcher Skill Pattern, iamantoniodinuzzo/flutter_ai_toolkit Upstream Repo (+3 more)
 
 ### Community 57 - "Community 57"
 Cohesion: 0.18
 Nodes (10): Create and distribute a plugin marketplace, Create the marketplace file, Optional plugin fields, Overview, Plugin entries, Required fields, See also, Validation and testing (+2 more)
 
 ### Community 58 - "Community 58"
-Cohesion: 0.18
-Nodes (10): 2.2 Calling `showDialog` / `ScaffoldMessenger` / `Navigator.push` inside `build()`, 2.4 Doing I/O inside `StreamBuilder` / `FutureBuilder` builder, 1. What is a side effect?, 2.1 Calling `setState()` inside `build()`, 2.3 Starting an animation in `build()`, 2.5 Running async work directly in `build()`, 2. Known bad side effects and how to fix them, 3. General DO / DON'T rules (+2 more)
+Cohesion: 0.33
+Nodes (6): 2.2 Calling `showDialog` / `ScaffoldMessenger` / `Navigator.push` inside `build()`, 2.4 Doing I/O inside `StreamBuilder` / `FutureBuilder` builder, 2.1 Calling `setState()` inside `build()`, 2.3 Starting an animation in `build()`, 2.5 Running async work directly in `build()`, 2. Known bad side effects and how to fix them
 
 ### Community 59 - "Community 59"
-Cohesion: 0.14
-Nodes (13): Key Rules, Override Strategy, Pattern: Notifier with Internal ref.listen, Setup Pattern, Testability Smell — Flag in Phase 0, The Testing Challenge, What This Covers, FutureProvider Error Pattern B: Manual Container + container.pump() (+5 more)
+Cohesion: 0.22
+Nodes (8): Key Rules, Override Strategy, Pattern: Notifier with Internal ref.listen, Setup Pattern, Testability Smell — Flag in Phase 0, The Testing Challenge, What This Covers, Testability Smell: Internal ref.listen Conflates Command and Query
 
 ### Community 60 - "Community 60"
 Cohesion: 0.18
@@ -461,24 +495,24 @@ Cohesion: 0.20
 Nodes (10): Common configurations, Host and distribute marketplaces, Host on GitHub (recommended), Host on other git services, How restrictions work, Managed marketplace restrictions, Pre-populate plugins for containers, Private repositories (+2 more)
 
 ### Community 64 - "Community 64"
-Cohesion: 0.20
-Nodes (9): Audit Feature, Explore prompt template, Notes, Phase 0 — Resolve feature path, Phase 1 — Detect layers, Phase 2 — Parallel layer audits, Phase 3 — Aggregate and report, Phase 4 — Combined fix prompt (+1 more)
+Cohesion: 0.17
+Nodes (11): Audit Feature, Dependencies, Layer scan prompt template, Notes, Phase 0 — Resolve feature path, Phase 1 — Detect layers, Phase 2 — Parallel layer audits, Phase 3 — Aggregate and report (+3 more)
 
 ### Community 65 - "Community 65"
-Cohesion: 0.20
-Nodes (10): Cold-start, Ispezione accessibility tree, Maestro Screenshot Flow, Pattern obbligatori (sempre attivi), Prerequisiti, Quando caricare i riferimenti, Run commands, Screenshot (+2 more)
+Cohesion: 0.18
+Nodes (11): Cold-start, Ispezione accessibility tree, Maestro Screenshot Flow, Pattern obbligatori (sempre attivi), Prerequisiti, Quando caricare i riferimenti, Run commands, Runtime and resources (+3 more)
 
 ### Community 66 - "Community 66"
 Cohesion: 0.20
 Nodes (10): Assertions, Cold-start pattern, Commands — full Maestro command surface, Control flow, `hideKeyboard`, Input / clipboard, Lifecycle / misc, Screenshot recipe (pattern obbligatorio) (+2 more)
 
 ### Community 67 - "Community 67"
-Cohesion: 0.11
-Nodes (18): Android Studio, AUDIT branch (partial / complete projects), Branch A — flutter_flavorizr (default), Branch B — Manual, Flutter Flavors, Notes, Phase 0 — Detect & classify, Phase 1 — Intake (INIT branch only) (+10 more)
+Cohesion: 0.10
+Nodes (19): Android Studio, AUDIT branch (partial / complete projects), Branch A — flutter_flavorizr (default), Branch B — Manual, Flutter Flavors, Notes, Phase 0 — Detect & classify, Phase 1 — Intake (INIT branch only) (+11 more)
 
 ### Community 68 - "Community 68"
-Cohesion: 0.20
-Nodes (9): Conditional (load only when Phase 1 answer matches), Mandatory (always load), Phase 1 — Socratic intake, Phase 2 — Scaffold clean-architecture directories, Phase 3 — Load architectural context, Phase 4 — Architecture contract, Phase 5 — Closing summary, Sub-feature → `lib/src/features/<parent>/<name>/` (+1 more)
+Cohesion: 0.24
+Nodes (11): Conditional (load only when Phase 1 answer matches), Mandatory (always load), Phase 1 — Socratic intake, Phase 2 — Scaffold clean-architecture directories, Phase 3 — Load architectural context, Phase 4 — Architecture contract, Phase 5 — Closing summary, Runtime and resources (+3 more)
 
 ### Community 69 - "Community 69"
 Cohesion: 0.20
@@ -497,12 +531,12 @@ Cohesion: 0.22
 Nodes (9): Files not found after installation, Git operations time out, Marketplace not loading, Marketplace updates fail in offline environments, Marketplace validation errors, Plugin installation failures, Plugins with relative paths fail in URL-based marketplaces, Private repository authentication fails (+1 more)
 
 ### Community 73 - "Community 73"
-Cohesion: 0.22
-Nodes (8): App resolution, Filtering output (bash / macOS / Linux), Filtering output (PowerShell / Windows), Machine-readable output, Notes, Steps, Usage examples, Zero-error false positive guard
+Cohesion: 0.29
+Nodes (11): App resolution, Filtering output (bash / macOS / Linux), Filtering output (PowerShell / Windows), flutter-analyze-targeted, Machine-readable output, Notes, Runtime and resources, Steps (+3 more)
 
 ### Community 74 - "Community 74"
-Cohesion: 0.17
-Nodes (11): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains (+3 more)
+Cohesion: 0.22
+Nodes (8): AsyncLoading propagation, Coverage checklist for computed AsyncValue providers, Fallback behaviour for secondary dependencies, Nesting computed providers, Pattern: Testing Computed AsyncValue Providers, Reading the result — no `await` needed, What is a computed AsyncValue provider?, AsyncLoading Propagation in whenData Chains
 
 ### Community 75 - "Community 75"
 Cohesion: 0.20
@@ -545,8 +579,8 @@ Cohesion: 0.25
 Nodes (8): 1. ref.watch vs ref.read placement (error), 2. .select() for performance (warning), 3. Riverpod v3 provider naming (error), 4. Ref type in function providers (error), 5. AsyncValue handling (error), 6. Cleanup and keepAlive (warning), 7. Stale .g.dart (info), Rules
 
 ### Community 85 - "Community 85"
-Cohesion: 0.25
-Nodes (8): Agents, Architecture, Key skills, Module diagram, Orchestrator skills, Repo structure, Skill design: self-contained, What this repo is
+Cohesion: 0.22
+Nodes (9): Agents, Architecture, Host-specific behavior, Key skills, Module diagram, Orchestrator skills, Repo structure, Skill design: self-contained (+1 more)
 
 ### Community 86 - "Community 86"
 Cohesion: 0.25
@@ -585,8 +619,8 @@ Cohesion: 0.29
 Nodes (7): Codegen: `--build-filter` vs full rebuild, `dart analyze` scoping, Flutter Rules, GoRouter web rules, Logging format standard, Riverpod v3, Testing conventions
 
 ### Community 95 - "Community 95"
-Cohesion: 0.29
-Nodes (7): Aliases, Conventional Commits scopes for this toolkit, Feature lifecycle, Git Workflow, Gotchas, Hotfix lifecycle, Release lifecycle
+Cohesion: 0.17
+Nodes (10): Aliases, Conventional Commits scopes for this toolkit, Feature lifecycle, Git Workflow, Gotchas, Hotfix lifecycle, Release lifecycle, graphify (+2 more)
 
 ### Community 96 - "Community 96"
 Cohesion: 0.29
@@ -637,8 +671,8 @@ Cohesion: 0.33
 Nodes (5): 1. No outward layer imports (DOMAIN-COUPLE-01), 2. Cross-feature domain imports (DOMAIN-COUPLE-02), 3. God entities (DOMAIN-COHESION-01), DO / DON'T summary, Domain Layer — Cohesion & Coupling Rules
 
 ### Community 108 - "Community 108"
-Cohesion: 0.33
-Nodes (6): 1.1 Core, 1.2 Conditional additions, Mobile (Android / iOS), Phase 1 — Install dependencies, Phase 5 — Platform branches, sentry-init
+Cohesion: 0.40
+Nodes (5): 1.1 Core, 1.2 Conditional additions, Phase 1 — Install dependencies, Runtime and resources, sentry-init
 
 ### Community 109 - "Community 109"
 Cohesion: 0.33
@@ -665,8 +699,8 @@ Cohesion: 0.40
 Nodes (5): 3.1 Locate GoRouter constructors, 3.2 Inject observer, 3.3 Named routes warning, 3.4 Dio HTTP breadcrumbs (if HAS_DIO=true), Phase 3 — Wire GoRouter observer
 
 ### Community 115 - "Community 115"
-Cohesion: 0.40
-Nodes (5): 5.1 CanvasKit renderer utility, 5.2 BetterFeedback wrapper in main.dart, 5.3 SentryFeedbackService, 5.4 Gating the trigger button, Web — BetterFeedback + CanvasKit gate
+Cohesion: 0.29
+Nodes (7): 5.1 CanvasKit renderer utility, 5.2 BetterFeedback wrapper in main.dart, 5.3 SentryFeedbackService, 5.4 Gating the trigger button, Mobile (Android / iOS), Phase 5 — Platform branches, Web — BetterFeedback + CanvasKit gate
 
 ### Community 116 - "Community 116"
 Cohesion: 0.40
@@ -721,8 +755,8 @@ Cohesion: 0.18
 Nodes (10): Android Studio — `.idea/runConfigurations/`, Default state (no flavors), Generating via flavorizr, Generating via flavorizr (Debug only), IDE configuration — VSCode and Android Studio, Manual creation (no flavorizr), Verifying, VSCode — `.vscode/launch.json` (+2 more)
 
 ### Community 134 - "Community 134"
-Cohesion: 0.16
-Nodes (22): attachmentText(), bump(), canonicalSlug(), errorLine(), findBySessionId(), findLatestTranscript(), firstLine(), fs (+14 more)
+Cohesion: 0.09
+Nodes (37): analyzeBranch(), buildDiff(), fs, git(), norm(), parseNumstat(), path, { spawnSync } (+29 more)
 
 ### Community 135 - "Community 135"
 Cohesion: 0.20
@@ -741,8 +775,8 @@ Cohesion: 0.22
 Nodes (8): 1. Duplicate build configurations, 2. Create schemes, 3. Bundle identifiers, 4. App display name, Flavored icons, Manual iOS flavor setup, Rollback, Verifying
 
 ### Community 139 - "Community 139"
-Cohesion: 0.22
-Nodes (8): Anti-patterns, Le sei domande, Passo 0 — Raccogli evidenze, Persistenza, Quando lanciarla, Report finale, Retro — self-audit di fine task, Ship handoff
+Cohesion: 0.17
+Nodes (11): Ambiente, Anti-patterns, Compatibilita della sessione, Le sei domande, Passo 0 — Raccogli evidenze, Persistenza, Quando lanciarla, Report finale (+3 more)
 
 ### Community 140 - "Community 140"
 Cohesion: 0.25
@@ -798,7 +832,7 @@ Nodes (5): Asset first-frame warm-up (ASSET-01), Do not flag, Fix, Flag, Severit
 
 ### Community 154 - "Community 154"
 Cohesion: 0.05
-Nodes (39): 0.1 Melos workspace detection, 0.2 INIT vs AUDIT classification, 0.3 Distribution channel (INIT branch), 0.4 Remote source — detect and propose, 0.5 Flavor detection, 0.6 `APP_STORE_ID` delivery — ADR 0001 convention, 0.7 `allowCancel`, 0.8 Router shape (+31 more)
+Nodes (40): 0.1 Melos workspace detection, 0.2 INIT vs AUDIT classification, 0.3 Distribution channel (INIT branch), 0.4 Remote source — detect and propose, 0.5 Flavor detection, 0.6 `APP_STORE_ID` delivery — ADR 0001 convention, 0.7 `allowCancel`, 0.8 Router shape (+32 more)
 
 ### Community 155 - "Community 155"
 Cohesion: 0.40
@@ -821,8 +855,8 @@ Cohesion: 0.15
 Nodes (12): Android — the `<queries>` intent, `APP_STORE_ID` env wiring — ADR 0001 convention, Default path — `dart_defines.json`, Detected alternative — `--dart-define` in `.vscode/launch.json` or a `Makefile`, Detected alternative — `.env`-per-flavor + `Env` class (the course's own shape), How the URL is built, Never do this, Non-store distribution (Firebase App Distribution, TestFlight, enterprise) (+4 more)
 
 ### Community 163 - "Community 163"
-Cohesion: 0.20
-Nodes (9): Anti-patterns, Disciplina skill-trigger-miss, Le cinque superfici, Passo 0 — Evidenze dal transcript, Passo 1 — Leggi i file di configurazione, Persistenza, Quando lanciarla, Report finale (+1 more)
+Cohesion: 0.17
+Nodes (11): Agente e dipendenze, Anti-patterns, Disciplina skill-trigger-miss, Le cinque superfici, Passo 0 — Evidenze dal transcript, Passo 1 — Leggi i file di configurazione, Persistenza, Quando lanciarla (+3 more)
 
 ### Community 164 - "Community 164"
 Cohesion: 0.25
@@ -876,9 +910,13 @@ Nodes (5): RIV-WIDGET-01, RIV-WIDGET-02, RIV-WIDGET-03, RIV-WIDGET-04, Riverpod 
 Cohesion: 0.50
 Nodes (4): GoRouter rules, ROUTER-01, ROUTER-02, ROUTER-03
 
+### Community 177 - "Community 177"
+Cohesion: 0.12
+Nodes (20): ago(), assert, attachment(), codexRollout(), commitFile(), edit(), fs, git() (+12 more)
+
 ### Community 178 - "Community 178"
-Cohesion: 0.18
-Nodes (10): AUDIT branch, Notes, Phase 0 — Target detection, Phase 1 — Discovery, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verification checklist, Phase 5 — Summary (+2 more)
+Cohesion: 0.17
+Nodes (11): AUDIT branch, Notes, Phase 0 — Target detection, Phase 1 — Discovery, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verification checklist, Phase 5 — Summary (+3 more)
 
 ### Community 179 - "Community 179"
 Cohesion: 0.29
@@ -897,11 +935,123 @@ Cohesion: 0.67
 Nodes (3): WEB-01, WEB-02, Web interaction affordance rules
 
 ### Community 183 - "Community 183"
+Cohesion: 0.14
+Nodes (11): assert, base(), fs, human(), os, path, SCRIPT, skillUse() (+3 more)
+
+### Community 184 - "Community 184"
+Cohesion: 0.19
+Nodes (11): assert, files(), fs, path, validate(), assert, fs, os (+3 more)
+
+### Community 185 - "Community 185"
+Cohesion: 0.17
+Nodes (11): AUDIT branch, Notes, page-transitions-init, Phase 0 — Classify, Phase 1 — Discover, Phase 2 — Decisions, Phase 3 — Generate, Phase 4 — Verify (+3 more)
+
+### Community 186 - "Community 186"
+Cohesion: 0.25
+Nodes (9): candidates(), fs, normalize(), os, path, records(), sameDirectory(), select() (+1 more)
+
+### Community 187 - "Community 187"
+Cohesion: 0.20
+Nodes (9): Completion criteria, Context pointers, Done when, Information hierarchy, Leading words and negation, License (MIT), Pruning, The two loads (+1 more)
+
+### Community 188 - "Community 188"
+Cohesion: 0.22
+Nodes (8): assert, fs, idx(), path, scriptsSrc, skill, SKILL_DIR, test
+
+### Community 189 - "Community 189"
+Cohesion: 0.22
+Nodes (7): assert, fs, os, path, SCRIPT, { spawnSync }, test
+
+### Community 190 - "Community 190"
+Cohesion: 0.25
+Nodes (7): 0011 — retro v3: la lente ambiente vive in `retro`, il confine con `tune-setup` è evento contro file, Consequences, Context, Decision, Decisioni di 0006 che restano valide, Nota del 2026-11-03 — allineamento alle decisioni successive, Status
+
+### Community 191 - "Community 191"
+Cohesion: 0.29
+Nodes (8): Domain Enums Must Not Contain Display Labels or IconData, No User-Facing Strings Outside UI Layer, Typed Reasons / Enum over String Reasons in Domain, Dart Language Core Reference (Naming, Types, Modern Features, OOP), No UI Labels in Domain Enums (Cross-Reference to no-ui-strings-outside-ui), Null-Aware Collection Elements (Dart 3.x use_null_aware_elements lint), Dart 3 Records for Multiple Return Values, Sealed Classes for Discriminated Unions (Exhaustive Pattern Matching)
+
+### Community 192 - "Community 192"
+Cohesion: 0.25
+Nodes (7): assert, fs, os, path, root, { spawnSync }, test
+
+### Community 193 - "Community 193"
+Cohesion: 0.25
+Nodes (8): FutureProvider Error Pattern B: Manual Container + container.pump(), Never Subclass _$FooNotifier (private generated base class), Notifier Stream Dep Strategy A: overrideWith Stream (neutralise build()), Notifier Stream Dep Strategy B: overrideWithValue(AsyncData) for build() Logic, Pattern: Notifier whose build() Watches a StreamProvider, overrideWithValue(AsyncData) for Synchronous Computed Providers, StreamController for Fine-grained Emission Control in ref.listen Tests, StreamProvider Override Strategy B: overrideWithValue AsyncData (sync)
+
+### Community 194 - "Community 194"
+Cohesion: 0.29
+Nodes (7): Descendant matching (scoped to Key-based parent), Form field errors (use `FormFieldState`), Phase 9 — Assertion Techniques, SnackBar / overlay verification (acceptable `find.byType` use), Widget property inspection, Widget visibility, Wrapper widget types — use the concrete Flutter type
+
+### Community 195 - "Community 195"
+Cohesion: 0.29
+Nodes (6): After rewriting, Balanced-paren extraction, Example, Keep untouched (list them in the summary), Rewrite rules, Router migration (opt-in)
+
+### Community 196 - "Community 196"
+Cohesion: 0.33
+Nodes (5): 0012 — retro: close the positive loop (Q6 proposals and cross-session repeated instructions), Consequences, Context, Decision, Status
+
+### Community 197 - "Community 197"
+Cohesion: 0.33
+Nodes (6): Clean Architecture Layers (domain/data/application/presentation), Phase 1: Socratic Intake (Scope, Name, Purpose, Design Probes), Phase 2: Scaffold Clean Architecture Directories, Phase 4: Architecture Contract (Domain/Data/Application/Presentation), Bootstrap Feature Skill (Clean Architecture Scaffolding), Sub-Feature is UI-Only (Domain/Data from Parent Feature)
+
+### Community 198 - "Community 198"
+Cohesion: 0.33
+Nodes (6): AsyncValue.when Flags (skipLoadingOnReload, skipError), Riverpod Flutter Widget APIs & UI Patterns (Audit Rules), ConsumerWidget vs ConsumerStatefulWidget, ref.listen for UI Side Effects (Dialogs, Navigation, Snackbars), ref.listenManual for Outside-build Listening, selectAsync for Async Provider Field Filtering
+
+### Community 199 - "Community 199"
+Cohesion: 0.33
+Nodes (6): Phase F — Folder Mode: Discovery, Strategy & Parallelization, Step F1 — Discover all widgets in the folder, Step F2 — Classify each widget, Step F3 — Identify shared dependencies, Step F4 — Launch parallel agents, Step F5 — After all agents complete
+
+### Community 200 - "Community 200"
+Cohesion: 0.33
+Nodes (6): No Side Effects in build() Method, Riverpod Async Mutations Reference (AsyncNotifier, guard(), error patterns), AsyncValue.guard() for Automatic Error + Stack Trace Capture, No whenData() Side Effects Inside Provider build(), ProviderException Wrapper (Ignore in ProviderObserver to Avoid Duplicate Logging), Exhaustive switch on AsyncValue (No valueOrNull in Riverpod 3.x)
+
+### Community 201 - "Community 201"
+Cohesion: 0.33
+Nodes (5): WidgetsBinding.addPostFrameCallback for Post-layout Work, 1. What is a side effect?, 3. General DO / DON'T rules, 4. Practical refactoring patterns, Side Effects in Flutter – Complete Guide
+
+### Community 202 - "Community 202"
+Cohesion: 0.33
+Nodes (6): Computed Providers for Expensive Derivations, Extract Form State to Parameterized Notifier (>4 setState Fields), Inline Consumer with .select() for Per-Item List Rebuilds, Riverpod Rebuild Optimization Patterns, .select() for Field-Scoped Provider Watching, .select() with Dart Record Types for Multiple Booleans
+
+### Community 203 - "Community 203"
+Cohesion: 0.33
+Nodes (5): Falsi positivi già filtrati dallo script, Flutter-aware, con fallback generico, Lente ambiente — segnali, esempi Flutter-aware, repo di atterraggio, Repo di atterraggio, Segnali
+
+### Community 204 - "Community 204"
+Cohesion: 0.40
+Nodes (5): API Summary, Avoid `pumpAndSettle()` when:, Phase 6 — Widget Pumping Strategies, Pump Decision Matrix, Usage examples
+
+### Community 205 - "Community 205"
+Cohesion: 0.40
+Nodes (5): File location, File template, Key conventions, Localization delegates for third-party widgets, Phase 5 — Test File Structure
+
+### Community 206 - "Community 206"
+Cohesion: 0.40
+Nodes (4): Builders per option, Platform matrix, Theme file template, Wiring
+
+### Community 207 - "Community 207"
+Cohesion: 0.50
+Nodes (4): Exception: private widget classes, If Keys are missing, Key naming convention, Phase 2 — Ensure Keys Exist in the Widget
+
+### Community 208 - "Community 208"
+Cohesion: 0.50
+Nodes (4): async/await Over Raw Futures (Readable Async Code), Custom Domain Exceptions (UserNotFoundException, AuthenticationException), Dart Async & Error Handling Reference, rethrow to Preserve Stack Traces
+
+### Community 209 - "Community 209"
 Cohesion: 0.67
-Nodes (3): Entity / value object, Exception hierarchy, Phase 6 — Domain Model & Exception Checklist
+Nodes (3): Exception: `find.byType()` is acceptable, Phase 3 — Robot Class Structure, Rules
+
+### Community 210 - "Community 210"
+Cohesion: 0.67
+Nodes (3): Inline route approach (navigation verified by rendered content), Mock GoRouter approach (navigation verified by mock calls), Phase 7 — Test Setup with GoRouter
+
+### Community 211 - "Community 211"
+Cohesion: 0.67
+Nodes (3): Phase 6b — Dialog Test Patterns, Trigger — always use a button to open dialogs, Viewport — complex dialog content
 
 ## Knowledge Gaps
-- **1251 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1246 more)
+- **1374 isolated node(s):** `name`, `version`, `description`, `keywords`, `author` (+1369 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -909,16 +1059,16 @@ Nodes (3): Entity / value object, Exception hierarchy, Phase 6 — Domain Model 
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Create and distribute a plugin marketplace` connect `Community 57` to `Community 72`, `Community 111`, `Community 86`, `Community 120`, `Community 63`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 177`, `Community 51`, `Community 57`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **Why does `README — claude-flutter Toolkit` connect `Community 56` to `Community 57`?**
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **Why does `Claude Code Plugin Marketplace` connect `Community 57` to `Community 56`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+  _High betweenness centrality (0.002) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `description` to the rest of the system?**
-  _1283 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1406 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Unit Test Patterns` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
-- **Should `Feature Bootstrapping Workflow` be split into smaller, more focused modules?**
-  _Cohesion score 0.04830917874396135 - nodes in this community are weakly interconnected._
 - **Should `Sentry Integration & Error Monitoring` be split into smaller, more focused modules?**
   _Cohesion score 0.05187074829931973 - nodes in this community are weakly interconnected._
+- **Should `GoRouter & Widget Testing` be split into smaller, more focused modules?**
+  _Cohesion score 0.058029689608636977 - nodes in this community are weakly interconnected._
